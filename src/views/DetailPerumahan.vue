@@ -11,10 +11,10 @@
 
           <b-col md="6">
             <div class="right">
-              <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
+              <!-- <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
               <span style="background-color:#fff;padding:4px;border-radius:100px">
                 <img src="../assets/avatar_profil.png" alt="">
-              </span>
+              </span> -->
             </div>
           </b-col>
         </b-row>
@@ -237,9 +237,10 @@ header .right h6{
 }
 
 .section-one .box-ketersediaan{
-    background-color: whitesmoke;
+    background-color: #fff;
     border-radius: 20px;
     padding: 30px;
+    box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
 }
 
 .section-one .box-kontak{

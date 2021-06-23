@@ -13,13 +13,14 @@ html,body{
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
   /* background-color:#ECF0F1 !important; */
+  background: #F8FAFE !important;
   
 }
 #app {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #0E0C53;
   /* font-weight: 400; */
   font-size: 14px;
   

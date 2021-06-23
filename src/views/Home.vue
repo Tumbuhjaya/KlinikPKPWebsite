@@ -13,9 +13,13 @@
       <section class="section-menu">
         <b-container>
           <b-row>
-            <b-col md="4">
+            <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo_jateng.png" alt="">
+                <img src="../assets/logo_Klinik_Big.png" alt="">
+
+                <div class="name">
+                  <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
+                </div>
               </div>
             </b-col>
             <b-col md="7">
@@ -29,8 +33,8 @@
               </div>
             </b-col>
 
-            <b-col md="1">
-              <div class="menu"><b-button block size="sm" v-b-modal.modal-lg variant="primary">Login</b-button></div>
+            <b-col md="2">
+              <div class="loginregister"><b-button size="md" v-b-modal.modal-lg variant="primary">Login</b-button></div>
             </b-col>
           </b-row>
         </b-container>
@@ -400,6 +404,7 @@ export default {
   left:0;
   right: 0;
   top: 0;
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 
@@ -410,10 +415,19 @@ export default {
   height: 70px;
   justify-content: flex-start;
   align-items: center;
+  /* background-color: pink; */
 }
 
 .section-one .section-menu .identity img{
   height: 50px;
+}
+
+.section-one .section-menu .identity .name{
+  display: flex;
+  height: 50px;
+  /* justify-content: center; */
+  align-items: center;
+  margin-left: 15px;
 }
 
 .section-one .section-menu .menu{
@@ -422,6 +436,15 @@ export default {
   /* background-color: yellowgreen; */
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.section-one .section-menu .loginregister{
+  width: 100%;
+  height: 70px;
+  /* background-color: yellowgreen; */
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 

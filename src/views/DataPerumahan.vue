@@ -41,10 +41,9 @@
 
                         <b-row>
                             <b-col md="12">
-                                <h6>Lokasi</h6>
-                                <b-form-input placeholder="Kabupaten/Kota" class="m-t-10"></b-form-input>
-                                <b-form-input placeholder="Kecamatan" class="m-t-10"></b-form-input>
-                                <b-form-input placeholder="Kelurahan" class="m-t-10"></b-form-input>
+                                <h6><strong>Lokasi</strong></h6>
+                                <b-form-select v-model="selected" :options="kabkot"></b-form-select>
+                                <b-form-select v-model="selected" :options="kec" class="m-t-15"></b-form-select>
                             </b-col>
                         </b-row>
 
@@ -56,9 +55,8 @@
 
                         <b-row>
                             <b-col md="12">
-                                <h6>Kategori</h6>
-                                <b-button variant="outline-success" class="m-r-15">Subsidi</b-button>
-                                <b-button variant="outline-dark">Komersial</b-button>
+                                <h6><strong>Kategori</strong></h6>
+                                <b-form-select v-model="selected" :options="jenis"></b-form-select>
                             </b-col>
                         </b-row>
 
@@ -70,27 +68,28 @@
 
                         <b-row>
                             <b-col md="12">
-                                <h6>Harga</h6>
+                                <h6><strong>Harga</strong></h6>
                             </b-col>
 
-                            <b-col md="6">
-                                <b-form-input placeholder="Harga Awal" class="m-t-10"></b-form-input>
+                            <b-col md="12">
+                                <b-form-input placeholder="Harga Minimal" class="m-t-10"></b-form-input>
                             </b-col>
 
-                            <b-col md="6">
-                                <b-form-input placeholder="Harga Akhir" class="m-t-10"></b-form-input>
+                            <b-col md="12">
+                                <b-form-input placeholder="Harga Maksimal" class="m-t-10"></b-form-input>
                             </b-col>
                         </b-row>
 
                         <b-row>
                             <b-col md="12">
+
                                 <hr>
                             </b-col>
                         </b-row>
 
                         <b-row>
                             <b-col md="12">
-                                <h6>Sertifikat</h6>
+                                <h6><strong>Sertifikat</strong></h6>
                             </b-col>
 
                             <b-col md="12">
@@ -109,9 +108,7 @@
                         </b-col>
 
                         <b-col md="4">
-                           <b-form-select class="m-t-10">
-                               <b-form-select-option></b-form-select-option>
-                           </b-form-select>
+                          <b-form-select v-model="selected" :options="urutkan" class="m-t-10"></b-form-select>
                         </b-col>
                     </b-row>
 
@@ -276,6 +273,24 @@ export default {
  data (){
    return{
      isLogin: false,
+     selected: null,
+      kabkot: [
+          { value: null, text: '-- Pilih Kabupaten / Kota --' }
+      ],
+
+      kec: [
+          { value: null, text: '-- Pilih Kecamatan --' }
+      ],
+
+      jenis: [
+          { value: null, text: '-- Pilih Jenis --' },
+          { value: 'Subsidi', text: 'Subsidi' },
+          { value: 'Komersial', text: 'Komersial' }
+      ],
+
+      urutkan: [
+          { value: null, text: '-- Urutkan --' }
+      ],
    };
  }
 
@@ -332,9 +347,10 @@ header .right h6{
 }
 
 .section-one .box-search{
-    background-color: whitesmoke;
-    border-radius: 20px;
-    padding: 30px 15px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 35px 25px;
+    box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
 }
 
 
@@ -342,18 +358,16 @@ header .right h6{
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
+
 }
 
 .section-one .box img{
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-
-.section-one .box{
-  border: 1px solid #e0e0e0;
-  border-radius: 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .section-one .box .down{

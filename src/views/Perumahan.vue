@@ -10,12 +10,12 @@
           </b-col>
 
           <b-col md="6">
-            <div class="right">
+            <!-- <div class="right">
               <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
               <span style="background-color:#fff;padding:4px;border-radius:100px">
                 <img src="../assets/avatar_profil.png" alt="">
               </span>
-            </div>
+            </div> -->
           </b-col>
         </b-row>
       </b-container>
@@ -38,14 +38,14 @@
               <div class="box-search">
                 <div class="row">
                   <b-col md="12">
-                    <h4>Cari Rumah Idaman Anda</h4>
+                    <h4 class="m-t-0 m-b-0">Cari Rumah Idaman Anda</h4>
                   </b-col>
                 </div>
 
                 <b-row class="m-t-15">
                   <b-col md="12">
                     <b-form-group >
-                      <b-form-input required placeholder="Cari Perumahan, Pengembang, dkk"></b-form-input>
+                      <b-form-input placeholder="Cari Perumahan, Pengembang, dkk"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -57,18 +57,10 @@
                     </div>
                   </b-col>
                   <b-col md="5">
-                    <b-form-input
-                            required
-                            placeholder=""
-                          
-                          ></b-form-input>
+                    <b-form-select v-model="selected" :options="kabkot"></b-form-select>
                   </b-col>
                   <b-col md="5">
-                    <b-form-input
-                            required
-                            placeholder=""
-                          
-                          ></b-form-input>
+                    <b-form-select v-model="selected" :options="kec"></b-form-select>
                   </b-col>
                 </b-row>
 
@@ -79,28 +71,20 @@
                       Kategori
                     </div>
                   </b-col>
-                  <b-col md="3">
-                    <b-form-input
-                            required
-                            placeholder=""
-                          
-                          ></b-form-input>
+                  <b-col md="10">
+                    <b-form-select v-model="selected" :options="jenis"></b-form-select>
                   </b-col>
-                  <b-col md="3">
-                    <b-form-input
-                            required
-                            placeholder=""
-                          
-                          ></b-form-input>
-                  </b-col>
+                  
+                </b-row>
 
-                  <b-col md="4">
-                    <b-form-input
-                            required
-                            placeholder=""
-                          
-                          ></b-form-input>
+                <b-row class="m-t-15">
+                  <b-col md="2">
+                    &nbsp;
                   </b-col>
+                  <b-col md="10">
+                    <b-button variant="primary">Cari</b-button>
+                  </b-col>
+                  
                 </b-row>
               </div>
             </b-col>
@@ -298,6 +282,20 @@ export default {
  data (){
    return{
      isLogin: false,
+    selected: null,
+    kabkot: [
+          { value: null, text: '-- Pilih Kabupaten / Kota --' }
+    ],
+
+    kec: [
+          { value: null, text: '-- Pilih Kecamatan --' }
+    ],
+
+    jenis: [
+          { value: null, text: '-- Pilih Jenis --' },
+          { value: 'Subsidi', text: 'Subsidi' },
+          { value: 'Komersial', text: 'Komersial' }
+    ]
    };
  }
 
@@ -368,10 +366,10 @@ header .right h6{
 
 .section-one .search .box-search{
   width: 100%;
-  height: 300px;
+  /* height: 300px; */
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  border-radius: 25px;
+  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
   padding: 30px;
 }
 
@@ -411,18 +409,16 @@ header .right h6{
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
+  border-radius: 25px;
+
 }
 
 .section-three .box img{
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-
-.section-three .box{
-  border: 1px solid #e0e0e0;
-  border-radius: 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .section-three .box .down{
