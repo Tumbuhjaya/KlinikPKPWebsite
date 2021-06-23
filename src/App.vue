@@ -218,7 +218,57 @@ html,body{
 }
 /* End padding Right */
 
-.title{
-	font-weight: 800 !important;
+#myheader header{
+  background-color: #4C87F2;
 }
+
+#myheader header .indentity{
+  width: 100%;
+  height: 70px;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#myheader header .indentity img{
+  height: 50px;
+}
+
+#myheader header .indentity .name{
+  margin-left: 15px;
+}
+
+#myheader header .indentity .name h4{
+  color: #fff;
+}
+
+#myheader header .menu{
+  width: 100%;
+  height: 70px;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#myheader header .menu h6{
+  color: #fff;
+}
+
+#myheader header .loginregister{
+  width: 100%;
+  height: 70px;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+  font-weight: bold !important;
+  background-color: #4C87F2 !important;
+  color: #fff !important;
+}
+
 </style>

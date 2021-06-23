@@ -1,27 +1,7 @@
 <template>
   <div id="detail_perumahan" >
-    <header>
-      <b-container>
-        <b-row>
-          <b-col md="6">
-            <div class="left">
-              <h5 class="m-t-0 m-b-0"><strong>Klinik PKP</strong><span class="m-l-15">Perumahan</span></h5>
-            </div>
-          </b-col>
-
-          <b-col md="6">
-            <div class="right">
-              <!-- <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
-              <span style="background-color:#fff;padding:4px;border-radius:100px">
-                <img src="../assets/avatar_profil.png" alt="">
-              </span> -->
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
-    </header>
-
-
+    <myheader></myheader>
+     
     <section class="section-one">
         <b-container>
             <b-row>
@@ -160,12 +140,17 @@
             </b-row>
         </b-container>    
     </section>    
+
+    <myfooter></myfooter>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import myheader from "../components/header"
+import myfooter from "../components/footer"
 
 export default {
   name: "DetailPerumahan",
@@ -173,7 +158,11 @@ export default {
    return{
      isLogin: false,
    };
- }
+ },
+ components:{
+  myheader,
+  myfooter
+},
 
 };
 </script>
@@ -192,39 +181,8 @@ export default {
   background-color: aqua;
 }
 
-header{
-  background-color: #4C87F2;
-}
-
-header .left{
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-header .left h5{
-  color: #fff;
-}
-
-header .right{
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-header .right h6{
-  font-size: 14px;
-  color: #fff;
-}
-
 .section-one{
-  padding: 30px 0;
+  padding: 60px 0;
 }
 
 .section-one .box-permohonan{
