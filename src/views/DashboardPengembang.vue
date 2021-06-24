@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard_pengembang">
     <myheader></myheader>
-    
+
     <section class="section-one">
       <b-container>
         <b-row>
@@ -24,7 +24,7 @@
                   ></router-link
                 >
               </b-col>
-              <b-col md="12" class="m-t-30">
+              <!-- <b-col md="12" class="m-t-30">
                 <b-table-simple bordered>
                   <b-thead>
                     <b-tr>
@@ -130,13 +130,10 @@
                     </b-tr>
                   </b-tbody>
                 </b-table-simple>
-              </b-col>
+              </b-col> -->
               <b-container fluid>
                 <!-- User Interface controls -->
                 <b-row>
-
-
-
                   <b-col sm="5" md="6" class="my-1">
                     <b-form-group
                       label="Per page"
@@ -177,51 +174,29 @@
                   :per-page="perPage"
                   :filter="filter"
                   :filter-included-fields="filterOn"
-                  :sort-by.sync="sortBy"
-                  :sort-desc.sync="sortDesc"
-                  :sort-direction="sortDirection"
                   stacked="md"
                   show-empty
                   small
                   @filtered="onFiltered"
                 >
-                  <!-- <template #cell(name)="row">
-                    {{ row.value.first }} {{ row.value.last }}
-                  </template>
+                  <template #cell(actions)="item">
+                    <center>
+                        <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)"
+                          >Edit</b-button
+                        >
+                      <router-link
+                        :to="'tipe_perumahan_pengembang'"
+                        style="text-decoration:none"
+                      >
+                        <b-button variant="info" size="sm" class="m-r-15"
+                          >Tipe Rumah</b-button
+                        >
+                      </router-link>
 
-                  <template #cell(actions)="row">
-                    <b-button
-                      size="sm"
-                      @click="info(row.item, row.index, $event.target)"
-                      class="mr-1"
-                    >
-                      Info modal
-                    </b-button>
-                    <b-button size="sm" @click="row.toggleDetails">
-                      {{ row.detailsShowing ? "Hide" : "Show" }} Details
-                    </b-button>
+                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)">Hapus</b-button>
+                    </center>
                   </template>
-
-                  <template #row-details="row">
-                    <b-card>
-                      <ul>
-                        <li v-for="(value, key) in row.item" :key="key">
-                          {{ key }}: {{ value }}
-                        </li>
-                      </ul>
-                    </b-card>
-                  </template> -->
                 </b-table>
-
-                <!-- Info modal -->
-                <!-- <b-modal
-                  :id="infoModal.id"
-                  :title="infoModal.title"
-                  ok-only
-                  @hide="resetInfoModal"
-                >
-                  <pre>{{ infoModal.content }}</pre>
-                </b-modal> -->
               </b-container>
             </b-row>
           </b-col>
@@ -236,95 +211,106 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import axios from "axios"
-import ipBackEnd from "@/ipBackEnd"
-import myheader from "../components/header"
-import myfooter from "../components/footer"
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
+import myheader from "../components/header";
+import myfooter from "../components/footer";
 
 export default {
   name: "DashboardPengembang",
   data() {
     return {
       isLogin: false,
-      
-
-      
-      items: [
-        ],
-        fields: [
-          // { key: 'name', label: 'Person full name', sortable: true, sortDirection: 'desc' },
-          // { key: 'age', label: 'Person age', sortable: true, class: 'text-center' },
-          // {
-          //   key: 'isActive',
-          //   label: 'Is Active',
-          //   formatter: (value, key, item) => {
-          //     return value ? 'Yes' : 'No'
-          //   },
-          //   sortable: true,
-          //   sortByFormatted: true,
-          //   filterByFormatted: true
-          // },
-          // { key: 'actions', label: 'Actions' }
-        ],
-        totalRows: 1,
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
-        sortBy: '',
-        sortDesc: false,
-        sortDirection: 'asc',
-        filter: null,
-        filterOn: [],
-        infoModal: {
-          id: 'info-modal',
-          title: '',
-          content: ''
-        }
+      items: [],
+      fields: [
+        {
+          key: "namaPerumahan",
+          label: "Nama Perumahan",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "alamat",
+          label: "Alamat",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "CP",
+          label: "Kontak Person",
+          sortable: true,
+          class: "text-center",
+        },
+        {
+          key: "luasLahan",
+          label: "Luas Lahan (m2)",
+          sortable: true,
+          class: "text-center",
+        },
+        { key: "actions", label: "Actions", class: "text-center" },
+      ],
+      totalRows: 1,
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 10, 15, { value: 100, text: "Tampilkan Banyak" }],
+      filter: null,
+      filterOn: [],
+      infoModal: {
+        id: "info-modal",
+        title: "",
+        content: "",
+      },
     };
   },
-  components:{
-        myheader,
-        myfooter
-      },
+  components: {
+    myheader,
+    myfooter,
+  },
   computed: {
-      sortOptions() {
-        // Create an options list from our fields
-        return this.fields
-          .filter(f => f.sortable)
-          .map(f => {
-            return { text: f.label, value: f.key }
-          })
-      }
+    sortOptions() {
+      // Create an options list from our fields
+      return this.fields
+        .filter((f) => f.sortable)
+        .map((f) => {
+          return { text: f.label, value: f.key };
+        });
     },
-    mounted() {
-      // Set the initial number of items
-      this.totalRows = this.items.length
+  },
+  async created() {
+    this.items = await this.getPerum();
+    console.log();
+  },
+  mounted() {
+    // Set the initial number of items
+    this.totalRows = this.items.length;
+  },
+  methods: {
+    goEdit(x){
+      this.$router.push({path:`edit_perumahan_pengembang/${x}`})
     },
-    methods: {
-      info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-      },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
-      },
-      onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
-      },
-      getPerum(){
-        axios.get(ipBackEnd + '',{
-
-        }).then(res =>{
-          console.log(res)
-        }).catch(err =>{
-          console.log(err)
+    hapus(x){
+      console.log(x)
+    },
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    async getPerum() {
+      let perum = await axios
+        .get(ipBackEnd + "perumahan/listByPengembang", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
         })
-      }
-    }
+        .catch((err) => {
+          console.log(err);
+        });
+      let x = perum.data.data;
+      console.log(x, "ini perum");
+      return x;
+    },
+  },
 };
 </script>
 

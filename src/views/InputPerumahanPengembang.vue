@@ -176,6 +176,8 @@ export default {
       await formData.append("kabKota", vm.kabKot);
       await formData.append("kecamatan", vm.keca);
       await formData.append("email", vm.email);
+      await formData.append("CP", vm.CP);
+      await formData.append("luasLahan", vm.luasLahan);
       await formData.append("rencanaPembangunan", vm.rencanaPemb);
       await formData.append("totalTerbangun", vm.jmlTerbangun);
       await formData.append("jmlStockUnitSubsidi", vm.stockUnitS);

@@ -111,12 +111,17 @@ const routes = [
   },
 
   {
-    path: "/edit_perumahan_pengembang",
+    path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",
     component: EditPerumahanPengembang,
-    meta: {
-      guest: true
-    }
+    beforeRouteUpdate(to, from, next) {
+      console.log(to)
+      if (to.path == '/edit_perumahan_pengembang/:id') {
+        next({
+          path: '/edit_perumahan_pengembang',
+        });
+      }
+    },
   },
 
   {
