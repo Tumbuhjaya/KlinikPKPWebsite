@@ -257,6 +257,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import axios from "axios"
+import ipBackEnd from "@/ipBackEnd"
 
 export default {
   name: "DashboardPengembang",
@@ -264,28 +266,6 @@ export default {
     return {
       isLogin: false,
       items: [
-          { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
-          {
-            isActive: false,
-            age: 9,
-            name: { first: 'Mini', last: 'Navarro' },
-            _rowVariant: 'success'
-          },
-          { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
-          { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
-          { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
-          {
-            isActive: true,
-            age: 87,
-            name: { first: 'Larsen', last: 'Shaw' },
-            _cellVariants: { age: 'danger', isActive: 'warning' }
-          },
-          { isActive: false, age: 26, name: { first: 'Mitzi', last: 'Navarro' } },
-          { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
-          { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
         ],
         fields: [
           // { key: 'name', label: 'Person full name', sortable: true, sortDirection: 'desc' },
@@ -346,6 +326,15 @@ export default {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
+      },
+      getPerum(){
+        axios.get(ipBackEnd + '',{
+
+        }).then(res =>{
+          console.log(res)
+        }).catch(err =>{
+          console.log(err)
+        })
       }
     }
 };
