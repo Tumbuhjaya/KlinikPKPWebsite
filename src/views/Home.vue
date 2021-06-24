@@ -12,15 +12,24 @@
       <section class="section-menu">
         <b-container>
           <b-row>
-            <b-col md="4">
+            <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo_jateng.png" alt="" />
+                <img src="../assets/logo_Klinik_Big.png" alt="">
+
+                <div class="name">
+                  <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
+                </div>
               </div>
             </b-col>
             <b-col md="7">
               <div class="menu">
+                <router-link :to="'/'" style="text-decoration:none;"
+                  >
+                <h6 class="m-t-0 m-b-0">Beranda</h6>
+                </router-link>
+
                 <h6 class="m-t-0 m-b-0">CSR</h6>
-                <router-link :to="'pengembang'"
+                <router-link :to="'pengembang'" style="text-decoration:none;"
                   ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
                 >
                 <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
@@ -29,12 +38,8 @@
               </div>
             </b-col>
 
-            <b-col md="1">
-              <div class="menu">
-                <b-button block size="sm" v-b-modal.modal-lg variant="primary"
-                  >Login</b-button
-                >
-              </div>
+            <b-col md="2">
+              <div class="loginregister"><b-button size="md" v-b-modal.modal-lg variant="primary">Login</b-button></div>
             </b-col>
           </b-row>
         </b-container>
@@ -348,54 +353,18 @@
       </b-container>
     </section>
 
-    <footer class="section-footer">
-      <b-container>
-        <b-row>
-          <b-col md="12">
-            <h6 class="m-t-0 m-b-0 text-center">
-              <strong
-                >Copyright © 2021 Dinas Perumahan Rakyat dan Kawasan Permukiman
-                Provinsi Jawa Tengah</strong
-              >
-            </h6>
-          </b-col>
-        </b-row>
-      </b-container>
-    </footer>
+    <myfooter></myfooter>
 
-    <b-modal id="modal-lg" size="lg" centered hide-footer>
-      <b-row>
-        <b-col md="6">
-          <img
-            src="https://via.placeholder.com/200"
-            alt=""
-            style="width:100%"
-          />
-        </b-col>
-        <b-col md="6">
-          <h3 class="m-t-0 m-b-0"><strong>LOGIN</strong></h3>
-          <h4 class="m-t-0 m-b-0">KLINIK PKP PROVINSI JAWA TENGAH</h4>
-          <hr />
-          <b-form-group label="Username">
-            <b-form-input v-model="username"></b-form-input>
-          </b-form-group>
 
-          <b-form-group label="Password">
-            <b-form-input v-model="password"></b-form-input>
-          </b-form-group>
-
-          <!-- <router-link :to="'dashboard_pengembang'" > -->
-          <b-button variant="primary" @click="login()">Login</b-button>
-          <!-- </router-link> -->
-        </b-col>
-      </b-row>
-    </b-modal>
+    
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
+import myfooter from "../components/footer"
+
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 
@@ -407,6 +376,10 @@ export default {
       username: "",
       password: "",
     };
+  },
+  components:{
+    // myheader,
+    myfooter
   },
   methods: {
     login() {
@@ -472,6 +445,7 @@ export default {
   left: 0;
   right: 0;
   top: 0;
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 .section-one .section-menu .identity {
@@ -480,13 +454,22 @@ export default {
   height: 70px;
   justify-content: flex-start;
   align-items: center;
+  /* background-color: pink; */
 }
 
 .section-one .section-menu .identity img {
   height: 50px;
 }
 
-.section-one .section-menu .menu {
+.section-one .section-menu .identity .name{
+  display: flex;
+  height: 50px;
+  /* justify-content: center; */
+  align-items: center;
+  margin-left: 15px;
+}
+
+.section-one .section-menu .menu{
   width: 100%;
   height: 70px;
   /* background-color: yellowgreen; */
@@ -495,7 +478,17 @@ export default {
   align-items: center;
 }
 
-.section-two {
+.section-one .section-menu .loginregister{
+  width: 100%;
+  height: 70px;
+  /* background-color: yellowgreen; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.section-two{
   padding: 60px 0;
 }
 
@@ -585,14 +578,5 @@ export default {
 
 .section-six .right .top h5 {
   color: #4c87f2;
-}
-
-.section-footer {
-  padding: 15px 0;
-  background-color: #4c87f2;
-}
-
-.section-footer h6 {
-  color: #fff;
 }
 </style>

@@ -1,30 +1,7 @@
 <template>
   <div id="dashboard_pengembang">
-    <header>
-      <b-container>
-        <b-row>
-          <b-col md="6">
-            <div class="left">
-              <router-link :to="'/'" style="text-decoration:none"
-                ><h5 class="m-t-0 m-b-0">
-                  <strong>Klinik PKP</strong>
-                </h5></router-link
-              >
-            </div>
-          </b-col>
-
-          <b-col md="6">
-            <div class="right">
-              <!-- <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
-              <span style="background-color:#fff;padding:4px;border-radius:100px">
-                <img src="../assets/avatar_profil.png" alt="">
-              </span> -->
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
-    </header>
-
+    <myheader></myheader>
+    
     <section class="section-one">
       <b-container>
         <b-row>
@@ -251,6 +228,8 @@
         </b-row>
       </b-container>
     </section>
+
+    <myfooter></myfooter>
   </div>
 </template>
 
@@ -259,12 +238,17 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import axios from "axios"
 import ipBackEnd from "@/ipBackEnd"
+import myheader from "../components/header"
+import myfooter from "../components/footer"
 
 export default {
   name: "DashboardPengembang",
   data() {
     return {
       isLogin: false,
+      
+
+      
       items: [
         ],
         fields: [
@@ -298,6 +282,10 @@ export default {
         }
     };
   },
+  components:{
+        myheader,
+        myfooter
+      },
   computed: {
       sortOptions() {
         // Create an options list from our fields
