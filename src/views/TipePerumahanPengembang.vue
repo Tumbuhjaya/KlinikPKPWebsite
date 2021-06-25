@@ -275,6 +275,9 @@ export default {
     await this.getTipe(this.perumahanId);
   },
   methods: {
+    hapus(x){
+        console.log(x)
+    },
     handleFile() {
       this.foto1 = this.$refs.foto1.files[0];
       this.foto2 = this.$refs.foto2.files[0];
@@ -330,6 +333,7 @@ export default {
           console.log(err);
         });
     },
+    
   },
 };
 </script>
