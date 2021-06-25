@@ -184,15 +184,9 @@
                         <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)"
                           >Edit</b-button
                         >
-                      <router-link
-                        :to="'tipe_perumahan_pengembang'"
-                        style="text-decoration:none"
-                      >
-                        <b-button variant="info" size="sm" class="m-r-15"
+                        <b-button variant="info" size="sm" class="m-r-15" @click="goTipeRumah(item.item.id)"
                           >Tipe Rumah</b-button
                         >
-                      </router-link>
-
                       <b-button variant="danger" size="sm" @click="hapus(item.item.id)">Hapus</b-button>
                     </center>
                   </template>
@@ -255,11 +249,6 @@ export default {
       pageOptions: [5, 10, 15, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
-      infoModal: {
-        id: "info-modal",
-        title: "",
-        content: "",
-      },
     };
   },
   components: {
@@ -287,6 +276,10 @@ export default {
   methods: {
     goEdit(x){
       this.$router.push({path:`edit_perumahan_pengembang/${x}`})
+    },
+    goTipeRumah(x){
+      console.log(x)
+      this.$router.push({path:`tipe_perumahan_pengembang/${x}`})
     },
     hapus(x){
       console.log(x)

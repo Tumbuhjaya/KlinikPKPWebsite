@@ -125,12 +125,17 @@ const routes = [
   },
 
   {
-    path: "/tipe_perumahan_pengembang",
+    path: "/tipe_perumahan_pengembang/:id",
     name: "TipePerumahanPengembang",
     component: TipePerumahanPengembang,
-    meta: {
-      guest: true
-    }
+    beforeRouteUpdate(to, from, next) {
+      console.log(to)
+      if (to.path == '/tipe_perumahan_pengembang/:id') {
+        next({
+          path: '/tipe_perumahan_pengembang',
+        });
+      }
+    },
   },
 
 
