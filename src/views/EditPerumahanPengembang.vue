@@ -49,12 +49,12 @@
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi X">
-                    <b-form-input placeholder="110.1234"></b-form-input>
+                    <b-form-input v-model="dataPerum.koordinatX" :placeholder="dataPerum.koordinatX"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi Y">
-                    <b-form-input placeholder="-6.1234"></b-form-input>
+                    <b-form-input v-model="dataPerum.koordinatY" :placeholder="dataPerum.koordinatY"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -189,8 +189,13 @@ export default {
       })
     },
     setPlace(x){
-      let y = x.toString()
+      if (isNaN(x)){
+        return x
+      }else{
+        let y = x.toString()
       return y
+      }
+      
     }
   },
   watch:{
