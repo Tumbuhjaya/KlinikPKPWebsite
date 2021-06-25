@@ -33,7 +33,7 @@
                 </b-form-group>
 
                 <b-form-group label="Kabupaten/Kota">
-                  <b-form-select v-model="selected" :options="kabkot"></b-form-select>
+                  <multiselect v-model="selected" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
                 </b-form-group>
 
                 <b-form-group label="Kecamatan">
@@ -137,6 +137,8 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import myheader from "../components/header"
 import myfooter from "../components/footer"
+import Multiselect from 'vue-multiselect'
+
 
 export default {
   name: "InputPerumahanPengembang",
@@ -145,16 +147,17 @@ export default {
     isLogin: false,
     selected: null,
     kabkot: [
-          { value: null, text: '-- Pilih Kabupaten / Kota --' }
+      'Kabupaten A', 'Kabupaten B', 'Kabupaten C'
     ],
     kec: [
-          { value: null, text: '-- Pilih Kecamatan --' }
+      'Kecamatan A', 'Kecamatan B', 'Kecamatan C'
     ]
    };
  },
  components:{
   myheader,
- myfooter
+  myfooter,
+  Multiselect
 },
 
 };

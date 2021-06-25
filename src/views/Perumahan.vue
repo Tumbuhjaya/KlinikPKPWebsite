@@ -119,69 +119,89 @@
           </b-col>
         </b-row>
 
-        <b-row>
-          <b-col md="3">
-            <div class="box">
-              <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
-              <div class="down m-t-15">
-                <h5><strong>Perumahan Indah</strong></h5>
-                <h6>PT. Pengembang Internasional</h6>
+        <b-row class="m-t-15">
+          <b-col md="12">
+            <VueSlickCarousel v-bind="rekomperumahan">
+              <div>
+                <div class="box">
+                  <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
+                  <div class="down m-t-15">
+                    <h5><strong>Perumahan Indah</strong></h5>
+                    <h6>PT. Pengembang Internasional</h6>
 
-                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
 
-                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                  </div>
+                  
+                </div>
               </div>
-              
-            </div>
-          </b-col>
 
-          <b-col md="3">
-            <div class="box">
-              <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
-              <div class="down m-t-15">
-                <h5><strong>Perumahan Indah</strong></h5>
-                <h6>PT. Pengembang Internasional</h6>
+              <div>
+                <div class="box">
+                  <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
+                  <div class="down m-t-15">
+                    <h5><strong>Perumahan Indah</strong></h5>
+                    <h6>PT. Pengembang Internasional</h6>
 
-                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
 
-                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                  </div>
+                  
+                </div>
               </div>
-              
-            </div>
-          </b-col>
 
-          <b-col md="3">
-            <div class="box">
-              <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
-              <div class="down m-t-15">
-                <h5><strong>Perumahan Indah</strong></h5>
-                <h6>PT. Pengembang Internasional</h6>
+              <div>
+                <div class="box">
+                  <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
+                  <div class="down m-t-15">
+                    <h5><strong>Perumahan Indah</strong></h5>
+                    <h6>PT. Pengembang Internasional</h6>
 
-                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
 
-                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                  </div>
+                  
+                </div>
               </div>
-              
-            </div>
-          </b-col>
 
-          <b-col md="3">
-            <div class="box">
-              <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
-              <div class="down m-t-15">
-                <h5><strong>Perumahan Indah</strong></h5>
-                <h6>PT. Pengembang Internasional</h6>
+              <div>
+                <div class="box">
+                  <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
+                  <div class="down m-t-15">
+                    <h5><strong>Perumahan Indah</strong></h5>
+                    <h6>PT. Pengembang Internasional</h6>
 
-                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
 
-                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                  </div>
+                  
+                </div>
               </div>
-              
-            </div>
+
+              <div>
+                <div class="box">
+                  <div class="up"><img src="https://via.placeholder.com/300x240" alt=""></div>
+                  <div class="down m-t-15">
+                    <h5><strong>Perumahan Indah</strong></h5>
+                    <h6>PT. Pengembang Internasional</h6>
+
+                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+
+                    <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                    <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                  </div>
+                  
+                </div>
+              </div>
+            </VueSlickCarousel>
           </b-col>
         </b-row>
       </b-container>
@@ -204,18 +224,30 @@
 
 
         <b-row>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
+          <b-col md="12">
+            <VueSlickCarousel v-bind="pengembang">
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+            </VueSlickCarousel>
           </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
+          
         </b-row>
       </b-container>
     </section>
@@ -235,17 +267,28 @@
         </b-row>
 
         <b-row>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
-          </b-col>
-          <b-col md="3">
-            <img src="https://via.placeholder.com/262x100" alt="">
+          <b-col md="12">
+            <VueSlickCarousel v-bind="pembiayaan">
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+
+              <div>
+                <img src="https://via.placeholder.com/262x100" alt="">
+              </div>
+            </VueSlickCarousel>
           </b-col>
         </b-row>
       </b-container>
@@ -261,12 +304,44 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import myheader from "../components/header"
 import myfooter from "../components/footer"
+import VueSlickCarousel from 'vue-slick-carousel'
+
 
 export default {
   name: "Perumahan",
  data (){
-   return{
-     isLogin: false,
+  return{
+    isLogin: false,
+    rekomperumahan:{
+        "autoplay": true,
+        "dots": false,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 4,
+        "slidesToScroll": 1
+    },
+
+    pengembang:{
+        "autoplay": true,
+        "dots": false,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 4,
+        "slidesToScroll": 1
+    },
+
+    pembiayaan:{
+        "autoplay": true,
+        "dots": false,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 4,
+        "slidesToScroll": 1
+    },
+
     selected: null,
     kabkot: [
           { value: null, text: '-- Pilih Kabupaten / Kota --' }
@@ -281,17 +356,29 @@ export default {
           { value: 'Subsidi', text: 'Subsidi' },
           { value: 'Komersial', text: 'Komersial' }
     ]
-   };
+    
+  };
+
+  
+   
  },
+
+ 
  components:{
   myheader,
-  myfooter
+  myfooter,
+  VueSlickCarousel
+
 },
 
 };
 </script>
 
 <style scoped>
+.slick-slider img{
+  width: 100%;
+}
+
 
 .layout{
   width: 100%;

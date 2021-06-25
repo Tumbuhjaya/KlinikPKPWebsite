@@ -4,7 +4,27 @@
       <b-container fluid>
         <b-row>
           <b-col md="12" class="pl-0 pr-0 banner">
-            <img src="../assets/ilus1.png" alt="" />
+            <b-carousel
+              id="carousel-fade"
+              :interval="4000"
+              style="text-shadow: 0px 0px 2px #000"
+              fade
+              indicators
+              
+            >
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=10"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=12"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=22"
+              ></b-carousel-slide>
+            </b-carousel>
           </b-col>
         </b-row>
       </b-container>
@@ -282,17 +302,23 @@
                 <h6><strong>Penelitian Terbaru</strong></h6>
               </b-col>
             </b-row>
+
             <b-row>
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
-              </b-col>
-
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
-              </b-col>
-
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
+              <b-col md="12">
+                  <VueSlickCarousel v-bind="settings">
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                  </VueSlickCarousel>
               </b-col>
             </b-row>
           </b-col>
@@ -363,24 +389,40 @@
 <script>
 import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
-import myfooter from "../components/footer"
-
+import myfooter from "../components/footer";
+import VueSlickCarousel from 'vue-slick-carousel'
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+
+// <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 export default {
   name: "Home",
   data() {
+     
     return {
       isLogin: false,
       username: "",
       password: "",
+      settings:{
+        "autoplay": true,
+        "dots": false,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 3,
+        "slidesToScroll": 1
+      }
+      
     };
   },
   components:{
     // myheader,
-    myfooter
+    myfooter,
+    VueSlickCarousel,
   },
+
+
   methods: {
     login() {
       axios
@@ -406,6 +448,9 @@ export default {
 </script>
 
 <style scoped>
+.slick-slider img{
+  width: 100%;
+}
 .layout {
   width: 100%;
   height: 100px;
@@ -445,7 +490,8 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
 }
 
 .section-one .section-menu .identity {
@@ -564,9 +610,9 @@ export default {
   color: #fff;
 }
 
-.section-five .left img {
+/* .section-five .left img {
   width: 100%;
-}
+} */
 
 .section-six {
   padding: 60px 0;
