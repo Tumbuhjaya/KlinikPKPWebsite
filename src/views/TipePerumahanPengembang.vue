@@ -144,9 +144,9 @@
                     show-empty
                     small
                   >
-                  <template #cell(No)="item">
-                      {{item.index + 1}}
-                  </template>
+                    <template #cell(No)="item">
+                      {{ item.index + 1 }}
+                    </template>
                     <template #cell(actions)="item">
                       <center>
                         <b-button
@@ -275,8 +275,8 @@ export default {
     await this.getTipe(this.perumahanId);
   },
   methods: {
-    hapus(x){
-        console.log(x)
+    hapus(x) {
+      console.log(x);
     },
     handleFile() {
       this.foto1 = this.$refs.foto1.files[0];
@@ -327,13 +327,12 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.listTipe = res.data.data
+          this.listTipe = res.data.data;
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    
   },
 };
 </script>

@@ -105,6 +105,9 @@
           small
           @filtered="onFiltered"
         >
+          <template #cell(No)="item">
+            {{ item.index + 1 }}
+          </template>
           <template #cell(actions)>
             <!-- <b-button
               size="sm"
@@ -113,12 +116,13 @@
             >
               Edit
             </b-button> -->
-             <center>
-                      <b-button variant="success" size="sm" class="m-r-15"
-                        >Chat Via WA</b-button
-                      >
-                      <b-button variant="warning" size="sm">Detail</b-button>
-                    </center>
+            <center>
+              <b-button variant="success" size="sm" class="m-r-15"
+                > WA</b-button
+              >
+              <b-button variant="warning" size="sm" class="m-r-15">Detail</b-button>
+              <b-button variant="danger" size="sm">Hapus</b-button>
+            </center>
             <!-- <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details
             </b-button>
@@ -167,6 +171,11 @@ export default {
       items: [],
       fields: [
         {
+          key: "No",
+          label: "No",
+          sortable: true,
+        },
+        {
           key: "namaPerusahaan",
           label: "Nama Perusahaan",
           sortable: true,
@@ -192,7 +201,7 @@ export default {
           sortable: true,
           class: "text-center",
         },
-        { key: "actions", label: "Actions", class: "text-center", },
+        { key: "actions", label: "Actions", class: "text-center" },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -240,7 +249,8 @@ export default {
           console.log(err);
         });
       let x = PTs.data.data;
-      console.log(x);
+      console.log(PTs.data);
+      console.log(x, "ini pengembang");
       return x;
     },
   },

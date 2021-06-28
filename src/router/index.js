@@ -185,18 +185,18 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  let role = localStorage.getItem("role");
-    if (to.meta.role == "all") {
-      next();
-    } else if (to.meta.role !== role) {
-      next({
-        path: "/",
-      });
-    }
-  else{
-    next()
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   let role = localStorage.getItem("role");
+//     if (to.meta.role == "all") {
+//       next();
+//     } else if (to.meta.role !== role) {
+//       next({
+//         path: "/",
+//       });
+//     }
+//   else{
+//     next()
+  // }
+// });
 
 export default router;
