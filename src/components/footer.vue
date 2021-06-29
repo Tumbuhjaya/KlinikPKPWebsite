@@ -66,7 +66,7 @@ export default {
           password: this.password,
         })
         .then((res) => {
-          console.log(res);
+          console.log(res,'ini footer');
           localStorage.setItem('token',res.data[0].token)
           localStorage.setItem('id', res.data[1].id)
           localStorage.setItem('role',res.data[2].role)

@@ -8,51 +8,76 @@
 
             <b-row class="m-t-30">
                 <b-col md="6" offset-md="3">
-                    <div class="box">
-                        <b-row>
-                            <b-col md="12">
-                                <h2 class="m-t-0 m-b-0 text-center"><strong>Edit Profil Pengembang</strong></h2>
-                            </b-col>
-                        </b-row>
+                    <b-row>
+                        <b-col md="12">
+                            <h2 class="m-t-0 m-b-0 text-center"><strong>Edit Profil Pengembang</strong></h2>
+                        </b-col>
+                    </b-row>
 
-                        <b-row>
-                            <b-col md="12">
-                                <hr>
-                            </b-col>
-                        </b-row>
+                    <b-row class="m-t-30">
+                        <b-col md="12">
+                            <b-tabs content-class="mt-3" justified>
+                                    <b-tab title="Profil Pengembang" active>
+                                        <b-row>
+                                            <b-col md="12">
+                                                <b-form-group label="Nama Pengembang">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
 
-                        <b-row>
-                            <b-col md="12">
-                                <b-form>
-                                    <b-form-group label="Nama">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                                                <b-form-group label="Alamat">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
 
-                                    <b-form-group label="Alamat">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                                                <b-form-group label="Asosiasi">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
 
-                                    <b-form-group label="Email">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                                                <b-form-group label="NIB">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
+                                                
 
-                                    <b-form-group label="Nomor Telepon">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
 
-                                    <b-form-group label="Username">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                                                <b-form-group label="Email">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
 
-                                    <b-form-group label="Password">
-                                        <b-form-input type="password"></b-form-input>
-                                    </b-form-group>
+                                                <b-form-group label="No. Telepon">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
 
-                                    <b-button type="submit" variant="primary">Daftar</b-button>
-                                </b-form>
-                            </b-col>
-                        </b-row>
-                    </div>
+                                                <b-form-group label="Website">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
+
+                                                <b-form-group label="Upload Logo Pengembang">
+                                                    <b-form-file></b-form-file>
+                                                </b-form-group>
+                                            </b-col>
+                                        </b-row>
+                                    </b-tab>
+                                    <b-tab title="Akun Pengembang">
+                                        <b-row>
+                                            <b-col md="12">
+                                                <b-form-group label="Username">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
+
+                                                <b-form-group label="Password">
+                                                    <b-form-input></b-form-input>
+                                                </b-form-group>
+                                            </b-col>
+                                        </b-row>
+
+                                        <b-row>
+                                            <b-col md="12">
+                                                <b-button type="submit" variant="primary" @click="register()">Daftar</b-button>
+                                            </b-col>
+                                        </b-row>
+                                    </b-tab>
+                            </b-tabs>
+                        </b-col>
+                    </b-row>
                 </b-col>
             </b-row>
         </b-container>

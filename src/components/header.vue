@@ -32,6 +32,15 @@
                 <b-col md="2">
                     <div class="loginregister">
                     <b-button size="md" v-b-modal.modal-lg variant="warning">Login</b-button>
+                    <div>
+                    <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2">
+                        <template #button-content>
+                        &#128101;<span class="sr-only">Search</span>
+                        </template>
+                        <b-dropdown-item href="#">Edit Profil</b-dropdown-item>
+                        <b-dropdown-item href="#">Logout</b-dropdown-item>
+                    </b-dropdown>
+                    </div>
                     </div>
                 </b-col>
                 </b-row>

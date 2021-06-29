@@ -14,6 +14,7 @@ html,body{
   /* background-size: cover; */
   /* background-color:#ECF0F1 !important; */
   background: #F8FAFE !important;
+  /* overflow: hidden; */
   
 }
 #app {
