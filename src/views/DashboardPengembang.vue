@@ -20,7 +20,7 @@
                   :to="'input_perumahan_pengembang'"
                   style="text-decoration:none"
                   ><b-button variant="primary" class="m-r-15"
-                    >Tambah Data</b-button
+                    ><b-icon-plus></b-icon-plus> Tambah Data</b-button
                   ></router-link
                 >
               </b-col>
@@ -81,24 +81,22 @@
                   @filtered="onFiltered"
                   class="m-t-15"
                   bordered
-                  responsive
+                  small
                   show-empty
                 >
+                <template #cell(No)="item">
+            {{ item.index + 1 }}.
+          </template>
                   <template #cell(actions)="item">
                     <center>
-                        <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)"
-                          >Edit</b-button
+                      <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)" v-b-tooltip.hover.top="'Edit'"
+                          ><b-icon-pencil-square></b-icon-pencil-square></b-button
                         >
-                      <router-link
-                        :to="'tipe_perumahan_pengembang'"
-                        style="text-decoration:none"
-                      >
-                        <b-button variant="info" size="sm" class="m-r-15"
-                          >Tipe Rumah</b-button
+                      
+                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)" v-b-tooltip.hover.top="'Hapus'" class="m-r-15" ><b-icon-trash></b-icon-trash></b-button>
+                      <b-button variant="info" size="sm" @click="goTipeRumah(item.item.id)" 
+                          ><b-icon-plus></b-icon-plus> Tipe Rumah</b-button
                         >
-                      </router-link>
-
-                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)">Hapus</b-button>
                     </center>
                   </template>
                 </b-table>
@@ -116,6 +114,9 @@
                   </b-col>
                 </b-row>
               </b-col>
+
+
+              
             </b-row>
           </b-col>
         </b-row>
@@ -141,6 +142,12 @@ export default {
       isLogin: false,
       items: [],
       fields: [
+        {
+          key: "No",
+          label: "No",
+          sortable: true,
+          class: "text-center",
+        },
         {
           key: "namaPerumahan",
           label: "Nama Perumahan",
@@ -173,11 +180,6 @@ export default {
       pageOptions: [10, 50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
-      infoModal: {
-        id: "info-modal",
-        title: "",
-        content: "",
-      },
     };
   },
   components: {
@@ -205,6 +207,10 @@ export default {
   methods: {
     goEdit(x){
       this.$router.push({path:`edit_perumahan_pengembang/${x}`})
+    },
+    goTipeRumah(x){
+      console.log(x)
+      this.$router.push({path:`tipe_perumahan_pengembang/${x}`})
     },
     hapus(x){
       console.log(x)

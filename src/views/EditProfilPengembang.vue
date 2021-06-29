@@ -64,7 +64,7 @@
                                                 </b-form-group>
 
                                                 <b-form-group label="Password">
-                                                    <b-form-input></b-form-input>
+                                                    <b-form-input type="password"></b-form-input>
                                                 </b-form-group>
                                             </b-col>
                                         </b-row>

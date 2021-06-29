@@ -5,7 +5,7 @@
                 <b-row>
                 <b-col md="3">
                     <div class="indentity">
-                    <img src="../assets/logo_Klinik_Big_White.png" alt="">
+                    <img src="../assets/logo.png" alt="">
 
                     <div class="name">
                         <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -34,10 +34,13 @@
                     <b-button size="md" v-b-modal.modal-lg variant="warning">Login</b-button>
                     <div>
                     <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2">
+                        <b-dropdown-item href="#"><router-link :to="'dashboard_pengembang'" style="text-decoration:none;"
+                  >Beranda</router-link></b-dropdown-item>
                         <template #button-content>
-                        &#128101;<span class="sr-only">Search</span>
+                        <b-icon-person-circle></b-icon-person-circle>
                         </template>
-                        <b-dropdown-item href="#">Edit Profil</b-dropdown-item>
+                        <b-dropdown-item><router-link :to="'edit_profil_pengembang'" style="text-decoration:none;"
+                  >Edit Profil</router-link></b-dropdown-item>
                         <b-dropdown-item href="#">Logout</b-dropdown-item>
                     </b-dropdown>
                     </div>

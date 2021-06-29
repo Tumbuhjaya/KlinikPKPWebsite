@@ -34,7 +34,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo_Klinik_Big.png" alt="">
+                <img src="../assets/logo.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -63,10 +63,13 @@
                 <b-button size="md" v-b-modal.modal-lg variant="primary">Login</b-button>
                 <div>
                   <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2">
+                    
                     <template #button-content>
-                      &#128101;<span class="sr-only">Search</span>
+                      <b-icon-person-circle></b-icon-person-circle>
                     </template>
-                    <b-dropdown-item href="#">Edit Profil</b-dropdown-item>
+                    
+                    <b-dropdown-item href="dashboard_pengembang">Beranda</b-dropdown-item>
+                    <b-dropdown-item href="edit_profil_pengembang">Edit Profil</b-dropdown-item>
                     <b-dropdown-item href="#">Logout</b-dropdown-item>
                   </b-dropdown>
                 </div>

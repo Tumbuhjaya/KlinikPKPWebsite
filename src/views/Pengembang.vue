@@ -76,56 +76,43 @@
             </b-row>
           </b-col>
         </b-row>
-
-        <b-row>
-          <b-col md="12">
-            <b-table
-              :items="items"
-              :fields="fields"
-              :current-page="currentPage"
-              :per-page="perPage"
-              :filter="filter"
-              :filter-included-fields="filterOn"
-              @filtered="onFiltered"
-              class="m-t-15"
-              bordered
-              responsive
-              show-empty
-            >
-              <template #cell(actions)>
-                <center>
-                          <b-button variant="success" size="sm" class="m-r-15"
-                            >Chat Via WA</b-button
-                          >
-                          <b-button variant="warning" size="sm">Detail</b-button>
-                        </center>
-              </template>
-            </b-table>
-          </b-col>
-        </b-row>
-
-        <b-row>
-          <b-col md="5" offset-md="7">
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="totalRows"
-              :per-page="perPage"
-              align="fill"
-              size="md"
-            ></b-pagination>
-          </b-col>
-        </b-row>
         
-
-        <!-- Info modal -->
-        <!-- <b-modal
-          :id="infoModal.id"
-          :title="infoModal.title"
-          ok-only
-          @hide="resetInfoModal"
+        <b-table
+          :items="items"
+          :fields="fields"
+          :current-page="currentPage"
+          :per-page="perPage"
+          :filter="filter"
+          :filter-included-fields="filterOn"
+          stacked="md"
+          show-empty
+          bordered
+          small
+          @filtered="onFiltered"
+          class="mt-3"
         >
-          <pre>{{ infoModal.content }}</pre>
-        </b-modal> -->
+          <template #cell(No)="item">
+            {{ item.index + 1 }}.
+          </template>
+
+          <template #cell(actions)>
+            <center>
+              <img src="../assets/whatsapp.png" alt="" style="width:30px">
+            </center>
+          </template>
+        </b-table>
+
+        <b-row>
+            <b-col md="5" offset-md="7">
+              <b-pagination
+                v-model="currentPage"
+                :total-rows="totalRows"
+                :per-page="perPage"
+                align="fill"
+                size="md"
+              ></b-pagination>
+            </b-col>
+          </b-row>
       </b-container>
     </section>
 
@@ -149,32 +136,32 @@ export default {
       items: [],
       fields: [
         {
+          key: "No",
+          label: "No",
+          sortable: true,
+          class: "text-center",
+        },
+        {
           key: "namaPerusahaan",
           label: "Nama Perusahaan",
           sortable: true,
           sortDirection: "desc",
-          class: "text-center",
+          class: "text-left",
         },
         {
           key: "alamat",
           label: "Alamat",
           sortable: true,
           sortDirection: "desc",
-          class: "text-center",
+          class: "text-left",
         },
         {
           key: "asosiasi",
           label: "Asosiasi",
           sortable: true,
-          class: "text-center",
+          class: "text-left",
         },
-        {
-          key: "noHp",
-          label: "Kontak",
-          sortable: true,
-          class: "text-center",
-        },
-        { key: "actions", label: "Actions", class: "text-center", },
+        { key: "actions", label: "Actions", class: "text-center" },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -182,11 +169,7 @@ export default {
       pageOptions: [10, 50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
-      infoModal: {
-        id: "info-modal",
-        title: "",
-        content: "",
-      },
+      
     };
   },
   components: {
@@ -222,7 +205,8 @@ export default {
           console.log(err);
         });
       let x = PTs.data.data;
-      console.log(x);
+      console.log(PTs.data);
+      console.log(x, "ini pengembang");
       return x;
     },
   },

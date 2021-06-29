@@ -70,7 +70,7 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
                 </b-col>
@@ -86,9 +86,9 @@
                     <b-form-input v-model="jmlTerbangun"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Stok Unit</strong></h5>
                 </b-col>
@@ -102,7 +102,7 @@
                     <b-form-input v-model="stockUnitK"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
               <b-row>
                 <b-col md="12">

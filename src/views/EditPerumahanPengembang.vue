@@ -74,7 +74,7 @@
                 <b-form-input v-model="dataPerum.luasLahan" :placeholder="setPlace(dataPerum.luasLahan)"></b-form-input>
               </b-form-group>
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
                 </b-col>
@@ -90,9 +90,9 @@
                     <b-form-input v-model="dataPerum.totalTerbangun" :placeholder="setPlace(dataPerum.totalTerbangun)"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Stok Unit</strong></h5>
                 </b-col>
@@ -106,7 +106,7 @@
                     <b-form-input v-model="dataPerum.jmlStockUnitKomersial" :placeholder="setPlace(dataPerum.jmlStockUnitKomersial)"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
               <b-row>
                 <b-col md="12">

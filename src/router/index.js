@@ -24,8 +24,8 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -33,8 +33,8 @@ const routes = [
     path: "/perumahan",
     name: "Perumahan",
     component: Perumahan,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -42,8 +42,8 @@ const routes = [
     path: "/data_perumahan",
     name: "DataPerumahan",
     component: DataPerumahan,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -51,8 +51,8 @@ const routes = [
     path: "/detail_perumahan",
     name: "DetailPerumahan",
     component: DetailPerumahan,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -60,86 +60,94 @@ const routes = [
     path: "/pengembang",
     name: "Pengembang",
     component: Pengembang,
-    meta: {
-      guest: true
-    }
+    role: "pengembang",
   },
 
   {
     path: "/daftar_pengembang",
     name: "DaftarPengembang",
     component: DaftarPengembang,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
-  
+
   {
     path: "/dashboard_pengembang",
     name: "DashboardPengembang",
+    meta:{
+      role: "pengembang",
+    },
     component: DashboardPengembang,
-    meta: {
-      guest: true
-    }
   },
 
   {
     path: "/edit_profil_pengembang",
     name: "EditProfilPengembang",
     component: EditProfilPengembang,
-    meta: {
-      guest: true
-    }
+    meta:{
+      role: "pengembang",
+    },
   },
 
   {
     path: "/perumahan_pengembang",
     name: "PerumahanPengembang",
     component: PerumahanPengembang,
-    meta: {
-      guest: true
-    }
+    meta:{
+      role: "pengembang",
+    },
   },
 
   {
     path: "/input_perumahan_pengembang",
     name: "InputPerumahanPengembang",
     component: InputPerumahanPengembang,
-    meta: {
-      guest: true
-    }
+    meta:{
+      role: "pengembang",
+    },
   },
 
   {
     path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",
     component: EditPerumahanPengembang,
+    meta:{
+      role: "pengembang",
+    },
     beforeRouteUpdate(to, from, next) {
-      console.log(to)
-      if (to.path == '/edit_perumahan_pengembang/:id') {
+      console.log(to);
+      if (to.path == "/edit_perumahan_pengembang/:id") {
         next({
-          path: '/edit_perumahan_pengembang',
+          path: "/edit_perumahan_pengembang",
         });
       }
     },
   },
 
   {
-    path: "/tipe_perumahan_pengembang",
+    path: "/tipe_perumahan_pengembang/:id",
     name: "TipePerumahanPengembang",
     component: TipePerumahanPengembang,
-    meta: {
-      guest: true
-    }
+    meta:{
+      role: "pengembang",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/tipe_perumahan_pengembang/:id") {
+        next({
+          path: "/tipe_perumahan_pengembang",
+        });
+      }
+    },
   },
-
 
   {
     path: "/csr",
     name: "Csr",
     component: Csr,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -147,8 +155,8 @@ const routes = [
     path: "/detail_csr",
     name: "DetailCsr",
     component: DetailCsr,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
 
@@ -156,62 +164,39 @@ const routes = [
     path: "/dashboard_perbankan",
     name: "DashboardPerbankan",
     component: DashboardPerbankan,
-    meta: {
-      guest: true
-    }
+    meta:{
+      role: "perbankan",
+    },
   },
-
 
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: {
-      guest: true
+    meta:{
+      role: "all",
     }
   },
-  
-
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 // router.beforeEach((to, from, next) => {
-//   if(to.matched.some(record => record.meta.requiresAuth)) {
-//       if (!localStorage.getItem('token') || localStorage.getItem('token')  == "undefined" || localStorage.getItem('token') == '' ) {
-//           next({
-//               path: '/login',
-//               query: { tujuan: to.fullPath }
-//           })
-//       } else {
-//           // let user = JSON.parse(localStorage.getItem('user'))
-//           // if(to.matched.some(record => record.meta.is_admin)) {
-//           //     if(user.is_admin == 1){
-//           //         next()
-//           //     }
-//           //     else{
-//           //         next({ name: 'userboard'})
-//           //     }
-//           // }else {
-//           //     next()
-//           // }
-//           next()
-//       }
-//   } else if(to.matched.some(record => record.meta.guest)) {
-//     // console.log(localStorage.getItem('token'))
-//       if(!localStorage.getItem('token') || localStorage.getItem('token')  == "undefined" || localStorage.getItem('token') == '' ){
-//           next()
-//       }
-//       else{
-//           next({ name: 'dashboard'})
-//       }
-//   }else {
-//       next()
-//   }
-// })
+//   let role = localStorage.getItem("role");
+//     if (to.meta.role == "all") {
+//       next();
+//     } else if (to.meta.role !== role) {
+//       next({
+//         path: "/",
+//       });
+//     }
+//   else{
+//     next()
+  // }
+// });
 
 export default router;
