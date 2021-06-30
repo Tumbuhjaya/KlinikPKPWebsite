@@ -94,19 +94,20 @@
 
                     <b-row>
                         <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
+                            <router-link  :to="'/data_perumahan_by_tipe'" style="text-decoration:none;">
+                                <div class="box">
+                                    <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
+                                    <div class="down m-t-15">
+                                        <h5><strong>Perumahan Indah</strong></h5>
+                                        <h6>PT. Pengembang Internasional</h6>
 
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                                        <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
 
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
+                                        <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
+                                        <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
+                                    </div>
+                                </div>
+                            </router-link>
                         </b-col>
 
                         <b-col md="4" class="m-t-15 m-b-15">

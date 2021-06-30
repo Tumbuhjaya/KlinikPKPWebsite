@@ -45,6 +45,10 @@
                     <b-form-input v-model="type"></b-form-input>
                   </b-form-group>
 
+                  <b-form-group label="Jumlah Rumah">
+                    <b-form-input></b-form-input>
+                  </b-form-group>
+
                   <b-form-group label="Harga">
                     <b-form-input v-model="harga"></b-form-input>
                   </b-form-group>

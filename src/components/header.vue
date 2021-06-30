@@ -1,11 +1,11 @@
 <template>
-  <div id="myheader">
-    <header>
-      <b-container>
-        <b-row>
-          <b-col md="3">
-            <div class="indentity">
-              <img src="../assets/logo.png" alt="" />
+    <div id="myheader">
+        <header>
+            <b-container>
+                <b-row>
+                <b-col md="3">
+                    <div class="indentity">
+                    <img src="../assets/logo-removebg.png" alt="">
 
               <div class="name">
                 <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>

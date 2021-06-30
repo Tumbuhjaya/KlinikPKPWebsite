@@ -71,7 +71,10 @@
                     &nbsp;
                   </b-col>
                   <b-col md="10">
-                    <b-button variant="primary">Cari</b-button>
+                    <router-link :to="'/data_perumahan'">
+                      <b-button variant="primary" >Cari</b-button>
+                    </router-link>
+                    
                   </b-col>
                 </b-row>
               </div>
@@ -148,9 +151,8 @@
             <VueSlickCarousel v-bind="rekomperumahan" v-if="listPerumahan.length > 0">
               <div v-for="item in listPerumahan" :key="item.id">
                 <div class="box">
-                  <div class="up">
-                    <img :src="item.src" alt="" />
-                  </div>
+                  <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none">
+                  <div class="up"><img :src=item.src alt=""></div>
                   <div class="down m-t-15">
                     <h5><strong>{{item.namaPerumahan}}</strong></h5>
                     <h6>{{item.namaPerusahaan}}</h6>
@@ -164,6 +166,7 @@
                       <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
                     </h6>
                   </div>
+                  </router-link>
                 </div>
               </div>
 
