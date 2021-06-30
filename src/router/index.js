@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Perumahan from "../views/Perumahan.vue";
 import DataPerumahan from "../views/DataPerumahan.vue";
+import DataPerumahanByTipe from "../views/DataPerumahanByTipe.vue";
 import DetailPerumahan from "../views/DetailPerumahan.vue";
 import Pengembang from "../views/Pengembang.vue";
 import DaftarPengembang from "../views/DaftarPengembang.vue";
@@ -42,6 +43,15 @@ const routes = [
     path: "/data_perumahan",
     name: "DataPerumahan",
     component: DataPerumahan,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/data_perumahan_by_tipe",
+    name: "DataPerumahanByTipe",
+    component: DataPerumahanByTipe,
     meta:{
       role: "all",
     }

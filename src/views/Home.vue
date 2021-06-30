@@ -34,7 +34,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo.png" alt="">
+                <img src="../assets/logo-removebg.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -518,7 +518,7 @@ export default {
 }
 
 .section-one .section-menu .identity img {
-  height: 50px;
+  height: 60px;
 }
 
 .section-one .section-menu .identity .name{

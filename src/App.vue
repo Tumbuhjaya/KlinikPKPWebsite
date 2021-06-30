@@ -233,7 +233,7 @@ html,body{
 }
 
 #myheader header .indentity img{
-  height: 50px;
+  height: 60px;
 }
 
 #myheader header .indentity .name{
