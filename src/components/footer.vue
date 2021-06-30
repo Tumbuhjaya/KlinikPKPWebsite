@@ -53,7 +53,6 @@ export default {
     name: "myfooter",
     data() {
     return {
-      isLogin: false,
       username: "",
       password: "",
     };

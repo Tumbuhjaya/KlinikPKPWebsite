@@ -1,69 +1,107 @@
 <template>
-    <div id="myheader">
-        <header>
-            <b-container>
-                <b-row>
-                <b-col md="3">
-                    <div class="indentity">
-                    <img src="../assets/logo.png" alt="">
+  <div id="myheader">
+    <header>
+      <b-container>
+        <b-row>
+          <b-col md="3">
+            <div class="indentity">
+              <img src="../assets/logo.png" alt="" />
 
-                    <div class="name">
-                        <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
-                    </div>
-                    </div>
-                </b-col>
+              <div class="name">
+                <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
+              </div>
+            </div>
+          </b-col>
 
-                <b-col md="7">
-                    <div class="menu">
-                    <router-link :to="'/'" style="text-decoration:none;"
-                        >
-                    <h6 class="m-t-0 m-b-0">Beranda</h6>
-                    </router-link>
-                    <h6 class="m-t-0 m-b-0">CSR</h6>
-                    <router-link :to="'pengembang'" style="text-decoration:none;">
-                        <h6 class="m-t-0 m-b-0">Pengembang</h6>
-                    </router-link>
-                    <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
-                    <h6 class="m-t-0 m-b-0">Kerjasama</h6>
-                    <h6 class="m-t-0 m-b-0">Forum PKP</h6>
-                    </div>
-                </b-col>
+          <b-col md="7">
+            <div class="menu">
+              <router-link :to="'/'" style="text-decoration:none;">
+                <h6 class="m-t-0 m-b-0">Beranda</h6>
+              </router-link>
+              <h6 class="m-t-0 m-b-0">CSR</h6>
+              <router-link :to="'pengembang'" style="text-decoration:none;">
+                <h6 class="m-t-0 m-b-0">Pengembang</h6>
+              </router-link>
+              <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
+              <h6 class="m-t-0 m-b-0">Kerjasama</h6>
+              <h6 class="m-t-0 m-b-0">Forum PKP</h6>
+            </div>
+          </b-col>
 
-                <b-col md="2">
-                    <div class="loginregister">
-                    <b-button size="md" v-b-modal.modal-lg variant="warning">Login</b-button>
-                    <div>
-                    <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2">
-                        <b-dropdown-item href="#"><router-link :to="'dashboard_pengembang'" style="text-decoration:none;"
-                  >Beranda</router-link></b-dropdown-item>
-                        <template #button-content>
-                        <b-icon-person-circle></b-icon-person-circle>
-                        </template>
-                        <b-dropdown-item><router-link :to="'edit_profil_pengembang'" style="text-decoration:none;"
-                  >Edit Profil</router-link></b-dropdown-item>
-                        <b-dropdown-item href="#">Logout</b-dropdown-item>
-                    </b-dropdown>
-                    </div>
-                    </div>
-                </b-col>
-                </b-row>
-            </b-container>
-        </header>
-    </div>
-    
+          <b-col md="2">
+            <div class="loginregister">
+              <b-button
+                size="md"
+                v-b-modal.modal-lg
+                variant="warning"
+                v-if="isLogin != true"
+                >Login</b-button
+              >
+              <div>
+                <b-dropdown
+                  size="md"
+                  right
+                  variant="warning"
+                  toggle-class="text-decoration-none"
+                  no-caret
+                  class="ml-2"
+                  v-if="isLogin == true"
+                >
+                  <b-dropdown-item href="#"
+                    ><router-link
+                      :to="'dashboard_pengembang'"
+                      style="text-decoration:none;"
+                      >Beranda</router-link
+                    ></b-dropdown-item
+                  >
+                  <template #button-content>
+                    <b-icon-person-circle></b-icon-person-circle>
+                  </template>
+                  <b-dropdown-item
+                    ><router-link
+                      :to="'edit_profil_pengembang'"
+                      style="text-decoration:none;"
+                      >Edit Profil</router-link
+                    ></b-dropdown-item
+                  >
+                  <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
+                </b-dropdown>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </header>
+  </div>
 </template>
 
 <script>
 export default {
   name: "myheader",
-  data (){
-    return{
-  
+  data() {
+    return {
+      isLogin: "",
     };
+  },
+  created() {
+    this.checkLogin();
+    console.log(this.isLogin);
+  },
+  methods: {
+    checkLogin() {
+      let token = localStorage.getItem("token");
+      console.log(token)
+      if (token) {
+        this.isLogin = true;
+      }
+    },
+    logOut(){
+        console.log('logout')
+        localStorage.clear()
+        this.checkLogin()
+    }
   },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

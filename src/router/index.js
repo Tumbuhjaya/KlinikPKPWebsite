@@ -60,7 +60,10 @@ const routes = [
     path: "/pengembang",
     name: "Pengembang",
     component: Pengembang,
-    role: "pengembang",
+    meta:{
+      role: "all",
+    }
+    
   },
 
   {
@@ -184,19 +187,22 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+const role = localStorage.getItem("role");
 
-// router.beforeEach((to, from, next) => {
-//   let role = localStorage.getItem("role");
-//     if (to.meta.role == "all") {
-//       next();
-//     } else if (to.meta.role !== role) {
-//       next({
-//         path: "/",
-//       });
-//     }
-//   else{
-//     next()
-  // }
-// });
+router.beforeEach((to, from, next) => {
+  
+    if (to.meta.role == "all") {
+      next({
+
+      });
+    } else if (to.meta.role !== role) {
+      next({
+        path: "/",
+      });
+    }
+  else{
+    next()
+  }
+});
 
 export default router;

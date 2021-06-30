@@ -158,10 +158,6 @@ export default {
       email:"",
       CP:"",
       luasLahan:"",
-      rencanaPemb:"",
-      jmlTerbangun:"",
-      stockUnitS:0,
-      stockUnitK:0,
       terjualUnitS:0,
       terjualUnitK:0,
       file:"",
@@ -203,10 +199,6 @@ export default {
       await formData.append("email", vm.email);
       await formData.append("CP", vm.CP);
       await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("rencanaPembangunan", vm.rencanaPemb);
-      await formData.append("totalTerbangun", vm.jmlTerbangun);
-      await formData.append("jmlStockUnitSubsidi", vm.stockUnitS);
-      await formData.append("jmlStockUnitKomersial", vm.stockUnitK);
       await formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
       await formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");

@@ -60,9 +60,9 @@
 
             <b-col md="2">
               <div class="loginregister">
-                <b-button size="md" v-b-modal.modal-lg variant="primary">Login</b-button>
+                <b-button size="md" v-b-modal.modal-lg variant="primary" v-if="isLogin == false">Login</b-button>
                 <div>
-                  <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2">
+                  <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2" v-if="isLogin == true">
                     
                     <template #button-content>
                       <b-icon-person-circle></b-icon-person-circle>
@@ -70,7 +70,7 @@
                     
                     <b-dropdown-item href="dashboard_pengembang">Beranda</b-dropdown-item>
                     <b-dropdown-item href="edit_profil_pengembang">Edit Profil</b-dropdown-item>
-                    <b-dropdown-item href="#">Logout</b-dropdown-item>
+                    <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                   </b-dropdown>
                 </div>
               </div>
@@ -435,8 +435,9 @@ export default {
     myfooter,
     VueSlickCarousel,
   },
-
-
+  created(){
+    this.checkLogin()
+  },
   methods: {
     login() {
       axios
@@ -457,7 +458,21 @@ export default {
           console.log(err);
         });
     },
+    checkLogin(){
+    let token = localStorage.getItem('token')
+    if(token){
+      this.isLogin = true
+    }else {
+      this.isLogin = false
+    }
   },
+  logOut(){
+    console.log('keluar')
+    localStorage.clear()
+    this.checkLogin()
+    }
+  },
+ 
 };
 </script>
 
