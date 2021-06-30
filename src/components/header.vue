@@ -85,20 +85,20 @@ export default {
   },
   created() {
     this.checkLogin();
-    console.log(this.isLogin);
   },
   methods: {
     checkLogin() {
       let token = localStorage.getItem("token");
-      console.log(token)
       if (token) {
         this.isLogin = true;
+      }else{
+          this.isLogin = false
       }
     },
     logOut(){
         console.log('logout')
         localStorage.clear()
-        this.checkLogin()
+        this.$router.push({ path: "/home" });
     }
   },
 };

@@ -49,21 +49,38 @@ const routes = [
   },
 
   {
-    path: "/data_perumahan_by_tipe",
+    path: "/data_perumahan_by_tipe/:id",
     name: "DataPerumahanByTipe",
     component: DataPerumahanByTipe,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/data_perumahan_by_tipe/:id") {
+        next({
+          path: "/data_perumahan_by_tipe",
+        });
+      }
+    },
+
   },
 
   {
-    path: "/detail_perumahan",
+    path: "/detail_perumahan/:id",
     name: "DetailPerumahan",
     component: DetailPerumahan,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/detail_perumahan/:id") {
+        next({
+          path: "/detail_perumahan",
+        });
+      }
+    },
   },
 
   {
@@ -120,7 +137,6 @@ const routes = [
       role: "pengembang",
     },
   },
-
   {
     path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",

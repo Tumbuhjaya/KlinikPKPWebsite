@@ -401,8 +401,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import ipBackEnd from "@/ipBackEnd";
+// import axios from "axios";
+// import ipBackEnd from "@/ipBackEnd";
 import myfooter from "../components/footer";
 import VueSlickCarousel from 'vue-slick-carousel'
 // @ is an alias to /src
@@ -439,25 +439,6 @@ export default {
     this.checkLogin()
   },
   methods: {
-    login() {
-      axios
-        .post(ipBackEnd + "users/login", {
-          username: this.username,
-          password: this.password,
-        })
-        .then((res) => {
-          console.log(res);
-          localStorage.setItem('token',res.data[0].token)
-          localStorage.setItem('id', res.data[1].id)
-          localStorage.setItem('role',res.data[2].role)
-          if(res.data[2].role == 'pengembang'){
-          this.$router.push({ path: "/dashboard_pengembang" });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     checkLogin(){
     let token = localStorage.getItem('token')
     if(token){
@@ -469,7 +450,7 @@ export default {
   logOut(){
     console.log('keluar')
     localStorage.clear()
-    this.checkLogin()
+    this.$router.push({ path: "/home" });
     }
   },
  

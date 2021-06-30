@@ -149,9 +149,9 @@
         <b-row class="m-t-15">
           <b-col md="12">
             <VueSlickCarousel v-bind="rekomperumahan" v-if="listPerumahan.length > 0">
-              <div v-for="item in listPerumahan" :key="item.id">
+              <div v-for="item in listPerumahan" :key="item.id" @click="goListRumah(item)">
                 <div class="box">
-                  <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none">
+                  <!-- <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none"> -->
                   <div class="up"><img :src=item.src alt=""></div>
                   <div class="down m-t-15">
                     <h5><strong>{{item.namaPerumahan}}</strong></h5>
@@ -166,93 +166,9 @@
                       <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
                     </h6>
                   </div>
-                  </router-link>
+                  <!-- </router-link> -->
                 </div>
               </div>
-
-              <!-- <div>
-                <div class="box">
-                  <div class="up">
-                    <img src="https://via.placeholder.com/300x240" alt="" />
-                  </div>
-                  <div class="down m-t-15">
-                    <h5><strong>Perumahan Indah</strong></h5>
-                    <h6>PT. Pengembang Internasional</h6>
-
-                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
-                    </h6>
-                  </div>
-                </div>
-              </div> -->
-
-              <!--<div>
-                <div class="box">
-                  <div class="up">
-                    <img src="https://via.placeholder.com/300x240" alt="" />
-                  </div>
-                  <div class="down m-t-15">
-                    <h5><strong>Perumahan Indah</strong></h5>
-                    <h6>PT. Pengembang Internasional</h6>
-
-                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
-                    </h6>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div class="box">
-                  <div class="up">
-                    <img src="https://via.placeholder.com/300x240" alt="" />
-                  </div>
-                  <div class="down m-t-15">
-                    <h5><strong>Perumahan Indah</strong></h5>
-                    <h6>PT. Pengembang Internasional</h6>
-
-                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
-                    </h6>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div class="box">
-                  <div class="up">
-                    <img src="https://via.placeholder.com/300x240" alt="" />
-                  </div>
-                  <div class="down m-t-15">
-                    <h5><strong>Perumahan Indah</strong></h5>
-                    <h6>PT. Pengembang Internasional</h6>
-
-                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
-                    </h6>
-                  </div>
-                </div>
-              </div> -->
             </VueSlickCarousel>
           </b-col>
         </b-row>
@@ -286,22 +202,6 @@
                 <img src="https://via.placeholder.com/262x100" alt="" />
                 <p>{{item.nama}}</p>
               </div>
-
-              <!-- <div>
-                <img src="https://via.placeholder.com/262x100" alt="" />
-              </div>
-
-              <div>
-                <img src="https://via.placeholder.com/262x100" alt="" />
-              </div>
-
-              <div>
-                <img src="https://via.placeholder.com/262x100" alt="" />
-              </div>
-
-              <div>
-                <img src="https://via.placeholder.com/262x100" alt="" />
-              </div> -->
             </VueSlickCarousel>
           </b-col>
         </b-row>
@@ -457,8 +357,10 @@ export default {
         return {...item, src:ipBackEnd + item.fotoPerumahan }
       })
       console.log(this.listPerumahan, "ini perumahan");
-
     },
+    goListRumah(x){
+      this.$router.push({path:`/data_perumahan_by_tipe/${x.id}`})
+    }
   },
 };
 </script>

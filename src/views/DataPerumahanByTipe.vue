@@ -5,136 +5,22 @@
     <section class="section-one">
         <b-container>
             <b-row>
-                
-
                 <b-col md="12">
                     <b-row>
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <router-link :to="'detail_perumahan'" style="text-decoration:none">
-                            <div class="box">
-                                <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
+                        <b-col md="3" class="m-t-15 m-b-15" v-for="item in listRumah" :key="item.id">
+                            <!-- <router-link :to="'detail_perumahan'" style="text-decoration:none"> -->
+                            <div class="box" @click="goDetail(item.id)">
+                                <div class="up"><img :src="item.src" alt=""></div>
                                 <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
+                                    <h5><strong>{{dataPerum[0].namaPerumahan}}</strong></h5>
+                                    <h5><strong>Tipe Rumah : {{item.luasBangunan}} / {{item.luasLahan}}</strong></h5>
                                     <h6 class="m-t-15">PT. Pengembang Internasional</h6>
 
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
+                                    <p class="m-t-15">{{dataPerum[0].alamat}}, {{dataPerum[0].kabKota}}</p>
                                 </div>
                             
                             </div>
-                            </router-link>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="3" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                    <h5><strong>Perumahan Indah</strong></h5>
-                                    <h5><strong>Tipe Rumah : 2 x 1</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
-
-                                    <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-                                </div>
-                            
-                            </div>
+                            <!-- </router-link> -->
                         </b-col>
                     </b-row>
                 </b-col>
@@ -148,8 +34,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import { mapState, mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
+import ipBackEnd from "@/ipBackEnd"
 import myheader from "../components/header"
 import myfooter from "../components/footer"
 
@@ -159,6 +45,8 @@ export default {
    return{
      isLogin: false,
      selected: null,
+     listRumah:[],
+     dataPerum:[],
       kabkot: [
           { value: null, text: '-- Pilih Kabupaten / Kota --' }
       ],
@@ -182,7 +70,49 @@ export default {
   myheader,
   myfooter
 },
-
+created(){
+    let x = this.$route.params.id
+    this.getTipeRumah(x)
+    this.getDataPerum(x)
+},
+methods:{
+    getTipeRumah(x){
+        axios
+        .get(ipBackEnd + "rumah/listByPerumahanId/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          let x= res.data.data;
+          this.listRumah = x.map(item =>{
+              return {...item, src:ipBackEnd + item.foto1}
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getDataPerum(x){
+        axios
+        .get(ipBackEnd + "perumahan/listById/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data);
+          this.dataPerum = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goDetail(x){
+        console.log(x)
+        this.$router.push({path:`/detail_perumahan/${x}`})
+    }
+}
 };
 </script>
 
