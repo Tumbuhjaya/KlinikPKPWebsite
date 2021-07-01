@@ -212,6 +212,7 @@ export default {
         .then(res => {
           console.log(res);
           this.$emit("tembak");
+          this.$router.push({path:'/dashboard_pengembang'})
         })
         .catch(err => {
           console.log(err);

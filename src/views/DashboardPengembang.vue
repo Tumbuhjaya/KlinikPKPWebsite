@@ -94,7 +94,7 @@
                         >
                       
                       <b-button variant="danger" size="sm" @click="hapus(item.item.id)" v-b-tooltip.hover.top="'Hapus'" class="m-r-15" ><b-icon-trash></b-icon-trash></b-button>
-                      <b-button variant="info" size="sm" @click="goTipeRumah(item.item.id)" 
+                      <b-button variant="info" size="sm" @click="goTipeRumah(item.item)" 
                           ><b-icon-plus></b-icon-plus> Tipe Rumah</b-button
                         >
                     </center>
@@ -197,8 +197,9 @@ export default {
     },
   },
   async created() {
+    localStorage.removeItem('dataPerum')
     this.items = await this.getPerum();
-    console.log();
+
   },
   mounted() {
     // Set the initial number of items
@@ -209,8 +210,9 @@ export default {
       this.$router.push({path:`edit_perumahan_pengembang/${x}`})
     },
     goTipeRumah(x){
-      console.log(x)
-      this.$router.push({path:`tipe_perumahan_pengembang/${x}`})
+      console.log(x, 'ini x')
+      localStorage.setItem('dataPerum',JSON.stringify(x))
+      this.$router.push({path:`tipe_perumahan_pengembang/${x.id}`})
     },
     hapus(x){
       console.log(x)
