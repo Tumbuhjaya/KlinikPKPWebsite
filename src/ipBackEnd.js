@@ -1,3 +1,3 @@
-const backEnd = "http://localhost:3012/";
+const backEnd = "http://survplus.id:8802/";
 
 module.exports = backEnd;
