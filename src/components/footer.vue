@@ -33,7 +33,7 @@
                 </b-form-group>
 
                 <b-form-group label="Password">
-                    <b-form-input v-model="password"></b-form-input>
+                    <b-form-input v-model="password" type="password"></b-form-input>
                 </b-form-group>
 
                 <!-- <router-link :to="'dashboard_pengembang'" > -->
