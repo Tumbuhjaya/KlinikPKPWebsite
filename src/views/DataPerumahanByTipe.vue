@@ -71,6 +71,7 @@ export default {
   myfooter
 },
 created(){
+    localStorage.removeItem('dataPerum')
     let x = this.$route.params.id
     this.getTipeRumah(x)
     this.getDataPerum(x)
@@ -86,7 +87,7 @@ methods:{
         .then((res) => {
           let x= res.data.data;
           this.listRumah = x.map(item =>{
-              return {...item, src:ipBackEnd + item.foto1}
+              return {...item, src:ipBackEnd + item.foto3}
           });
         })
         .catch((err) => {
@@ -110,6 +111,7 @@ methods:{
     },
     goDetail(x){
         console.log(x)
+        localStorage.setItem('dataPerum', this.dataPerum)
         this.$router.push({path:`/detail_perumahan/${x}`})
     }
 }

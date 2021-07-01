@@ -9,7 +9,7 @@
             <h2 class="m-t-0 m-b-0 text-center">
               <strong>Tipe Perumahan</strong>
             </h2>
-            <h5 class="m-t-5 m-b-0 text-center">"Nama Perumahannya"</h5>
+            <h5 class="m-t-5 m-b-0 text-center">{{dataPerum.namaPerumahan}}</h5>
           </b-col>
         </b-row>
 
@@ -46,7 +46,7 @@
                   </b-form-group>
 
                   <b-form-group label="Jumlah Rumah">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="stock"></b-form-input>
                   </b-form-group>
 
                   <b-form-group label="Harga">
@@ -190,6 +190,7 @@ export default {
     return {
       listTipe: [],
       isLogin: false,
+      dataPerum:[],
       jeniss: [
         { value: null, text: "-- Pilih --" },
         { value: "subsidi", text: "Subsidi" },
@@ -233,8 +234,10 @@ export default {
       lantaiPondasi: "",
       jmlKamarMandi: "",
       jmlKamarTidur: "",
+      stock:"",
       linkVideo: "",
       perumahanId: "",
+      terjual: 0,
       foto1: "",
       foto2: "",
       foto3: "",
@@ -246,6 +249,8 @@ export default {
     myfooter,
   },
   async created() {
+    this.dataPerum = await JSON.parse(localStorage.getItem('dataPerum'))
+    console.log(this.dataPerum, ' ini data')
     this.perumahanId = await this.$route.params.id;
     await this.getTipe(this.perumahanId);
   },
@@ -275,6 +280,8 @@ export default {
       await formData.append("dinding", vm.dinding);
       await formData.append("lantaiPondasi", vm.lantaiPondasi);
       await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
+      await formData.append("stock", vm.stock);
+      await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);
       await formData.append("perumahanId", vm.perumahanId);
       console.log(formData, "ini formData");
@@ -287,6 +294,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.$router.push({path:'/dashboard_pengembang'})
         })
         .catch((err) => {
           console.log(err);

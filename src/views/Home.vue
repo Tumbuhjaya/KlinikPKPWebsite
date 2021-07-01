@@ -60,7 +60,7 @@
 
             <b-col md="2">
               <div class="loginregister">
-                <b-button size="md" v-b-modal.modal-lg variant="primary" v-if="isLogin == false">Login</b-button>
+                <b-button size="md" v-b-modal.modal-lg variant="primary" v-if="isLogin != true">Login</b-button>
                 <div>
                   <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2" v-if="isLogin == true">
                     
@@ -68,8 +68,8 @@
                       <b-icon-person-circle></b-icon-person-circle>
                     </template>
                     
-                    <b-dropdown-item href="dashboard_pengembang">Beranda</b-dropdown-item>
-                    <b-dropdown-item href="edit_profil_pengembang">Edit Profil</b-dropdown-item>
+                    <b-dropdown-item @click="goBeranda()">Beranda</b-dropdown-item>
+                    <b-dropdown-item @click="goEdit()">Edit Profil</b-dropdown-item>
                     <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                   </b-dropdown>
                 </div>
@@ -450,7 +450,19 @@ export default {
   logOut(){
     console.log('keluar')
     localStorage.clear()
-    this.$router.push({ path: "/home" });
+    this.$router.push({ path: "/" });
+    },
+    goBeranda(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
+          this.$router.push({ path: "/dashboard_pengembang" });
+          }
+    },
+    goEdit(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
+          this.$router.push({ path: '/edit_profil_pengembang' });
+          }
     }
   },
  

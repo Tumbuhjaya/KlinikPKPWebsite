@@ -31,47 +31,47 @@
           <b-col md="8" offset-md="2" class="m-t-30">
             <b-form>
               <b-form-group label="Nama Perumahan">
-                <b-form-input v-model="dataPerum.namaPerumahan" :placeholder="dataPerum.namaPerumahan" ></b-form-input>
+                <b-form-input :value.sync="dataPerum.namaPerumahan" :placeholder="dataPerum.namaPerumahan" ></b-form-input>
               </b-form-group>
 
               <b-form-group label="Alamat">
-                <b-form-input v-model="dataPerum.alamat" :placeholder="dataPerum.alamat"></b-form-input>
+                <b-form-input :value.sync="dataPerum.alamat" :placeholder="dataPerum.alamat"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <!-- <b-form-input v-model="dataPerum.kabKota" :placeholder="dataPerum.kabKota"></b-form-input> -->
-                <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
+                <!-- <b-form-input :value.sync="dataPerum.kabKota" :placeholder="dataPerum.kabKota"></b-form-input> -->
+                <multiselect :value.sync="dataPerum.kabKota" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" :placeholder="dataPerum.kabKota"></multiselect>
               </b-form-group>
 
               <b-form-group label="Kecamatan">
-                <!-- <b-form-input v-model="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
+                <!-- <b-form-input :value.sync="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
                  -->
-                 <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
+                 <multiselect :value.sync="dataPerum.kecamatan" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" :placeholder="dataPerum.kecamatan"></multiselect>
               </b-form-group>
 
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi X">
-                    <b-form-input v-model="dataPerum.koordinatX" :placeholder="dataPerum.koordinatX"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.koordinatX" :placeholder="dataPerum.koordinatX"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi Y">
-                    <b-form-input v-model="dataPerum.koordinatY" :placeholder="dataPerum.koordinatY"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.koordinatY" :placeholder="dataPerum.koordinatY"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
 
               <b-form-group label="Email">
-                <b-form-input v-model="dataPerum.email" :placeholder="dataPerum.email"></b-form-input>
+                <b-form-input :value.sync="dataPerum.email" :placeholder="dataPerum.email"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Kontak Person">
-                <b-form-input v-model="dataPerum.CP" :placeholder="dataPerum.CP"></b-form-input>
+                <b-form-input :value.sync="dataPerum.CP" :placeholder="dataPerum.CP"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Luas Lahan Perumahan (m2)">
-                <b-form-input v-model="dataPerum.luasLahan" :placeholder="setPlace(dataPerum.luasLahan)"></b-form-input>
+                <b-form-input :value.sync="dataPerum.luasLahan" :placeholder="setPlace(dataPerum.luasLahan)"></b-form-input>
               </b-form-group>
 
               <!-- <b-row>
@@ -82,12 +82,12 @@
                   <b-form-group
                     label="Rencana Total Pembangunan Unit Rumah (Unit)"
                   >
-                    <b-form-input v-model="dataPerum.rencanaPembangunan" :placeholder="setPlace(dataPerum.rencanaPembangunan)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.rencanaPembangunan" :placeholder="setPlace(dataPerum.rencanaPembangunan)"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Jumlah Unit Terbangun (Unit)">
-                    <b-form-input v-model="dataPerum.totalTerbangun" :placeholder="setPlace(dataPerum.totalTerbangun)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.totalTerbangun" :placeholder="setPlace(dataPerum.totalTerbangun)"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row> -->
@@ -98,12 +98,12 @@
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Jumlah Stock Unit Subsidi (Unit)">
-                    <b-form-input v-model="dataPerum.jmlStockUnitSubsidi" :placeholder="setPlace(dataPerum.jmlStockUnitSubsidi)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.jmlStockUnitSubsidi" :placeholder="setPlace(dataPerum.jmlStockUnitSubsidi)"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Jumlah Stock Unit Komersial (Unit)">
-                    <b-form-input v-model="dataPerum.jmlStockUnitKomersial" :placeholder="setPlace(dataPerum.jmlStockUnitKomersial)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.jmlStockUnitKomersial" :placeholder="setPlace(dataPerum.jmlStockUnitKomersial)"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row> -->
@@ -114,12 +114,12 @@
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
-                    <b-form-input v-model="dataPerum.jmlTerjualUnitSubsidi" :placeholder="setPlace(dataPerum.jmlTerjualUnitSubsidi)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.jmlTerjualUnitSubsidi" :placeholder="setPlace(dataPerum.jmlTerjualUnitSubsidi)"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
-                    <b-form-input v-model="dataPerum.jmlTerjualUnitKomersial" :placeholder="setPlace(dataPerum.jmlTerjualUnitKomersial)"></b-form-input>
+                    <b-form-input :value.sync="dataPerum.jmlTerjualUnitKomersial" :placeholder="setPlace(dataPerum.jmlTerjualUnitKomersial)"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -185,6 +185,7 @@ export default {
         console.log(err)
       })
       let x = perum.data.data[0]
+      console.log(x)
       return x
     },
     updatePerum(y){
@@ -198,12 +199,13 @@ export default {
         }
       }).then(res =>{
         console.log(res)
+        this.$router.push({path:'/dashboard_pengembang'})
       }).catch(err =>{
         console.log(err)
       })
     },
     setPlace(x){
-      if (isNaN(x)){
+      if (isNaN(x) || x == null){
         return x
       }else{
         let y = x.toString()

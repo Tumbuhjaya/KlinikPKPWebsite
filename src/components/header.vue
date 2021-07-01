@@ -47,22 +47,15 @@
                   class="ml-2"
                   v-if="isLogin == true"
                 >
-                  <b-dropdown-item href="#"
-                    ><router-link
-                      :to="'dashboard_pengembang'"
-                      style="text-decoration:none;"
-                      >Beranda</router-link
-                    ></b-dropdown-item
+                  <b-dropdown-item @click="goBeranda()"
+                    >Beranda</b-dropdown-item
                   >
                   <template #button-content>
                     <b-icon-person-circle></b-icon-person-circle>
                   </template>
-                  <b-dropdown-item
-                    ><router-link
-                      :to="'edit_profil_pengembang'"
-                      style="text-decoration:none;"
-                      >Edit Profil</router-link
-                    ></b-dropdown-item
+                  <b-dropdown-item @click="goEdit()"
+                    >Edit Profil
+                    </b-dropdown-item
                   >
                   <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                 </b-dropdown>
@@ -98,7 +91,20 @@ export default {
     logOut(){
         console.log('logout')
         localStorage.clear()
-        this.$router.push({ path: "/home" });
+        this.checkLogin()
+        this.$router.push({ path: "/" });
+    },
+    goBeranda(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
+          this.$router.push({ path: "/dashboard_pengembang" });
+          }
+    },
+    goEdit(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
+          this.$router.push({ path: '/edit_profil_pengembang' });
+          }
     }
   },
 };

@@ -197,10 +197,9 @@
 
         <b-row>
           <b-col md="12">
-            <VueSlickCarousel v-bind="pengembang">
+            <VueSlickCarousel v-bind="pengembang" v-if="listPerumahan.length > 0">
               <div v-for="item in listPengembang" :key="item.id">
                 <img src="https://via.placeholder.com/262x100" alt="" />
-                <p>{{item.nama}}</p>
               </div>
             </VueSlickCarousel>
           </b-col>

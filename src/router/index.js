@@ -213,10 +213,10 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-const role = localStorage.getItem("role");
+
 
 router.beforeEach((to, from, next) => {
-  
+  const role = localStorage.getItem("role");
     if (to.meta.role == "all") {
       next({
 

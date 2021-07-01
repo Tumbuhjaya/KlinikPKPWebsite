@@ -70,7 +70,7 @@
 
                                         <b-row>
                                             <b-col md="12">
-                                                <b-button type="submit" variant="primary" @click="register()">Daftar</b-button>
+                                                <b-button  variant="primary" @click="register()">Daftar</b-button>
                                             </b-col>
                                         </b-row>
                                     </b-tab>
@@ -135,6 +135,7 @@ export default {
         role:'pengembang'
       }).then(res =>{
         console.log(res)
+        this.$router.push({path:'/dashboard_pengembang'})
       }).catch(err =>{
         console.log(err)
       })
