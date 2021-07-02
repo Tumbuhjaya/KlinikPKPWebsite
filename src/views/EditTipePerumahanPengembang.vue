@@ -27,7 +27,7 @@
                 :to="'/tipe_perumahan_pengembang'"
                 style="text-decoration:none"
                 >
-              <h6 class="m-t-0 m-b-0">Tambah Tipe Perumahan</h6>
+              <h6 class="m-t-0 m-b-0">Tipe Perumahan</h6>
               </router-link>
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Edit Tipe Perumahan</strong></h6>

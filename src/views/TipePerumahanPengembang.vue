@@ -7,7 +7,7 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>Tambah Tipe Perumahan</strong>
+              <strong>Tipe Perumahan</strong>
             </h2>
             <h5 class="m-t-5 m-b-0 text-center">{{dataPerum.namaPerumahan}}</h5>
           </b-col>
