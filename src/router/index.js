@@ -14,6 +14,7 @@ import PerumahanPengembang from "../views/PerumahanPengembang.vue";
 import InputPerumahanPengembang from "../views/InputPerumahanPengembang.vue";
 import EditPerumahanPengembang from "../views/EditPerumahanPengembang.vue";
 import TipePerumahanPengembang from "../views/TipePerumahanPengembang.vue";
+import EditTipePerumahanPengembang from "../views/EditTipePerumahanPengembang.vue";
 import Csr from "../views/csr.vue";
 import DetailCsr from "../views/DetailCsr.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
@@ -178,6 +179,15 @@ const routes = [
           path: "/tipe_perumahan_pengembang",
         });
       }
+    },
+  },
+
+  {
+    path: "/edit_tipe_perumahan_pengembang",
+    name: "EditTipePerumahanPengembang",
+    component: EditTipePerumahanPengembang,
+    meta:{
+      role: "pengembang",
     },
   },
 

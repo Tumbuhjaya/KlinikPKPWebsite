@@ -7,14 +7,14 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>Tambah Tipe Perumahan</strong>
+              <strong>Edit Tipe Perumahan</strong>
             </h2>
             <h5 class="m-t-5 m-b-0 text-center">{{dataPerum.namaPerumahan}}</h5>
           </b-col>
         </b-row>
 
         <b-row>
-          <b-col md="4" offset-md="4">
+          <b-col md="6" offset-md="3">
             <hr  class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
@@ -23,7 +23,14 @@
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
-              <h6 class="m-t-0 m-b-0"><strong>Tipe Perumahan</strong></h6>
+              <router-link
+                :to="'/tipe_perumahan_pengembang'"
+                style="text-decoration:none"
+                >
+              <h6 class="m-t-0 m-b-0">Tambah Tipe Perumahan</h6>
+              </router-link>
+              <h6 class="m-t-0 m-b-0">|</h6>
+              <h6 class="m-t-0 m-b-0"><strong>Edit Tipe Perumahan</strong></h6>
             </div>
             <hr  class="m-t-10 m-b-10" />
           </b-col>
@@ -36,31 +43,30 @@
                   <b-col md="6">
                     <b-form-group label="Jenis">
                       <b-form-select
-                        v-model="jenis"
                         :options="jeniss"
                       ></b-form-select>
                     </b-form-group>
 
                     <b-form-group label="Tipe">
-                      <b-form-input v-model="type"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Jumlah Rumah">
-                      <b-form-input v-model="stock"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
                     <b-form-group label="Harga">
-                      <b-form-input v-model="harga"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Bangunan (m2)">
-                      <b-form-input v-model="luasBangunan"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Lahan (m2)">
-                      <b-form-input v-model="luasLahan"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -69,25 +75,25 @@
                 <b-row>
                   <b-col md="6">
                     <b-form-group label="Atap">
-                      <b-form-input v-model="atap"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Dinding">
-                      <b-form-input v-model="dinding"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Lantai & Pondasi">
-                      <b-form-input v-model="lantaiPondasi"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
                     <b-form-group label="Jumlah Kamar Mandi">
-                      <b-form-input v-model="jmlKamarMandi"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Jumlah Kamar Tidur">
-                      <b-form-input v-model="jmlKamarTidur"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -97,25 +103,19 @@
                   <b-col md="6">
                     <b-form-group label="Upload Foto Rumah">
                       <b-form-file
-                        id="foto1"
-                        ref="foto1"
-                        @input="handleFile()"
+                        
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah">
                       <b-form-file
-                        id="foto2"
-                        ref="foto2"
-                        @input="handleFile()"
+                        
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah">
                       <b-form-file
-                        id="foto3"
-                        ref="foto3"
-                        @input="handleFile()"
+                        
                       ></b-form-file>
                     </b-form-group>
                   </b-col>
@@ -123,14 +123,12 @@
                   <b-col md="6">
                     <b-form-group label="Upload Foto Denah">
                       <b-form-file
-                        id="fotoDenah"
-                        ref="fotoDenah"
-                        @input="handleFile()"
+                        
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group label="Video Rumah (Link video dari youtube)">
-                      <b-form-input v-model="linkVideo"></b-form-input>
+                      <b-form-input></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -140,7 +138,7 @@
                 <b-row>
                   <b-col md="12">
                     <b-form-group label="Apakah anda yakin akan menyimpan data ini ?">
-                      <b-button variant="primary" @click="addTipeRumah()">Simpan</b-button>
+                      <b-button variant="primary">Simpan</b-button>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -149,51 +147,6 @@
             
           </b-col>
         </b-row>
-
-              <b-row>
-                <b-col md="12">
-                  <hr class="m-t-15 m-b-30"/>
-                </b-col>
-              </b-row>
-
-              
-              <b-row>
-                <b-col md="12">
-                  <b-table
-                    :items="listTipe"
-                    :fields="fields"
-                    stacked="md"
-                    show-empty
-                    bordered
-                    small
-                  >
-                    <template #cell(No)="item">
-                      {{ item.index + 1 }}
-                    </template>
-                    <template #cell(actions)="item">
-                      <center>
-                        <b-button
-                          variant="danger"
-                          size="sm"
-                          @click="hapus(item.item.id)"
-                          v-b-tooltip.hover.top="'Hapus'"
-                          class="m-r-15"
-                          ><b-icon-trash></b-icon-trash></b-button
-                        >
-
-                        <router-link :to="'/edit_tipe_perumahan_pengembang'">
-                          <b-button
-                          variant="info"
-                          size="sm"
-                          v-b-tooltip.hover.top="'Edit'"
-                          ><b-icon-pencil></b-icon-pencil></b-button>
-                        </router-link>
-                        
-                      </center>
-                    </template>
-                  </b-table>
-                </b-col>
-              </b-row>
       </b-container>
     </section>
 
