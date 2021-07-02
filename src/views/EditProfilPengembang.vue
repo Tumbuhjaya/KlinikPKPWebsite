@@ -17,59 +17,56 @@
             <b-row class="m-t-30">
               <b-col md="12">
                 <b-row>
-                      <b-col md="12">
-                        <b-form-group label="Nama Pengembang">
-                          <b-form-input
-                          :value.sync="userData.namaPerusahaan"></b-form-input>
-                        </b-form-group>
+                  <b-col md="12">
+                    <b-form-group label="Nama Pengembang">
+                      <b-form-input
+                        v-model="userData.namaPerusahaan"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="Alamat">
-                          <b-form-input
-                          :value.sync="userData.alamat"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="Alamat">
+                      <b-form-input
+                        v-model="userData.alamat"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="Asosiasi">
-                          <b-form-input
-                          :value.sync="userData.asosiasi"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="Asosiasi">
+                      <b-form-input
+                        v-model="userData.asosiasi"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="NIB">
-                          <b-form-input
-                          :value.sync="userData.NIB"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="NIB">
+                      <b-form-input v-model="userData.NIB"></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="Email">
-                          <b-form-input
-                          :value.sync="userData.email"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="Email">
+                      <b-form-input v-model="userData.email"></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="No. Telepon">
-                          <b-form-input
-                          :value.sync="userData.noHp"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="No. Telepon">
+                      <b-form-input v-model="userData.noHp"></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="Website">
-                          <b-form-input
-                          :value.sync="userData.website"></b-form-input>
-                        </b-form-group>
+                    <b-form-group label="Website">
+                      <b-form-input
+                        v-model="userData.website"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-form-group label="Upload Logo Pengembang">
-                          <b-form-file
-                          ></b-form-file>
-                        </b-form-group>
-                      </b-col>
-                    </b-row>
+                    <b-form-group label="Upload Logo Pengembang">
+                      <b-form-file></b-form-file>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
 
-                    <b-row>
-                      <b-col md="12">
-                        <b-button
-                          variant="primary"
-                          @click="update()"
-                          >Update</b-button
-                        >
-                      </b-col>
-                    </b-row>
-                
+                <b-row>
+                  <b-col md="12">
+                    <b-button variant="primary" @click="update()"
+                      >Update</b-button
+                    >
+                  </b-col>
+                </b-row>
               </b-col>
             </b-row>
           </b-col>
@@ -82,8 +79,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import ipBackEnd from '@/ipBackEnd'
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import myheader from "../components/header";
@@ -101,22 +98,25 @@ export default {
     myheader,
     myfooter,
   },
-  created(){
-      this.getData()
+  created() {
+    this.getData();
   },
   methods: {
-      getData(){
-          axios.get(ipBackEnd + 'users/Profile',{
-              headers:{
-                  token: localStorage.getItem('token')
-              }
-          }).then(res =>{
-              console.log(res)
-              this.userData = res.data.data[0]
-          }).catch(err =>{
-              console.log(err)
-          })
-      }
+    getData() {
+      axios
+        .get(ipBackEnd + "users/Profile", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.userData = res.data.data[0];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
