@@ -190,17 +190,17 @@ export default {
     async regisPerumahan(){
       let vm = this
       console.log(this.file, "ini file");
-      let formData = await new FormData();
-      await formData.append("file", this.file);
-      await formData.append("namaPerumahan",vm.namaPerum );
-      await formData.append("alamat",vm.alamat);
-      await formData.append("kabKota", vm.kabKot);
-      await formData.append("kecamatan", vm.keca);
-      await formData.append("email", vm.email);
-      await formData.append("CP", vm.CP);
-      await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
-      await formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
+      let formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("namaPerumahan",vm.namaPerum );
+      formData.append("alamat",vm.alamat);
+      formData.append("kabKota", vm.kabKot);
+      formData.append("kecamatan", vm.keca);
+      formData.append("email", vm.email);
+      formData.append("CP", vm.CP);
+      formData.append("luasLahan", vm.luasLahan);
+      formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
+      formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {

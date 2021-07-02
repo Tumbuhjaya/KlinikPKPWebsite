@@ -55,7 +55,7 @@
                     </b-form-group>
 
                     <b-form-group label="Upload Logo Pengembang">
-                      <b-form-file></b-form-file>
+                      <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -92,6 +92,7 @@ export default {
     return {
       isLogin: false,
       userData: [],
+      file:""
     };
   },
   components: {
@@ -102,6 +103,9 @@ export default {
     this.getData();
   },
   methods: {
+    handleFile(){
+      this.file = this.$refs.file.files[0]
+    },
     getData() {
       axios
         .get(ipBackEnd + "users/Profile", {
@@ -117,6 +121,36 @@ export default {
           console.log(err);
         });
     },
+    update(){
+      if (this.file != ""){
+        this.changeLogo()
+      }
+      axios.post(ipBackEnd + 'users/update', this.userData, {
+        headers:{
+          token : localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+        this.getData()
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    changeLogo(){
+      let vm = this
+      let formData = new FormData
+      formData.append('file', vm.file)
+      formData.append('id', vm.userData.id)
+      axios.post(ipBackEnd + 'users/changeLogo', formData, {
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
   },
 };
 </script>

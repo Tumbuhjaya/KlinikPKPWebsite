@@ -160,10 +160,10 @@
                     <p class="m-t-15">{{item.kecamatan}},{{item.kabKota}}</p>
 
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta
+                      <strong>Subsidi</strong> {{item.jmlStockUnitSubsidi}} Unit Rp 200 - 400 Juta
                     </h6>
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> 14 Unit Rp 800 - 1 M
+                      <strong>Komersil</strong> {{item.jmlStockUnitKomersial}} Unit Rp 800 - 1 M
                     </h6>
                   </div>
                   <!-- </router-link> -->
@@ -199,7 +199,7 @@
           <b-col md="12">
             <VueSlickCarousel v-bind="pengembang" v-if="listPerumahan.length > 0">
               <div v-for="item in listPengembang" :key="item.id">
-                <img src="https://via.placeholder.com/262x100" alt="" />
+                <img :src=item.src alt="" />
               </div>
             </VueSlickCarousel>
           </b-col>
@@ -338,7 +338,10 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      this.listPengembang = PTs.data.data;
+      let x = PTs.data.data;
+      this.listPengembang = x.map(item =>{
+      return {...item, src:ipBackEnd + item.logo }
+      })
       console.log(PTs.data.data, "ini pengembang");
     },
     async getPerumahan() {

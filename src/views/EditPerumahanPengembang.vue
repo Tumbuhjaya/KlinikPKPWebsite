@@ -111,40 +111,6 @@
                 ></b-form-input>
               </b-form-group>
 
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group
-                    label="Rencana Total Pembangunan Unit Rumah (Unit)"
-                  >
-                    <b-form-input v-model="dataPerum.rencanaPembangunan" :placeholder="setPlace(dataPerum.rencanaPembangunan)"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Unit Terbangun (Unit)">
-                    <b-form-input v-model="dataPerum.totalTerbangun" :placeholder="setPlace(dataPerum.totalTerbangun)"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Stok Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Subsidi (Unit)">
-                    <b-form-input v-model="dataPerum.jmlStockUnitSubsidi" :placeholder="setPlace(dataPerum.jmlStockUnitSubsidi)"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Komersial (Unit)">
-                    <b-form-input v-model="dataPerum.jmlStockUnitKomersial" :placeholder="setPlace(dataPerum.jmlStockUnitKomersial)"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
               <b-row>
                 <b-col md="12">
                   <h5><strong>Unit Terjual</strong></h5>
@@ -168,7 +134,7 @@
               </b-row>
 
               <b-form-group label="Upload Foto Perumahan">
-                <b-form-file id="file" ref="file"></b-form-file>
+                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
@@ -199,6 +165,7 @@ export default {
     return {
       isLogin: false,
       dataPerum: [],
+      file:"",
       perumId: "",
       kabkot: ["KabKot A", "KabKot B", "KabKot C"],
 
@@ -216,6 +183,10 @@ export default {
     console.log(this.dataPerum, 'ini sreat')
   },
   methods: {
+    handleFile(){
+      this.file = this.$refs.file.files[0]
+      console.log(this.file)
+    },
     async getDataPerum(id) {
       let perum = await axios
         .get(ipBackEnd + "perumahan/listById/" + id, {
@@ -229,9 +200,26 @@ export default {
       let x = perum.data.data[0];
       return x;
     },
+    updateFoto(){
+      let formData = new FormData
+      formData.append('file', this.file)
+      formData.append('id',this.dataPerum.id)
+      axios.post(ipBackEnd + 'perumahan/changeFoto', formData,
+      {
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
     updatePerum() {
+      if (this.file != ""){
+        this.updateFoto()
+      }
       let vm = this
-      console.log(this.dataPerum.namaPerumahan)
       axios
         .post(
           ipBackEnd + "perumahan/update",
