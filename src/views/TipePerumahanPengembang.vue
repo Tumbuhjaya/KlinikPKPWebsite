@@ -1,241 +1,352 @@
 <template>
-  <div id="tipe_perumahan_pengembang" >
-    <header>
+  <div id="tipe_perumahan_pengembang">
+    <myheader></myheader>
+
+    <section class="section-one">
       <b-container>
         <b-row>
-          <b-col md="6">
-            <div class="left">
-              <router-link :to="'/'" style="text-decoration:none"><h5 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h5></router-link>
-            </div>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Tipe Perumahan</strong>
+            </h2>
+            <h5 class="m-t-5 m-b-0 text-center">"Nama Perumahannya"</h5>
           </b-col>
+        </b-row>
 
-          <b-col md="6">
-            <div class="right">
-              <!-- <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
-              <span style="background-color:#fff;padding:4px;border-radius:100px">
-                <img src="../assets/avatar_profil.png" alt="">
-              </span> -->
+        <b-row>
+          <b-col md="4" offset-md="4">
+            <hr />
+            <div class="box-submenu">
+              <router-link
+                :to="'/dashboard_pengembang'"
+                style="text-decoration:none"
+                ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
+              >
+              <h6 class="m-t-0 m-b-0">|</h6>
+              <h6 class="m-t-0 m-b-0"><strong>Tipe Perumahan</strong></h6>
             </div>
+            <hr />
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col md="12" class="m-t-30">
+            <b-form>
+              <b-row>
+                <b-col md="4">
+                  <h5 class="m-b-30"><strong>Umum</strong></h5>
+                  <b-form-group label="Jenis">
+                    <b-form-select
+                      v-model="jenis"
+                      :options="jeniss"
+                    ></b-form-select>
+                  </b-form-group>
+
+                  <b-form-group label="Tipe">
+                    <b-form-input v-model="type"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Harga">
+                    <b-form-input v-model="harga"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Luas Bangunan (m2)">
+                    <b-form-input v-model="luasBangunan"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Luas Lahan (m2)">
+                    <b-form-input v-model="luasLahan"></b-form-input>
+                  </b-form-group>
+                </b-col>
+                <b-col md="4">
+                  <h5 class="m-b-30"><strong>Spesifikasi Teknis</strong></h5>
+                  <b-form-group label="Atap">
+                    <b-form-input v-model="atap"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Dinding">
+                    <b-form-input v-model="dinding"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Lantai & Pondasi">
+                    <b-form-input v-model="lantaiPondasi"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Jumlah Kamar Mandi">
+                    <b-form-input v-model="jmlKamarMandi"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Jumlah Kamar Tidur">
+                    <b-form-input v-model="jmlKamarTidur"></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="4">
+                  <h5 class="m-b-30"><strong>Dokumentasi</strong></h5>
+
+                  <b-form-group label="Upload Foto Rumah">
+                    <b-form-file
+                      id="foto1"
+                      ref="foto1"
+                      @input="handleFile()"
+                    ></b-form-file>
+                  </b-form-group>
+
+                  <b-form-group label="Upload Foto Rumah">
+                    <b-form-file
+                      id="foto2"
+                      ref="foto2"
+                      @input="handleFile()"
+                    ></b-form-file>
+                  </b-form-group>
+
+                  <b-form-group label="Upload Foto Rumah">
+                    <b-form-file
+                      id="foto3"
+                      ref="foto3"
+                      @input="handleFile()"
+                    ></b-form-file>
+                  </b-form-group>
+
+                  <b-form-group label="Upload Foto Denah">
+                    <b-form-file
+                      id="fotoDenah"
+                      ref="fotoDenah"
+                      @input="handleFile()"
+                    ></b-form-file>
+                  </b-form-group>
+
+                  <b-form-group label="Video Rumah (Link video dari youtube)">
+                    <b-form-input v-model="linkVideo"></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <b-button variant="primary" @click="addTipeRumah()"
+                    >Simpan</b-button
+                  >
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <hr />
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <b-table
+                    :items="listTipe"
+                    :fields="fields"
+                    stacked="md"
+                    show-empty
+                    small
+                  >
+                  <template #cell(No)="item">
+                      {{item.index + 1}}
+                  </template>
+                    <template #cell(actions)="item">
+                      <center>
+                        <b-button
+                          variant="danger"
+                          size="sm"
+                          @click="hapus(item.item.id)"
+                          >Hapus</b-button
+                        >
+                      </center>
+                    </template>
+                  </b-table>
+                  <!-- <b-table-simple bordered>
+                    <b-thead>
+                      <b-tr>
+                        <b-th>No.</b-th>
+                        <b-th>Jenis</b-th>
+                        <b-th>Tipe</b-th>
+                        <b-th>Harga</b-th>
+                        <b-th>Luas Bangunan (m2)</b-th>
+                        <b-th>Luas Lahan (m2)</b-th>
+                        <b-th>Option</b-th>
+                      </b-tr>
+                    </b-thead>
+
+                    <b-tbody>
+                      <b-tr>
+                        <b-td>1.</b-td>
+                        <b-td>-</b-td>
+                        <b-td>-</b-td>
+                        <b-td>-</b-td>
+                        <b-td>-</b-td>
+                        <b-td>-</b-td>
+                        <b-td>
+                          <center>
+                            <b-button variant="danger" size="sm"
+                              >Hapus</b-button
+                            >
+                          </center>
+                        </b-td>
+                      </b-tr>
+                    </b-tbody>
+                  </b-table-simple> -->
+                </b-col>
+              </b-row>
+            </b-form>
           </b-col>
         </b-row>
       </b-container>
-    </header>
-
-
-    <section class="section-one">
-        <b-container>
-          <b-row>
-            <b-col md="12">
-                <h2 class="m-t-0 m-b-0 text-center"><strong>Tipe Perumahan</strong></h2>
-                <h5 class="m-t-5 m-b-0 text-center">"Nama Perumahannya"</h5>
-            </b-col>
-          </b-row>
-
-          <b-row>
-              <b-col md="4" offset-md="4">
-                  <hr>
-                  <div class="box-submenu">
-                    <router-link :to="'/dashboard_pengembang'" style="text-decoration:none"><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link>
-                    <h6 class="m-t-0 m-b-0">|</h6>
-                    <h6 class="m-t-0 m-b-0"><strong>Tipe Perumahan</strong></h6>
-                  </div>
-                  <hr>
-              </b-col>
-          </b-row>
-          <b-row>
-            <b-col md="12" class="m-t-30">
-                <b-form>
-                <b-row>
-                    <b-col md="4">
-                        <h5 class="m-b-30"><strong>Umum</strong></h5>
-                        <b-form-group label="Jenis">
-                            <b-form-select v-model="selected" :options="jenis"></b-form-select>
-                        </b-form-group>
-
-                        <b-form-group label="Tipe">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-                        
-                        <b-form-group label="Harga">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-                        <b-form-group label="Luas Bangunan (m2)">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-                        <b-form-group label="Luas Lahan (m2)">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-                    </b-col>
-                    <b-col md="4">
-                        <h5 class="m-b-30"><strong>Spesifikasi Teknis</strong></h5>
-                        <b-form-group label="Atap">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-
-                        <b-form-group label="Dinding">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-                        <b-form-group label="Lantai & Pondasi">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-                        <b-form-group label="Jumlah Kamar Mandi">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-
-                        <b-form-group label="Jumlah Kamar Tidur">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-                    </b-col>
-
-                    <b-col md="4">
-                          <h5 class="m-b-30"><strong>Dokumentasi</strong></h5>
-
-                        <b-form-group label="Upload Foto Rumah">
-                            <b-form-file></b-form-file>
-                        </b-form-group>
-
-                        <b-form-group label="Upload Foto Rumah">
-                            <b-form-file></b-form-file>
-                        </b-form-group>
-
-                        <b-form-group label="Upload Foto Rumah">
-                            <b-form-file></b-form-file>
-                        </b-form-group>
-
-                        <b-form-group label="Upload Foto Denah">
-                            <b-form-file></b-form-file>
-                        </b-form-group>
-
-                        <b-form-group label="Video Rumah (Link video dari youtube)">
-                            <b-form-input></b-form-input>
-                        </b-form-group>
-                    </b-col>
-                </b-row>
-
-                <b-row>
-                    <b-col md="12">
-                        <b-button variant="primary">Simpan</b-button>
-                    </b-col>
-                </b-row>
-
-                <b-row>
-                    <b-col md="12">
-                        <hr>
-                    </b-col>
-                </b-row>
-
-
-                <b-row>
-                    <b-col md="12">
-                        <b-table-simple bordered>
-                            <b-thead>
-                                <b-tr>
-                                    <b-th>No.</b-th>
-                                    <b-th>Jenis</b-th>
-                                    <b-th>Tipe</b-th>
-                                    <b-th>Harga</b-th>
-                                    <b-th>Luas Bangunan (m2)</b-th>
-                                    <b-th>Luas Lahan (m2)</b-th>
-                                    <b-th>Option</b-th>
-                                </b-tr>
-                            </b-thead>
-
-                            <b-tbody>
-                                <b-tr>
-                                    <b-td>1.</b-td>
-                                    <b-td>-</b-td>
-                                    <b-td>-</b-td>
-                                    <b-td>-</b-td>
-                                    <b-td>-</b-td>
-                                    <b-td>-</b-td>
-                                    <b-td>
-                                        <center>
-
-                                        <b-button variant="danger" size="sm">Hapus</b-button>
-                                        </center>
-                                    </b-td>
-                                </b-tr>
-                            </b-tbody>
-                        </b-table-simple>
-                    </b-col>
-                </b-row>
-                </b-form>
-            </b-col>
-          </b-row>
-        </b-container>
     </section>
+
+    <myfooter></myfooter>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import myheader from "../components/header";
+import myfooter from "../components/footer";
 
 export default {
   name: "TipePerumahanPengembang",
- data (){
-   return{
-     isLogin: false,
-
-    selected: null,
-    jenis: [
-          { value: null, text: '-- Pilih --' },
-          { value: 'subsidi', text: 'Subsidi' },
-          { value: 'komersial', text: 'Komersial' }
-    ]
-   }
-
-   
- }
+  data() {
+    return {
+      listTipe: [],
+      isLogin: false,
+      jeniss: [
+        { value: null, text: "-- Pilih --" },
+        { value: "subsidi", text: "Subsidi" },
+        { value: "komersial", text: "Komersial" },
+      ],
+      fields: [
+        { key: "No", label: "No", class: "text-center" },
+        {
+          key: "jenis",
+          label: "Jenis",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "type",
+          label: "Tipe",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "luasLahan",
+          label: "Luas Tanah (m2)",
+          sortable: true,
+          class: "text-center",
+        },
+        {
+          key: "luasBangunan",
+          label: "Luas Bangunan(m2)",
+          sortable: true,
+          class: "text-center",
+        },
+        { key: "actions", label: "Actions", class: "text-center" },
+      ],
+      jenis: "",
+      type: "",
+      harga: "",
+      luasBangunan: 0,
+      luasLahan: 0,
+      atap: "",
+      dinding: "",
+      lantaiPondasi: "",
+      jmlKamarMandi: "",
+      jmlKamarTidur: "",
+      linkVideo: "",
+      perumahanId: "",
+      foto1: "",
+      foto2: "",
+      foto3: "",
+      fotoDenah: "",
+    };
+  },
+  components: {
+    myheader,
+    myfooter,
+  },
+  async created() {
+    this.perumahanId = await this.$route.params.id;
+    await this.getTipe(this.perumahanId);
+  },
+  methods: {
+    hapus(x){
+        console.log(x)
+    },
+    handleFile() {
+      this.foto1 = this.$refs.foto1.files[0];
+      this.foto2 = this.$refs.foto2.files[0];
+      this.foto3 = this.$refs.foto3.files[0];
+      this.fotoDenah = this.$refs.fotoDenah.files[0];
+    },
+    async addTipeRumah() {
+      let vm = this;
+      let formData = await new FormData();
+      await formData.append("foto1", vm.foto1);
+      await formData.append("foto2", vm.foto2);
+      await formData.append("foto3", vm.foto3);
+      await formData.append("fotoDenah", vm.fotoDenah);
+      await formData.append("jenis", vm.jenis);
+      await formData.append("type", vm.type);
+      await formData.append("harga", vm.harga);
+      await formData.append("luasBangunan", vm.luasBangunan);
+      await formData.append("luasLahan", vm.luasLahan);
+      await formData.append("atap", vm.atap);
+      await formData.append("dinding", vm.dinding);
+      await formData.append("lantaiPondasi", vm.lantaiPondasi);
+      await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
+      await formData.append("linkVideo", vm.linkVideo);
+      await formData.append("perumahanId", vm.perumahanId);
+      console.log(formData, "ini formData");
+      axios
+        .post(ipBackEnd + "rumah/register", formData, {
+          headers: {
+            token: localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getTipe(x) {
+      console.log(x);
+      axios
+        .get(ipBackEnd + "rumah/listByPerumahanId/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.listTipe = res.data.data
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     
+  },
 };
 </script>
 
 <style scoped>
-header{
-  background-color: #4C87F2;
-}
-
-header .left{
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
+.box-submenu {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-header .left h5{
-  color: #fff;
-}
-
-header .right{
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-header .right h6{
-  font-size: 14px;
-  color: #fff;
-}
-
-.box-submenu{
-    display: flex;
-    justify-content: space-around;
-    /* background-color: red; */
+  justify-content: space-around;
+  /* background-color: red; */
 }
 
 .section-one {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 /* .section-one .box{
@@ -245,10 +356,10 @@ header .right h6{
     border-radius: 10px;
 } */
 
-.section-one .menu{
+.section-one .menu {
   width: 100%;
   height: 250px;
-  background-color: #4C87F2;
+  background-color: #4c87f2;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -256,7 +367,7 @@ header .right h6{
   flex-direction: column;
 }
 
-.section-one .menu h4{
-    color:#fff;
+.section-one .menu h4 {
+  color: #fff;
 }
 </style>
