@@ -9,6 +9,7 @@ import Pengembang from "../views/Pengembang.vue";
 import DaftarPengembang from "../views/DaftarPengembang.vue";
 import DashboardPengembang from "../views/DashboardPengembang.vue";
 import EditProfilPengembang from "../views/EditProfilPengembang.vue";
+import EditPasswordPengembang from "../views/EditPasswordPengembang.vue";
 import PerumahanPengembang from "../views/PerumahanPengembang.vue";
 import InputPerumahanPengembang from "../views/InputPerumahanPengembang.vue";
 import EditPerumahanPengembang from "../views/EditPerumahanPengembang.vue";
@@ -115,6 +116,15 @@ const routes = [
     path: "/edit_profil_pengembang",
     name: "EditProfilPengembang",
     component: EditProfilPengembang,
+    meta:{
+      role: "pengembang",
+    },
+  },
+
+  {
+    path: "/edit_password_pengembang",
+    name: "EditPasswordPengembang",
+    component: EditPasswordPengembang,
     meta:{
       role: "pengembang",
     },

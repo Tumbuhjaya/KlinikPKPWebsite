@@ -57,6 +57,11 @@
                     >Edit Profil
                     </b-dropdown-item
                   >
+
+                  
+                  <b-dropdown-item><router-link :to="'/edit_password_pengembang'">Edit Password</router-link></b-dropdown-item>
+                  
+                  
                   <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                 </b-dropdown>
               </div>
