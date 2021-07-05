@@ -41,9 +41,9 @@
                 <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
               </b-form-group>
 
-              <b-form-group label="Kecamatan">
+              <!-- <b-form-group label="Kecamatan">
                 <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
-              </b-form-group>
+              </b-form-group> -->
               
               <b-row>
                 <b-col md="6">
@@ -69,40 +69,6 @@
               <b-form-group label="Luas Lahan Perumahan (m2)">
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group
-                    label="Rencana Total Pembangunan Unit Rumah (Unit)"
-                  >
-                    <b-form-input v-model="rencanaPemb"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Unit Terbangun (Unit)">
-                    <b-form-input v-model="jmlTerbangun"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Stok Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Subsidi (Unit)">
-                    <b-form-input v-model="stockUnitS"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Komersial (Unit)">
-                    <b-form-input v-model="stockUnitK"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
 
               <b-row>
                 <b-col md="12">
@@ -161,18 +127,7 @@ export default {
       terjualUnitS:0,
       terjualUnitK:0,
       file:"",
-      kabkot: [
-        'KabKot A', 'KabKot B', 'KabKot C'
-      ],
-
-      kec: [
-        'Kecamatan A', 'Kecamatan B', 'Kecamatan C'
-      ]
-      // kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" },
-      // { value : "Semarang", text : "Semarang"}],
-      // kec: [{ value: null, text: "-- Pilih Kecamatan --" },{
-      //   value: "Banyumanik", text: "Banyumanik"
-      // }],
+      kabkot: [],
     };
   },
   components:{
@@ -180,8 +135,9 @@ export default {
     myfooter,
   Multiselect
 
-  },
-
+  },created(){
+    this.getkota()
+  },  
   methods:{
     handleFile() {
       this.file = this.$refs.file.files[0];
@@ -217,8 +173,29 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    }
+    },
+    getkota(){
+    axios.get(ipBackEnd + 'kabKota/list',{
+      headers:{
+        token: localStorage.getItem('token')
+      }
+    }).then(res =>{
+      console.log(res.data.data)
+      let x = res.data.data
+      this.kabkot = x.map(item =>{
+        return item.namaKabKota
+      })
+
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
   },
+  // watch:{
+  //   kabKot: function (val){
+  //     console.log(val)
+  //   }
+  // }
 };
 </script>
 
