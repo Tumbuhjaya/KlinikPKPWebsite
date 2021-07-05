@@ -54,13 +54,17 @@
                       ></b-form-input>
                     </b-form-group>
 
-                    <b-form-group label="Upload Logo Pengembang">
+                    <b-form-group label="Upload Logo Pengembang" style="margin-bottom:0px !important">
                       <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+
+                      
                     </b-form-group>
+                    <router-link :to="''">Lihat Logo Pengembang</router-link>
+                    
                   </b-col>
                 </b-row>
 
-                <b-row>
+                <b-row class="m-t-15">
                   <b-col md="12">
                     <b-button variant="primary" @click="update()"
                       >Update</b-button

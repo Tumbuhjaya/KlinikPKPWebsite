@@ -224,7 +224,7 @@ export default {
     },
     async getPerum() {
       let perum = await axios
-        .get(ipBackEnd + "perumahan/listByPengembang", {
+        .get(ipBackEnd + "perumahan/listByPengembangLogin", {
           headers: {
             token: localStorage.getItem("token"),
           },

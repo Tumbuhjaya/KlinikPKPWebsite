@@ -1,5 +1,5 @@
 <template>
-  <div id="input_perumahan_pengembang" >
+  <div id="input_perumahan_pengembang">
     <myheader></myheader>
 
     <section class="section-one">
@@ -38,13 +38,21 @@
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
+                <multiselect
+                  v-model="kabKot"
+                  :options="kabkot"
+                  :multiple="false"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="false"
+                  placeholder="-- Pilih Kabupaten/Kota --"
+                ></multiselect>
               </b-form-group>
 
               <b-form-group label="Kecamatan">
                 <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
               </b-form-group>
-              
+
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi X">
@@ -121,10 +129,16 @@
               </b-row>
 
               <b-form-group label="Upload Foto Perumahan">
-                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+                <b-form-file
+                  id="file"
+                  ref="file"
+                  @input="handleFile()"
+                ></b-form-file>
               </b-form-group>
 
-              <b-button variant="primary" @click="regisPerumahan()">Simpan</b-button>
+              <b-button variant="primary" @click="regisPerumahan()"
+                >Simpan</b-button
+              >
             </b-form>
           </b-col>
         </b-row>
@@ -132,42 +146,36 @@
     </section>
 
     <myfooter></myfooter>
-
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import axios from "axios"
-import ipBackEnd from "@/ipBackEnd"
-import myheader from "../components/header"
-import myfooter from "../components/footer"
-import Multiselect from 'vue-multiselect'
-
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
+import myheader from "../components/header";
+import myfooter from "../components/footer";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "InputPerumahanPengembang",
   data() {
     return {
       isLogin: false,
-      namaPerum:"",
-      alamat:"",
-      kabKot:"",
-      keca:"",
-      email:"",
-      CP:"",
-      luasLahan:"",
-      terjualUnitS:0,
-      terjualUnitK:0,
-      file:"",
-      kabkot: [
-        'KabKot A', 'KabKot B', 'KabKot C'
-      ],
+      namaPerum: "",
+      alamat: "",
+      kabKot: "",
+      keca: "",
+      email: "",
+      CP: "",
+      luasLahan: "",
+      terjualUnitS: 0,
+      terjualUnitK: 0,
+      file: "",
+      kabkot: ["KabKot A", "KabKot B", "KabKot C"],
 
-      kec: [
-        'Kecamatan A', 'Kecamatan B', 'Kecamatan C'
-      ]
+      kec: ["Kecamatan A", "Kecamatan B", "Kecamatan C"],
       // kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" },
       // { value : "Semarang", text : "Semarang"}],
       // kec: [{ value: null, text: "-- Pilih Kecamatan --" },{
@@ -175,25 +183,24 @@ export default {
       // }],
     };
   },
-  components:{
+  components: {
     myheader,
     myfooter,
-  Multiselect
-
+    Multiselect,
   },
 
-  methods:{
+  methods: {
     handleFile() {
       this.file = this.$refs.file.files[0];
       console.log(this.$refs.file.files[0]);
     },
-    async regisPerumahan(){
-      let vm = this
+    async regisPerumahan() {
+      let vm = this;
       console.log(this.file, "ini file");
       let formData = new FormData();
       formData.append("file", this.file);
-      formData.append("namaPerumahan",vm.namaPerum );
-      formData.append("alamat",vm.alamat);
+      formData.append("namaPerumahan", vm.namaPerum);
+      formData.append("alamat", vm.alamat);
       formData.append("kabKota", vm.kabKot);
       formData.append("kecamatan", vm.keca);
       formData.append("email", vm.email);
@@ -206,24 +213,23 @@ export default {
         .post(ipBackEnd + "perumahan/register", formData, {
           headers: {
             token: localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.$emit("tembak");
-          this.$router.push({path:'/dashboard_pengembang'})
+          this.$router.push({ path: "/dashboard_pengembang" });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .box-submenu {
   display: flex;
   justify-content: space-around;
@@ -234,7 +240,7 @@ export default {
   padding: 60px 0;
 }
 
-.section-one .menu{
+.section-one .menu {
   width: 100%;
   height: 250px;
   background-color: #4c87f2;
