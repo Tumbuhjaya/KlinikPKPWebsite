@@ -1,5 +1,5 @@
 <template>
-  <div id="input_perumahan_pengembang" >
+  <div id="input_perumahan_pengembang">
     <myheader></myheader>
 
     <section class="section-one">
@@ -13,7 +13,7 @@
         </b-row>
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr />
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -23,7 +23,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Input Perumahan</strong></h6>
             </div>
-            <hr />
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
         <b-row>
@@ -38,21 +38,28 @@
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
+                <multiselect
+                  v-model="kabKot"
+                  :options="kabkot"
+                  :multiple="false"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="false"
+                  placeholder="-- Pilih Kabupaten/Kota --"
+                ></multiselect>
               </b-form-group>
 
               <!-- <b-form-group label="Kecamatan">
                 <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
               </b-form-group> -->
-              
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi X">
+                  <b-form-group label="Koordinat Longitude">
                     <b-form-input placeholder="110.1234"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi Y">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input placeholder="-6.1234"></b-form-input>
                   </b-form-group>
                 </b-col>
@@ -86,11 +93,17 @@
                 </b-col>
               </b-row>
 
-              <b-form-group label="Upload Foto Perumahan">
-                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+              <b-form-group label="Upload Brosur Perumahan">
+                <b-form-file
+                  id="file"
+                  ref="file"
+                  @input="handleFile()"
+                ></b-form-file>
               </b-form-group>
 
-              <b-button variant="primary" @click="regisPerumahan()">Simpan</b-button>
+              <b-button variant="primary" @click="regisPerumahan()"
+                >Simpan</b-button
+              >
             </b-form>
           </b-col>
         </b-row>
@@ -98,19 +111,17 @@
     </section>
 
     <myfooter></myfooter>
-
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import axios from "axios"
-import ipBackEnd from "@/ipBackEnd"
-import myheader from "../components/header"
-import myfooter from "../components/footer"
-import Multiselect from 'vue-multiselect'
-
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
+import myheader from "../components/header";
+import myfooter from "../components/footer";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "InputPerumahanPengembang",
@@ -130,7 +141,7 @@ export default {
       kabkot: [],
     };
   },
-  components:{
+  components: {
     myheader,
     myfooter,
   Multiselect
@@ -143,13 +154,13 @@ export default {
       this.file = this.$refs.file.files[0];
       console.log(this.$refs.file.files[0]);
     },
-    async regisPerumahan(){
-      let vm = this
+    async regisPerumahan() {
+      let vm = this;
       console.log(this.file, "ini file");
       let formData = new FormData();
       formData.append("file", this.file);
-      formData.append("namaPerumahan",vm.namaPerum );
-      formData.append("alamat",vm.alamat);
+      formData.append("namaPerumahan", vm.namaPerum);
+      formData.append("alamat", vm.alamat);
       formData.append("kabKota", vm.kabKot);
       formData.append("kecamatan", vm.keca);
       formData.append("email", vm.email);
@@ -162,15 +173,15 @@ export default {
         .post(ipBackEnd + "perumahan/register", formData, {
           headers: {
             token: localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.$emit("tembak");
-          this.$router.push({path:'/dashboard_pengembang'})
+          this.$router.push({ path: "/dashboard_pengembang" });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -195,7 +206,6 @@ export default {
 </script>
 
 <style scoped>
-
 .box-submenu {
   display: flex;
   justify-content: space-around;
@@ -206,7 +216,7 @@ export default {
   padding: 60px 0;
 }
 
-.section-one .menu{
+.section-one .menu {
   width: 100%;
   height: 250px;
   background-color: #4c87f2;

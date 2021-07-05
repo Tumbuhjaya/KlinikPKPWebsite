@@ -101,30 +101,46 @@
               <b-tab title="Dokumentasi">
                 <b-row>
                   <b-col md="6">
-                    <b-form-group label="Upload Foto Rumah">
+                    <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
                         
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group label="Upload Foto Rumah">
+                    <b-form-group>
+                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                    </b-form-group>
+
+                    <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
                         
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group label="Upload Foto Rumah">
+                    <b-form-group>
+                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                    </b-form-group>
+
+                    <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
                         
                       ></b-form-file>
+                    </b-form-group>
+
+                    <b-form-group>
+                      <router-link :to="''">Lihat Foto Rumah</router-link>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
-                    <b-form-group label="Upload Foto Denah">
+                    <b-form-group label="Upload Foto Denah" style="margin-bottom:0px !important">
                       <b-form-file
                         
                       ></b-form-file>
+                    </b-form-group>
+
+                    <b-form-group>
+                      <router-link :to="''">Lihat Foto Denah</router-link>
                     </b-form-group>
 
                     <b-form-group label="Video Rumah (Link video dari youtube)">

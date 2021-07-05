@@ -13,7 +13,7 @@
         </b-row>
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr />
+            <hr class="m-t-10 m-b-10"/>
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -23,7 +23,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Edit Perumahan</strong></h6>
             </div>
-            <hr />
+            <hr class="m-t-10 m-b-10"/>
           </b-col>
         </b-row>
 
@@ -133,8 +133,12 @@
                 </b-col>
               </b-row>
 
-              <b-form-group label="Upload Foto Perumahan">
+              <b-form-group label="Upload Foto Perumahan" style="margin-bottom:0px !important">
                 <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+              </b-form-group>
+
+              <b-form-group>
+                <router-link :to="''">Lihat Foto Perumahan</router-link>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
