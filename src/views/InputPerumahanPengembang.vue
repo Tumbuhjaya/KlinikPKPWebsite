@@ -191,11 +191,6 @@ export default {
     })
   }
   },
-  // watch:{
-  //   kabKot: function (val){
-  //     console.log(val)
-  //   }
-  // }
 };
 </script>
 

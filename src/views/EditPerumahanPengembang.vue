@@ -198,6 +198,7 @@ export default {
           console.log(err);
         });
       let x = perum.data.data[0];
+      console.log(x)
       return x;
     },
     updateFoto(){
