@@ -133,8 +133,12 @@
                 </b-col>
               </b-row>
 
-              <b-form-group label="Upload Foto Perumahan">
+              <b-form-group label="Upload Foto Perumahan" style="margin-bottom:0px !important">
                 <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+              </b-form-group>
+
+              <b-form-group>
+                <router-link :to="''">Lihat Foto Perumahan</router-link>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
