@@ -17,6 +17,12 @@ import TipePerumahanPengembang from "../views/TipePerumahanPengembang.vue";
 import EditTipePerumahanPengembang from "../views/EditTipePerumahanPengembang.vue";
 import Csr from "../views/csr.vue";
 import DetailCsr from "../views/DetailCsr.vue";
+import DaftarCsr from "../views/DaftarCsr.vue";
+import DashboardCsr from "../views/DashboardCsr.vue";
+import EditProfilCsr from "../views/EditProfilCsr.vue";
+import EditPasswordCsr from "../views/EditPasswordCsr.vue";
+import InputCsr from "../views/InputCsr.vue";
+import EditCsr from "../views/EditCsr.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
 import Login from "../views/Login.vue";
 
@@ -204,6 +210,60 @@ const routes = [
     path: "/detail_csr",
     name: "DetailCsr",
     component: DetailCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/daftar_csr",
+    name: "DaftarCsr",
+    component: DaftarCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/edit_profil_csr",
+    name: "EditProfilCsr",
+    component: EditProfilCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/edit_password_csr",
+    name: "EditPasswordCsr",
+    component: EditPasswordCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/dashboard_csr",
+    name: "DashboardCsr",
+    component: DashboardCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/input_csr",
+    name: "InputCsr",
+    component: InputCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/edit_csr",
+    name: "EditCsr",
+    component: EditCsr,
     meta:{
       role: "all",
     }
