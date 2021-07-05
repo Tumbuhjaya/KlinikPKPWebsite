@@ -4,13 +4,29 @@
 
     <section class="section-one">
       <b-container>
-        <b-row class="m-t-30">
+        <b-row>
           <b-col md="6" offset-md="3">
             <b-row>
               <b-col md="12">
                 <h2 class="m-t-0 m-b-0 text-center">
                   <strong>Edit Profil Pengembang</strong>
                 </h2>
+              </b-col>
+            </b-row>
+
+            <b-row>
+              <b-col md="8" offset-md="2">
+                <hr class="m-t-10 m-b-10" />
+                <div class="box-submenu">
+                  <router-link
+                    :to="'/dashboard_pengembang'"
+                    style="text-decoration:none"
+                    ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
+                  >
+                  <h6 class="m-t-0 m-b-0">|</h6>
+                  <h6 class="m-t-0 m-b-0"><strong>Edit Profil Pengembang</strong></h6>
+                </div>
+                <hr class="m-t-10 m-b-10"/>
               </b-col>
             </b-row>
 
@@ -160,6 +176,12 @@ export default {
 </script>
 
 <style scoped>
+.box-submenu {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red; */
+}
+
 .section-one {
   padding: 60px 0;
 }
