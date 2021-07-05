@@ -13,7 +13,7 @@
         </b-row>
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr />
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -23,7 +23,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Input Perumahan</strong></h6>
             </div>
-            <hr />
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
         <b-row>
@@ -49,9 +49,9 @@
                 ></multiselect>
               </b-form-group>
 
-              <b-form-group label="Kecamatan">
+              <!-- <b-form-group label="Kecamatan">
                 <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
-              </b-form-group>
+              </b-form-group> -->
 
               <b-row>
                 <b-col md="6">
