@@ -128,7 +128,7 @@
                 </b-col>
               </b-row>
 
-              <b-form-group label="Upload Foto Perumahan">
+              <b-form-group label="Upload Brosur Perumahan">
                 <b-form-file
                   id="file"
                   ref="file"
