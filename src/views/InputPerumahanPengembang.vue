@@ -55,12 +55,12 @@
 
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi X">
+                  <b-form-group label="Koordinat Longitude">
                     <b-form-input placeholder="110.1234"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi Y">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input placeholder="-6.1234"></b-form-input>
                   </b-form-group>
                 </b-col>
