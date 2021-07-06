@@ -24,7 +24,7 @@
                   ></router-link
                 >
               </b-col>
-              
+
               <b-col md="12" class="m-t-30">
                 <b-row>
                   <b-col md="2">
@@ -62,12 +62,13 @@
                         ></b-form-input>
 
                         <b-input-group-append>
-                          <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                          <b-button :disabled="!filter" @click="filter = ''"
+                            >Clear</b-button
+                          >
                         </b-input-group-append>
                       </b-input-group>
                     </b-form-group>
                   </b-col>
-                  
                 </b-row>
 
                 <!-- Main table element -->
@@ -84,19 +85,32 @@
                   small
                   show-empty
                 >
-                <template #cell(No)="item">
-            {{ item.index + 1 }}.
-          </template>
+                  <template #cell(No)="item"> {{ item.index + 1 }}. </template>
                   <template #cell(actions)="item">
                     <center>
-                      <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)" v-b-tooltip.hover.top="'Edit'"
-                          ><b-icon-pencil-square></b-icon-pencil-square></b-button
-                        >
-                      
-                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)" v-b-tooltip.hover.top="'Hapus'" class="m-r-15" ><b-icon-trash></b-icon-trash></b-button>
-                      <b-button variant="info" size="sm" @click="goTipeRumah(item.item)" 
-                          ><b-icon-plus></b-icon-plus> Tipe Rumah</b-button
-                        >
+                      <b-button
+                        variant="warning"
+                        size="sm"
+                        class="m-r-15"
+                        @click="goEdit(item.item.id)"
+                        v-b-tooltip.hover.top="'Edit'"
+                        ><b-icon-pencil-square></b-icon-pencil-square
+                      ></b-button>
+
+                      <b-button
+                        variant="danger"
+                        size="sm"
+                        @click="hapus(item.item.id)"
+                        v-b-tooltip.hover.top="'Hapus'"
+                        class="m-r-15"
+                        ><b-icon-trash></b-icon-trash
+                      ></b-button>
+                      <b-button
+                        variant="info"
+                        size="sm"
+                        @click="goTipeRumah(item.item)"
+                        ><b-icon-plus></b-icon-plus> Tipe Rumah</b-button
+                      >
                     </center>
                   </template>
                 </b-table>
@@ -109,14 +123,10 @@
                       :per-page="perPage"
                       align="fill"
                       size="md"
-
                     ></b-pagination>
                   </b-col>
                 </b-row>
               </b-col>
-
-
-              
             </b-row>
           </b-col>
         </b-row>
@@ -197,44 +207,62 @@ export default {
     },
   },
   async created() {
-    localStorage.removeItem('dataPerum')
-    this.items = await this.getPerum();
-
+    localStorage.removeItem("dataPerum");
+    this.getPerum();
   },
   mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
   },
   methods: {
-    goEdit(x){
-      this.$router.push({path:`edit_perumahan_pengembang/${x}`})
+    goEdit(x) {
+      this.$router.push({ path: `edit_perumahan_pengembang/${x}` });
     },
-    goTipeRumah(x){
-      console.log(x, 'ini x')
-      localStorage.setItem('dataPerum',JSON.stringify(x))
-      this.$router.push({path:`tipe_perumahan_pengembang/${x.id}`})
+    goTipeRumah(x) {
+      console.log(x, "ini x");
+      localStorage.setItem("dataPerum", JSON.stringify(x));
+      this.$router.push({ path: `tipe_perumahan_pengembang/${x.id}` });
     },
-    hapus(x){
-      console.log(x)
+    hapus(x) {
+      axios
+        .post(
+          ipBackEnd + "perumahan/delete",
+          {
+            id: x,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.getPerum()
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    async getPerum() {
-      let perum = await axios
+    getPerum() {
+    axios
         .get(ipBackEnd + "perumahan/listByPengembangLogin", {
           headers: {
             token: localStorage.getItem("token"),
           },
+        }).then(res =>{
+          this.items = res.data.data
+          this.totalRows = this.items.length
         })
         .catch((err) => {
           console.log(err);
         });
-      let x = perum.data.data;
-      console.log(x, "ini perum");
-      return x;
+
     },
   },
 };

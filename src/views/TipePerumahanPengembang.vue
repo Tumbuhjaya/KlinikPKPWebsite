@@ -9,13 +9,15 @@
             <h2 class="m-t-0 m-b-0 text-center">
               <strong>Tipe Perumahan</strong>
             </h2>
-            <h5 class="m-t-5 m-b-0 text-center">{{dataPerum.namaPerumahan}}</h5>
+            <h5 class="m-t-5 m-b-0 text-center">
+              {{ dataPerum.namaPerumahan }}
+            </h5>
           </b-col>
         </b-row>
 
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr  class="m-t-10 m-b-10" />
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -25,7 +27,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Tipe Perumahan</strong></h6>
             </div>
-            <hr  class="m-t-10 m-b-10" />
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
         <b-row>
@@ -139,60 +141,62 @@
               <b-tab title="Simpan Data">
                 <b-row>
                   <b-col md="12">
-                    <b-form-group label="Apakah anda yakin akan menyimpan data ini ?">
-                      <b-button variant="primary" @click="addTipeRumah()">Simpan</b-button>
+                    <b-form-group
+                      label="Apakah anda yakin akan menyimpan data ini ?"
+                    >
+                      <b-button variant="primary" @click="addTipeRumah()"
+                        >Simpan</b-button
+                      >
                     </b-form-group>
                   </b-col>
                 </b-row>
               </b-tab>
             </b-tabs>
-            
           </b-col>
         </b-row>
 
-              <b-row>
-                <b-col md="12">
-                  <hr class="m-t-15 m-b-30"/>
-                </b-col>
-              </b-row>
+        <b-row>
+          <b-col md="12">
+            <hr class="m-t-15 m-b-30" />
+          </b-col>
+        </b-row>
 
-              
-              <b-row>
-                <b-col md="12">
-                  <b-table
-                    :items="listTipe"
-                    :fields="fields"
-                    stacked="md"
-                    show-empty
-                    bordered
-                    small
-                  >
-                    <template #cell(No)="item">
-                      {{ item.index + 1 }}
-                    </template>
-                    <template #cell(actions)="item">
-                      <center>
-                        <b-button
-                          variant="danger"
-                          size="sm"
-                          @click="hapus(item.item.id)"
-                          v-b-tooltip.hover.top="'Hapus'"
-                          class="m-r-15"
-                          ><b-icon-trash></b-icon-trash></b-button
-                        >
+        <b-row>
+          <b-col md="12">
+            <b-table
+              :items="listTipe"
+              :fields="fields"
+              stacked="md"
+              show-empty
+              bordered
+              small
+            >
+              <template #cell(No)="item">
+                {{ item.index + 1 }}
+              </template>
+              <template #cell(actions)="item">
+                <center>
+                  <b-button
+                    variant="danger"
+                    size="sm"
+                    @click="hapus(item.item.id)"
+                    v-b-tooltip.hover.top="'Hapus'"
+                    class="m-r-15"
+                    ><b-icon-trash></b-icon-trash
+                  ></b-button>
 
-                          <b-button
-                          variant="info"
-                          size="sm"
-                          @click="goEditR(item.item.id)"
-                          v-b-tooltip.hover.top="'Edit'"
-                          ><b-icon-pencil></b-icon-pencil></b-button>
-                        
-                      </center>
-                    </template>
-                  </b-table>
-                </b-col>
-              </b-row>
+                  <b-button
+                    variant="info"
+                    size="sm"
+                    @click="goEditR(item.item.id)"
+                    v-b-tooltip.hover.top="'Edit'"
+                    ><b-icon-pencil></b-icon-pencil
+                  ></b-button>
+                </center>
+              </template>
+            </b-table>
+          </b-col>
+        </b-row>
       </b-container>
     </section>
 
@@ -214,7 +218,7 @@ export default {
     return {
       listTipe: [],
       isLogin: false,
-      dataPerum:[],
+      dataPerum: [],
       jeniss: [
         { value: null, text: "-- Pilih --" },
         { value: "subsidi", text: "Subsidi" },
@@ -258,7 +262,7 @@ export default {
       lantaiPondasiRumah: "",
       jmlKamarMandi: "",
       jmlKamarTidur: "",
-      stock:"",
+      stock: "",
       linkVideo: "",
       perumahanId: "",
       terjual: 0,
@@ -278,7 +282,25 @@ export default {
   },
   methods: {
     hapus(x) {
-      console.log(x);
+      axios
+        .post(
+          ipBackEnd + "rumah/delete",
+          {
+            id: x,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.getTipe(this.perumahanId);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     handleFile() {
       this.foto1 = this.$refs.foto1.files[0];
@@ -317,7 +339,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({path:'/dashboard_pengembang'})
+          this.getTipe(this.perumahanId);
         })
         .catch((err) => {
           console.log(err);
@@ -339,9 +361,9 @@ export default {
           console.log(err);
         });
     },
-    goEditR(x){
-      this.$router.push({path : '/edit_tipe_perumahan_pengembang/' + x})
-    }
+    goEditR(x) {
+      this.$router.push({ path: "/edit_tipe_perumahan_pengembang/" + x });
+    },
   },
 };
 </script>

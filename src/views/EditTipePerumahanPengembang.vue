@@ -116,33 +116,36 @@
                       <b-form-file
                         id="foto1"
                         ref="foto1"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src1" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
                         id="foto2"
                         ref="foto2"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src2" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
                         id="foto3"
                         ref="foto3"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src3" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
                   </b-col>
 
@@ -151,13 +154,13 @@
                       <b-form-file
                         id=fotoDenah
                         ref="fotoDenah"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
                       <a :href="dataTipe.srcDenah" :target="blank">Lihat Foto Denah</a>
                     </b-form-group>
-                    <b-img :src="dataTipe.src1"></b-img>
                     <b-form-group label="Video Rumah (Link video dari youtube)">
                       <b-form-input></b-form-input>
                     </b-form-group>
@@ -266,6 +269,7 @@ export default {
         }
       }).then(res =>{
         console.log(res)
+        this.$router.push({path:'/dashboard_pengembang'})
       }).catch( err =>{
         console.log(err)
       })
@@ -285,10 +289,10 @@ export default {
       if(vm.fotoDenah != ""){
         formData.append("fotoDenah", vm.fotoDenah);
       }
-      formData.append("rumahId", vm.rumahId);
+      formData.append("id", vm.rumahId);
       console.log(formData, "ini formData");
       axios
-        .post(ipBackEnd + "rumah/update", formData, {
+        .post(ipBackEnd + "rumah/changeFoto", formData, {
           headers: {
             token: localStorage.getItem("token"),
             "Content-Type": "multipart/form-data",
@@ -296,7 +300,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({path:'/dashboard_pengembang'})
+          
         })
         .catch((err) => {
           console.log(err);
@@ -317,6 +321,7 @@ export default {
           this.dataTipe.src3 = ipBackEnd + this.dataTipe.foto3
           this.dataTipe.srcDenah = ipBackEnd + this.dataTipe.fotoDenah
           console.log(this.dataTipe)
+          
         })
         .catch((err) => {
           console.log(err);
