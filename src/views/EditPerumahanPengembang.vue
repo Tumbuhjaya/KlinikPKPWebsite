@@ -57,9 +57,9 @@
                 ></multiselect>
               </b-form-group>
 
-              <b-form-group label="Kecamatan">
-                <!-- <b-form-input v-model="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
-                 -->
+              <!-- <b-form-group label="Kecamatan">
+                <b-form-input v-model="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
+                
                 <multiselect
                   v-model="dataPerum.kecamatanPerumahan"
                   :options="kec"
@@ -69,7 +69,7 @@
                   :show-labels="false"
                   :placeholder="dataPerum.kecamatanPerumahan"
                 ></multiselect>
-              </b-form-group>
+              </b-form-group> -->
 
               <b-row>
                 <b-col md="6">

@@ -24,7 +24,7 @@
               >
               <h6 class="m-t-0 m-b-0">|</h6>
               <router-link
-                :to="'/tipe_perumahan_pengembang'"
+                :to="'/tipe_perumahan_pengembang/{{dataPerum.id}}'"
                 style="text-decoration:none"
                 >
               <h6 class="m-t-0 m-b-0">Tipe Perumahan</h6>
@@ -162,7 +162,7 @@
                       <a :href="dataTipe.srcDenah" :target="blank">Lihat Foto Denah</a>
                     </b-form-group>
                     <b-form-group label="Video Rumah (Link video dari youtube)">
-                      <b-form-input></b-form-input>
+                      <b-form-input v-model="dataTipe.linkVideo"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -263,16 +263,16 @@ export default {
     },
     updateRumah(){
       this.changeFoto()
-    //   axios.post(ipBackEnd + 'rumah/update', this.dataTipe, {
-    //     headers:{
-    //       token:localStorage.getItem('token')
-    //     }
-    //   }).then(res =>{
-    //     console.log(res)
-    //     this.$router.push({path:'/dashboard_pengembang'})
-    //   }).catch( err =>{
-    //     console.log(err)
-    //   })
+      axios.post(ipBackEnd + 'rumah/update', this.dataTipe, {
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+        this.$router.push({path:'/dashboard_pengembang'})
+      }).catch( err =>{
+        console.log(err)
+      })
     },
     changeFoto() {
       let vm = this;
