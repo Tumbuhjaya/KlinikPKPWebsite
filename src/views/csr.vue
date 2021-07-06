@@ -1,9 +1,6 @@
 <template>
   <div id="csr" >
     <myheader></myheader>
-    
-
-
     <section class="section-one">
         <b-container>
             <b-row>
@@ -11,7 +8,23 @@
                     <h2 class="m-t-0 m-b-0 text-center"><strong>Corporate Social Responsibility (CSR)</strong></h2>
                 </b-col>
             </b-row>
-            <b-row class="m-t-15">
+
+            <b-row class="m-t-30">
+                <b-col md="12">
+                    <b-alert show variant="primary">
+                    <h4 class="alert-heading">Segera daftarkan perusahaan anda !</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo enim et illo consequatur eos, nemo molestiae, in iusto ut eligendi voluptatem ipsam, omnis minus eius inventore aliquam? Quidem voluptates natus placeat, possimus, atque animi inventore in quaerat, id perferendis ab.
+                    </p>
+                    <hr />
+                    <router-link :to="'daftar_csr'">
+                        <b-button variant="warning">Daftar</b-button>
+                    </router-link>
+                    </b-alert>
+                </b-col>
+            </b-row>
+
+            <b-row class="m-t-30">
                 <b-col md="2" class="m-t-15 m-b-15">
                     <router-link :to="'detail_csr'" style="text-decoration:none">
                     <div class="box">
