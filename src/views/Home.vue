@@ -47,8 +47,9 @@
                   >
                 <h6 class="m-t-0 m-b-0">Beranda</h6>
                 </router-link>
-
+                <router-link :to="'csr'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">CSR</h6>
+                </router-link>
                 <router-link :to="'pengembang'" style="text-decoration:none;"
                   ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
                 >
