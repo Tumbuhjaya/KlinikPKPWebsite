@@ -6,7 +6,7 @@
       <b-container>
         <b-row>
           <b-col md="4">
-            <b-button variant="light">Kembali ke Pencarian</b-button>
+            <b-button variant="light" @click="back()">Kembali ke Pencarian</b-button>
           </b-col>
           <b-col md="8">
             <div class="box-permohonan">
@@ -17,8 +17,8 @@
 
         <b-row class="m-t-30">
           <b-col md="12">
-            <h3 class="m-t-0 m-b-0"><strong>Griya Nuasa Bali</strong></h3>
-            <h6 class="m-t-0 m-b-0">PT. Pengembang Indonesia</h6>
+            <h3 class="m-t-0 m-b-0"><strong>{{dataPerum.namaPerumahan}}</strong></h3>
+            <h6 class="m-t-0 m-b-0">{{dataPerum.namaPerusahaan}}</h6>
           </b-col>
         </b-row>
 
@@ -41,13 +41,13 @@
                 ><img :src="dataRumah.srcDenah" alt=""
               /></b-col>
               <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataPerum.srcFP" alt=""
               /></b-col>
             </b-row>
 
             <b-row class="m-t-15">
               <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataPerum.srcL" alt=""
               /></b-col>
               <b-col md="6"
                 ><img src="https://via.placeholder.com/600x500" alt=""
@@ -167,7 +167,7 @@
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
-                <h6 class="m-t-0 m-b-0">01239401921</h6>
+                <h6 class="m-t-0 m-b-0">{{dataPerum.noHp}}</h6>
               </div>
             </div>
           </b-col>
@@ -178,7 +178,7 @@
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
-                <h6 class="m-t-0 m-b-0">Pengembang@gmail.com</h6>
+                <h6 class="m-t-0 m-b-0">{{dataPerum.email}}</h6>
               </div>
             </div>
           </b-col>
@@ -189,7 +189,7 @@
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Website</strong></h6>
-                <h6 class="m-t-0 m-b-0">www.pengembang.co.id</h6>
+                <h6 class="m-t-0 m-b-0">{{dataPerum.website}}</h6>
               </div>
             </div>
           </b-col>
@@ -223,9 +223,11 @@ export default {
     myfooter,
   },
   created() {
-    this.dataPerum = localStorage.getItem('dataPerum')
+    let y = localStorage.getItem('dataPerum')
+    this.dataPerum = JSON.parse(y)[0]
     let x = this.$route.params.id;
     this.getTipeRumah(x);
+    console.log(this.dataPerum, 'ini last ')
   },
   methods: {
     getTipeRumah(x) {
@@ -241,12 +243,16 @@ export default {
           this.dataRumah.src1 = ipBackEnd + x.foto1;
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
-          this.dataRumah.srcdenah = ipBackEnd + x.fotoDenah;
+          this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
+          console.log(this.dataRumah)
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    back(){
+      this.$router.push({path:'/perumahan'})
+    }
   },
 };
 </script>

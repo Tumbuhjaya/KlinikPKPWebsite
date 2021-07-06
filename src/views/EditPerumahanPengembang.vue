@@ -138,7 +138,7 @@
               </b-form-group>
 
               <b-form-group>
-                <router-link :to="''">Lihat Foto Perumahan</router-link>
+                <a :href="dataPerum.src" :target="blank">Lihat Foto Perumahan</a>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
@@ -172,7 +172,7 @@ export default {
       file:"",
       perumId: "",
       kabkot: [],
-
+      blank:"_blank",
       kec: ["KecamatanPerumahan A", "KecamatanPerumahan B", "KecamatanPerumahan C"],
     };
   },
@@ -183,7 +183,7 @@ export default {
   },
   async created() {
     this.perumId = await this.$route.params.id;
-    this.dataPerum = await this.getDataPerum(this.perumId);
+    await this.getDataPerum(this.perumId);
     this.getkota()
     console.log(this.dataPerum, 'ini sreat')
   },
@@ -193,23 +193,22 @@ export default {
       console.log(this.file)
     },
     async getDataPerum(id) {
-      let perum = await axios
-        .get(ipBackEnd + "perumahan/listById/" + id, {
+        axios.get(ipBackEnd + "perumahan/listById/" + id, {
           headers: {
             token: localStorage.getItem("token"),
           },
+        }).then(res =>{
+          this.dataPerum = res.data.data[0]
+          this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan
         })
         .catch((err) => {
           console.log(err);
         });
-      let x = perum.data.data[0];
-      console.log(x)
-      return x;
     },
     updateFoto(){
       let formData = new FormData
       formData.append('file', this.file)
-      formData.append('id',this.dataPerum.id)
+      formData.append('id',this.perumId)
       axios.post(ipBackEnd + 'perumahan/changeFoto', formData,
       {
         headers:{

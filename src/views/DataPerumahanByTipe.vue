@@ -103,6 +103,8 @@ methods:{
         })
         .then((res) => {
           console.log(res.data.data);
+          res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan
+          res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo
           this.dataPerum = res.data.data;
         })
         .catch((err) => {
@@ -111,7 +113,7 @@ methods:{
     },
     goDetail(x){
         console.log(x)
-        localStorage.setItem('dataPerum', this.dataPerum)
+        localStorage.setItem('dataPerum', JSON.stringify(this.dataPerum))
         this.$router.push({path:`/detail_perumahan/${x}`})
     }
 }

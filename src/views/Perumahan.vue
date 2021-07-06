@@ -361,6 +361,7 @@ export default {
       console.log(this.listPerumahan, "ini perumahan");
     },
     goListRumah(x){
+      localStorage.setItem('dataPerumId',x.id)
       this.$router.push({path:`/data_perumahan_by_tipe/${x.id}`})
     },
     getkota(){

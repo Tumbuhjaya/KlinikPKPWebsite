@@ -263,16 +263,16 @@ export default {
     },
     updateRumah(){
       this.changeFoto()
-      axios.post(ipBackEnd + 'rumah/update', this.dataTipe, {
-        headers:{
-          token:localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-        this.$router.push({path:'/dashboard_pengembang'})
-      }).catch( err =>{
-        console.log(err)
-      })
+    //   axios.post(ipBackEnd + 'rumah/update', this.dataTipe, {
+    //     headers:{
+    //       token:localStorage.getItem('token')
+    //     }
+    //   }).then(res =>{
+    //     console.log(res)
+    //     this.$router.push({path:'/dashboard_pengembang'})
+    //   }).catch( err =>{
+    //     console.log(err)
+    //   })
     },
     changeFoto() {
       let vm = this;
