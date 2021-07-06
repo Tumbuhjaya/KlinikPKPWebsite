@@ -330,7 +330,7 @@ export default {
   methods: {
     async getPengembang() {
       let PTs = await axios
-        .get(ipBackEnd + "users/listByRole/pengembang", {
+        .get(ipBackEnd + "users/listPengembang", {
           headers: {
             token: localStorage.getItem("token"),
           },

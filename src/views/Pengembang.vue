@@ -205,6 +205,7 @@ export default {
           console.log(err);
         });
       let x = PTs.data.data;
+      this.totalRows= x.length
       console.log(PTs.data);
       console.log(x, "ini pengembang");
       return x;
