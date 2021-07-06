@@ -37,18 +37,21 @@
                     <b-form-group label="Password Lama">
                       <b-form-input
                       type="password"
+                      v-model="oldPass"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Password Baru">
                       <b-form-input
                       type="password"
+                      v-model="newPass1"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Konfirmasi Password Baru">
                       <b-form-input
                       type="password"
+                      v-model="newPass2"
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
@@ -56,7 +59,7 @@
 
                 <b-row>
                   <b-col md="12">
-                    <b-button variant="primary" 
+                    <b-button variant="primary" @click="changePass()" 
                       >Update</b-button
                     >
                   </b-col>
@@ -86,6 +89,10 @@ export default {
     return {
       isLogin: false,
       userData: [],
+      oldPass:"",
+      newPass1:"",
+      newPass2:"",
+      status:"oke"
     };
   },
   components: {
@@ -95,7 +102,15 @@ export default {
   created() {
     this.getData();
   },
-  
+  watch:{
+    'newPass2':function (val){
+      if (this.newPass1 == val){
+        this.status= 'oke'
+      }else{
+        this.status = 'hmmm'
+      }     
+  }
+  }
 };
 </script>
 

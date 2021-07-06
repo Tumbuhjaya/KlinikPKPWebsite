@@ -111,6 +111,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
+import ipBackEnd from '@/ipBackEnd'
 import myheader from "../components/header"
 import myfooter from "../components/footer"
 
@@ -119,12 +121,31 @@ export default {
  data (){
    return{
      isLogin: false,
+     usersId:"",
+     listKegCsr:[]
    };
  },
  components:{
   myheader,
   myfooter
 },
+created(){
+  this.usersId = this.$route.params.id
+},
+methods:{
+  getCsrss(){
+    axios.get(ipBackEnd + '' , {
+      headers:{
+        token: localStorage.getItem('token')
+      }
+    }).then(res =>{
+      console.log(res)
+      this.listKegCsr = res.data.data
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
+}
 
 };
 </script>

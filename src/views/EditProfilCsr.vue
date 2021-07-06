@@ -31,34 +31,34 @@
         <b-row class="m-t-30">
             <b-col md="6" offset-md="3" >
                 <b-form-group label="Nama Perusahaan">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.namaPerusahaan"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Alamat">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.alamat"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="No. Telepon">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.noHp"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Email">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.email"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Website">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.website"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Profil Perusahaan">
-                    <b-form-textarea rows="10"></b-form-textarea>
+                    <b-form-textarea rows="10" v-model="datasCsr.profilPerusahaan"></b-form-textarea>
                 </b-form-group>
 
                 <b-form-group label="Upload Logo Perusahaan">
-                    <b-form-file></b-form-file>
+                    <b-form-file id = "file" ref="file" @input="handleFile()"></b-form-file>
                 </b-form-group>
                 
-                <b-button variant="primary">Simpan</b-button>
+                <b-button variant="primary" @click="editProfilCsr()">Simpan</b-button>
             </b-col>
         </b-row>
         
@@ -72,8 +72,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 
@@ -82,17 +82,58 @@ export default {
   data() {
     return {
       isLogin: false,
-      
-      
+      file:"",
+      datasCsr:[],
     };
   },
   components: {
     myheader,
     myfooter,
   },
-
   methods: {
-    
+    handleFile(){
+      this.file = this.$refs.file.files[0]
+    },
+    editProfilCsr(){
+      if (this.file != ""){
+        this.changeLogo()
+      }
+      axios.post(ipBackEnd + 'users/update' + this.datasCsr,{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+        this.$router.push({path:'/dashboard_csr'})
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    editLogo(){
+      let formData = new FormData
+      formData.append('file', this.file)
+      formData.appedn('id', this.datasCsr.id)
+      axios.post(ipBackEnd + 'users/changeLogo', formData,{
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    getCsrs(){
+      axios.get(ipBackEnd + 'users/profile',{
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+        this.datasCsr.data.data[0]
+        this.datasCsr.srcLogo = ipBackEnd + this.datasCsr.logo
+      })
+    }
   },
 };
 </script>
