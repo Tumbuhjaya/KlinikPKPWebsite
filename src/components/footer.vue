@@ -15,18 +15,19 @@
             </b-container>
         </footer>
         
-        <b-modal id="modal-lg" size="lg" centered hide-footer>
+        <b-modal id="modal-lg" size="lg" centered hide-footer hide-header>
             <b-row>
                 <b-col md="6">
                 <img
-                    src="https://via.placeholder.com/200"
+                    src="../assets/login.png"
                     alt=""
                     style="width:100%"
                 />
                 </b-col>
                 <b-col md="6">
                 <h3 class="m-t-0 m-b-0"><strong>LOGIN</strong></h3>
-                <h4 class="m-t-0 m-b-0">KLINIK PKP PROVINSI JAWA TENGAH</h4>
+                <h4 class="m-t-0 m-b-0">KLINIK PKP</h4>
+                <h4 class="m-t-0 m-b-0">PROVINSI JAWA TENGAH</h4>
                 <hr />
                 <b-form-group label="Username">
                     <b-form-input v-model="username"></b-form-input>
