@@ -14,9 +14,9 @@
                                 <div class="down m-t-15">
                                     <h5><strong>{{dataPerum[0].namaPerumahan}}</strong></h5>
                                     <h5><strong>Tipe Rumah : {{item.luasBangunan}} / {{item.luasLahan}}</strong></h5>
-                                    <h6 class="m-t-15">PT. Pengembang Internasional</h6>
+                                    <h6 class="m-t-15">{{dataPerum[0].namaPerusahaan}}</h6>
 
-                                    <p class="m-t-15">{{dataPerum[0].alamat}}, {{dataPerum[0].kabKota}}</p>
+                                    <p class="m-t-15">{{dataPerum[0].alamatPerumahan}}, {{dataPerum[0].kabKotaPerumahan}}</p>
                                 </div>
                             
                             </div>
@@ -103,6 +103,8 @@ methods:{
         })
         .then((res) => {
           console.log(res.data.data);
+          res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan
+          res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo
           this.dataPerum = res.data.data;
         })
         .catch((err) => {
@@ -111,7 +113,7 @@ methods:{
     },
     goDetail(x){
         console.log(x)
-        localStorage.setItem('dataPerum', this.dataPerum)
+        localStorage.setItem('dataPerum', JSON.stringify(this.dataPerum))
         this.$router.push({path:`/detail_perumahan/${x}`})
     }
 }

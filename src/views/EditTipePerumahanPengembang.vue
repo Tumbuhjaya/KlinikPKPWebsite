@@ -44,29 +44,35 @@
                     <b-form-group label="Jenis">
                       <b-form-select
                         :options="jeniss"
+                        v-model="dataTipe.jenis"
                       ></b-form-select>
                     </b-form-group>
 
                     <b-form-group label="Tipe">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.type"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Jumlah Rumah">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.stock"></b-form-input>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
                     <b-form-group label="Harga">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.harga"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Bangunan (m2)">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.luasBangunanRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Lahan (m2)">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.luasLahanRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -75,25 +81,30 @@
                 <b-row>
                   <b-col md="6">
                     <b-form-group label="Atap">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.atapRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Dinding">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.dindingRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Lantai & Pondasi">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.lantaiPondasiRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
                     <b-form-group label="Jumlah Kamar Mandi">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.jmlKamarMandi"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Jumlah Kamar Tidur">
-                      <b-form-input></b-form-input>
+                      <b-form-input
+                      v-model="dataTipe.jmlKamarTidur"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -103,46 +114,53 @@
                   <b-col md="6">
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
-                        
+                        id="foto1"
+                        ref="foto1"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src1" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
-                        
+                        id="foto2"
+                        ref="foto2"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src2" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
-                        
+                        id="foto3"
+                        ref="foto3"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Rumah</router-link>
+                      <a :href="dataTipe.src3" :target="blank">Lihat Foto Rumah</a>
                     </b-form-group>
                   </b-col>
 
                   <b-col md="6">
                     <b-form-group label="Upload Foto Denah" style="margin-bottom:0px !important">
                       <b-form-file
-                        
+                        id=fotoDenah
+                        ref="fotoDenah"
+                        @input="handleFile()"
                       ></b-form-file>
                     </b-form-group>
 
                     <b-form-group>
-                      <router-link :to="''">Lihat Foto Denah</router-link>
+                      <a :href="dataTipe.srcDenah" :target="blank">Lihat Foto Denah</a>
                     </b-form-group>
-
                     <b-form-group label="Video Rumah (Link video dari youtube)">
                       <b-form-input></b-form-input>
                     </b-form-group>
@@ -154,7 +172,7 @@
                 <b-row>
                   <b-col md="12">
                     <b-form-group label="Apakah anda yakin akan menyimpan data ini ?">
-                      <b-button variant="primary">Simpan</b-button>
+                      <b-button variant="primary" @click="updateRumah()">Simpan</b-button>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -182,7 +200,7 @@ export default {
   name: "TipePerumahanPengembang",
   data() {
     return {
-      listTipe: [],
+      dataTipe: [],
       isLogin: false,
       dataPerum:[],
       jeniss: [
@@ -218,24 +236,11 @@ export default {
         },
         { key: "actions", label: "Actions", class: "text-center" },
       ],
-      jenis: "",
-      type: "",
-      harga: "",
-      luasBangunan: 0,
-      luasLahan: 0,
-      atap: "",
-      dinding: "",
-      lantaiPondasi: "",
-      jmlKamarMandi: "",
-      jmlKamarTidur: "",
-      stock:"",
-      linkVideo: "",
-      perumahanId: "",
-      terjual: 0,
       foto1: "",
       foto2: "",
       foto3: "",
       fotoDenah: "",
+      blank:"_blank"
     };
   },
   components: {
@@ -243,10 +248,8 @@ export default {
     myfooter,
   },
   async created() {
-    this.dataPerum = await JSON.parse(localStorage.getItem('dataPerum'))
-    console.log(this.dataPerum, ' ini data')
-    this.perumahanId = await this.$route.params.id;
-    await this.getTipe(this.perumahanId);
+    this.rumahId = await this.$route.params.id;
+    await this.getTipe(this.rumahId);
   },
   methods: {
     hapus(x) {
@@ -258,29 +261,38 @@ export default {
       this.foto3 = this.$refs.foto3.files[0];
       this.fotoDenah = this.$refs.fotoDenah.files[0];
     },
-    async addTipeRumah() {
+    updateRumah(){
+      this.changeFoto()
+    //   axios.post(ipBackEnd + 'rumah/update', this.dataTipe, {
+    //     headers:{
+    //       token:localStorage.getItem('token')
+    //     }
+    //   }).then(res =>{
+    //     console.log(res)
+    //     this.$router.push({path:'/dashboard_pengembang'})
+    //   }).catch( err =>{
+    //     console.log(err)
+    //   })
+    },
+    changeFoto() {
       let vm = this;
-      let formData = await new FormData();
-      await formData.append("foto1", vm.foto1);
-      await formData.append("foto2", vm.foto2);
-      await formData.append("foto3", vm.foto3);
-      await formData.append("fotoDenah", vm.fotoDenah);
-      await formData.append("jenis", vm.jenis);
-      await formData.append("type", vm.type);
-      await formData.append("harga", vm.harga);
-      await formData.append("luasBangunan", vm.luasBangunan);
-      await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("atap", vm.atap);
-      await formData.append("dinding", vm.dinding);
-      await formData.append("lantaiPondasi", vm.lantaiPondasi);
-      await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
-      await formData.append("stock", vm.stock);
-      await formData.append("terjual", vm.terjual);
-      await formData.append("linkVideo", vm.linkVideo);
-      await formData.append("perumahanId", vm.perumahanId);
+      let formData = new FormData();
+      if(vm.foto1 != ""){
+        formData.append("foto1", vm.foto1);
+      }
+      if(vm.foto2 != ""){
+        formData.append("foto2", vm.foto2);
+      }
+      if(vm.foto3 != ""){
+        formData.append("foto3", vm.foto3);
+      }
+      if(vm.fotoDenah != ""){
+        formData.append("fotoDenah", vm.fotoDenah);
+      }
+      formData.append("id", vm.rumahId);
       console.log(formData, "ini formData");
       axios
-        .post(ipBackEnd + "rumah/register", formData, {
+        .post(ipBackEnd + "rumah/changeFoto", formData, {
           headers: {
             token: localStorage.getItem("token"),
             "Content-Type": "multipart/form-data",
@@ -288,7 +300,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({path:'/dashboard_pengembang'})
+          
         })
         .catch((err) => {
           console.log(err);
@@ -297,14 +309,19 @@ export default {
     getTipe(x) {
       console.log(x);
       axios
-        .get(ipBackEnd + "rumah/listByPerumahanId/" + x, {
+        .get(ipBackEnd + "rumah/listRumah/" + x, {
           headers: {
             token: localStorage.getItem("token"),
           },
         })
         .then((res) => {
-          console.log(res);
-          this.listTipe = res.data.data;
+          this.dataTipe = res.data.data[0];
+          this.dataTipe.src1 = ipBackEnd + this.dataTipe.foto1
+          this.dataTipe.src2 = ipBackEnd + this.dataTipe.foto2
+          this.dataTipe.src3 = ipBackEnd + this.dataTipe.foto3
+          this.dataTipe.srcDenah = ipBackEnd + this.dataTipe.fotoDenah
+          console.log(this.dataTipe)
+          
         })
         .catch((err) => {
           console.log(err);

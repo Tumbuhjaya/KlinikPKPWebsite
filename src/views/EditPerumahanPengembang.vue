@@ -39,21 +39,21 @@
 
               <b-form-group label="Alamat">
                 <b-form-input
-                  v-model="dataPerum.alamat"
-                  :placeholder="dataPerum.alamat"
+                  v-model="dataPerum.alamatPerumahan"
+                  :placeholder="dataPerum.alamatPerumahan"
                 ></b-form-input>
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <!-- <b-form-input v-model="dataPerum.kabKota" :placeholder="dataPerum.kabKota"></b-form-input> -->
+                <!-- <b-form-input v-model="dataPerum.kabKotaPerumahan" :placeholder="dataPerum.kabKotaPerumahan"></b-form-input> -->
                 <multiselect
-                  v-model="dataPerum.kabKota"
+                  v-model="dataPerum.kabKotaPerumahan"
                   :options="kabkot"
                   :multiple="false"
                   :searchable="true"
                   :close-on-select="true"
                   :show-labels="false"
-                  :placeholder="dataPerum.kabKota"
+                  :placeholder="dataPerum.kabKotaPerumahan"
                 ></multiselect>
               </b-form-group>
 
@@ -61,13 +61,13 @@
                 <!-- <b-form-input v-model="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
                  -->
                 <multiselect
-                  v-model="dataPerum.kecamatan"
+                  v-model="dataPerum.kecamatanPerumahan"
                   :options="kec"
                   :multiple="false"
                   :searchable="true"
                   :close-on-select="true"
                   :show-labels="false"
-                  :placeholder="dataPerum.kecamatan"
+                  :placeholder="dataPerum.kecamatanPerumahan"
                 ></multiselect>
               </b-form-group>
 
@@ -92,22 +92,22 @@
 
               <b-form-group label="Email">
                 <b-form-input
-                  v-model="dataPerum.email"
-                  :placeholder="dataPerum.email"
+                  v-model="dataPerum.emailPerumahan"
+                  :placeholder="dataPerum.emailPerumahan"
                 ></b-form-input>
               </b-form-group>
 
               <b-form-group label="Kontak Person">
                 <b-form-input
-                  v-model="dataPerum.CP"
-                  :placeholder="dataPerum.CP"
+                  v-model="dataPerum.CPPerumahan"
+                  :placeholder="dataPerum.CPPerumahan"
                 ></b-form-input>
               </b-form-group>
 
               <b-form-group label="Luas Lahan Perumahan (m2)">
                 <b-form-input
-                  v-model="dataPerum.luasLahan"
-                  :placeholder="setPlace(dataPerum.luasLahan)"
+                  v-model="dataPerum.luasLahanPerumahan"
+                  :placeholder="setPlace(dataPerum.luasLahanPerumahan)"
                 ></b-form-input>
               </b-form-group>
 
@@ -138,7 +138,7 @@
               </b-form-group>
 
               <b-form-group>
-                <router-link :to="''">Lihat Foto Perumahan</router-link>
+                <a :href="dataPerum.src" :target="blank">Lihat Foto Perumahan</a>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
@@ -171,9 +171,9 @@ export default {
       dataPerum: [],
       file:"",
       perumId: "",
-      kabkot: ["KabKot A", "KabKot B", "KabKot C"],
-
-      kec: ["Kecamatan A", "Kecamatan B", "Kecamatan C"],
+      kabkot: [],
+      blank:"_blank",
+      kec: ["KecamatanPerumahan A", "KecamatanPerumahan B", "KecamatanPerumahan C"],
     };
   },
   components: {
@@ -183,7 +183,8 @@ export default {
   },
   async created() {
     this.perumId = await this.$route.params.id;
-    this.dataPerum = await this.getDataPerum(this.perumId);
+    await this.getDataPerum(this.perumId);
+    this.getkota()
     console.log(this.dataPerum, 'ini sreat')
   },
   methods: {
@@ -192,23 +193,22 @@ export default {
       console.log(this.file)
     },
     async getDataPerum(id) {
-      let perum = await axios
-        .get(ipBackEnd + "perumahan/listById/" + id, {
+        axios.get(ipBackEnd + "perumahan/listById/" + id, {
           headers: {
             token: localStorage.getItem("token"),
           },
+        }).then(res =>{
+          this.dataPerum = res.data.data[0]
+          this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan
         })
         .catch((err) => {
           console.log(err);
         });
-      let x = perum.data.data[0];
-      console.log(x)
-      return x;
     },
     updateFoto(){
       let formData = new FormData
       formData.append('file', this.file)
-      formData.append('id',this.dataPerum.id)
+      formData.append('id',this.perumId)
       axios.post(ipBackEnd + 'perumahan/changeFoto', formData,
       {
         headers:{
@@ -229,16 +229,14 @@ export default {
         .post(
           ipBackEnd + "perumahan/update",
           {
-            id : vm.dataPerum.id,
+            id : vm.perumId,
             namaPerumahan:vm.dataPerum.namaPerumahan,
-            alamat:vm.dataPerum.alamat,
-            kabKota:vm.dataPerum.kabKota,
-            kecamatan:vm.dataPerum.kecamatan,
-            email:vm.dataPerum.email,
-            CP:vm.dataPerum.id,
-            luasLahan:vm.dataPerum.luasLahan,
-            rencanaPembangunan:vm.dataPerum.rencanaPembangunan,
-            totalTerbangun:vm.dataPerum.totalTerbangun,
+            alamatPerumahan:vm.dataPerum.alamatPerumahan,
+            kabKotaPerumahan:vm.dataPerum.kabKotaPerumahan,
+            kecamatanPerumahan:vm.dataPerum.kecamatanPerumahan,
+            emailPerumahan:vm.dataPerum.emailPerumahan,
+            CPPerumahan:vm.dataPerum.id,
+            luasLahanPerumahan:vm.dataPerum.luasLahanPerumahan,
             jmlStockUnitSubsidi:vm.dataPerum.jmlStockUnitSubsidi,
             jmlStockUnitKomersial:vm.dataPerum.jmlStockUnitKomersial,
             jmlTerjualUnitSubsidi:vm.dataPerum.jmlTerjualUnitSubsidi,
@@ -268,9 +266,25 @@ export default {
         return y;
       }
     },
+    getkota(){
+    axios.get(ipBackEnd + 'kabKota/list',{
+      headers:{
+        token: localStorage.getItem('token')
+      }
+    }).then(res =>{
+      console.log(res.data.data)
+      let x = res.data.data
+      this.kabkot = x.map(item =>{
+        return item.namaKabKota
+      })
+
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
   },
   watch: {
-    "dataPerum.namaPerumahan": function(val) {
+    "dataPerum": function(val) {
       console.log(val);
     },
   },

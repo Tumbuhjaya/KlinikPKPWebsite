@@ -9,13 +9,15 @@
             <h2 class="m-t-0 m-b-0 text-center">
               <strong>Tipe Perumahan</strong>
             </h2>
-            <h5 class="m-t-5 m-b-0 text-center">{{dataPerum.namaPerumahan}}</h5>
+            <h5 class="m-t-5 m-b-0 text-center">
+              {{ dataPerum.namaPerumahan }}
+            </h5>
           </b-col>
         </b-row>
 
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr  class="m-t-10 m-b-10" />
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -25,7 +27,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Tipe Perumahan</strong></h6>
             </div>
-            <hr  class="m-t-10 m-b-10" />
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
         <b-row>
@@ -56,11 +58,11 @@
                     </b-form-group>
 
                     <b-form-group label="Luas Bangunan (m2)">
-                      <b-form-input v-model="luasBangunan"></b-form-input>
+                      <b-form-input v-model="luasBangunanRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Lahan (m2)">
-                      <b-form-input v-model="luasLahan"></b-form-input>
+                      <b-form-input v-model="luasLahanRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -69,15 +71,15 @@
                 <b-row>
                   <b-col md="6">
                     <b-form-group label="Atap">
-                      <b-form-input v-model="atap"></b-form-input>
+                      <b-form-input v-model="atapRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Dinding">
-                      <b-form-input v-model="dinding"></b-form-input>
+                      <b-form-input v-model="dindingRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Lantai & Pondasi">
-                      <b-form-input v-model="lantaiPondasi"></b-form-input>
+                      <b-form-input v-model="lantaiPondasiRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
 
@@ -139,61 +141,62 @@
               <b-tab title="Simpan Data">
                 <b-row>
                   <b-col md="12">
-                    <b-form-group label="Apakah anda yakin akan menyimpan data ini ?">
-                      <b-button variant="primary" @click="addTipeRumah()">Simpan</b-button>
+                    <b-form-group
+                      label="Apakah anda yakin akan menyimpan data ini ?"
+                    >
+                      <b-button variant="primary" @click="addTipeRumah()"
+                        >Simpan</b-button
+                      >
                     </b-form-group>
                   </b-col>
                 </b-row>
               </b-tab>
             </b-tabs>
-            
           </b-col>
         </b-row>
 
-              <b-row>
-                <b-col md="12">
-                  <hr class="m-t-15 m-b-30"/>
-                </b-col>
-              </b-row>
+        <b-row>
+          <b-col md="12">
+            <hr class="m-t-15 m-b-30" />
+          </b-col>
+        </b-row>
 
-              
-              <b-row>
-                <b-col md="12">
-                  <b-table
-                    :items="listTipe"
-                    :fields="fields"
-                    stacked="md"
-                    show-empty
-                    bordered
-                    small
-                  >
-                    <template #cell(No)="item">
-                      {{ item.index + 1 }}
-                    </template>
-                    <template #cell(actions)="item">
-                      <center>
-                        <b-button
-                          variant="danger"
-                          size="sm"
-                          @click="hapus(item.item.id)"
-                          v-b-tooltip.hover.top="'Hapus'"
-                          class="m-r-15"
-                          ><b-icon-trash></b-icon-trash></b-button
-                        >
+        <b-row>
+          <b-col md="12">
+            <b-table
+              :items="listTipe"
+              :fields="fields"
+              stacked="md"
+              show-empty
+              bordered
+              small
+            >
+              <template #cell(No)="item">
+                {{ item.index + 1 }}
+              </template>
+              <template #cell(actions)="item">
+                <center>
+                  <b-button
+                    variant="danger"
+                    size="sm"
+                    @click="hapus(item.item.id)"
+                    v-b-tooltip.hover.top="'Hapus'"
+                    class="m-r-15"
+                    ><b-icon-trash></b-icon-trash
+                  ></b-button>
 
-                        <router-link :to="'/edit_tipe_perumahan_pengembang'">
-                          <b-button
-                          variant="info"
-                          size="sm"
-                          v-b-tooltip.hover.top="'Edit'"
-                          ><b-icon-pencil></b-icon-pencil></b-button>
-                        </router-link>
-                        
-                      </center>
-                    </template>
-                  </b-table>
-                </b-col>
-              </b-row>
+                  <b-button
+                    variant="info"
+                    size="sm"
+                    @click="goEditR(item.item.id)"
+                    v-b-tooltip.hover.top="'Edit'"
+                    ><b-icon-pencil></b-icon-pencil
+                  ></b-button>
+                </center>
+              </template>
+            </b-table>
+          </b-col>
+        </b-row>
       </b-container>
     </section>
 
@@ -215,7 +218,7 @@ export default {
     return {
       listTipe: [],
       isLogin: false,
-      dataPerum:[],
+      dataPerum: [],
       jeniss: [
         { value: null, text: "-- Pilih --" },
         { value: "subsidi", text: "Subsidi" },
@@ -236,13 +239,13 @@ export default {
           sortDirection: "desc",
         },
         {
-          key: "luasLahan",
+          key: "luasLahanRumah",
           label: "Luas Tanah (m2)",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "luasBangunan",
+          key: "luasBangunanRumah",
           label: "Luas Bangunan(m2)",
           sortable: true,
           class: "text-center",
@@ -252,14 +255,14 @@ export default {
       jenis: "",
       type: "",
       harga: "",
-      luasBangunan: 0,
-      luasLahan: 0,
-      atap: "",
-      dinding: "",
-      lantaiPondasi: "",
+      luasBangunanRumah: 0,
+      luasLahanRumah: 0,
+      atapRumah: "",
+      dindingRumah: "",
+      lantaiPondasiRumah: "",
       jmlKamarMandi: "",
       jmlKamarTidur: "",
-      stock:"",
+      stock: "",
       linkVideo: "",
       perumahanId: "",
       terjual: 0,
@@ -274,14 +277,30 @@ export default {
     myfooter,
   },
   async created() {
-    this.dataPerum = await JSON.parse(localStorage.getItem('dataPerum'))
-    console.log(this.dataPerum, ' ini data')
     this.perumahanId = await this.$route.params.id;
     await this.getTipe(this.perumahanId);
   },
   methods: {
     hapus(x) {
-      console.log(x);
+      axios
+        .post(
+          ipBackEnd + "rumah/delete",
+          {
+            id: x,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.getTipe(this.perumahanId);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     handleFile() {
       this.foto1 = this.$refs.foto1.files[0];
@@ -299,12 +318,13 @@ export default {
       await formData.append("jenis", vm.jenis);
       await formData.append("type", vm.type);
       await formData.append("harga", vm.harga);
-      await formData.append("luasBangunan", vm.luasBangunan);
-      await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("atap", vm.atap);
-      await formData.append("dinding", vm.dinding);
-      await formData.append("lantaiPondasi", vm.lantaiPondasi);
+      await formData.append("luasBangunanRumah", vm.luasBangunanRumah);
+      await formData.append("luasLahanRumah", vm.luasLahanRumah);
+      await formData.append("atapRumah", vm.atapRumah);
+      await formData.append("dindingRumah", vm.dindingRumah);
+      await formData.append("lantaiPondasiRumah", vm.lantaiPondasi);
       await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
+      await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);
       await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);
@@ -319,7 +339,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({path:'/dashboard_pengembang'})
+          this.getTipe(this.perumahanId);
         })
         .catch((err) => {
           console.log(err);
@@ -340,6 +360,9 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    goEditR(x) {
+      this.$router.push({ path: "/edit_tipe_perumahan_pengembang/" + x });
     },
   },
 };

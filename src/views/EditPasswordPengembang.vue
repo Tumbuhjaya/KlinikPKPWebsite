@@ -37,26 +37,32 @@
                     <b-form-group label="Password Lama">
                       <b-form-input
                       type="password"
+                      v-model="oldpass"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Password Baru">
                       <b-form-input
                       type="password"
+                      v-model="newpass1"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Konfirmasi Password Baru">
                       <b-form-input
                       type="password"
+                      v-model="newpass2"
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
+                <p v-if="this.status == 'beda'
+                " color="danger">Password Baru dan Konfirmasi Password Baru harus sama</p>
 
                 <b-row>
                   <b-col md="12">
-                    <b-button variant="primary" 
+                    <b-button variant="primary"
+                    @click="changePass()" 
                       >Update</b-button
                     >
                   </b-col>
@@ -73,8 +79,8 @@
 </template>
 
 <script>
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import myheader from "../components/header";
@@ -86,6 +92,10 @@ export default {
     return {
       isLogin: false,
       userData: [],
+      oldpass:"",
+      newpass1:"",
+      newpass2:"",
+      status: 'sama'
     };
   },
   components: {
@@ -93,8 +103,33 @@ export default {
     myfooter,
   },
   created() {
-    this.getData();
   },
+  methods:{
+    changePass(){
+      axios.post(ipBackEnd+ 'users/changePassword',{
+        passwordLama : this.oldpass,
+        passwordBaru : this.newpass1
+      },{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
+  },
+  watch:{
+    'newpass2': function(val){
+      console.log(val)
+      if(this.newpass1 != val){
+        this.status = 'beda'
+      }else{
+        this.status = 'sama'
+      }
+    }
+  }
   
 };
 </script>

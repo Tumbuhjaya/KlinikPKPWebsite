@@ -75,8 +75,7 @@
 
                       
                     </b-form-group>
-                    <router-link :to="''">Lihat Logo Pengembang</router-link>
-                    
+                    <a :href="userData.srcLogo" :target="blank">Lihat Logo Pengembang</a>
                   </b-col>
                 </b-row>
 
@@ -112,8 +111,8 @@ export default {
     return {
       isLogin: false,
       userData: [],
-      file:""
-    };
+      file:"",
+      blank:"_blank"    };
   },
   components: {
     myheader,
@@ -136,6 +135,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.userData = res.data.data[0];
+          this.userData.srcLogo = ipBackEnd + this.userData.logo
         })
         .catch((err) => {
           console.log(err);

@@ -160,12 +160,12 @@ export default {
       let formData = new FormData();
       formData.append("file", this.file);
       formData.append("namaPerumahan", vm.namaPerum);
-      formData.append("alamat", vm.alamat);
-      formData.append("kabKota", vm.kabKot);
-      formData.append("kecamatan", vm.keca);
-      formData.append("email", vm.email);
-      formData.append("CP", vm.CP);
-      formData.append("luasLahan", vm.luasLahan);
+      formData.append("alamatPerumahan", vm.alamat);
+      formData.append("kabKotaPerumahan", vm.kabKot);
+      formData.append("kecamatanPerumahan", vm.keca);
+      formData.append("emailPerumahan", vm.email);
+      formData.append("CPPerumahan", vm.CP);
+      formData.append("luasLahanPerumahan", vm.luasLahan);
       formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
       formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");
