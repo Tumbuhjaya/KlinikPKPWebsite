@@ -155,19 +155,19 @@ export default {
           sortDirection: "desc",
         },
         {
-          key: "alamat",
+          key: "alamatPerumahan",
           label: "Alamat",
           sortable: true,
           sortDirection: "desc",
         },
         {
-          key: "CP",
+          key: "CPPerumahan",
           label: "Kontak Person",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "luasLahan",
+          key: "luasLahanPerumahan",
           label: "Luas Lahan (m2)",
           sortable: true,
           class: "text-center",

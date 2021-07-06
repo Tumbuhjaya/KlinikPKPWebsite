@@ -56,11 +56,11 @@
                     </b-form-group>
 
                     <b-form-group label="Luas Bangunan (m2)">
-                      <b-form-input v-model="luasBangunan"></b-form-input>
+                      <b-form-input v-model="luasBangunanRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Luas Lahan (m2)">
-                      <b-form-input v-model="luasLahan"></b-form-input>
+                      <b-form-input v-model="luasLahanRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
@@ -69,15 +69,15 @@
                 <b-row>
                   <b-col md="6">
                     <b-form-group label="Atap">
-                      <b-form-input v-model="atap"></b-form-input>
+                      <b-form-input v-model="atapRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Dinding">
-                      <b-form-input v-model="dinding"></b-form-input>
+                      <b-form-input v-model="dindingRumah"></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Lantai & Pondasi">
-                      <b-form-input v-model="lantaiPondasi"></b-form-input>
+                      <b-form-input v-model="lantaiPondasiRumah"></b-form-input>
                     </b-form-group>
                   </b-col>
 
@@ -181,13 +181,12 @@
                           ><b-icon-trash></b-icon-trash></b-button
                         >
 
-                        <router-link :to="'/edit_tipe_perumahan_pengembang'">
                           <b-button
                           variant="info"
                           size="sm"
+                          @click="goEditR(item.item.id)"
                           v-b-tooltip.hover.top="'Edit'"
                           ><b-icon-pencil></b-icon-pencil></b-button>
-                        </router-link>
                         
                       </center>
                     </template>
@@ -236,13 +235,13 @@ export default {
           sortDirection: "desc",
         },
         {
-          key: "luasLahan",
+          key: "luasLahanRumah",
           label: "Luas Tanah (m2)",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "luasBangunan",
+          key: "luasBangunanRumah",
           label: "Luas Bangunan(m2)",
           sortable: true,
           class: "text-center",
@@ -252,11 +251,11 @@ export default {
       jenis: "",
       type: "",
       harga: "",
-      luasBangunan: 0,
-      luasLahan: 0,
-      atap: "",
-      dinding: "",
-      lantaiPondasi: "",
+      luasBangunanRumah: 0,
+      luasLahanRumah: 0,
+      atapRumah: "",
+      dindingRumah: "",
+      lantaiPondasiRumah: "",
       jmlKamarMandi: "",
       jmlKamarTidur: "",
       stock:"",
@@ -274,8 +273,6 @@ export default {
     myfooter,
   },
   async created() {
-    this.dataPerum = await JSON.parse(localStorage.getItem('dataPerum'))
-    console.log(this.dataPerum, ' ini data')
     this.perumahanId = await this.$route.params.id;
     await this.getTipe(this.perumahanId);
   },
@@ -299,12 +296,13 @@ export default {
       await formData.append("jenis", vm.jenis);
       await formData.append("type", vm.type);
       await formData.append("harga", vm.harga);
-      await formData.append("luasBangunan", vm.luasBangunan);
-      await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("atap", vm.atap);
-      await formData.append("dinding", vm.dinding);
-      await formData.append("lantaiPondasi", vm.lantaiPondasi);
+      await formData.append("luasBangunanRumah", vm.luasBangunanRumah);
+      await formData.append("luasLahanRumah", vm.luasLahanRumah);
+      await formData.append("atapRumah", vm.atapRumah);
+      await formData.append("dindingRumah", vm.dindingRumah);
+      await formData.append("lantaiPondasiRumah", vm.lantaiPondasi);
       await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
+      await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);
       await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);
@@ -341,6 +339,9 @@ export default {
           console.log(err);
         });
     },
+    goEditR(x){
+      this.$router.push({path : '/edit_tipe_perumahan_pengembang/' + x})
+    }
   },
 };
 </script>

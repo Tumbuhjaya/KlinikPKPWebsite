@@ -183,11 +183,19 @@ const routes = [
   },
 
   {
-    path: "/edit_tipe_perumahan_pengembang",
+    path: "/edit_tipe_perumahan_pengembang/:id",
     name: "EditTipePerumahanPengembang",
     component: EditTipePerumahanPengembang,
     meta:{
       role: "pengembang",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/edit_tipe_perumahan_pengembang/:id") {
+        next({
+          path: "/edit_tipe_perumahan_pengembang",
+        });
+      }
     },
   },
 
