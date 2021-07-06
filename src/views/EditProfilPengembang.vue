@@ -151,7 +151,7 @@ export default {
         }
       }).then(res =>{
         console.log(res)
-        this.getData()
+        this.$router.push({path:'/dashboard_pengembang'})
       }).catch(err =>{
         console.log(err)
       })
