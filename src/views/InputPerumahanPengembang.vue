@@ -77,7 +77,7 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Unit Terjual</strong></h5>
                 </b-col>
@@ -91,7 +91,7 @@
                     <b-form-input v-model="terjualUnitK"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
               <b-form-group label="Upload Brosur Perumahan">
                 <b-form-file
@@ -166,8 +166,8 @@ export default {
       formData.append("emailPerumahan", vm.email);
       formData.append("CPPerumahan", vm.CP);
       formData.append("luasLahanPerumahan", vm.luasLahan);
-      formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
-      formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
+      // formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
+      // formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {

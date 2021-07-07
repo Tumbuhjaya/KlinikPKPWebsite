@@ -103,7 +103,7 @@ export default {
       profil:"",
       website:"",
       file:"",
-      role:"csr"      
+      role:"CSR"      
     };
   },
   components: {
@@ -122,10 +122,10 @@ export default {
       formData.append("username", vm.username);
       formData.append("password",vm.password );
       formData.append("email",vm.email);
-      formData.append("noHp", vm.noTelp);
-      formData.append("namaPerusahaan", vm.nama);
+      formData.append("noHp", vm.noHp);
+      formData.append("namaPerusahaan", vm.namaPerusahaan);
       formData.append("alamat", vm.alamat);
-      formData.append("profilPerusahaan", vm.profil);
+      formData.append("profilPerusahaan", vm.profilPerusahaan);
       formData.append("website", vm.website);
       formData.append("role", vm.role);
       formData.append("file", vm.file)

@@ -2,14 +2,15 @@
   <div id="csr">
     <myheader></myheader>
     <section class="section-one">
-        <b-container>
-            <b-row>
-                <b-col md="12">
-                    <h2 class="m-t-0 m-b-0 text-center"><strong>Corporate Social Responsibility (CSR)</strong></h2>
-                </b-col>
-            </b-row>
-
-            <b-row class="m-t-30">
+      <b-container>
+        <b-row>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Corporate Social Responsibility (CSR)</strong>
+            </h2>
+          </b-col>
+        </b-row>
+        <b-row class="m-t-30">
                 <b-col md="12">
                     <b-alert show variant="primary">
                     <h4 class="alert-heading">Segera daftarkan perusahaan anda !</h4>
@@ -23,41 +24,63 @@
                     </b-alert>
                 </b-col>
             </b-row>
+            
+        <b-row class="m-t-15">
+          <b-col md="2" class="m-t-15 m-b-15" v-for="item in listCsr" :key="item.id" @click="goList(item.id)" >
+            <!-- <router-link :to="'detail_csr'" style="text-decoration:none"> -->
+              <div class="box">
+                <center>
+                  <img
+                    :src="item.src"
+                    alt=""
+                    style="width:140px;height:140px"
+                  />
+                  <h6 class="fs-14 m-t-15">
+                    <strong
+                      >{{item.namaPerusahaan}}</strong
+                    >
+                  </h6>
+                </center>
+                <div class="notif-csr">
+                  <h6 class="m-t-0 m-b-0"><strong>{{item.jumlahCSR}}</strong></h6>
+                </div>
+              </div>
+            <!-- </router-link> -->
+          </b-col>
 
-            <b-row class="m-t-30">
-                <b-col md="2" class="m-t-15 m-b-15">
-                    <router-link :to="'detail_csr'" style="text-decoration:none">
-                    <div class="box">
-                        <center>
-                            <img src="../assets/indopower.png" alt="" style="width:140px;height:140px">
-                            <h6 class="fs-14 m-t-15"><strong>PT. Indonesia Power Semarang Power Generation Unit</strong></h6>
-                        </center>
-                        <div class="notif-csr"><h6 class="m-t-0 m-b-0"><strong>30</strong></h6></div>
-                    </div>
-                    </router-link>
-                </b-col>
+          <!-- <b-col md="2" class="m-t-15 m-b-15">
+            <div class="box">
+              <center>
+                <img
+                  src="../assets/phapros.jpg"
+                  alt=""
+                  style="width:140px;height:140px"
+                />
+                <h6 class="fs-14 m-t-15"><strong>PT. Phapros</strong></h6>
+              </center>
+              <div class="notif-csr">
+                <h6 class="m-t-0 m-b-0"><strong>20</strong></h6>
+              </div>
+            </div>
+          </b-col>
 
-                <b-col md="2" class="m-t-15 m-b-15">
-                    <div class="box">
-                        <center>
-                            <img src="../assets/phapros.jpg" alt="" style="width:140px;height:140px">
-                            <h6 class="fs-14 m-t-15"><strong>PT. Phapros</strong></h6>
-                        </center>
-                        <div class="notif-csr"><h6 class="m-t-0 m-b-0"><strong>20</strong></h6></div>
-                    </div>
-                </b-col>
-
-                <b-col md="2" class="m-t-15 m-b-15">
-                    <div class="box">
-                        <center>
-                            <img src="../assets/baznas.jpg" alt="" style="width:140px;height:140px">
-                            <h6 class="fs-14 m-t-15"><strong>BazNas</strong></h6>
-                        </center>
-                        <div class="notif-csr"><h6 class="m-t-0 m-b-0"><strong>05</strong></h6></div>
-                    </div>
-                </b-col>
-            </b-row>
-        </b-container>
+          <b-col md="2" class="m-t-15 m-b-15">
+            <div class="box">
+              <center>
+                <img
+                  src="../assets/baznas.jpg"
+                  alt=""
+                  style="width:140px;height:140px"
+                />
+                <h6 class="fs-14 m-t-15"><strong>BazNas</strong></h6>
+              </center>
+              <div class="notif-csr">
+                <h6 class="m-t-0 m-b-0"><strong>05</strong></h6>
+              </div>
+            </div>
+          </b-col> -->
+        </b-row>
+      </b-container>
     </section>
 
     <myfooter></myfooter>
@@ -84,10 +107,13 @@ export default {
     myheader,
     myfooter,
   },
+  created(){
+    this.getCsrs()
+  },
   methods: {
     getCsrs() {
       axios
-        .get(ipBackEnd + "users/listCsr")
+        .get(ipBackEnd + "CSR/listAll")
         .then((res) => {
           console.log(res);
           let x = res.data.data
@@ -99,6 +125,9 @@ export default {
           console.log(err);
         });
     },
+    goList(x){
+      this.$router.push({path:'/detail_csr/' + x})
+    }
   },
 };
 </script>

@@ -16,52 +16,60 @@
           <b-col md="4" offset-md="4">
             <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
-              <router-link
-                :to="'/dashboard_csr'"
-                style="text-decoration:none"
+              <router-link :to="'/dashboard_csr'" style="text-decoration:none"
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
-              <h6 class="m-t-0 m-b-0"><strong>Edit Profil Perusahaan</strong></h6>
+              <h6 class="m-t-0 m-b-0">
+                <strong>Edit Profil Perusahaan</strong>
+              </h6>
             </div>
             <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
-            <b-col md="6" offset-md="3" >
-                <b-form-group label="Nama Perusahaan">
-                    <b-form-input v-model="datasCsr.namaPerusahaan"></b-form-input>
-                </b-form-group>
+          <b-col md="6" offset-md="3">
+            <b-form-group label="Nama Perusahaan">
+              <b-form-input v-model="datasCsr.namaPerusahaan"></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="Alamat">
-                    <b-form-input v-model="datasCsr.alamat"></b-form-input>
-                </b-form-group>
+            <b-form-group label="Alamat">
+              <b-form-input v-model="datasCsr.alamat"></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="No. Telepon">
-                    <b-form-input v-model="datasCsr.noHp"></b-form-input>
-                </b-form-group>
+            <b-form-group label="No. Telepon">
+              <b-form-input v-model="datasCsr.noHp"></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="Email">
-                    <b-form-input v-model="datasCsr.email"></b-form-input>
-                </b-form-group>
+            <b-form-group label="Email">
+              <b-form-input v-model="datasCsr.email"></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="Website">
-                    <b-form-input v-model="datasCsr.website"></b-form-input>
-                </b-form-group>
+            <b-form-group label="Website">
+              <b-form-input v-model="datasCsr.website"></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="Profil Perusahaan">
-                    <b-form-textarea rows="10" v-model="datasCsr.profilPerusahaan"></b-form-textarea>
-                </b-form-group>
+            <b-form-group label="Profil Perusahaan">
+              <b-form-textarea
+                rows="10"
+                v-model="datasCsr.profilPerusahaan"
+              ></b-form-textarea>
+            </b-form-group>
 
-                <b-form-group label="Upload Logo Perusahaan">
-                    <b-form-file id = "file" ref="file" @input="handleFile()"></b-form-file>
-                </b-form-group>
-                
-                <b-button variant="primary" @click="editProfilCsr()">Simpan</b-button>
-            </b-col>
+            <b-form-group label="Upload Logo Perusahaan">
+              <b-form-file
+                id="file"
+                ref="file"
+                @input="handleFile()"
+              ></b-form-file>
+            </b-form-group>
+
+            <b-button variant="primary" @click="editProfilCsr()"
+              >Simpan</b-button
+            >
+          </b-col>
         </b-row>
-        
       </b-container>
     </section>
 
@@ -82,58 +90,72 @@ export default {
   data() {
     return {
       isLogin: false,
-      file:"",
-      datasCsr:[],
+      file: "",
+      datasCsr: [],
     };
   },
   components: {
     myheader,
     myfooter,
   },
+  created() {
+    this.getCsrs();
+  },
   methods: {
-    handleFile(){
-      this.file = this.$refs.file.files[0]
+    handleFile() {
+      this.file = this.$refs.file.files[0];
     },
-    editProfilCsr(){
-      if (this.file != ""){
-        this.changeLogo()
+    editProfilCsr() {
+      let token = localStorage.getItem('token')
+      console.log(token)
+      if (this.file != "") {
+        this.editLogo();
       }
-      axios.post(ipBackEnd + 'users/update' + this.datasCsr,{
-        headers:{
-          token:localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-        this.$router.push({path:'/dashboard_csr'})
-      }).catch(err =>{
-        console.log(err)
-      })
+      
+      axios
+        .post(ipBackEnd + "users/update" ,  this.datasCsr, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.$router.push({ path: "/dashboard_csr" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    editLogo(){
-      let formData = new FormData
-      formData.append('file', this.file)
-      formData.appedn('id', this.datasCsr.id)
-      axios.post(ipBackEnd + 'users/changeLogo', formData,{
-        headers:{
-          token: localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-      }).catch(err =>{
-        console.log(err)
-      })
+    editLogo() {
+      let formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("id", this.datasCsr.id);
+      axios
+        .post(ipBackEnd + "users/changeLogo", formData, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    getCsrs(){
-      axios.get(ipBackEnd + 'users/profile',{
-        headers:{
-          token: localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-        this.datasCsr.data.data[0]
-        this.datasCsr.srcLogo = ipBackEnd + this.datasCsr.logo
-      })
-    }
+    getCsrs() {
+      axios
+        .get(ipBackEnd + "users/Profile", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.datasCsr = res.data.data[0];
+          this.datasCsr.srcLogo = ipBackEnd + this.datasCsr.logo;
+        });
+    },
   },
 };
 </script>

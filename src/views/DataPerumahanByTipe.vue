@@ -102,12 +102,11 @@ methods:{
           },
         })
         .then((res) => {
-          console.log(res.data.data);
+          console.log(res.data.data,'ini aha');
           res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan
           res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo
           this.dataPerum = res.data.data[0];
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.log(err);
         });
     },

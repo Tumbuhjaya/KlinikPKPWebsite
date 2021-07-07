@@ -86,7 +86,7 @@
                   <h4 class="m-t-0 m-b-0"><strong>Subsidi</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{dataRumah.sisa}} Unit</strong></h6>
+                  <h6><strong>{{avail}} Unit</strong></h6>
 
                   <h6 class="m-t-30">Rentang Harga</h6>
                   <h6><strong>{{dataRumah.harga}}</strong></h6>
@@ -98,7 +98,7 @@
                   <h4 class="m-t-0 m-b-0"><strong>Komersial</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{dataRumah.sisa}} Unit</strong></h6>
+                  <h6><strong>{{avail}} Unit</strong></h6>
 
                   <h6 class="m-t-30">Rentang Harga</h6>
                   <h6><strong>{{dataRumah.harga}}</strong></h6>
@@ -216,6 +216,7 @@ export default {
       isLogin: false,
       dataRumah: [],
       dataPerum: [],
+      avail:0
     };
   },
   components: {
@@ -224,10 +225,9 @@ export default {
   },
   created() {
     let y = localStorage.getItem('dataPerum')
-    this.dataPerum = JSON.parse(y)[0]
+    this.dataPerum = JSON.parse(y)
     let x = this.$route.params.id;
     this.getTipeRumah(x);
-    console.log(this.dataPerum, 'ini last ')
   },
   methods: {
     getTipeRumah(x) {
@@ -244,7 +244,8 @@ export default {
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
-          console.log(this.dataRumah)
+          this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual)
+          console.log(this.avail)
         })
         .catch((err) => {
           console.log(err);
@@ -252,7 +253,17 @@ export default {
     },
     back(){
       this.$router.push({path:'/perumahan'})
-    }
+    },
+    sisa(x,y){
+      console.log(x,y)
+      if (x == null && y == null){
+        return 0
+      }else if ( y == null){
+        return x
+      }else{
+       return x - y
+      }
+    },
   },
 };
 </script>
