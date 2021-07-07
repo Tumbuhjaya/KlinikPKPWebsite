@@ -32,6 +32,7 @@
                 <b-form-group label="Kabupaten/Kota">
                     <multiselect
                     :options="kabkot"
+                    v-model="kabKota"
                     :multiple="false"
                     :searchable="true"
                     :close-on-select="true"
@@ -41,11 +42,11 @@
                 </b-form-group>
 
                 <b-form-group label="Kegiatan">
-                    <b-form-input v-model="dataCsr.kegiatan"></b-form-input>
+                    <b-form-input v-model="kegiatan"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Deskripsi">
-                    <b-form-textarea rows="3" v-model="dataCsr.deskripsi"></b-form-textarea>
+                    <b-form-textarea rows="3" v-model="deskripsi"></b-form-textarea>
                 </b-form-group>
 
                 <b-form-group label="Upload Foto Kegiatan">
@@ -86,12 +87,12 @@ export default {
   data() {
     return {
       isLogin: false,
-      dataCsr:[],
       kegiatan:"",
       deskripsi:"",
       foto1:"",
       foto2:"",
       foto3:"",
+      kabKota:"",
       kabkot: [],
     };
   },
@@ -104,25 +105,27 @@ export default {
     this.getkota()
   },
   methods: {
-    handleFIle(){
+    handleFile(){
       this.foto1 = this.$refs.foto1.files[0]
       this.foto2 = this.$refs.foto2.files[0]
       this.foto3 = this.$refs.foto3.files[0]
     },
     regisCsr(){
       let vm = this
-      let formData = new formData
+      let formData = new FormData
       formData.append('foto1',vm.foto1)
       formData.append('foto2',vm.foto2)
       formData.append('foto3',vm.foto3)
       formData.append('deskripsi',vm.deskripsi)
       formData.append('kegiatan',vm.kegiatan)
-      axios.post(ipBackEnd + '', formData, {
+      formData.append('kabKota',vm.kabKota)
+      axios.post(ipBackEnd + 'CSR/register', formData, {
         headers:{
           token: localStorage.getItem('token')
         }
       }).then(res =>{
         console.log(res)
+        this.$router.push({ path: '/dashboard_csr'})
       }).catch(err =>{
         console.log(err)
       })
@@ -143,6 +146,11 @@ export default {
     })
   }
   },
+  watch:{
+    kegiatan: val=>{
+      console.log(val)
+    }
+  }
 };
 </script>
 

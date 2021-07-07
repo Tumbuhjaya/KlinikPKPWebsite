@@ -238,7 +238,7 @@ export default {
         )
         .then((res) => {
           console.log(res);
-          this.getPerum()
+          this.getPerum();
         })
         .catch((err) => {
           console.log(err);
@@ -250,19 +250,19 @@ export default {
       this.currentPage = 1;
     },
     getPerum() {
-    axios
+      axios
         .get(ipBackEnd + "perumahan/listByPengembangLogin", {
           headers: {
             token: localStorage.getItem("token"),
           },
-        }).then(res =>{
-          this.items = res.data.data
-          this.totalRows = this.items.length
+        })
+        .then((res) => {
+          this.items = res.data.data;
+          this.totalRows = this.items.length;
         })
         .catch((err) => {
           console.log(err);
         });
-
     },
   },
 };

@@ -12,19 +12,18 @@
           </b-col>
         </b-row>
         <b-row class="m-t-15">
-          <b-col md="2" class="m-t-15 m-b-15">
-            <router-link :to="'detail_csr'" style="text-decoration:none">
+          <b-col md="2" class="m-t-15 m-b-15" v-for="item in listCsr" :key="item.id" @click="goList(item.id)" >
+            <!-- <router-link :to="'detail_csr'" style="text-decoration:none"> -->
               <div class="box">
                 <center>
                   <img
-                    src="../assets/indopower.png"
+                    :src="item.src"
                     alt=""
                     style="width:140px;height:140px"
                   />
                   <h6 class="fs-14 m-t-15">
                     <strong
-                      >PT. Indonesia Power Semarang Power Generation
-                      Unit</strong
+                      >{{item.namaPerusahaan}}</strong
                     >
                   </h6>
                 </center>
@@ -32,10 +31,10 @@
                   <h6 class="m-t-0 m-b-0"><strong>30</strong></h6>
                 </div>
               </div>
-            </router-link>
+            <!-- </router-link> -->
           </b-col>
 
-          <b-col md="2" class="m-t-15 m-b-15">
+          <!-- <b-col md="2" class="m-t-15 m-b-15">
             <div class="box">
               <center>
                 <img
@@ -65,7 +64,7 @@
                 <h6 class="m-t-0 m-b-0"><strong>05</strong></h6>
               </div>
             </div>
-          </b-col>
+          </b-col> -->
         </b-row>
       </b-container>
     </section>
@@ -94,10 +93,13 @@ export default {
     myheader,
     myfooter,
   },
+  created(){
+    this.getCsrs()
+  },
   methods: {
     getCsrs() {
       axios
-        .get(ipBackEnd + "users/listCsr")
+        .get(ipBackEnd + "users/listByRole/csr")
         .then((res) => {
           console.log(res);
           let x = res.data.data
@@ -109,6 +111,9 @@ export default {
           console.log(err);
         });
     },
+    goList(x){
+      this.$router.push({path:'/detail_csr/' + x})
+    }
   },
 };
 </script>

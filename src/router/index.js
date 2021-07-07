@@ -215,12 +215,20 @@ const routes = [
   },
 
   {
-    path: "/detail_csr",
+    path: "/detail_csr/:id",
     name: "DetailCsr",
     component: DetailCsr,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/detail_csr/:id") {
+        next({
+          path: "/detail_csr",
+        });
+      }
+    },
   },
 
   {
@@ -237,7 +245,7 @@ const routes = [
     name: "EditProfilCsr",
     component: EditProfilCsr,
     meta:{
-      role: "all",
+      role: "csr",
     }
   },
 
@@ -246,7 +254,7 @@ const routes = [
     name: "EditPasswordCsr",
     component: EditPasswordCsr,
     meta:{
-      role: "all",
+      role: "csr",
     }
   },
 
@@ -255,7 +263,7 @@ const routes = [
     name: "DashboardCsr",
     component: DashboardCsr,
     meta:{
-      role: "all",
+      role: "csr",
     }
   },
 
@@ -264,17 +272,25 @@ const routes = [
     name: "InputCsr",
     component: InputCsr,
     meta:{
-      role: "all",
+      role: "csr",
     }
   },
 
   {
-    path: "/edit_csr",
+    path: "/edit_csr/:id",
     name: "EditCsr",
     component: EditCsr,
     meta:{
-      role: "all",
-    }
+      role: "csr",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/edit_csr/:id") {
+        next({
+          path: "/edit_csr",
+        });
+      }
+    },
   },
 
   {
@@ -307,7 +323,6 @@ router.beforeEach((to, from, next) => {
   const role = localStorage.getItem("role");
     if (to.meta.role == "all") {
       next({
-
       });
     } else if (to.meta.role !== role) {
       next({
