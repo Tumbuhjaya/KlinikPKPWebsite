@@ -322,7 +322,7 @@ export default {
       await formData.append("luasLahanRumah", vm.luasLahanRumah);
       await formData.append("atapRumah", vm.atapRumah);
       await formData.append("dindingRumah", vm.dindingRumah);
-      await formData.append("lantaiPondasiRumah", vm.lantaiPondasi);
+      await formData.append("lantaiPondasiRumah", vm.lantaiPondasiRumah);
       await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
       await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);

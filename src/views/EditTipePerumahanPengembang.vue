@@ -23,12 +23,7 @@
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
-              <router-link
-                :to="'/tipe_perumahan_pengembang/{{dataPerum.id}}'"
-                style="text-decoration:none"
-                >
-              <h6 class="m-t-0 m-b-0">Tipe Perumahan</h6>
-              </router-link>
+              <h6 class="m-t-0 m-b-0" @click="back(dataTipe.perumahanId)">Tipe Perumahan</h6>
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Edit Tipe Perumahan</strong></h6>
             </div>
@@ -327,6 +322,9 @@ export default {
           console.log(err);
         });
     },
+    back(x){
+      this.$router.push({path:'/tipe_perumahan_pengembang/' + x})
+    }
   },
 };
 </script>
