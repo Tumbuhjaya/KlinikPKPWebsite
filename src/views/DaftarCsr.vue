@@ -103,7 +103,7 @@ export default {
       profil:"",
       website:"",
       file:"",
-      role:"csr"      
+      role:"CSR"      
     };
   },
   components: {

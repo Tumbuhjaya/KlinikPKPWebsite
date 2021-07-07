@@ -133,6 +133,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.$router.push({path:'/dashboard_csr'})
         })
         .catch((err) => {
           console.log(err);
@@ -183,7 +184,7 @@ export default {
     },
     getCsr(x) {
       axios
-        .get(ipBackEnd + "/CSR/listById/" + x, {
+        .get(ipBackEnd + "CSR/listById/" + x, {
           headers: {
             token: localStorage.getItem("token"),
           },

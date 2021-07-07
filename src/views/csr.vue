@@ -28,7 +28,7 @@
                   </h6>
                 </center>
                 <div class="notif-csr">
-                  <h6 class="m-t-0 m-b-0"><strong>30</strong></h6>
+                  <h6 class="m-t-0 m-b-0"><strong>{{item.jumlahCSR}}</strong></h6>
                 </div>
               </div>
             <!-- </router-link> -->
@@ -99,7 +99,7 @@ export default {
   methods: {
     getCsrs() {
       axios
-        .get(ipBackEnd + "users/listByRole/csr")
+        .get(ipBackEnd + "CSR/listAll")
         .then((res) => {
           console.log(res);
           let x = res.data.data

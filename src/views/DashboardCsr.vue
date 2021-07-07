@@ -94,7 +94,7 @@
                         size="sm"
                         class="m-r-15"
                         v-b-tooltip.hover.top="'Edit'"
-                        @click="editCsr(item.item.id)"
+                        @click="editCsr(item.item.CSRId)"
                         ><b-icon-pencil-square></b-icon-pencil-square
                       ></b-button>
 
@@ -102,7 +102,7 @@
                         variant="danger"
                         size="sm"
                         v-b-tooltip.hover.top="'Hapus'"
-                        @click="hapusCsr(item.item.id)"
+                        @click="hapusCsr(item.item.CSRId)"
                         class="m-r-15"
                         ><b-icon-trash></b-icon-trash
                       ></b-button>
@@ -208,24 +208,25 @@ export default {
     },
     hapusCsr(x) {
       console.log(x)
-      // axios
-      //   .post(
-      //     ipBackEnd + "CSR/delete",
-      //     {
-      //       id: x,
-      //     },
-      //     {
-      //       headers: {
-      //         token: localStorage.getItem("token"),
-      //       },
-      //     }
-      //   )
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      axios
+        .post(
+          ipBackEnd + "CSR/delete",
+          {
+            id: x,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.getCsrs()
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     editCsr(x) {
       console.log(x)

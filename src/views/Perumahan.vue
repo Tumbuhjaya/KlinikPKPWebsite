@@ -379,7 +379,21 @@ export default {
     }).catch(err =>{
       console.log(err)
     })
-  }
+  },
+  getDataStock(x){
+      console.log(x)
+        axios
+        .get(ipBackEnd + "perumahan/jumlahStock/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
