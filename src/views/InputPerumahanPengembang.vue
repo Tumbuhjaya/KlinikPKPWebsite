@@ -196,7 +196,6 @@ export default {
       this.kabkot = x.map(item =>{
         return item.namaKabKota
       })
-
     }).catch(err =>{
       console.log(err)
     })

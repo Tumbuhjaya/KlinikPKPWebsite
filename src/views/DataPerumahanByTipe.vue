@@ -12,11 +12,11 @@
                             <div class="box" @click="goDetail(item.id)">
                                 <div class="up"><img :src="item.src" alt=""></div>
                                 <div class="down m-t-15">
-                                    <h5><strong>{{dataPerum[0].namaPerumahan}}</strong></h5>
-                                    <h5><strong>Tipe Rumah : {{item.luasBangunan}} / {{item.luasLahan}}</strong></h5>
-                                    <h6 class="m-t-15">{{dataPerum[0].namaPerusahaan}}</h6>
+                                    <h5><strong>{{dataPerum.namaPerumahan}}</strong></h5>
+                                    <h5><strong>Tipe Rumah : {{item.luasBangunanRumah}} / {{item.luasLahanRumah}}</strong></h5>
+                                    <h6 class="m-t-15">{{dataPerum.namaPerusahaan}}</h6>
 
-                                    <p class="m-t-15">{{dataPerum[0].alamatPerumahan}}, {{dataPerum[0].kabKotaPerumahan}}</p>
+                                    <p class="m-t-15">{{dataPerum.alamatPerumahan}}, {{dataPerum.kabKotaPerumahan}}</p>
                                 </div>
                             
                             </div>
@@ -105,7 +105,7 @@ methods:{
           console.log(res.data.data);
           res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan
           res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo
-          this.dataPerum = res.data.data;
+          this.dataPerum = res.data.data[0];
         })
         .catch((err) => {
           console.log(err);

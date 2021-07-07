@@ -1,11 +1,11 @@
 <template>
-    <div id="myheader">
-        <header>
-            <b-container>
-                <b-row>
-                <b-col md="3">
-                    <div class="indentity">
-                    <img src="../assets/logo-removebg.png" alt="">
+  <div id="myheader">
+    <header>
+      <b-container>
+        <b-row>
+          <b-col md="3">
+            <div class="indentity">
+              <img src="../assets/logo-removebg.png" alt="" />
 
               <div class="name">
                 <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -57,13 +57,14 @@
                   </template>
                   <b-dropdown-item @click="goEdit()"
                     >Edit Profil
-                    </b-dropdown-item
+                  </b-dropdown-item>
+
+                  <b-dropdown-item
+                    ><router-link :to="'/edit_password_pengembang'"
+                      >Edit Password</router-link
+                    ></b-dropdown-item
                   >
 
-                  
-                  <b-dropdown-item><router-link :to="'/edit_password_pengembang'">Edit Password</router-link></b-dropdown-item>
-                  
-                  
                   <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                 </b-dropdown>
               </div>
@@ -91,28 +92,32 @@ export default {
       let token = localStorage.getItem("token");
       if (token) {
         this.isLogin = true;
-      }else{
-          this.isLogin = false
+      } else {
+        this.isLogin = false;
       }
     },
-    logOut(){
-        console.log('logout')
-        localStorage.clear()
-        this.checkLogin()
-        this.$router.push({ path: "/" });
+    logOut() {
+      console.log("logout");
+      localStorage.clear();
+      this.checkLogin();
+      this.$router.push({ path: "/" });
     },
-    goBeranda(){
-      let r = localStorage.getItem('role')
-      if ( r == 'pengembang'){
-          this.$router.push({ path: "/dashboard_pengembang" });
-          }
+    goBeranda() {
+      let r = localStorage.getItem("role");
+      if (r == "pengembang") {
+        this.$router.push({ path: "/dashboard_pengembang" });
+      } else if (r == "csr") {
+        this.$router.push({ path: "/dashboard_csr" });
+      }
     },
-    goEdit(){
-      let r = localStorage.getItem('role')
-      if ( r == 'pengembang'){
-          this.$router.push({ path: '/edit_profil_pengembang' });
-          }
-    }
+    goEdit() {
+      let r = localStorage.getItem("role");
+      if (r == "pengembang") {
+        this.$router.push({ path: "/edit_profil_pengembang" });
+      } else if (r == "csr") {
+        this.$router.push({ path: "/edit_profil_csr" });
+      }
+    },
   },
 };
 </script>

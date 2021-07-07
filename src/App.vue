@@ -272,4 +272,15 @@ html,body{
   color: #fff !important;
 }
 
+#modal-lg .modal-body{
+	padding:0 !important;
+	/* border-radius: 20px !important; */
+}
+
+#modal-lg .modal-content{
+	/* border-radius: 20px !important; */
+	background-color:transparent;
+	outline: none;
+	border:none;
+}
 </style>

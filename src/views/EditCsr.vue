@@ -32,6 +32,7 @@
                 <b-form-group label="Kabupaten/Kota">
                     <multiselect
                     :options="kabkot"
+                    v-model="datasCsr.kabKota"
                     :multiple="false"
                     :searchable="true"
                     :close-on-select="true"
@@ -41,27 +42,27 @@
                 </b-form-group>
 
                 <b-form-group label="Kegiatan">
-                    <b-form-input></b-form-input>
+                    <b-form-input v-model="datasCsr.kegiatan"></b-form-input>
                 </b-form-group>
 
                 <b-form-group label="Deskripsi">
-                    <b-form-textarea rows="3"></b-form-textarea>
+                    <b-form-textarea rows="3" v-model="datasCsr.deskripsi"></b-form-textarea>
                 </b-form-group>
 
                 <b-form-group label="Upload Foto Kegiatan">
-                    <b-form-file></b-form-file>
+                    <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
                 </b-form-group>
 
                 <b-form-group label="Upload Foto Kegiatan">
-                    <b-form-file></b-form-file>
+                    <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
                 </b-form-group>
 
                 <b-form-group label="Upload Foto Kegiatan">
-                    <b-form-file></b-form-file>
+                    <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
                 </b-form-group>
 
 
-                <b-button variant="primary">Simpan</b-button>
+                <b-button variant="primary" @click="editCsr()">Simpan</b-button>
             </b-col>
         </b-row>
         
@@ -75,8 +76,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 import Multiselect from "vue-multiselect";
@@ -86,10 +87,12 @@ export default {
   data() {
     return {
       isLogin: false,
+      datasCsr:[],
       kabKot: "",
-      kabkot: ["KabKot A", "KabKot B", "KabKot C"],
-
-      
+      foto1:"",
+      foto2:"",
+      foto3:"",
+      kabkot: [],      
     };
   },
   components: {
@@ -97,9 +100,48 @@ export default {
     myfooter,
     Multiselect,
   },
-
+  created(){
+    this.getkota()
+  },
   methods: {
-    
+    handleFIle(){
+      this.foto1 = this.$refs.foto1.files[0]
+      this.foto2 = this.$refs.foto2.files[0]
+      this.foto3 = this.$refs.foto3.files[0]
+    },
+    EditCsr(){
+      let vm = this
+      let formData = new formData
+      formData.append('foto1',vm.foto1)
+      formData.append('foto2',vm.foto2)
+      formData.append('foto3',vm.foto3)
+      formData.append('deskripsi',vm.deskripsi)
+      formData.append('kegiatan',vm.kegiatan)
+      axios.post(ipBackEnd + '', formData, {
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    getkota(){
+    axios.get(ipBackEnd + 'kabKota/list',{
+      headers:{
+        token: localStorage.getItem('token')
+      }
+    }).then(res =>{
+      console.log(res.data.data)
+      let x = res.data.data
+      this.kabkot = x.map(item =>{
+        return item.namaKabKota
+      })
+    }).catch(err =>{
+      console.log(err)
+    })
+  }
   },
 };
 </script>
