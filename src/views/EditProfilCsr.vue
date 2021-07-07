@@ -106,14 +106,12 @@ export default {
       this.file = this.$refs.file.files[0];
     },
     editProfilCsr() {
-      let token = localStorage.getItem('token')
-      console.log(token)
       if (this.file != "") {
         this.editLogo();
       }
-      
+
       axios
-        .post(ipBackEnd + "users/update" ,  this.datasCsr, {
+        .post(ipBackEnd + "users/update", this.datasCsr, {
           headers: {
             token: localStorage.getItem("token"),
           },

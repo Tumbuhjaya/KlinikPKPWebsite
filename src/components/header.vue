@@ -104,7 +104,7 @@ export default {
       let r = localStorage.getItem("role");
       if (r == "pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
-      } else if (r == "csr") {
+      } else if (r == "CSR") {
         this.$router.push({ path: "/dashboard_csr" });
       }
     },
@@ -112,7 +112,7 @@ export default {
       let r = localStorage.getItem("role");
       if (r == "pengembang") {
         this.$router.push({ path: "/edit_profil_pengembang" });
-      } else if (r == "csr") {
+      } else if (r == "CSR") {
         this.$router.push({ path: "/edit_profil_csr" });
       }
     },

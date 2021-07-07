@@ -470,16 +470,16 @@ export default {
       let r = localStorage.getItem("role");
       if (r == "pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
-      } else if (r == "csr") {
-        this.$router.push({ path: "/dashboard_csr" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/dashboard_CSR" });
       }
     },
     goEdit() {
       let r = localStorage.getItem("role");
       if (r == "pengembang") {
         this.$router.push({ path: "/edit_profil_pengembang" });
-      } else if (r == "csr") {
-        this.$router.push({ path: "/edit_profil_csr" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/edit_profil_CSR" });
       }
     },
   },

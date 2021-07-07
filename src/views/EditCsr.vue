@@ -60,16 +60,16 @@
 
             <b-form-group label="Upload Foto Kegiatan">
               <b-form-file
-                id="foto1"
-                ref="foto1"
+                id="foto2"
+                ref="foto2"
                 @input="handleFile()"
               ></b-form-file>
             </b-form-group>
 
             <b-form-group label="Upload Foto Kegiatan">
               <b-form-file
-                id="foto1"
-                ref="foto1"
+                id="foto3"
+                ref="foto3"
                 @input="handleFile()"
               ></b-form-file>
             </b-form-group>
@@ -151,6 +151,7 @@ export default {
       if (this.foto3 != "") {
         formData.append("foto3", vm.foto3);
       }
+      formData.append('CSRId', this.csrId)
       axios
         .post(ipBackEnd + "CSR/changeFoto", formData, {
           headers: {

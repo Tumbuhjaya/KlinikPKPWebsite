@@ -72,7 +72,7 @@ export default {
           if(res.data.role == 'pengembang'){
           this.$router.push({ path: "/dashboard_pengembang" });
           }
-          else if(res.data.role == 'csr'){
+          else if(res.data.role == 'CSR'){
           this.$router.push({ path: "/dashboard_csr" });
           }
         }).catch((err) => {
