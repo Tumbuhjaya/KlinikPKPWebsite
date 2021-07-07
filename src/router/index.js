@@ -135,7 +135,7 @@ const routes = [
     name: "EditPasswordPengembang",
     component: EditPasswordPengembang,
     meta:{
-      role: "pengembang",
+      role: "all",
     },
   },
 

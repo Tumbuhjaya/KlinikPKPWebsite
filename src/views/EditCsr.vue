@@ -151,6 +151,7 @@ export default {
       if (this.foto3 != "") {
         formData.append("foto3", vm.foto3);
       }
+      formData.append('CSRId', this.csrId)
       axios
         .post(ipBackEnd + "CSR/changeFoto", formData, {
           headers: {
