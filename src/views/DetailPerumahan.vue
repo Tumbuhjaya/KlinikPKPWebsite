@@ -224,7 +224,7 @@ export default {
   },
   created() {
     let y = localStorage.getItem('dataPerum')
-    this.dataPerum = JSON.parse(y)[0]
+    this.dataPerum = JSON.parse(y)
     let x = this.$route.params.id;
     this.getTipeRumah(x);
     console.log(this.dataPerum, 'ini last ')
