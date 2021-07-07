@@ -34,7 +34,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo-removebg.png" alt="">
+                <img src="../assets/pkp-new.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
