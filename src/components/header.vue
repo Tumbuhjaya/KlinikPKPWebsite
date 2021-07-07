@@ -24,7 +24,9 @@
               <router-link :to="'pengembang'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">Pengembang</h6>
               </router-link>
+              <router-link :to="'magang'" style="text-decoration:none;">
               <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
+              </router-link>
               <h6 class="m-t-0 m-b-0">Kerjasama</h6>
               <h6 class="m-t-0 m-b-0">Forum PKP</h6>
             </div>

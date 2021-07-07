@@ -23,6 +23,8 @@ import EditProfilCsr from "../views/EditProfilCsr.vue";
 import EditPasswordCsr from "../views/EditPasswordCsr.vue";
 import InputCsr from "../views/InputCsr.vue";
 import EditCsr from "../views/EditCsr.vue";
+import Magang from "../views/Magang.vue";
+import DetailMagang from "../views/DetailMagang.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
 import Login from "../views/Login.vue";
 
@@ -272,6 +274,24 @@ const routes = [
     path: "/edit_csr",
     name: "EditCsr",
     component: EditCsr,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/magang",
+    name: "Magang",
+    component: Magang,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/detail_magang",
+    name: "DetailMagang",
+    component: DetailMagang,
     meta:{
       role: "all",
     }
