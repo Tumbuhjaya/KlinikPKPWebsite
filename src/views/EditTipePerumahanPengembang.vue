@@ -115,8 +115,14 @@
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group>
-                      <a :href="dataTipe.src1" :target="blank">Lihat Foto Rumah</a>
+                    <b-form-group class="m-t-15">
+                      <div style="width:150px;height:150px;">
+                        <img :src="dataTipe.src1" alt="" style="width:150px;height:150px">
+                      </div>
+                      
+                      <div style="width:150px;height:150px;">
+                        <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                      </div>
                     </b-form-group>
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
@@ -127,9 +133,16 @@
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group>
-                      <a :href="dataTipe.src2" :target="blank">Lihat Foto Rumah</a>
+                    <b-form-group class="m-t-15">
+                      <div style="width:150px;height:150px;">
+                        <img :src="dataTipe.src2" alt="" style="width:150px;height:150px">
+                      </div>
+                      
+                      <div style="width:150px;height:150px;">
+                        <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                      </div>
                     </b-form-group>
+
 
                     <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
                       <b-form-file
@@ -139,8 +152,14 @@
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group>
-                      <a :href="dataTipe.src3" :target="blank">Lihat Foto Rumah</a>
+                    <b-form-group class="m-t-15">
+                      <div style="width:150px;height:150px;">
+                        <img :src="dataTipe.src3" alt="" style="width:150px;height:150px">
+                      </div>
+                      
+                      <div style="width:150px;height:150px;">
+                        <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                      </div>
                     </b-form-group>
                   </b-col>
 
@@ -153,9 +172,16 @@
                       ></b-form-file>
                     </b-form-group>
 
-                    <b-form-group>
-                      <a :href="dataTipe.srcDenah" :target="blank">Lihat Foto Denah</a>
+                    <b-form-group class="m-t-15">
+                      <div style="width:150px;height:150px;">
+                        <img :src="dataTipe.srcDenah" alt="" style="width:150px;height:150px">
+                      </div>
+                      
+                      <div style="width:150px;height:150px;">
+                        <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                      </div>
                     </b-form-group>
+
                     <b-form-group label="Video Rumah (Link video dari youtube)">
                       <b-form-input v-model="dataTipe.linkVideo"></b-form-input>
                     </b-form-group>

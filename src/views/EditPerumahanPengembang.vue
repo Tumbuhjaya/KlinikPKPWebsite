@@ -137,8 +137,14 @@
                 <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
               </b-form-group>
 
-              <b-form-group>
-                <a :href="dataPerum.src" :target="blank">Lihat Foto Perumahan</a>
+              <b-form-group class="m-t-15">
+                <div style="width:150px;height:150px;">
+                  <img :src="dataPerum.src" alt="" style="width:150px;height:150px">
+                </div>
+                
+                <div style="width:150px;height:150px;">
+                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                </div>
               </b-form-group>
 
               <b-button variant="primary" @click="updatePerum()"
