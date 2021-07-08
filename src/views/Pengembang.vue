@@ -97,7 +97,10 @@
 
           <template #cell(actions)>
             <center>
-              <img src="../assets/whatsapp.png" alt="" style="width:30px">
+              <!-- <router-link :to="'https://wa.me/+6281215540280'"> -->
+                <img src="../assets/whatsapp.png" alt="" style="width:30px">
+              <!-- </router-link> -->
+              
             </center>
           </template>
         </b-table>
@@ -151,6 +154,13 @@ export default {
         {
           key: "alamat",
           label: "Alamat",
+          sortable: true,
+          sortDirection: "desc",
+          class: "text-left",
+        },
+        {
+          key: "noHp",
+          label: "No. Telepon",
           sortable: true,
           sortDirection: "desc",
           class: "text-left",
