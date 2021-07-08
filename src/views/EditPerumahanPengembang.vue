@@ -137,12 +137,12 @@
                 <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
               </b-form-group>
 
-              <b-form-group class="m-t-15">
-                <div style="width:150px;height:150px;">
+              <b-form-group class="m-t-15" >
+                <div style="width:150px;height:150px;" v-if="dataPerum.src != ipBackEnd +'null'">
                   <img :src="dataPerum.src" alt="" style="width:150px;height:150px">
                 </div>
                 
-                <div style="width:150px;height:150px;">
+                <div style="width:150px;height:150px;" v-if="dataPerum.src == ipBackEnd +'null'">
                   <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                 </div>
               </b-form-group>
@@ -170,7 +170,7 @@ import myfooter from "../components/footer";
 import Multiselect from "vue-multiselect";
 
 export default {
-  name: "InputPerumahanPengembang",
+  name: "EditPerumahanPengembang",
   data() {
     return {
       isLogin: false,
@@ -179,6 +179,7 @@ export default {
       perumId: "",
       kabkot: [],
       blank:"_blank",
+      ipBackEnd: ipBackEnd,
       kec: ["KecamatanPerumahan A", "KecamatanPerumahan B", "KecamatanPerumahan C"],
     };
   },

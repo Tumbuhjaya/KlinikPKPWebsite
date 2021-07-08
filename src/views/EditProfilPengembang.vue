@@ -77,11 +77,11 @@
                     </b-form-group>
                     
                     <b-form-group class="m-t-15">
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="userData.srcLogo != ipBackEnd +'null'">
                         <img :src="userData.srcLogo" alt="" style="width:150px;height:150px">
                       </div>
                       
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="userData.srcLogo == ipBackEnd +'null'">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
                     </b-form-group>
@@ -121,7 +121,9 @@ export default {
       isLogin: false,
       userData: [],
       file:"",
-      blank:"_blank"    };
+      blank:"_blank",
+      ipBackEnd: ipBackEnd,
+      };
   },
   components: {
     myheader,
