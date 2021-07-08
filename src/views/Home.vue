@@ -30,7 +30,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo-removebg.png" alt="" />
+                <img src="../assets/pkp-new.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -42,12 +42,14 @@
                 <router-link :to="'/'" style="text-decoration:none;">
                   <h6 class="m-t-0 m-b-0">Beranda</h6>
                 </router-link>
-
+                <router-link :to="'csr'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">CSR</h6>
+                </router-link>
                 <router-link :to="'pengembang'" style="text-decoration:none;"
                   ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
                 >
-                <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
+                <router-link :to="'magang'" style="text-decoration:none;"
+                  ><h6 class="m-t-0 m-b-0">Karir/Magang</h6></router-link>
                 <h6 class="m-t-0 m-b-0">Kerjasama</h6>
                 <h6 class="m-t-0 m-b-0">Forum PKP</h6>
               </div>

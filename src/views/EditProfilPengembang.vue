@@ -75,7 +75,16 @@
 
                       
                     </b-form-group>
-                    <a :href="userData.srcLogo" :target="blank">Lihat Logo Pengembang</a>
+                    
+                    <b-form-group class="m-t-15">
+                      <div style="width:150px;height:150px;">
+                        <img :src="userData.srcLogo" alt="" style="width:150px;height:150px">
+                      </div>
+                      
+                      <div style="width:150px;height:150px;">
+                        <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                      </div>
+                    </b-form-group>
                   </b-col>
                 </b-row>
 

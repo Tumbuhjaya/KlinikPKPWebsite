@@ -58,6 +58,16 @@
               ></b-form-file>
             </b-form-group>
 
+            <b-form-group>
+                <div style="width:150px;height:150px;">
+                  <img src="#" alt="" style="width:150px;height:150px">
+                </div>
+
+                <div style="width:150px;height:150px;">
+                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                </div>
+            </b-form-group>
+
             <b-form-group label="Upload Foto Kegiatan">
               <b-form-file
                 id="foto2"
@@ -66,12 +76,32 @@
               ></b-form-file>
             </b-form-group>
 
+            <b-form-group>
+                <div style="width:150px;height:150px;">
+                  <img src="#" alt="" style="width:150px;height:150px">
+                </div>
+                
+                <div style="width:150px;height:150px;">
+                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                </div>
+            </b-form-group>
+
             <b-form-group label="Upload Foto Kegiatan">
               <b-form-file
                 id="foto3"
                 ref="foto3"
                 @input="handleFile()"
               ></b-form-file>
+            </b-form-group>
+
+            <b-form-group>
+                <div style="width:150px;height:150px;">
+                  <img src="#" alt="" style="width:150px;height:150px">
+                </div>
+                
+                <div style="width:150px;height:150px;">
+                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+                </div>
             </b-form-group>
 
             <b-button variant="primary" @click="editCsr()">Simpan</b-button>
