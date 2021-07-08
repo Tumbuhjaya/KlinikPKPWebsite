@@ -59,13 +59,27 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;" v-if="datasCsr.src1 != ipBackEnd + 'null'">
-                  <img :src="datasCsr.src1" alt="" style="width:150px;height:150px">
-                </div>
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src1 != ipBackEnd + 'null'"
+              >
+                <img
+                  :src="datasCsr.src1"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
 
-                <div style="width:150px;height:150px;" v-if="datasCsr.src1 == ipBackEnd + 'null'">
-                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
-                </div>
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src1 == ipBackEnd + 'null'"
+              >
+                <img
+                  src="../assets/tidak-ada-gambar.png"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
             </b-form-group>
 
             <b-form-group label="Upload Foto Kegiatan">
@@ -77,13 +91,27 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;" v-if="datasCsr.src2 != ipBackEnd + 'null'">
-                  <img :src="datasCsr.src2" alt="" style="width:150px;height:150px">
-                </div>
-                
-                <div style="width:150px;height:150px;" v-if="datasCsr.src2 == ipBackEnd + 'null'">
-                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
-                </div>
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src2 != ipBackEnd + 'null'"
+              >
+                <img
+                  :src="datasCsr.src2"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
+
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src2 == ipBackEnd + 'null'"
+              >
+                <img
+                  src="../assets/tidak-ada-gambar.png"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
             </b-form-group>
 
             <b-form-group label="Upload Foto Kegiatan">
@@ -95,13 +123,27 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;" v-if="datasCsr.src3 != ipBackEnd + 'null'">
-                  <img :src="datasCsr.src3" alt="" style="width:150px;height:150px">
-                </div>
-                
-                <div style="width:150px;height:150px;" v-if="datasCsr.src3 == ipBackEnd + 'null'">
-                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
-                </div>
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src3 != ipBackEnd + 'null'"
+              >
+                <img
+                  :src="datasCsr.src3"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
+
+              <div
+                style="width:150px;height:150px;"
+                v-if="datasCsr.src3 == ipBackEnd + 'null'"
+              >
+                <img
+                  src="../assets/tidak-ada-gambar.png"
+                  alt=""
+                  style="width:150px;height:150px"
+                />
+              </div>
             </b-form-group>
 
             <b-button variant="primary" @click="editCsr()">Simpan</b-button>
@@ -164,7 +206,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({path:'/dashboard_csr'})
+          this.$router.push({ path: "/dashboard_csr" });
         })
         .catch((err) => {
           console.log(err);
@@ -179,10 +221,10 @@ export default {
       if (this.foto2 != "") {
         formData.append("foto2", vm.foto2);
       }
-      if (this.foto3 != "") {
+      if (this.foto3 != "") { 
         formData.append("foto3", vm.foto3);
       }
-      formData.append('CSRId', this.csrId)
+      formData.append("CSRId", this.csrId);
       axios
         .post(ipBackEnd + "CSR/changeFoto", formData, {
           headers: {
@@ -223,10 +265,10 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.datasCsr = res.data.data[0]
-          this.datasCsr.src1 = ipBackEnd + this.datasCsr.foto1
-          this.datasCsr.src2 = ipBackEnd + this.datasCsr.foto2
-          this.datasCsr.src3 = ipBackEnd + this.datasCsr.foto3
+          this.datasCsr = res.data.data[0];
+          this.datasCsr.src1 = ipBackEnd + this.datasCsr.foto1;
+          this.datasCsr.src2 = ipBackEnd + this.datasCsr.foto2;
+          this.datasCsr.src3 = ipBackEnd + this.datasCsr.foto3;
         })
         .catch((err) => {
           console.log(err);
