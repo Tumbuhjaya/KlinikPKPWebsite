@@ -18,7 +18,7 @@
           <b-col md="4">
             <b-row>
               <b-col md="12">
-                <img :src="profilCsr.srcLogo" alt="" />
+                <img :src="profilCsr.srcLogo" alt="" style="width:100%"/>
               </b-col>
             </b-row>
 
@@ -40,22 +40,6 @@
                 <p>
                   {{ profilCsr.profilPerusahaan }}
                 </p>
-
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Delectus eaque nemo culpa tempora in corporis consequatur
-                  maiores, assumenda ex. Iste error nostrum rem nisi rerum ad
-                  eius suscipit fuga modi autem at culpa ea inventore eveniet
-                  vitae nulla, reprehenderit quia ratione repellendus dolores
-                  est quisquam aspernatur. Alias incidunt officia odit quia,
-                  recusandae culpa, non odio doloribus atque, fugiat totam
-                  maiores dolorem quasi impedit numquam! Quia neque assumenda
-                  autem temporibus doloribus ab voluptates nam. Soluta iure
-                  delectus pariatur quis laborum adipisci sunt? Sed suscipit
-                  expedita amet nam cupiditate quae, omnis culpa architecto
-                  quibusdam, sequi mollitia sint? Dolorem aperiam temporibus
-                  explicabo saepe!
-                </p>
               </b-col>
             </b-row>
           </b-col>
@@ -64,7 +48,7 @@
         <b-row>
           <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId">
             <div class="box m-t-15 m-b-15">
-              <img :src="item.src1" alt="" />
+              <img :src="item.src1" alt="" style="width:100%"/>
 
               <div class="layer">
                 <h6 class="m-t-0 m-b-0">

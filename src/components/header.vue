@@ -18,13 +18,13 @@
               <router-link :to="'/'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">Beranda</h6>
               </router-link>
-              <router-link :to="'csr'" style="text-decoration:none;">
+              <router-link :to="'/csr'" style="text-decoration:none;">
               <h6 class="m-t-0 m-b-0">CSR</h6>
               </router-link>
-              <router-link :to="'pengembang'" style="text-decoration:none;">
+              <router-link :to="'/pengembang'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">Pengembang</h6>
               </router-link>
-              <router-link :to="'magang'" style="text-decoration:none;">
+              <router-link :to="'/magang'" style="text-decoration:none;">
               <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
               </router-link>
               <h6 class="m-t-0 m-b-0">Kerjasama</h6>

@@ -74,7 +74,7 @@
                 </div>
               </b-form-group>
 
-            <b-form-group class="m-t-15">
+            <!-- <b-form-group class="m-t-15">
                       <div style="width:150px;height:150px;">
                         <img :src="'#'" alt="" style="width:150px;height:150px">
                       </div>
@@ -82,7 +82,7 @@
                       <div style="width:150px;height:150px;">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
-                    </b-form-group>
+                    </b-form-group> -->
 
             <b-button variant="primary" @click="editProfilCsr()"
               >Simpan</b-button

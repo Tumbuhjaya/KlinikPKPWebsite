@@ -88,38 +88,42 @@
         <b-row>
           <b-col md="3">
             <h1><strong>{{total.stockSubsidi[0].sum}}</strong></h1>
-            <h5><strong>Unit Rumah Subsidi</strong></h5>
-            <p>
+            <h5><strong>UNIT RUMAH</strong></h5>
+            <h5><strong>SUBSIDI</strong></h5>
+            <!-- <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
-            </p>
+            </p> -->
           </b-col>
 
           <b-col md="3">
             <h1><strong>{{total.stockKomersial[0].sum}}</strong></h1>
-            <h5><strong>unit Rumah Non Subsidi</strong></h5>
-            <p>
+            <h5><strong>UNIT RUMAH</strong></h5>
+            <h5><strong>NON SUBSIDI</strong></h5>
+            <!-- <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
-            </p>
+            </p> -->
           </b-col>
 
           <b-col md="3">
             <h1><strong>{{total.terjualSubsidi[0].sum}}</strong></h1>
-            <h5><strong>Unit Subsidi Terjual</strong></h5>
-            <p>
+            <h5><strong>UNIT RUMAH</strong></h5>
+            <h5><strong>SUBSIDI TERJUAL</strong></h5>
+            <!-- <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
-            </p>
+            </p> -->
           </b-col>
 
           <b-col md="3">
             <h1><strong>{{total.terjualKomersial[0].sum}}</strong></h1>
-            <h5><strong>Unit Non Subsidi Terjual</strong></h5>
-            <p>
+            <h5><strong>UNIT RUMAH</strong></h5>
+            <h5><strong>NON SUBSIDI TERJUAL</strong></h5>
+            <!-- <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
-            </p>
+            </p> -->
           </b-col>
         </b-row>
       </b-container>
@@ -147,7 +151,7 @@
 
         <b-row class="m-t-15">
           <b-col md="12">
-            <VueSlickCarousel
+            <VueSlickCarousel :dots="true"
               v-bind="rekomperumahan"
               v-if="listPerumahan.length > 0"
             >
@@ -214,7 +218,7 @@
               v-if="listPerumahan.length > 0"
             >
               <div v-for="item in listPengembang" :key="item.id">
-                <img :src="item.src" alt="" />
+                <img :src="item.src" alt="" style="width:100%;height:100px"/>
               </div>
             </VueSlickCarousel>
           </b-col>
@@ -512,8 +516,16 @@ export default {
   border-radius: 25px;
 }
 
-.section-three .box img {
+.section-three .box .up{
   width: 100%;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.section-three .box .up img {
+  width: 80%;
+  height: 200px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }

@@ -95,11 +95,11 @@
             {{ item.index + 1 }}.
           </template>
 
-          <template #cell(actions)>
+          <template #cell(actions)="item">
             <center>
-              <!-- <router-link :to="'https://wa.me/+6281215540280'"> -->
+              <a :href="'https://wa.me/'+item.item.noHp+''" target="_blank">
                 <img src="../assets/whatsapp.png" alt="" style="width:30px">
-              <!-- </router-link> -->
+              </a>
               
             </center>
           </template>
@@ -154,13 +154,6 @@ export default {
         {
           key: "alamat",
           label: "Alamat",
-          sortable: true,
-          sortDirection: "desc",
-          class: "text-left",
-        },
-        {
-          key: "noHp",
-          label: "No. Telepon",
           sortable: true,
           sortDirection: "desc",
           class: "text-left",
