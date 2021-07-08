@@ -72,9 +72,8 @@
                   </b-col>
                   <b-col md="10">
                     <router-link :to="'/data_perumahan'">
-                      <b-button variant="primary" >Cari</b-button>
+                      <b-button variant="primary">Cari</b-button>
                     </router-link>
-                    
                   </b-col>
                 </b-row>
               </div>
@@ -88,8 +87,8 @@
       <b-container>
         <b-row>
           <b-col md="3">
-            <h1><strong>00</strong></h1>
-            <h5><strong>Lorem Ipsum</strong></h5>
+            <h1><strong>{{total.stockSubsidi[0].sum}}</strong></h1>
+            <h5><strong>Unit Rumah Subsidi</strong></h5>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
@@ -97,8 +96,8 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>00</strong></h1>
-            <h5><strong>Lorem Ipsum</strong></h5>
+            <h1><strong>{{total.stockKomersial[0].sum}}</strong></h1>
+            <h5><strong>unit Rumah Non Subsidi</strong></h5>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
@@ -106,8 +105,8 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>00</strong></h1>
-            <h5><strong>Lorem Ipsum</strong></h5>
+            <h1><strong>{{total.terjualSubsidi[0].sum}}</strong></h1>
+            <h5><strong>Unit Subsidi Terjual</strong></h5>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
@@ -115,8 +114,8 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>00</strong></h1>
-            <h5><strong>Lorem Ipsum</strong></h5>
+            <h1><strong>{{total.terjualKomersial[0].sum}}</strong></h1>
+            <h5><strong>Unit Non Subsidi Terjual</strong></h5>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Possimus, quis.
@@ -148,22 +147,35 @@
 
         <b-row class="m-t-15">
           <b-col md="12">
-            <VueSlickCarousel v-bind="rekomperumahan" v-if="listPerumahan.length > 0">
-              <div v-for="item in listPerumahan" :key="item.id" @click="goListRumah(item)">
+            <VueSlickCarousel
+              v-bind="rekomperumahan"
+              v-if="listPerumahan.length > 0"
+            >
+              <div
+                v-for="item in listPerumahan"
+                :key="item.id"
+                @click="goListRumah(item)"
+              >
                 <div class="box">
                   <!-- <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none"> -->
-                  <div class="up"><img :src=item.src alt=""></div>
+                  <div class="up"><img :src="item.src" alt="" /></div>
                   <div class="down m-t-15">
-                    <h5><strong>{{item.namaPerumahan}}</strong></h5>
-                    <h6>{{item.namaPerusahaan}}</h6>
+                    <h5>
+                      <strong>{{ item.namaPerumahan }}</strong>
+                    </h5>
+                    <h6>{{ item.namaPerusahaan }}</h6>
 
-                    <p class="m-t-15">{{item.kecamatanPerumahan}},{{item.kabKotaPerumahan}}</p>
+                    <p class="m-t-15">
+                      {{ item.kecamatanPerumahan }},{{ item.kabKotaPerumahan }}
+                    </p>
 
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> {{item.jmlStockUnitSubsidi}} Unit Rp 200 - 400 Juta
+                      <strong>Subsidi</strong>
+                      {{ item.jmlStockUnitSubsidi }} Unit Rp 200 - 400 Juta
                     </h6>
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> {{item.jmlStockUnitKomersial}} Unit Rp 800 - 1 M
+                      <strong>Komersil</strong>
+                      {{ item.jmlStockUnitKomersial }} Unit Rp 800 - 1 M
                     </h6>
                   </div>
                   <!-- </router-link> -->
@@ -197,9 +209,12 @@
 
         <b-row>
           <b-col md="12">
-            <VueSlickCarousel v-bind="pengembang" v-if="listPerumahan.length > 0">
+            <VueSlickCarousel
+              v-bind="pengembang"
+              v-if="listPerumahan.length > 0"
+            >
               <div v-for="item in listPengembang" :key="item.id">
-                <img :src=item.src alt="" />
+                <img :src="item.src" alt="" />
               </div>
             </VueSlickCarousel>
           </b-col>
@@ -276,6 +291,7 @@ export default {
       listPerumahan: [],
       listPerbankan: [],
       listPengembang: [],
+      total:[],
       rekomperumahan: {
         autoplay: true,
         dots: false,
@@ -323,9 +339,10 @@ export default {
     myfooter,
     VueSlickCarousel,
   },
-  async created(){
-    await this.getPengembang()
-    await this.getPerumahan()
+  async created() {
+    await this.getPengembang();
+    await this.getPerumahan();
+    await this.getStock();
   },
   methods: {
     async getPengembang() {
@@ -339,9 +356,9 @@ export default {
           console.log(err);
         });
       let x = PTs.data.data;
-      this.listPengembang = x.map(item =>{
-      return {...item, src:ipBackEnd + item.logo }
-      })
+      this.listPengembang = x.map((item) => {
+        return { ...item, src: ipBackEnd + item.logo };
+      });
       console.log(PTs.data.data, "ini pengembang");
     },
     async getPerumahan() {
@@ -354,35 +371,37 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-        let x = PTs.data.data
-        this.listPerumahan = x.map(item =>{
-        return {...item, src:ipBackEnd + item.fotoPerumahan }
-      })
+      let x = PTs.data.data;
+      this.listPerumahan = x.map((item) => {
+        return { ...item, src: ipBackEnd + item.fotoPerumahan };
+      });
       console.log(this.listPerumahan, "ini perumahan");
     },
-    goListRumah(x){
-      localStorage.setItem('dataPerumId',x.id)
-      this.$router.push({path:`/data_perumahan_by_tipe/${x.id}`})
+    goListRumah(x) {
+      localStorage.setItem("dataPerumId", x.id);
+      this.$router.push({ path: `/data_perumahan_by_tipe/${x.id}` });
     },
-    getkota(){
-    axios.get(ipBackEnd + 'kabKota/list',{
-      headers:{
-        token: localStorage.getItem('token')
-      }
-    }).then(res =>{
-      console.log(res.data.data)
-      let x = res.data.data
-      this.kabkot = x.map(item =>{
-        return item.namaKabKota
-      })
-
-    }).catch(err =>{
-      console.log(err)
-    })
-  },
-  getDataStock(x){
-      console.log(x)
-        axios
+    getkota() {
+      axios
+        .get(ipBackEnd + "kabKota/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data);
+          let x = res.data.data;
+          this.kabkot = x.map((item) => {
+            return item.namaKabKota;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getDataStock(x) {
+      console.log(x);
+      axios
         .get(ipBackEnd + "perumahan/jumlahStock/" + x, {
           headers: {
             token: localStorage.getItem("token"),
@@ -390,7 +409,19 @@ export default {
         })
         .then((res) => {
           console.log(res);
-        }).catch((err) => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getStock() {
+      axios
+        .get(ipBackEnd + "rumah/totalStock")
+        .then((res) => {
+          console.log(res.data);
+          this.total= res.data
+        })
+        .catch((err) => {
           console.log(err);
         });
     },
