@@ -245,7 +245,7 @@ const routes = [
     name: "EditProfilCsr",
     component: EditProfilCsr,
     meta:{
-      role: "",
+      role: "CSR",
     }
   },
 
@@ -254,7 +254,7 @@ const routes = [
     name: "EditPasswordCsr",
     component: EditPasswordCsr,
     meta:{
-      role: "",
+      role: "CSR",
     }
   },
 
@@ -263,7 +263,7 @@ const routes = [
     name: "DashboardCsr",
     component: DashboardCsr,
     meta:{
-      role: "",
+      role: "CSR",
     }
   },
 
@@ -272,7 +272,7 @@ const routes = [
     name: "InputCsr",
     component: InputCsr,
     meta:{
-      role: "",
+      role: "CSR",
     }
   },
 
@@ -281,7 +281,7 @@ const routes = [
     name: "EditCsr",
     component: EditCsr,
     meta:{
-      role: "",
+      role: "CSR",
     },
     beforeRouteUpdate(to, from, next) {
       console.log(to);
