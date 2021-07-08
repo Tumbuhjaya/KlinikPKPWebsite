@@ -39,11 +39,11 @@
                                 </b-form-group>
 
                                 <b-form-group label="Profil Perusahaan">
-                                    <b-form-textarea rows="10" v-model="profil"></b-form-textarea>
+                                    <b-form-textarea rows="10" v-model="profilPerusahaan"></b-form-textarea>
                                 </b-form-group>
 
                                 <b-form-group label="Upload Logo Perusahaan">
-                                    <b-form-file id="file" ref="file"></b-form-file>
+                                    <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
                                 </b-form-group>
                           </b-col>
                       </b-row>
@@ -100,6 +100,7 @@ export default {
       alamat:"",
       noHp:"",
       namaPerusahaan:"",
+      profilPerusahaan:"",
       profil:"",
       website:"",
       file:"",
@@ -118,7 +119,7 @@ export default {
     },
     register() {
       let vm = this;
-      let formData = new FormData
+      let formData = new FormData()
       formData.append("username", vm.username);
       formData.append("password",vm.password );
       formData.append("email",vm.email);
