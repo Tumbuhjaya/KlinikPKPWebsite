@@ -101,6 +101,7 @@ export default {
       isLogin: false,
       file: "",
       datasCsr: [],
+      ipBackEnd: ipBackEnd,
     };
   },
   components: {

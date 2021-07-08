@@ -135,6 +135,7 @@ export default {
       foto3: "",
       csrId: "",
       kabkot: [],
+      ipBackEnd: ipBackEnd,
     };
   },
   components: {

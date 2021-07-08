@@ -224,6 +224,7 @@ export default {
       dataTipe: [],
       isLogin: false,
       dataPerum:[],
+      ipBackEnd: ipBackEnd,
       jeniss: [
         { value: null, text: "-- Pilih --" },
         { value: "subsidi", text: "Subsidi" },

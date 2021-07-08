@@ -121,7 +121,9 @@ export default {
       isLogin: false,
       userData: [],
       file:"",
-      blank:"_blank"    };
+      blank:"_blank",
+      ipBackEnd: ipBackEnd,
+      };
   },
   components: {
     myheader,
