@@ -116,11 +116,11 @@
                     </b-form-group>
 
                     <b-form-group class="m-t-15">
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src1 != ipBackEnd + 'null'">
                         <img :src="dataTipe.src1" alt="" style="width:150px;height:150px">
                       </div>
                       
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src1 == ipBackEnd + 'null'">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
                     </b-form-group>
@@ -134,11 +134,11 @@
                     </b-form-group>
 
                     <b-form-group class="m-t-15">
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src2 != ipBackEnd + 'null'">
                         <img :src="dataTipe.src2" alt="" style="width:150px;height:150px">
                       </div>
                       
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src2 == ipBackEnd + 'null'">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
                     </b-form-group>
@@ -153,11 +153,11 @@
                     </b-form-group>
 
                     <b-form-group class="m-t-15">
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src3 != ipBackEnd + 'null'">
                         <img :src="dataTipe.src3" alt="" style="width:150px;height:150px">
                       </div>
                       
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.src3 == ipBackEnd + 'null'">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
                     </b-form-group>
@@ -173,11 +173,11 @@
                     </b-form-group>
 
                     <b-form-group class="m-t-15">
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.srcDenah != ipBackEnd + 'null'">
                         <img :src="dataTipe.srcDenah" alt="" style="width:150px;height:150px">
                       </div>
                       
-                      <div style="width:150px;height:150px;">
+                      <div style="width:150px;height:150px;" v-if="dataTipe.srcDenah == ipBackEnd + 'null'">
                         <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                       </div>
                     </b-form-group>

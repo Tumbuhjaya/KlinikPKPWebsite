@@ -59,11 +59,11 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;">
-                  <img src="#" alt="" style="width:150px;height:150px">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src1 != ipBackEnd + 'null'">
+                  <img :src="datasCsr.src1" alt="" style="width:150px;height:150px">
                 </div>
 
-                <div style="width:150px;height:150px;">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src1 == ipBackEnd + 'null'">
                   <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                 </div>
             </b-form-group>
@@ -77,11 +77,11 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;">
-                  <img src="#" alt="" style="width:150px;height:150px">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src2 != ipBackEnd + 'null'">
+                  <img :src="datasCsr.src2" alt="" style="width:150px;height:150px">
                 </div>
                 
-                <div style="width:150px;height:150px;">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src2 == ipBackEnd + 'null'">
                   <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                 </div>
             </b-form-group>
@@ -95,11 +95,11 @@
             </b-form-group>
 
             <b-form-group>
-                <div style="width:150px;height:150px;">
-                  <img src="#" alt="" style="width:150px;height:150px">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src3 != ipBackEnd + 'null'">
+                  <img :src="datasCsr.src3" alt="" style="width:150px;height:150px">
                 </div>
                 
-                <div style="width:150px;height:150px;">
+                <div style="width:150px;height:150px;" v-if="datasCsr.src3 == ipBackEnd + 'null'">
                   <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
                 </div>
             </b-form-group>
