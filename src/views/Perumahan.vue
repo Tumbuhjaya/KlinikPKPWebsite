@@ -168,9 +168,11 @@
                       <strong>{{ item.namaPerumahan }}</strong>
                     </h5>
                     <h6>{{ item.namaPerusahaan }}</h6>
-
                     <p class="m-t-15">
-                      {{ item.kecamatanPerumahan }},{{ item.kabKotaPerumahan }}
+                      {{ item.alamatPerumahan }}
+                    </p>
+                    <p>
+                     {{ item.kabKotaPerumahan }}
                     </p>
 
                     <h6 class="harga m-t-5 m-b-5">

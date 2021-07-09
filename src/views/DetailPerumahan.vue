@@ -18,50 +18,42 @@
         <b-row class="m-t-30">
           <b-col md="12">
             <h3 class="m-t-0 m-b-0"><strong>{{dataPerum.namaPerumahan}}</strong></h3>
+            <!-- nama perusahaan disni -->
             <h6 class="m-t-0 m-b-0">{{dataPerum.namaPerusahaan}}</h6>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
           <b-col md="7">
-            <img :src="dataRumah.src1" alt="" />
+            <img :src="dataRumah.src1" alt=""/>
           </b-col>
           <b-col md="5">
             <b-row>
               <b-col md="6"
-                ><img :src="dataRumah.src2" alt=""
+                ><img :src="dataRumah.src2" alt="" style="height:140px"
               /></b-col>
               <b-col md="6"
-                ><img :src="dataRumah.src3" alt=""
-              /></b-col>
-            </b-row>
-
-            <b-row class="m-t-15">
-              <b-col md="6"
-                ><img :src="dataRumah.srcDenah" alt=""
-              /></b-col>
-              <b-col md="6"
-                ><img :src="dataPerum.srcFP" alt=""
+                ><img :src="dataRumah.src3" alt="" style="height:140px"
               /></b-col>
             </b-row>
 
             <b-row class="m-t-15">
               <b-col md="6"
-                ><img :src="dataPerum.srcL" alt=""
+                ><img :src="dataRumah.srcDenah" alt="" style="height:140px"
               /></b-col>
               <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataPerum.srcFP" alt="" style="height:140px"
               /></b-col>
             </b-row>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
-          <b-col md="5">
+          <b-col md="4">
             <b-row>
               <b-col md="12">
-                <h6>Lokasi</h6>
-                <h5><strong>Pedalangan, Banyumanik, Semarang</strong></h5>
+                <!-- <h6>Lokasi</h6> -->
+                <h3><strong>Lokasi</strong></h3>
               </b-col>
               <b-col md="12">
                 <iframe
@@ -73,47 +65,66 @@
                   loading="lazy"
                 ></iframe>
               </b-col>
+
+              <b-col md="12">
+                <h5><strong>{{dataRumah.alamatPerumahan}}</strong></h5>
+              </b-col>
             </b-row>
           </b-col>
-          <b-col md="7">
+          <b-col md="4">
             <b-row>
-              <b-col><h6>Unit Rumah Tersedia</h6></b-col>
+              <b-col md="12"><h3><strong>Unit Rumah Tersedia</strong></h3></b-col>
             </b-row>
-            <b-row class="m-t-30">
-              <b-col md="6">
-                <div class="box-ketersediaan" v-if="dataRumah.jenis == 'subsidi'">
+            <b-row>
+              <b-col md="12" v-if="dataRumah.jenis == 'subsidi'">
+                <div class="box-ketersediaan" >
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Subsidi</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{avail}} Unit</strong></h6>
+                  <h4><strong>{{avail}} Unit</strong></h4>
 
-                  <h6 class="m-t-30">Rentang Harga</h6>
-                  <h6><strong>{{dataRumah.harga}}</strong></h6>
+                  <h6 class="m-t-30">Harga</h6>
+                  <h4><strong>{{dataRumah.harga}}</strong></h4>
                 </div>
               </b-col>
-              <b-col md="6">
-                <div class="box-ketersediaan" v-if="dataRumah.jenis == 'komersial'">
+              <b-col md="12" v-if="dataRumah.jenis == 'komersial'">
+                <div class="box-ketersediaan" >
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Komersial</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{avail}} Unit</strong></h6>
+                  <h4><strong>{{avail}} Unit</strong></h4>
 
-                  <h6 class="m-t-30">Rentang Harga</h6>
-                  <h6><strong>{{dataRumah.harga}}</strong></h6>
+                  <h6 class="m-t-30">Harga</h6>
+                  <h4><strong>{{dataRumah.harga}}</strong></h4>
                 </div>
               </b-col>
+            </b-row>
+          </b-col>
+
+          <b-col md="4">
+            <b-row>
+              <b-col md="12"><h3><strong>Video Perumahan</strong></h3></b-col>
+            </b-row>
+            <b-row>
+              <b-col md="12">
+                <a :href="'#'" target="_blank">
+                <b-button variant="primary">Lihat Video</b-button>
+              </a>
+              </b-col>
+              
             </b-row>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
           <b-col md="12">
-            <h6>Lokasi</h6>
+            <h3><strong>Deskripsi Perumahan</strong></h3>
           </b-col>
 
           <b-col md="12">
+            
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptatibus quidem aut eligendi omnis dolores incidunt quod
@@ -163,7 +174,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/phone.png" alt="" style="height:50px"/>
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
@@ -174,7 +185,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/email.png" alt="" style="height:50px"/>
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
@@ -185,7 +196,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/www.png" alt="" style="height:50px"/>
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Website</strong></h6>

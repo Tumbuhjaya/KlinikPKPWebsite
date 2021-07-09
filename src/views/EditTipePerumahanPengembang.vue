@@ -107,7 +107,7 @@
               <b-tab title="Dokumentasi">
                 <b-row>
                   <b-col md="6">
-                    <b-form-group label="Upload Foto Rumah" style="margin-bottom:0px !important">
+                    <b-form-group label="Upload Foto Rumah (Foto Utama)" style="margin-bottom:0px !important">
                       <b-form-file
                         id="foto1"
                         ref="foto1"
