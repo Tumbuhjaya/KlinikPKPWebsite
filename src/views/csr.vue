@@ -25,26 +25,27 @@
                 </b-col>
             </b-row>
             
-        <b-row class="m-t-15">
-          <b-col md="2" class="m-t-15 m-b-15" v-for="item in listCsr" :key="item.id" @click="goList(item.id)" >
+        <b-row>
+          <b-col md="2" class="m-t-30"  v-for="item in listCsr" :key="item.id" @click="goList(item.id)" >
             <!-- <router-link :to="'detail_csr'" style="text-decoration:none"> -->
               <div class="box">
                 <center>
                   <img
                     :src="item.src"
                     alt=""
-                    style="width:140px;height:140px"
+                    style="width:120px;height:120px"
                   />
-                  <h6 class="fs-14 m-t-15">
-                    <strong
-                      >{{item.namaPerusahaan}}</strong
-                    >
-                  </h6>
+                  
                 </center>
                 <div class="notif-csr">
                   <h6 class="m-t-0 m-b-0"><strong>{{item.jumlahCSR}}</strong></h6>
                 </div>
               </div>
+              <h6 class="fs-14 m-t-10 text-center">
+                    <strong
+                      >{{item.namaPerusahaan}}</strong
+                    >
+                  </h6>
             <!-- </router-link> -->
           </b-col>
 
@@ -148,10 +149,13 @@ export default {
   position: relative;
   border-radius: 20px;
   border: 4px solid #4c87f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .section-one .box img {
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .section-one .notif-csr {
