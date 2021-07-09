@@ -7,31 +7,35 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>Judul Karir/Magang</strong>
+              <strong>{{dataMagang.judulMagang}}</strong>
             </h2>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
-            <b-col md="5">
-                <div class="b-row">
-                    <b-col md="12">
-                        <img src="https://via.placeholder.com/360" alt="" style="width:100%">
-                    </b-col>
+          <b-col md="5">
+            <div class="b-row">
+              <b-col md="12">
+                <img
+                  :src="dataMagang.src"
+                  alt=""
+                  style="width:100%"
+                />
+              </b-col>
 
-                    <b-col md="12" class="m-t-15">
-                      <router-link :to="'/gabung_magang'">
-                        <center><b-button variant="primary">Gabung Karir/Magang</b-button></center>
-                      </router-link>
-                    </b-col>
-                </div>
-                
-            </b-col>
+              <b-col md="12" class="m-t-15">
+                  <center>
+                    <b-button variant="primary" @click="goDaftarMagang(magangId)">Gabung Karir/Magang</b-button>
+                  </center>
+              </b-col>
+            </div>
+          </b-col>
 
-            <b-col md="7">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et debitis tempore labore omnis dolorum quasi officia, dignissimos vel voluptatem tempora quibusdam optio doloremque ullam dolores, quis iure. Rem tenetur quisquam nisi et at fugiat atque, asperiores rerum architecto officia officiis, natus quis ex veniam debitis sapiente consequuntur sunt, cumque vitae distinctio. Enim esse praesentium natus blanditiis, tempore sit quo tempora ea perspiciatis rem pariatur vitae quisquam ipsum veniam quibusdam at cum suscipit molestias exercitationem. Nulla dolor, praesentium delectus tenetur hic ut, aspernatur, quidem culpa ipsa quaerat sapiente minima eveniet. Cupiditate expedita, quas fugit perspiciatis nulla in error dignissimos! Provident, dicta!</p>
-            </b-col>
-            
+          <b-col md="7">
+            <p>
+              {{dataMagang.deskripsiMagang}}
+            </p>
+          </b-col>
         </b-row>
       </b-container>
     </section>
@@ -43,8 +47,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 
@@ -53,16 +57,34 @@ export default {
   data() {
     return {
       isLogin: false,
-      
+      magangId: 0,
+      dataMagang:[]
     };
   },
   components: {
     myheader,
     myfooter,
   },
-
+  created() {
+    this.magangId = this.$route.params.id;
+    this.getMagang(this.magangId);
+  },
   methods: {
-
+    getMagang(x) {
+      axios
+        .get(ipBackEnd + "magang/listById/" + x)
+        .then((res) => {
+          console.log(res);
+          this.dataMagang = res.data.data[0]
+          this.dataMagang.src = ipBackEnd + this.dataMagang.foto
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goDaftarMagang(x){
+      this.$router.push({path:'/gabung_magang/' + x})
+    }
   },
 };
 </script>
@@ -78,8 +100,8 @@ export default {
   padding: 60px 0;
 }
 
-.card-title{
-    font-size: 16px;
-    font-weight: bold;
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>

@@ -221,7 +221,7 @@ export default {
     goTipeRumah(x) {
       console.log(x, "ini x");
       localStorage.setItem("dataPerum", JSON.stringify(x));
-      this.$router.push({ path: `tipe_perumahan_pengembang/${x.id}` });
+      this.$router.push({ path: `tipe_perumahan_pengembang/${x.perumahanId}` });
     },
     hapus(x) {
       axios
