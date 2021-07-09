@@ -17,6 +17,7 @@ import TipePerumahanPengembang from "../views/TipePerumahanPengembang.vue";
 import EditTipePerumahanPengembang from "../views/EditTipePerumahanPengembang.vue";
 import Csr from "../views/csr.vue";
 import DetailCsr from "../views/DetailCsr.vue";
+import DetailCsrByKegiatan from "../views/DetailCsrByKegiatan.vue";
 import DaftarCsr from "../views/DaftarCsr.vue";
 import DashboardCsr from "../views/DashboardCsr.vue";
 import EditProfilCsr from "../views/EditProfilCsr.vue";
@@ -232,6 +233,15 @@ const routes = [
         });
       }
     },
+  },
+
+  {
+    path: "/detail_csr_by_kegiatan",
+    name: "DetailCsrByKegiatan",
+    component: DetailCsrByKegiatan,
+    meta:{
+      role: "all",
+    }
   },
 
   {

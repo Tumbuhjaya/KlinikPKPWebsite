@@ -50,7 +50,7 @@
               ></b-form-textarea>
             </b-form-group>
 
-            <b-form-group label="Upload Foto Kegiatan">
+            <b-form-group label="Upload Foto Kegiatan (Foto Utama)">
               <b-form-file
                 id="foto1"
                 ref="foto1"

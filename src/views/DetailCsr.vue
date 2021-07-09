@@ -47,7 +47,8 @@
 
         <b-row>
           <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId">
-            <div class="box m-t-15 m-b-15">
+            <router-link :to="'/detail_csr_by_kegiatan'">
+              <div class="box m-t-15 m-b-15">
               <img :src="item.src1" alt="" style="width:100%"/>
 
               <div class="layer">
@@ -58,6 +59,8 @@
                 </h6>
               </div>
             </div>
+            </router-link>
+            
           </b-col>
 
           <!-- <b-col md="4" class="m-t-15">
@@ -225,7 +228,7 @@ export default {
 .section-one .box {
   width: 100%;
   /* height: 100px; */
-  background-color: red;
+  /* background-color: red; */
   position: relative;
 }
 

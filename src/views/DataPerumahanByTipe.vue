@@ -12,9 +12,12 @@
                             <div class="box" @click="goDetail(item.id)">
                                 <div class="up"><img :src="item.src" alt=""></div>
                                 <div class="down m-t-15">
+                                    <h6 class="m-t-15">{{dataPerum.namaPerusahaan}}</h6>
+                                    
                                     <h5><strong>{{dataPerum.namaPerumahan}}</strong></h5>
                                     <h5><strong>Tipe Rumah : {{item.type}}</strong></h5>
-                                    <h6 class="m-t-15">{{dataPerum.namaPerusahaan}}</h6>
+                                    <h5><strong>Stok : {{dataPerum.jmlKomersial}}</strong></h5>
+                                    <b-badge variant="primary" style="text-transform:capitalize"><h6 class="m-t-0 m-b-0 p-l-10 p-r-10"><strong>{{item.jenis}}</strong></h6></b-badge>
 
                                     <p class="m-t-15">{{dataPerum.alamatPerumahan}}</p>
                                     <p class="m-t-15">{{dataPerum.kabKotaPerumahan}}</p>
