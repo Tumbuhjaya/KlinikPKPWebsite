@@ -20,8 +20,9 @@
                     </b-col>
 
                     <b-col md="12" class="m-t-15">
+                      <router-link :to="'/gabung_magang'">
                         <center><b-button variant="primary">Gabung Karir/Magang</b-button></center>
-                        
+                      </router-link>
                     </b-col>
                 </div>
                 

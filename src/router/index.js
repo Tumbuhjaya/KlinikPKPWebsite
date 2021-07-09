@@ -25,6 +25,7 @@ import InputCsr from "../views/InputCsr.vue";
 import EditCsr from "../views/EditCsr.vue";
 import Magang from "../views/Magang.vue";
 import DetailMagang from "../views/DetailMagang.vue";
+import GabungMagang from "../views/GabungMagang.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
 import Login from "../views/Login.vue";
 
@@ -308,6 +309,15 @@ const routes = [
     path: "/detail_magang",
     name: "DetailMagang",
     component: DetailMagang,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/gabung_magang",
+    name: "GabungMagang",
+    component: GabungMagang,
     meta:{
       role: "all",
     }
