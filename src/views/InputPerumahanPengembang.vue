@@ -77,6 +77,10 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
+              <b-form-group label="Deskripsi">
+                <b-form-textarea rows="4"></b-form-textarea>
+              </b-form-group>
+
               <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Unit Terjual</strong></h5>
@@ -100,6 +104,8 @@
                   @input="handleFile()"
                 ></b-form-file>
               </b-form-group>
+
+              
 
               <b-button variant="primary" @click="regisPerumahan()"
                 >Simpan</b-button
