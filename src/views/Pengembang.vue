@@ -97,7 +97,7 @@
 
           <template #cell(actions)="item">
             <center>
-              <a :href="'https://wa.me/'+item.item.noHp+''" target="_blank">
+              <a :href="'https://api.whatsapp.com/send/?phone=%2B62'+item.item.noHp+'&text&app_absent=0'" target="_blank">
                 <img src="../assets/whatsapp.png" alt="" style="width:30px">
               </a>
               

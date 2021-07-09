@@ -13,10 +13,11 @@
                                 <div class="up"><img :src="item.src" alt=""></div>
                                 <div class="down m-t-15">
                                     <h5><strong>{{dataPerum.namaPerumahan}}</strong></h5>
-                                    <h5><strong>Tipe Rumah : {{item.luasBangunanRumah}} / {{item.luasLahanRumah}}</strong></h5>
+                                    <h5><strong>Tipe Rumah : {{item.tipe}}</strong></h5>
                                     <h6 class="m-t-15">{{dataPerum.namaPerusahaan}}</h6>
 
-                                    <p class="m-t-15">{{dataPerum.alamatPerumahan}}, {{dataPerum.kabKotaPerumahan}}</p>
+                                    <p class="m-t-15">{{dataPerum.alamatPerumahan}}</p>
+                                    <p class="m-t-15">{{dataPerum.kabKotaPerumahan}}</p>
                                 </div>
                             
                             </div>

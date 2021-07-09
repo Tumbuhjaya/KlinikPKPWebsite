@@ -269,6 +269,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 header {
   background-color: #4c87f2;
 }

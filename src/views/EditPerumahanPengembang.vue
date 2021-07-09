@@ -111,7 +111,7 @@
                 ></b-form-input>
               </b-form-group>
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Unit Terjual</strong></h5>
                 </b-col>
@@ -131,7 +131,7 @@
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
               <b-form-group label="Upload Foto Perumahan" style="margin-bottom:0px !important">
                 <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>

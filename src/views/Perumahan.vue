@@ -168,18 +168,20 @@
                       <strong>{{ item.namaPerumahan }}</strong>
                     </h5>
                     <h6>{{ item.namaPerusahaan }}</h6>
-
                     <p class="m-t-15">
-                      {{ item.kecamatanPerumahan }},{{ item.kabKotaPerumahan }}
+                      {{ item.alamatPerumahan }}
+                    </p>
+                    <p>
+                     {{ item.kabKotaPerumahan }}
                     </p>
 
                     <h6 class="harga m-t-5 m-b-5">
                       <strong>Subsidi</strong>
-                      {{ item.jmlStockUnitSubsidi }} Unit Rp 200 - 400 Juta
+                      {{ item.jmlStockUnitSubsidi }} Unit
                     </h6>
                     <h6 class="harga m-t-5 m-b-5">
                       <strong>Komersil</strong>
-                      {{ item.jmlStockUnitKomersial }} Unit Rp 800 - 1 M
+                      {{ item.jmlStockUnitKomersial }} Unit
                     </h6>
                   </div>
                   <!-- </router-link> -->
