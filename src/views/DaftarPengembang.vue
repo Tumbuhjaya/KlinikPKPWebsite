@@ -138,7 +138,9 @@ export default {
       formData.append("asosiasi", vm.asosiasi);
       formData.append("NIB", vm.NIB);
       formData.append("role", 'pengembang');
+      formData.append("website", vm.website)
       formData.append("file", vm.file)
+
       axios
         .post(ipBackEnd + "users/register", formData
         )

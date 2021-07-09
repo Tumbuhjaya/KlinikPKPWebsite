@@ -13,7 +13,7 @@
                                 <div class="up"><img :src="item.src" alt=""></div>
                                 <div class="down m-t-15">
                                     <h5><strong>{{dataPerum.namaPerumahan}}</strong></h5>
-                                    <h5><strong>Tipe Rumah : {{item.luasBangunanRumah}} / {{item.luasLahanRumah}}</strong></h5>
+                                    <h5><strong>Tipe Rumah : {{item.type}}</strong></h5>
                                     <h6 class="m-t-15">{{dataPerum.namaPerusahaan}}</h6>
 
                                     <p class="m-t-15">{{dataPerum.alamatPerumahan}}, {{dataPerum.kabKotaPerumahan}}</p>
@@ -85,10 +85,12 @@ methods:{
           },
         })
         .then((res) => {
+          
           let x= res.data.data;
           this.listRumah = x.map(item =>{
               return {...item, src:ipBackEnd + item.foto3}
           });
+          console.log(this.listRumah, 'ini' )
         })
         .catch((err) => {
           console.log(err);
@@ -102,7 +104,7 @@ methods:{
           },
         })
         .then((res) => {
-          console.log(res.data.data,'ini aha');
+          console.log(res,'ini aha');
           res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan
           res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo
           this.dataPerum = res.data.data[0];

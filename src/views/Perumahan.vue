@@ -175,11 +175,11 @@
 
                     <h6 class="harga m-t-5 m-b-5">
                       <strong>Subsidi</strong>
-                      {{ item.jmlStockUnitSubsidi }} Unit Rp 200 - 400 Juta
+                      {{ item.jmlSubsidi }} Unit Rp 200 - 400 Juta
                     </h6>
                     <h6 class="harga m-t-5 m-b-5">
                       <strong>Komersil</strong>
-                      {{ item.jmlStockUnitKomersial }} Unit Rp 800 - 1 M
+                      {{ item.jmlKomersial }} Unit Rp 800 - 1 M
                     </h6>
                   </div>
                   <!-- </router-link> -->
@@ -382,8 +382,7 @@ export default {
       console.log(this.listPerumahan, "ini perumahan");
     },
     goListRumah(x) {
-      localStorage.setItem("dataPerumId", x.id);
-      this.$router.push({ path: `/data_perumahan_by_tipe/${x.id}` });
+      this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
     },
     getkota() {
       axios

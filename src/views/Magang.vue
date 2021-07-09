@@ -13,70 +13,64 @@
         </b-row>
 
         <b-row>
-            <b-col md="4">
-                <b-card
-                    title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="m-t-30"
-                >
-                    <router-link :to="'detail_magang'">
-                        <b-button variant="primary">Detail</b-button>
-                    </router-link>
-                    
-                </b-card>
-            </b-col>
-            <b-col md="4">
-                <b-card
-                    title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="m-t-30"
-                >
-                    <router-link :to="'detail_magang'">
-                        <b-button variant="primary">Detail</b-button>
-                    </router-link>
-                    
-                </b-card>
-            </b-col>
-            <b-col md="4">
-                <b-card
-                    title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="m-t-30"
-                >
-                    <router-link :to="'detail_magang'">
-                        <b-button variant="primary">Detail</b-button>
-                    </router-link>
-                    
-                </b-card>
-            </b-col>
-            <b-col md="4">
-                <b-card
-                    title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="m-t-30"
-                >
-                    <router-link :to="'detail_magang'">
-                        <b-button variant="primary">Detail</b-button>
-                    </router-link>
-                    
-                </b-card>
-            </b-col>
+          <b-col md="4" v-for="item in listMagang" :key="item.id">
+            <b-card
+              :title="item.judulMagang"
+              :img-src="item.src"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="m-t-30"
+            >
+                <b-button variant="primary" @click="goDetailM(item.id)">Detail</b-button>
+            </b-card>
+          </b-col>
+          <!-- <b-col md="4">
+            <b-card
+              title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
+              img-src="https://picsum.photos/600/300/?image=25"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="m-t-30"
+            >
+              <router-link :to="'detail_magang'">
+                <b-button variant="primary">Detail</b-button>
+              </router-link>
+            </b-card>
+          </b-col>
+          <b-col md="4">
+            <b-card
+              title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
+              img-src="https://picsum.photos/600/300/?image=25"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="m-t-30"
+            >
+              <router-link :to="'detail_magang'">
+                <b-button variant="primary">Detail</b-button>
+              </router-link>
+            </b-card> -->
+          <!-- </b-col> -->
+          <!-- <b-col md="4">
+            <b-card
+              title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
+              img-src="https://picsum.photos/600/300/?image=25"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="m-t-30"
+            >
+              <router-link :to="'detail_magang'">
+                <b-button variant="primary">Detail</b-button>
+              </router-link>
+            </b-card>
+          </b-col> -->
         </b-row>
       </b-container>
     </section>
@@ -88,8 +82,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 
@@ -98,16 +92,33 @@ export default {
   data() {
     return {
       isLogin: false,
-      
+      listMagang:[],
     };
   },
   components: {
     myheader,
     myfooter,
   },
-
+  created() {
+    this.getMagang();
+  },
   methods: {
-
+    getMagang() {
+      axios
+        .get(ipBackEnd + "magang/listPublished")
+        .then((res) => {
+          let x = res.data.data;
+          this.listMagang = x.map(item =>{
+            return {...item, src: ipBackEnd + item.foto}
+          })
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goDetailM(x){
+      this.$router.push({path: '/detail_magang/' + x})
+    }
   },
 };
 </script>
@@ -123,8 +134,8 @@ export default {
   padding: 60px 0;
 }
 
-.card-title{
-    font-size: 16px;
-    font-weight: bold;
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>

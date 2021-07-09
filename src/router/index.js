@@ -306,21 +306,37 @@ const routes = [
   },
 
   {
-    path: "/detail_magang",
+    path: "/detail_magang/:id",
     name: "DetailMagang",
     component: DetailMagang,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/detail_magang/:id") {
+        next({
+          path: "/detail_magang",
+        });
+      }
+    },
   },
 
   {
-    path: "/gabung_magang",
+    path: "/gabung_magang/:id",
     name: "GabungMagang",
     component: GabungMagang,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/gabung_magang/:id") {
+        next({
+          path: "/gabung_magang",
+        });
+      }
+    },
   },
 
   {
