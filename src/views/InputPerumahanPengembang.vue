@@ -77,29 +77,6 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
-<<<<<<< HEAD
-=======
-              <b-form-group label="Deskripsi">
-                <b-form-textarea rows="4"></b-form-textarea>
-              </b-form-group>
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Unit Terjual</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
-                    <b-form-input v-model="terjualUnitS"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
-                    <b-form-input v-model="terjualUnitK"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
->>>>>>> 9bf92877395b9e1a71540cc88060c840106589c0
               <b-form-group label="Upload Brosur Perumahan">
                 <b-form-file
                   id="file"
