@@ -127,7 +127,7 @@
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="dataRumah.linkVideo" target='_blank'>
+                <a :href="dataRumah.link" target='_blank'>
                   <b-button variant="primary"
                   >Lihat Video</b-button
                 >
@@ -238,8 +238,9 @@ export default {
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
+          this.dataRumah.link = 'https://' + x.linkVideo
           this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
-          console.log(res);
+          console.log(this.dataRumah);
         })
         .catch((err) => {
           console.log(err);
