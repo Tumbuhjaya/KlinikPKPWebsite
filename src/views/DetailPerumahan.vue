@@ -127,7 +127,7 @@
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="dataRumah.link" target='_blank'>
+                <a :href="dataRumah.linkVideo" target='_blank'>
                   <b-button variant="primary"
                   >Lihat Video</b-button
                 >
