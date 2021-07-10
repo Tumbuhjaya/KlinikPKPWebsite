@@ -236,12 +236,20 @@ const routes = [
   },
 
   {
-    path: "/detail_csr_by_kegiatan",
+    path: "/detail_csr_by_kegiatan/:id",
     name: "DetailCsrByKegiatan",
     component: DetailCsrByKegiatan,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/detail_csr_by_kegiatan/:id") {
+        next({
+          path: "/detail_csr_by_kegiatan",
+        });
+      }
+    },
   },
 
   {

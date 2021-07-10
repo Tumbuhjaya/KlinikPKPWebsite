@@ -46,8 +46,7 @@
         </b-row>
 
         <b-row>
-          <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId">
-            <router-link :to="'/detail_csr_by_kegiatan'">
+          <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId" @click="goMore(item.CSRId)">
               <div class="box m-t-15 m-b-15">
               <img :src="item.src1" alt="" style="width:100%"/>
 
@@ -59,84 +58,8 @@
                 </h6>
               </div>
             </div>
-            </router-link>
             
           </b-col>
-
-          <!-- <b-col md="4" class="m-t-15">
-            <div class="box m-t-15 m-b-15">
-              <img src="https://via.placeholder.com/360x300" alt="" />
-
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ex, possimus!</strong
-                  >
-                </h6>
-              </div>
-            </div>
-          </b-col> -->
-          <!-- 
-          <b-col md="4" class="m-t-15">
-            <div class="box m-t-15 m-b-15">
-              <img src="https://via.placeholder.com/360x300" alt="" />
-
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ex, possimus!</strong
-                  >
-                </h6>
-              </div>
-            </div>
-          </b-col>
-
-          <b-col md="4" class="m-t-15">
-            <div class="box m-t-15 m-b-15">
-              <img src="https://via.placeholder.com/360x300" alt="" />
-
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ex, possimus!</strong
-                  >
-                </h6>
-              </div>
-            </div>
-          </b-col>
-
-          <b-col md="4" class="m-t-15">
-            <div class="box m-t-15 m-b-15">
-              <img src="https://via.placeholder.com/360x300" alt="" />
-
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ex, possimus!</strong
-                  >
-                </h6>
-              </div>
-            </div>
-          </b-col>
-
-          <b-col md="4" class="m-t-15">
-            <div class="box m-t-15 m-b-15">
-              <img src="https://via.placeholder.com/360x300" alt="" />
-
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ex, possimus!</strong
-                  >
-                </h6>
-              </div>
-            </div>
-          </b-col> -->
         </b-row>
       </b-container>
     </section>
@@ -197,21 +120,9 @@ export default {
           console.log(err);
         });
     },
-    // getProfil() {
-    //   axios
-    //     .get(ipBackEnd + "user/" + x, {
-    //       headers: {
-    //         token: localStorage.getItem("token"),
-    //       },
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       this.lprofilCsr = res.data.data[0];
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+    goMore(x){
+      this.$router.push({path:'/detail_csr_by_kegiatan/'+ x})
+    }
   },
 };
 </script>
