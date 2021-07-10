@@ -6,7 +6,9 @@
       <b-container>
         <b-row>
           <b-col md="4">
-            <b-button variant="light" @click="back()">Kembali ke Pencarian</b-button>
+            <b-button variant="light" @click="back()"
+              >Kembali ke Pencarian</b-button
+            >
           </b-col>
           <b-col md="8">
             <div class="box-permohonan">
@@ -17,15 +19,17 @@
 
         <b-row class="m-t-30">
           <b-col md="12">
-            <h3 class="m-t-0 m-b-0"><strong>{{dataPerum.namaPerumahan}}</strong></h3>
+            <h3 class="m-t-0 m-b-0">
+              <strong>{{ dataPerum.namaPerumahan }}</strong>
+            </h3>
             <!-- nama perusahaan disni -->
-            <h6 class="m-t-0 m-b-0">{{dataPerum.namaPerusahaan}}</h6>
+            <h6 class="m-t-0 m-b-0">{{ dataPerum.namaPerusahaan }}</h6>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
           <b-col md="7">
-            <img :src="dataRumah.src1" alt=""/>
+            <img :src="dataRumah.src1" alt="" />
           </b-col>
           <b-col md="5">
             <b-row>
@@ -67,37 +71,49 @@
               </b-col>
 
               <b-col md="12">
-                <h5><strong>{{dataRumah.alamatPerumahan}}</strong></h5>
+                <h5>
+                  <strong>{{ dataRumah.alamatPerumahan }}</strong>
+                </h5>
               </b-col>
             </b-row>
           </b-col>
           <b-col md="4">
             <b-row>
-              <b-col md="12"><h3><strong>Unit Rumah Tersedia</strong></h3></b-col>
+              <b-col md="12"
+                ><h3><strong>Unit Rumah Tersedia</strong></h3></b-col
+              >
             </b-row>
             <b-row>
               <b-col md="12" v-if="dataRumah.jenis == 'subsidi'">
-                <div class="box-ketersediaan" >
+                <div class="box-ketersediaan">
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Subsidi</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h4><strong>{{avail}} Unit</strong></h4>
+                  <h4>
+                    <strong>{{ avail }} Unit</strong>
+                  </h4>
 
                   <h6 class="m-t-30">Harga</h6>
-                  <h4><strong>{{dataRumah.harga}}</strong></h4>
+                  <h4>
+                    <strong>{{ dataRumah.harga }}</strong>
+                  </h4>
                 </div>
               </b-col>
               <b-col md="12" v-if="dataRumah.jenis == 'komersial'">
-                <div class="box-ketersediaan" >
+                <div class="box-ketersediaan">
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Komersial</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h4><strong>{{avail}} Unit</strong></h4>
+                  <h4>
+                    <strong>{{ avail }} Unit</strong>
+                  </h4>
 
                   <h6 class="m-t-30">Harga</h6>
-                  <h4><strong>{{dataRumah.harga}}</strong></h4>
+                  <h4>
+                    <strong>{{ dataRumah.harga }}</strong>
+                  </h4>
                 </div>
               </b-col>
             </b-row>
@@ -105,15 +121,19 @@
 
           <b-col md="4">
             <b-row>
-              <b-col md="12"><h3><strong>Video Perumahan</strong></h3></b-col>
+              <b-col md="12"
+                ><h3><strong>Video Perumahan</strong></h3></b-col
+              >
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="'#'" target="_blank">
-                <b-button variant="primary">Lihat Video</b-button>
-              </a>
+                <a :href="dataRumah.linkVideo" target='_blank'>
+                  <b-button variant="primary"
+                  >Lihat Video</b-button
+                >
+                </a>
+                
               </b-col>
-              
             </b-row>
           </b-col>
         </b-row>
@@ -124,45 +144,8 @@
           </b-col>
 
           <b-col md="12">
-            
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatibus quidem aut eligendi omnis dolores incidunt quod
-              laborum recusandae perspiciatis aperiam, eaque aspernatur natus
-              molestias reiciendis dicta nobis aliquam molestiae ea voluptatem
-              in animi accusamus illo. Magnam harum laudantium nam unde
-              dignissimos tempore consectetur, sint incidunt magni ad architecto
-              dolorum nesciunt sit rerum obcaecati neque eveniet, temporibus
-              ipsam accusantium officiis soluta voluptatibus corporis. Odit eius
-              numquam officia deserunt, saepe nesciunt hic debitis minus ad?
-              Atque quod expedita voluptatibus hic eius saepe omnis
-              necessitatibus sunt tempore dolore. Veniam soluta necessitatibus
-              sit quia numquam deleniti cupiditate rem sequi recusandae nobis,
-              ipsam quaerat eaque labore voluptates eum maxime, ipsa repudiandae
-              quis aliquid molestias, hic nostrum nisi ut. Voluptates, nobis
-              similique, placeat omnis impedit neque explicabo ducimus ullam ea
-              quis natus ipsa vitae numquam! Perferendis dolor quasi est
-              explicabo reprehenderit saepe, dolores adipisci veniam voluptate
-              illo aliquid ab nostrum eligendi neque ut inventore beatae
-              nesciunt numquam repudiandae error tenetur sapiente! Ipsum aliquid
-              natus rerum quo eaque suscipit consequuntur, recusandae dolorem
-              itaque quaerat autem maxime culpa ab quae vitae quisquam, ea sed.
-              Voluptate architecto repellat dolorem, pariatur aperiam expedita,
-              ad obcaecati culpa animi esse eveniet dolor! Perspiciatis fugit
-              quo tempora dolores, eaque dolore! Laborum debitis doloremque
-              ullam, earum aut reiciendis aperiam libero praesentium. Impedit ad
-              dolorum tempora. Officiis, reprehenderit vero similique magni
-              provident repudiandae quas incidunt quidem quia, laborum suscipit
-              voluptas maxime voluptatem, molestias perspiciatis enim
-              voluptates! Consectetur voluptate culpa reprehenderit, omnis
-              aspernatur nulla aliquid repellendus illo sed hic et dolorum
-              itaque soluta libero! Laborum nihil quod libero culpa consequatur
-              nobis sapiente praesentium, suscipit atque, iure alias optio quis
-              veniam necessitatibus repellat, omnis sequi nemo? Eaque, deserunt?
-              Autem tempore amet optio cum delectus sunt, excepturi maiores
-              dicta, consequuntur hic necessitatibus at dolores corporis
-              perspiciatis! Tenetur quibusdam adipisci earum iste numquam totam
-              accusantium maxime voluptatem magnam ad.
+              {{ dataPerum.deskripsiPerumahan }}
             </p>
           </b-col>
         </b-row>
@@ -174,33 +157,33 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/phone.png" alt="" style="height:50px"/>
+              <img src="../assets/phone.png" alt="" style="height:50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
-                <h6 class="m-t-0 m-b-0">{{dataPerum.noHp}}</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.noHp }}</h6>
               </div>
             </div>
           </b-col>
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/email.png" alt="" style="height:50px"/>
+              <img src="../assets/email.png" alt="" style="height:50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
-                <h6 class="m-t-0 m-b-0">{{dataPerum.email}}</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.email }}</h6>
               </div>
             </div>
           </b-col>
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/www.png" alt="" style="height:50px"/>
+              <img src="../assets/www.png" alt="" style="height:50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Website</strong></h6>
-                <h6 class="m-t-0 m-b-0">{{dataPerum.website}}</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.website }}</h6>
               </div>
             </div>
           </b-col>
@@ -227,7 +210,7 @@ export default {
       isLogin: false,
       dataRumah: [],
       dataPerum: [],
-      avail:0
+      avail: 0,
     };
   },
   components: {
@@ -235,8 +218,8 @@ export default {
     myfooter,
   },
   created() {
-    let y = localStorage.getItem('dataPerum')
-    this.dataPerum = JSON.parse(y)
+    let y = localStorage.getItem("dataPerum");
+    this.dataPerum = JSON.parse(y);
     let x = this.$route.params.id;
     this.getTipeRumah(x);
   },
@@ -255,25 +238,31 @@ export default {
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
-          this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual)
-          console.log(this.avail)
+          this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    back(){
-      this.$router.push({path:'/perumahan'})
+    back() {
+      this.$router.push({ path: "/perumahan" });
     },
-    sisa(x,y){
-      console.log(x,y)
-      if (x == null && y == null){
-        return 0
-      }else if ( y == null){
-        return x
-      }else{
-       return x - y
+    sisa(x, y) {
+      console.log(x, y);
+      if (x == null && y == null) {
+        return 0;
+      } else if (y == null) {
+        return x;
+      } else {
+        return x - y;
       }
+    },
+    goVid(x) {
+      let routeData = this.$router.resolve({
+        name: x,
+      });
+      window.open(routeData.href, "_blank");
     },
   },
 };

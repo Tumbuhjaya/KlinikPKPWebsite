@@ -13,7 +13,7 @@
         </b-row>
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr class="m-t-10 m-b-10"/>
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
@@ -23,7 +23,7 @@
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Edit Perumahan</strong></h6>
             </div>
-            <hr class="m-t-10 m-b-10"/>
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
 
@@ -57,20 +57,13 @@
                 ></multiselect>
               </b-form-group>
 
-              <!-- <b-form-group label="Kecamatan">
-                <b-form-input v-model="dataPerum.kecamatan" :placeholder="dataPerum.kecamatan"></b-form-input>
-                
-                <multiselect
-                  v-model="dataPerum.kecamatanPerumahan"
-                  :options="kec"
-                  :multiple="false"
-                  :searchable="true"
-                  :close-on-select="true"
-                  :show-labels="false"
-                  :placeholder="dataPerum.kecamatanPerumahan"
-                ></multiselect>
-              </b-form-group> -->
-
+              <b-form-group label="Deskripsi">
+                <b-form-textarea
+                  rows="7"
+                  v-model="dataPerum.deskripsiPerumahan"
+                  :placeholder="dataPerum.deskripsiPerumahan"
+                ></b-form-textarea>
+              </b-form-group>
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Lokasi X">
@@ -111,39 +104,38 @@
                 ></b-form-input>
               </b-form-group>
 
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Unit Terjual</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
-                    <b-form-input
-                      v-model="dataPerum.jmlTerjualUnitSubsidi"
-                      :placeholder="setPlace(dataPerum.jmlTerjualUnitSubsidi)"
-                    ></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
-                    <b-form-input
-                      v-model="dataPerum.jmlTerjualUnitKomersial"
-                      :placeholder="setPlace(dataPerum.jmlTerjualUnitKomersial)"
-                    ></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
-              <b-form-group label="Upload Foto Perumahan" style="margin-bottom:0px !important">
-                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+              <b-form-group
+                label="Upload Foto Perumahan"
+                style="margin-bottom:0px !important"
+              >
+                <b-form-file
+                  id="file"
+                  ref="file"
+                  @input="handleFile()"
+                ></b-form-file>
               </b-form-group>
 
-              <b-form-group class="m-t-15" >
-                <div style="width:150px;height:150px;" v-if="dataPerum.src != ipBackEnd +'null'">
-                  <img :src="dataPerum.src" alt="" style="width:150px;height:150px">
+              <b-form-group class="m-t-15">
+                <div
+                  style="width:150px;height:150px;"
+                  v-if="dataPerum.src != ipBackEnd + 'null'"
+                >
+                  <img
+                    :src="dataPerum.src"
+                    alt=""
+                    style="width:150px;height:150px"
+                  />
                 </div>
-                
-                <div style="width:150px;height:150px;" v-if="dataPerum.src == ipBackEnd +'null'">
-                  <img src="../assets/tidak-ada-gambar.png" alt="" style="width:150px;height:150px">
+
+                <div
+                  style="width:150px;height:150px;"
+                  v-if="dataPerum.src == ipBackEnd + 'null'"
+                >
+                  <img
+                    src="../assets/tidak-ada-gambar.png"
+                    alt=""
+                    style="width:150px;height:150px"
+                  />
                 </div>
               </b-form-group>
 
@@ -175,12 +167,16 @@ export default {
     return {
       isLogin: false,
       dataPerum: [],
-      file:"",
+      file: "",
       perumId: "",
       kabkot: [],
-      blank:"_blank",
+      blank: "_blank",
       ipBackEnd: ipBackEnd,
-      kec: ["KecamatanPerumahan A", "KecamatanPerumahan B", "KecamatanPerumahan C"],
+      kec: [
+        "KecamatanPerumahan A",
+        "KecamatanPerumahan B",
+        "KecamatanPerumahan C",
+      ],
     };
   },
   components: {
@@ -191,65 +187,66 @@ export default {
   async created() {
     this.perumId = await this.$route.params.id;
     await this.getDataPerum(this.perumId);
-    this.getkota()
-    console.log(this.dataPerum, 'ini sreat')
+    this.getkota();
   },
   methods: {
-    handleFile(){
-      this.file = this.$refs.file.files[0]
-      console.log(this.file)
+    handleFile() {
+      this.file = this.$refs.file.files[0];
+      console.log(this.file);
     },
     async getDataPerum(id) {
-        axios.get(ipBackEnd + "perumahan/listById/" + id, {
+      axios
+        .get(ipBackEnd + "perumahan/listById/" + id, {
           headers: {
             token: localStorage.getItem("token"),
           },
-        }).then(res =>{
-          this.dataPerum = res.data.data[0]
-          this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan
+        })
+        .then((res) => {
+          this.dataPerum = res.data.data[0];
+          this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan;
+          console.log(this.dataPerum)
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    updateFoto(){
-      let formData = new FormData
-      formData.append('file', this.file)
-      formData.append('id',this.perumId)
-      axios.post(ipBackEnd + 'perumahan/changeFoto', formData,
-      {
-        headers:{
-          token: localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-      }).catch(err =>{
-        console.log(err)
-      })
+    updateFoto() {
+      let formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("id", this.perumId);
+      axios
+        .post(ipBackEnd + "perumahan/changeFoto", formData, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     updatePerum() {
-      if (this.file != ""){
-        this.updateFoto()
+      if (this.file != "") {
+        this.updateFoto();
       }
-      let vm = this
+      let vm = this;
       axios
         .post(
           ipBackEnd + "perumahan/update",
           {
-            id : vm.perumId,
-            namaPerumahan:vm.dataPerum.namaPerumahan,
-            alamatPerumahan:vm.dataPerum.alamatPerumahan,
-            kabKotaPerumahan:vm.dataPerum.kabKotaPerumahan,
-            kecamatanPerumahan:vm.dataPerum.kecamatanPerumahan,
-            emailPerumahan:vm.dataPerum.emailPerumahan,
-            CPPerumahan:vm.dataPerum.id,
-            luasLahanPerumahan:vm.dataPerum.luasLahanPerumahan,
-            jmlStockUnitSubsidi:vm.dataPerum.jmlStockUnitSubsidi,
-            jmlStockUnitKomersial:vm.dataPerum.jmlStockUnitKomersial,
-            jmlTerjualUnitSubsidi:vm.dataPerum.jmlTerjualUnitSubsidi,
-            jmlTerjualUnitKomersial:vm.dataPerum.jmlTerjualUnitKomersial,
-            koordinatX:vm.dataPerum.koordinatX,
-            koordinatY:vm.dataPerum.koordinatY,
+            id: vm.perumId,
+            namaPerumahan: vm.dataPerum.namaPerumahan,
+            alamatPerumahan: vm.dataPerum.alamatPerumahan,
+            kabKotaPerumahan: vm.dataPerum.kabKotaPerumahan,
+            kecamatanPerumahan: vm.dataPerum.kecamatanPerumahan,
+            emailPerumahan: vm.dataPerum.emailPerumahan,
+            CPPerumahan: vm.dataPerum.id,
+            luasLahanPerumahan: vm.dataPerum.luasLahanPerumahan,
+            deskripsiPerumahan:vm.dataPerum.deskripsiPerumahan,
+            koordinatX: vm.dataPerum.koordinatX,
+            koordinatY: vm.dataPerum.koordinatY,
           },
           {
             headers: {
@@ -273,25 +270,27 @@ export default {
         return y;
       }
     },
-    getkota(){
-    axios.get(ipBackEnd + 'kabKota/list',{
-      headers:{
-        token: localStorage.getItem('token')
-      }
-    }).then(res =>{
-      console.log(res.data.data)
-      let x = res.data.data
-      this.kabkot = x.map(item =>{
-        return item.namaKabKota
-      })
-
-    }).catch(err =>{
-      console.log(err)
-    })
-  }
+    getkota() {
+      axios
+        .get(ipBackEnd + "kabKota/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data);
+          let x = res.data.data;
+          this.kabkot = x.map((item) => {
+            return item.namaKabKota;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   watch: {
-    "dataPerum": function(val) {
+    dataPerum: function(val) {
       console.log(val);
     },
   },

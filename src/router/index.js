@@ -356,6 +356,10 @@ const routes = [
       role: "all",
     }
   },
+  {
+    path: "/logout",
+    name: "Logout",
+  },
 ];
 
 const router = new VueRouter({
@@ -367,6 +371,12 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const role = localStorage.getItem("role");
+  if (to.path ==  '/logout'){
+    localStorage.clear()
+    next({
+      path:'/'
+    })
+  }else {
     if (to.meta.role == "all") {
       next({
       });
@@ -378,6 +388,8 @@ router.beforeEach((to, from, next) => {
   else{
     next()
   }
+  }
+    
 });
 
 export default router;

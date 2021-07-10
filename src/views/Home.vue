@@ -464,16 +464,15 @@ export default {
       }
     },
     logOut() {
-      console.log("keluar");
-      localStorage.clear();
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/logout" });
+      this.checkLogin()
     },
     goBeranda() {
       let r = localStorage.getItem("role");
       if (r == "pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
       } else if (r == "CSR") {
-        this.$router.push({ path: "/dashboard_CSR" });
+        this.$router.push({ path: "/dashboard_csr" });
       }
     },
     goEdit() {
@@ -481,7 +480,7 @@ export default {
       if (r == "pengembang") {
         this.$router.push({ path: "/edit_profil_pengembang" });
       } else if (r == "CSR") {
-        this.$router.push({ path: "/edit_profil_CSR" });
+        this.$router.push({ path: "/edit_profil_csr" });
       }
     },
   },

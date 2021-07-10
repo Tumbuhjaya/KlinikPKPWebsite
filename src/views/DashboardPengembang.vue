@@ -92,7 +92,7 @@
                         variant="warning"
                         size="sm"
                         class="m-r-15"
-                        @click="goEdit(item.item.id)"
+                        @click="goEdit(item.item.perumahanId)"
                         v-b-tooltip.hover.top="'Edit'"
                         ><b-icon-pencil-square></b-icon-pencil-square
                       ></b-button>
@@ -257,6 +257,7 @@ export default {
           },
         })
         .then((res) => {
+          console.log(res)
           this.items = res.data.data;
           this.totalRows = this.items.length;
         })

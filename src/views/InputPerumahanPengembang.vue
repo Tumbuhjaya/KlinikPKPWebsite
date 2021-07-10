@@ -49,18 +49,18 @@
                 ></multiselect>
               </b-form-group>
 
-              <!-- <b-form-group label="Kecamatan">
-                <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
-              </b-form-group> -->
+             <b-form-group label="Deskripsi">
+                    <b-form-textarea rows="7" v-model="deskripsi"></b-form-textarea>
+            </b-form-group>
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Longitude">
-                    <b-form-input placeholder="110.1234"></b-form-input>
+                    <b-form-input placeholder="110.1234" v-model ="koordinatX"></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Koordinat Latitude">
-                    <b-form-input placeholder="-6.1234"></b-form-input>
+                    <b-form-input placeholder="-6.1234" v-model="koordinatY"></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -76,22 +76,6 @@
               <b-form-group label="Luas Lahan Perumahan (m2)">
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Unit Terjual</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
-                    <b-form-input v-model="terjualUnitS"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
-                    <b-form-input v-model="terjualUnitK"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
 
               <b-form-group label="Upload Brosur Perumahan">
                 <b-form-file
@@ -134,9 +118,10 @@ export default {
       keca:"",
       email:"",
       CP:"",
+      koordinatX:"",
+      koordinatY:"",
+      deskripsi:"",
       luasLahan:"",
-      terjualUnitS:0,
-      terjualUnitK:0,
       file:"",
       kabkot: [],
     };
@@ -148,6 +133,7 @@ export default {
 
   },created(){
     this.getkota()
+    console.log(localStorage.getItem('token   '))
   },  
   methods:{
     handleFile() {
@@ -164,10 +150,10 @@ export default {
       formData.append("kabKotaPerumahan", vm.kabKot);
       formData.append("kecamatanPerumahan", vm.keca);
       formData.append("emailPerumahan", vm.email);
-      formData.append("CPPerumahan", vm.CP);
+      formData.append("koordinatX", vm.koordinatX);
+      formData.append("koordinatY", vm.koordinatY);
+      formData.append("deskripsiPerumahan", vm.deskripsi);
       formData.append("luasLahanPerumahan", vm.luasLahan);
-      // formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
-      // formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {
@@ -191,7 +177,7 @@ export default {
         token: localStorage.getItem('token')
       }
     }).then(res =>{
-      console.log(res.data.data)
+      console.log(res)
       let x = res.data.data
       this.kabkot = x.map(item =>{
         return item.namaKabKota

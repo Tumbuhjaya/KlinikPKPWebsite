@@ -99,10 +99,7 @@ export default {
       }
     },
     logOut() {
-      console.log("logout");
-      localStorage.clear();
-      this.checkLogin();
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/logout" });
     },
     goBeranda() {
       let r = localStorage.getItem("role");

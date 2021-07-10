@@ -24,9 +24,11 @@
                     ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
                   >
                   <h6 class="m-t-0 m-b-0">|</h6>
-                  <h6 class="m-t-0 m-b-0"><strong>Edit Profil Pengembang</strong></h6>
+                  <h6 class="m-t-0 m-b-0">
+                    <strong>Edit Profil Pengembang</strong>
+                  </h6>
                 </div>
-                <hr class="m-t-10 m-b-10"/>
+                <hr class="m-t-10 m-b-10" />
               </b-col>
             </b-row>
 
@@ -36,33 +38,35 @@
                   <b-col md="12">
                     <b-form-group label="Password Lama">
                       <b-form-input
-                      type="password"
-                      v-model="oldpass"
+                        type="password"
+                        v-model="oldpass"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Password Baru">
                       <b-form-input
-                      type="password"
-                      v-model="newpass1"
+                        type="password"
+                        v-model="newpass1"
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group label="Konfirmasi Password Baru">
                       <b-form-input
-                      type="password"
-                      v-model="newpass2"
+                        type="password"
+                        v-model="newpass2"
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-row>
-                <p v-if="this.status == 'beda'
-                " color="danger">Password Baru dan Konfirmasi Password Baru harus sama</p>
+                <p v-if="this.status == 'beda'" color="red"><strong>
+                  Password Baru dan Konfirmasi Password Baru harus sama
+                </strong>
+                  
+                </p>
 
                 <b-row>
                   <b-col md="12">
-                    <b-button variant="primary"
-                    @click="changePass()" 
+                    <b-button variant="primary" @click="changePass()"
                       >Update</b-button
                     >
                   </b-col>
@@ -92,45 +96,57 @@ export default {
     return {
       isLogin: false,
       userData: [],
-      oldpass:"",
-      newpass1:"",
-      newpass2:"",
-      status: 'sama'
+      oldpass: "",
+      newpass1: "",
+      newpass2: "",
+      status: "sama",
     };
   },
   components: {
     myheader,
     myfooter,
   },
-  created() {
+  created() {},
+  methods: {
+    changePass() {
+      axios
+        .post(
+          ipBackEnd + "users/changePassword",
+          {
+            passwordLama: this.oldpass,
+            passwordBaru: this.newpass1,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data.message != 'password salah'){
+            if (localStorage.getItem('role') == 'pengembang'){
+              this.$router.push({path :'/dashboard_pengembang'})
+            } else if (localStorage.getItem('role') == 'CSR'){
+              this.$router.push({path :'/dashboard_csr'})
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
-  methods:{
-    changePass(){
-      axios.post(ipBackEnd+ 'users/changePassword',{
-        passwordLama : this.oldpass,
-        passwordBaru : this.newpass1
-      },{
-        headers:{
-          token:localStorage.getItem('token')
-        }
-      }).then(res =>{
-        console.log(res)
-      }).catch(err =>{
-        console.log(err)
-      })
-    }
-  },
-  watch:{
-    'newpass2': function(val){
-      console.log(val)
-      if(this.newpass1 != val){
-        this.status = 'beda'
-      }else{
-        this.status = 'sama'
+  watch: {
+    newpass2: function(val) {
+      console.log(val);
+      if (this.newpass1 != val) {
+        this.status = "beda";
+      } else {
+        this.status = "sama";
       }
-    }
-  }
-  
+    },
+  },
 };
 </script>
 
