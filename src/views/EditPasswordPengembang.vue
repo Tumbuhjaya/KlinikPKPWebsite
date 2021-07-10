@@ -9,12 +9,12 @@
             <b-row>
               <b-col md="12">
                 <h2 class="m-t-0 m-b-0 text-center">
-                  <strong>Edit Password Pengembang</strong>
+                  <strong>Edit Password</strong>
                 </h2>
               </b-col>
             </b-row>
 
-            <b-row>
+            <!-- <b-row>
               <b-col md="8" offset-md="2">
                 <hr class="m-t-10 m-b-10" />
                 <div class="box-submenu">
@@ -30,7 +30,7 @@
                 </div>
                 <hr class="m-t-10 m-b-10" />
               </b-col>
-            </b-row>
+            </b-row> -->
 
             <b-row class="m-t-30">
               <b-col md="12">

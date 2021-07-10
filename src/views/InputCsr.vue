@@ -49,7 +49,7 @@
                     <b-form-textarea rows="3" v-model="deskripsi"></b-form-textarea>
                 </b-form-group>
 
-                <b-form-group label="Upload Foto Kegiatan">
+                <b-form-group label="Upload Foto Kegiatan (Foto utama)">
                     <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
                 </b-form-group>
 

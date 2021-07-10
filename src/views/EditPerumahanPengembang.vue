@@ -104,6 +104,7 @@
                 ></b-form-input>
               </b-form-group>
 
+<<<<<<< HEAD
               <b-form-group
                 label="Upload Foto Perumahan"
                 style="margin-bottom:0px !important"
@@ -113,6 +114,36 @@
                   ref="file"
                   @input="handleFile()"
                 ></b-form-file>
+=======
+              <b-form-group label="Deskripsi">
+                <b-form-textarea rows="4"></b-form-textarea>
+              </b-form-group>
+
+              <!-- <b-row>
+                <b-col md="12">
+                  <h5><strong>Unit Terjual</strong></h5>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
+                    <b-form-input
+                      v-model="dataPerum.jmlTerjualUnitSubsidi"
+                      :placeholder="setPlace(dataPerum.jmlTerjualUnitSubsidi)"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
+                    <b-form-input
+                      v-model="dataPerum.jmlTerjualUnitKomersial"
+                      :placeholder="setPlace(dataPerum.jmlTerjualUnitKomersial)"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row> -->
+
+              <b-form-group label="Upload Foto Perumahan" style="margin-bottom:0px !important">
+                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+>>>>>>> 9bf92877395b9e1a71540cc88060c840106589c0
               </b-form-group>
 
               <b-form-group class="m-t-15">

@@ -174,15 +174,11 @@
                     <p>
                      {{ item.kabKotaPerumahan }}
                     </p>
-
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong>
-                      {{ item.jmlSubsidi }} Unit Rp 200 - 400 Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong>
-                      {{ item.jmlKomersial }} Unit Rp 800 - 1 M
-                    </h6>
+                    
+                    
+                    <b-badge variant="success" style="text-transform:capitalize;"><h6 class="m-t-0 m-b-0 p-l-10 p-r-10"><strong>Subsidi : {{ item.jmlSubsidi }} Unit</strong></h6></b-badge>
+                    
+                    <b-badge variant="primary" style="text-transform:capitalize;"><h6 class="m-t-0 m-b-0 p-l-10 p-r-10"><strong>Non Subsidi : {{ item.jmlKomersial }} Unit</strong></h6></b-badge>
                   </div>
                   <!-- </router-link> -->
                 </div>
@@ -435,6 +431,9 @@ export default {
 </script>
 
 <style scoped>
+.badge{
+  margin-bottom: 5px;
+}
 .slick-slider img {
   width: 100%;
 }
