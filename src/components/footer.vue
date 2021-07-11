@@ -40,7 +40,7 @@
                     </b-form-group>
 
                     <b-form-group label="Password" style="color:#4c87f2">
-                        <b-form-input v-model="password" type="password"></b-form-input>
+                        <b-form-input v-model="password" type="password" @keyup.enter="login()"></b-form-input>
                     </b-form-group>
 
                     <b-form-group>

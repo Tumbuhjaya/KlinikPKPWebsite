@@ -126,9 +126,9 @@ export default {
           console.log(res);
           if (res.data.message != 'password salah'){
             if (localStorage.getItem('role') == 'pengembang'){
-              this.$router.push({path :'/dashboard_pengembang'})
+              this.$router.push({path :'/logout'})
             } else if (localStorage.getItem('role') == 'CSR'){
-              this.$router.push({path :'/dashboard_csr'})
+              this.$router.push({path :'/logout'})
             }
           }
         })

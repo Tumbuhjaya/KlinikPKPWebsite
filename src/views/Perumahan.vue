@@ -27,6 +27,7 @@
                     <b-form-group>
                       <b-form-input
                         placeholder="Cari Perumahan, Pengembang, dkk"
+                        v-model="nama"
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
@@ -38,18 +39,25 @@
                       Lokasi
                     </div>
                   </b-col>
-                  <b-col md="5">
-                    <b-form-select
-                      v-model="selected"
-                      :options="kabkot"
-                    ></b-form-select>
+                  <b-col md="10">
+                    <b-form-group>
+                    <multiselect
+                    :options="kabkot"
+                    v-model="kabKota"
+                    :multiple="false"
+                    :searchable="true"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="-- Pilih Kabupaten/Kota --"
+                    ></multiselect>
+                </b-form-group>
                   </b-col>
-                  <b-col md="5">
+                  <!-- <b-col md="5">
                     <b-form-select
                       v-model="selected"
                       :options="kec"
                     ></b-form-select>
-                  </b-col>
+                  </b-col> -->
                 </b-row>
 
                 <b-row class="m-t-15">
@@ -59,10 +67,17 @@
                     </div>
                   </b-col>
                   <b-col md="10">
-                    <b-form-select
-                      v-model="selected"
-                      :options="jenis"
-                    ></b-form-select>
+                    <b-form-group>
+                    <multiselect
+                    :options="jeniss"
+                    v-model="jenis"
+                    :multiple="false"
+                    :searchable="true"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="-- Pilih Kategori --"
+                    ></multiselect>
+                </b-form-group>
                   </b-col>
                 </b-row>
 
@@ -71,9 +86,7 @@
                     &nbsp;
                   </b-col>
                   <b-col md="10">
-                    <router-link :to="'/data_perumahan'">
-                      <b-button variant="primary">Cari</b-button>
-                    </router-link>
+                      <b-button variant="primary" @click="goSearch()">Cari</b-button>
                   </b-col>
                 </b-row>
               </div>
@@ -87,7 +100,9 @@
       <b-container>
         <b-row>
           <b-col md="3">
-            <h1><strong>{{total.stockSubsidi[0].sum}}</strong></h1>
+            <h1>
+              <strong>{{ getJml(total.stockSubsidi[0].sum) }}</strong>
+            </h1>
             <h5><strong>UNIT RUMAH</strong></h5>
             <h5><strong>SUBSIDI</strong></h5>
             <!-- <p>
@@ -97,7 +112,9 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>{{total.stockKomersial[0].sum}}</strong></h1>
+            <h1>
+              <strong>{{ getJml(total.stockKomersial[0].sum) }}</strong>
+            </h1>
             <h5><strong>UNIT RUMAH</strong></h5>
             <h5><strong>NON SUBSIDI</strong></h5>
             <!-- <p>
@@ -107,7 +124,9 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>{{total.terjualSubsidi[0].sum}}</strong></h1>
+            <h1>
+              <strong>{{ getJml(total.terjualSubsidi[0].sum) }}</strong>
+            </h1>
             <h5><strong>UNIT RUMAH</strong></h5>
             <h5><strong>SUBSIDI TERJUAL</strong></h5>
             <!-- <p>
@@ -117,7 +136,9 @@
           </b-col>
 
           <b-col md="3">
-            <h1><strong>{{total.terjualKomersial[0].sum}}</strong></h1>
+            <h1>
+              <strong>{{ getJml(total.terjualKomersial[0].sum) }}</strong>
+            </h1>
             <h5><strong>UNIT RUMAH</strong></h5>
             <h5><strong>NON SUBSIDI TERJUAL</strong></h5>
             <!-- <p>
@@ -151,7 +172,8 @@
 
         <b-row class="m-t-15">
           <b-col md="12">
-            <VueSlickCarousel :dots="true"
+            <VueSlickCarousel
+              :dots="true"
               v-bind="rekomperumahan"
               v-if="listPerumahan.length > 0"
             >
@@ -172,13 +194,26 @@
                       {{ item.alamatPerumahan }}
                     </p>
                     <p>
-                     {{ item.kabKotaPerumahan }}
+                      {{ item.kabKotaPerumahan }}
                     </p>
-                    
-                    
-                    <b-badge variant="success" style="text-transform:capitalize;"><h6 class="m-t-0 m-b-0 p-l-10 p-r-10"><strong>Subsidi : {{ item.jmlSubsidi }} Unit</strong></h6></b-badge>
-                    
-                    <b-badge variant="primary" style="text-transform:capitalize;"><h6 class="m-t-0 m-b-0 p-l-10 p-r-10"><strong>Non Subsidi : {{ item.jmlKomersial }} Unit</strong></h6></b-badge>
+
+                    <b-badge
+                      variant="success"
+                      style="text-transform:capitalize;"
+                      ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
+                        <strong>Subsidi : {{ getJml(item.jmlSubsidi) }} Unit</strong>
+                      </h6></b-badge
+                    >
+
+                    <b-badge
+                      variant="primary"
+                      style="text-transform:capitalize;"
+                      ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
+                        <strong
+                          >Non Subsidi : {{ getJml(item.jmlKomersial) }} Unit</strong
+                        >
+                      </h6></b-badge
+                    >
                   </div>
                   <!-- </router-link> -->
                 </div>
@@ -216,7 +251,7 @@
               v-if="listPerumahan.length > 0"
             >
               <div v-for="item in listPengembang" :key="item.id">
-                <img :src="item.src" alt="" style="width:100%;height:100px"/>
+                <img :src="item.src" alt="" style="width:100%;height:100px" />
               </div>
             </VueSlickCarousel>
           </b-col>
@@ -284,6 +319,7 @@ import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 import VueSlickCarousel from "vue-slick-carousel";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "Perumahan",
@@ -293,7 +329,7 @@ export default {
       listPerumahan: [],
       listPerbankan: [],
       listPengembang: [],
-      total:[],
+      total: [],
       rekomperumahan: {
         autoplay: true,
         dots: false,
@@ -323,28 +359,28 @@ export default {
         slidesToShow: 4,
         slidesToScroll: 1,
       },
-
-      selected: null,
-      kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" }],
-
-      kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
-
-      jenis: [
-        { value: null, text: "-- Pilih Jenis --" },
-        { value: "Subsidi", text: "Subsidi" },
-        { value: "Komersial", text: "Komersial" },
-      ],
+      nama: "",
+      kabkot: [],
+      kabKota: "",
+      // kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
+      jenis: "",
+      jeniss: ["-- Pilih Kategori --", "Subsidi", "Komersial"],
     };
   },
   components: {
     myheader,
     myfooter,
+    Multiselect,
     VueSlickCarousel,
   },
   async created() {
     await this.getPengembang();
     await this.getPerumahan();
     await this.getStock();
+    await this.getkota();
+    localStorage.setItem('nama', "")
+    localStorage.setItem('jenis', "")
+    localStorage.setItem('kota', "")
   },
   methods: {
     async getPengembang() {
@@ -382,6 +418,12 @@ export default {
     goListRumah(x) {
       this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
     },
+    goSearch() {
+      localStorage.setItem('nama', this.nama)
+      localStorage.setItem('jenis', this.jenis)
+      localStorage.setItem('kota', this.kabKota)
+      this.$router.push({ path: `/data_perumahan`});
+    },
     getkota() {
       axios
         .get(ipBackEnd + "kabKota/list", {
@@ -393,8 +435,9 @@ export default {
           console.log(res.data.data);
           let x = res.data.data;
           this.kabkot = x.map((item) => {
-            return item.namaKabKota;
+            return  item.namaKabKota ;
           });
+          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
         })
         .catch((err) => {
           console.log(err);
@@ -420,18 +463,25 @@ export default {
         .get(ipBackEnd + "rumah/totalStock")
         .then((res) => {
           console.log(res.data);
-          this.total= res.data
+          this.total = res.data;
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    getJml(x){
+      if( x== null || x == undefined){
+        return 0
+      }else{
+        return x
+      }
+    }
   },
 };
 </script>
 
 <style scoped>
-.badge{
+.badge {
   margin-bottom: 5px;
 }
 .slick-slider img {
@@ -516,9 +566,9 @@ export default {
   border-radius: 25px;
 }
 
-.section-three .box .up{
+.section-three .box .up {
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-content: center;
 }

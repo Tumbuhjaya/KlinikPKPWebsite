@@ -11,14 +11,8 @@
               fade
               indicators
             >
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=10"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=12"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=22"
+              <b-carousel-slide v-for="item in listBanner" :key="item.id"
+                :img-src="item.src"
               ></b-carousel-slide>
             </b-carousel>
           </b-col>
@@ -419,8 +413,8 @@
 </template>
 
 <script>
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myfooter from "../components/footer";
 import VueSlickCarousel from "vue-slick-carousel";
 // @ is an alias to /src
@@ -435,6 +429,7 @@ export default {
       isLogin: false,
       username: "",
       password: "",
+      listBanner:"",
       settings: {
         autoplay: true,
         dots: false,
@@ -453,6 +448,7 @@ export default {
   },
   created() {
     this.checkLogin();
+    this.getBanner()
   },
   methods: {
     checkLogin() {
@@ -483,6 +479,17 @@ export default {
         this.$router.push({ path: "/edit_profil_csr" });
       }
     },
+    getBanner(){
+      axios.get(ipBackEnd + 'banner/listAll').then(res =>{
+        console.log(res)
+        let x = res.data.data
+        this.listBanner = x.map(item=>{
+          return{...item, src: ipBackEnd + item.namaBanner}
+        })
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
   },
 };
 </script>

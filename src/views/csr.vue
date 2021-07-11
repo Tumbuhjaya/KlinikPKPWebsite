@@ -15,7 +15,7 @@
                     <b-alert show variant="primary">
                     <h4 class="alert-heading">Segera daftarkan perusahaan anda !</h4>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo enim et illo consequatur eos, nemo molestiae, in iusto ut eligendi voluptatem ipsam, omnis minus eius inventore aliquam? Quidem voluptates natus placeat, possimus, atque animi inventore in quaerat, id perferendis ab.
+                        " Pelaksanaan CSR diatur dalam Undang-Undang No. 40 Tahun 2007 serta Peraturan Pemerintah No. 47 Tahun 2012 yang mengamanatkan Perusahaan untuk berperan serta dalam pembangunan sosial ekonomi dan lingkungan untuk masyarakat "
                     </p>
                     <hr />
                     <router-link :to="'daftar_csr'">
@@ -121,6 +121,7 @@ export default {
           this.listCsr = x.map((item) => {
             return { ...item, src: ipBackEnd + item.logo };
           });
+          this.listCsr.sort((a,b) => (a.jumlahCSR < b.jumlahCSR) ? 1 : ((b.jumlahCSR < a.jumlahCSR) ? -1 : 0))
         })
         .catch((err) => {
           console.log(err);
@@ -154,9 +155,9 @@ export default {
   align-items: center;
 }
 
-.section-one .box img {
+/* .section-one .box img { */
   /* border-radius: 20px; */
-}
+/* } */
 
 .section-one .notif-csr {
   width: 40px;

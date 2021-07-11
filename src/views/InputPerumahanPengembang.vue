@@ -49,18 +49,24 @@
                 ></multiselect>
               </b-form-group>
 
-             <b-form-group label="Deskripsi">
-                    <b-form-textarea rows="7" v-model="deskripsi"></b-form-textarea>
-            </b-form-group>
+              <b-form-group label="Deskripsi">
+                <b-form-textarea rows="7" v-model="deskripsi"></b-form-textarea>
+              </b-form-group>
               <b-row>
                 <b-col md="6">
                   <b-form-group label="Koordinat Longitude">
-                    <b-form-input placeholder="110.1234" v-model ="koordinatX"></b-form-input>
+                    <b-form-input
+                      placeholder="110.1234"
+                      v-model="koordinatX"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
                   <b-form-group label="Koordinat Latitude">
-                    <b-form-input placeholder="-6.1234" v-model="koordinatY"></b-form-input>
+                    <b-form-input
+                      placeholder="-6.1234"
+                      v-model="koordinatY"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -84,8 +90,6 @@
                   @input="handleFile()"
                 ></b-form-file>
               </b-form-group>
-
-              
 
               <b-button variant="primary" @click="regisPerumahan()"
                 >Simpan</b-button
@@ -114,30 +118,29 @@ export default {
   data() {
     return {
       isLogin: false,
-      namaPerum:"",
-      alamat:"",
-      kabKot:"",
-      keca:"",
-      email:"",
-      CP:"",
-      koordinatX:"",
-      koordinatY:"",
-      deskripsi:"",
-      luasLahan:"",
-      file:"",
+      namaPerum: "",
+      alamat: "",
+      kabKot: "",
+      keca: "",
+      email: "",
+      CP: "",
+      koordinatX: "",
+      koordinatY: "",
+      deskripsi: "",
+      luasLahan: "",
+      file: "",
       kabkot: [],
     };
   },
   components: {
     myheader,
     myfooter,
-  Multiselect
-
-  },created(){
-    this.getkota()
-    console.log(localStorage.getItem('token   '))
-  },  
-  methods:{
+    Multiselect,
+  },
+  created() {
+    this.getkota();
+  },
+  methods: {
     handleFile() {
       this.file = this.$refs.file.files[0];
       console.log(this.$refs.file.files[0]);
@@ -173,21 +176,25 @@ export default {
           console.log(err);
         });
     },
-    getkota(){
-    axios.get(ipBackEnd + 'kabKota/list',{
-      headers:{
-        token: localStorage.getItem('token')
-      }
-    }).then(res =>{
-      console.log(res)
-      let x = res.data.data
-      this.kabkot = x.map(item =>{
-        return item.namaKabKota
-      })
-    }).catch(err =>{
-      console.log(err)
-    })
-  }
+    getkota() {
+      axios
+        .get(ipBackEnd + "kabKota/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          let x = res.data.data;
+          this.kabkot = x.map((item) => {
+            return item.namaKabKota;
+          });
+          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>

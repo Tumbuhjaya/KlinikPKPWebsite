@@ -46,6 +46,7 @@
         </b-row>
 
         <b-row>
+          <h2 v-if="listKegCsr.length == 0"> Perusahaan Belum Pernah Melakukan Kegiatan CSR</h2>
           <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId" @click="goMore(item.CSRId)">
               <div class="box m-t-15 m-b-15">
               <img :src="item.src1" alt="" style="width:100%"/>

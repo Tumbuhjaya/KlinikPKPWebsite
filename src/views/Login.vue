@@ -55,6 +55,7 @@
                       <b-form-input
                         type="password"
                         v-model="password"
+                        @click="login()"
                       ></b-form-input>
                     </b-form-group>
                     <!-- <router-link :to="'/dashboard_pengembang'" style="text-decoration:none"> -->

@@ -283,6 +283,7 @@ export default {
           this.kabkot = x.map((item) => {
             return item.namaKabKota;
           });
+          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
         })
         .catch((err) => {
           console.log(err);
