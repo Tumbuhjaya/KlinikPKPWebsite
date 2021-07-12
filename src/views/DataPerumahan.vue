@@ -276,7 +276,7 @@ export default {
           this.listCari.sort((a,b) => (a.hargaMinSubsidi > b.hargaMinSubsidi) ? 1 : ((b.hargaMinSubsidi > a.hargaMinSubsidi) ? -1 : 0))
         } else if( val == 'Berdasarkan Harga Turun' ){
           console.log('turun')
-          this.listCari.sort((a,b) => (a.hargaMaxSKomersial < b.hargaMaxKomersial) ? 1 : ((b.hargaMaxKomersial < a.hargaMaxKomersial) ? -1 : 0))
+          this.listCari.sort((a,b) => (a.hargaMaxKomersial < b.hargaMaxKomersial) ? 1 : ((b.hargaMaxKomersial < a.hargaMaxKomersial) ? -1 : 0))
         }
         
       }
