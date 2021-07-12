@@ -102,6 +102,9 @@
                   <b-form-checkbox>Hak Guna Bangunan (HGB)</b-form-checkbox>
                   <b-form-checkbox>Lainnya</b-form-checkbox>
                 </b-col>
+                <b-col md="10">
+                      <b-button variant="primary" @click="search()">Cari</b-button>
+                  </b-col>
               </b-row>
             </div>
           </b-col>
