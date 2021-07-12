@@ -120,11 +120,15 @@
               </b-col>
 
               <b-col md="4">
-                <b-form-select
-                  v-model="urut"
-                  :options="urutkan"
-                  class="m-t-10"
-                ></b-form-select>
+                <multiselect
+                    :options="urutkan"
+                    v-model="urut"
+                    :multiple="false"
+                    :searchable="true"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="-- Urutkan --"
+                  ></multiselect>
               </b-col>
             </b-row>
 
@@ -197,7 +201,10 @@ export default {
       kabkot: [],
       //   kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
       jeniss: ["-- Kategori --", "Subsidi", "Komersial"],
-      urutkan: [{ value: null, text: "-- Urutkan --" }],
+      urutkan: ["-- Urutkan --" ,
+      'Berdasarkan Harga Naik' ,
+      'Berdasarkan Harga Turun' ,
+      ],
     };
   },
   components: {
@@ -262,6 +269,18 @@ export default {
       this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
     },
   },
+   watch:{
+      urut :function (val){
+        if (val == 'Berdasarkan Harga Naik'){
+          console.log('naik')
+          this.listCari.sort((a,b) => (a.hargaMinSubsidi > b.hargaMinSubsidi) ? 1 : ((b.hargaMinSubsidi > a.hargaMinSubsidi) ? -1 : 0))
+        } else if( val == 'Berdasarkan Harga Turun' ){
+          console.log('turun')
+          this.listCari.sort((a,b) => (a.hargaMaxSKomersial < b.hargaMaxKomersial) ? 1 : ((b.hargaMaxKomersial < a.hargaMaxKomersial) ? -1 : 0))
+        }
+        
+      }
+    }
 };
 </script>
 
