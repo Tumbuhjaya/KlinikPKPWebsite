@@ -251,7 +251,7 @@ export default {
           kabKotaPerumahan: vm.kabKota,
           hargaMin: vm.hargaMin,
           hargaMax: x,
-          jenis: vm.jenis,
+          jenis: vm.jenis.toLowerCase(),
         })
         .then((res) => {
           //   console.log(res);
