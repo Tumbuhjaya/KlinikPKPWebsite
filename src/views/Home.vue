@@ -523,7 +523,7 @@ export default {
 
 .section-one .banner {
   width: 100%;
-  height: 600px;
+  min-height: 400px;
   position: relative;
   background-color: whitesmoke;
 }
