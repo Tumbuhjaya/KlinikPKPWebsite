@@ -4,7 +4,7 @@
       <b-container fluid>
         <b-row>
           <b-col md="12" class="pl-0 pr-0 banner">
-            <!-- <b-carousel
+            <b-carousel
               id="carousel-fade"
               :interval="4000"
               style="text-shadow: 0px 0px 2px #000"
@@ -14,9 +14,8 @@
               <b-carousel-slide v-for="item in listBanner" :key="item.id"
                 :img-src="item.src"
               ></b-carousel-slide>
-            
-            </b-carousel> -->
-            <img src="../assets/banner2.png" alt="" style="width:100%">
+            </b-carousel>
+            <!-- <img src="../assets/banner2.png" alt="" style="width:100%"> -->
           </b-col>
         </b-row>
       </b-container>

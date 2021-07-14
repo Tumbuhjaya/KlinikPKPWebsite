@@ -118,6 +118,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import ipBackEnd from '@/ipBackEnd'
+import axios from 'axios'
 import CoolLightBox from 'vue-cool-lightbox';
 import myheader from "../components/header";
 import myfooter from "../components/footer";
@@ -176,8 +178,8 @@ export default {
     CoolLightBox,
 
   },
-  async created() {
-    this.itemss = await this.getPengembang();
+  created() {
+    this.getRTLH()
   },
   methods: {
     info(item, index, button) {
@@ -194,6 +196,13 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
+    getRTLH(){
+      axios.get(ipBackEnd  + 'RTLH/listAll').then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
     
   },
 };
