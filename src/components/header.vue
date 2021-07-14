@@ -103,6 +103,7 @@ export default {
     },
     goBeranda() {
       let r = localStorage.getItem("role");
+      console.log(r)
       if (r == "pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
       } else if (r == "CSR") {

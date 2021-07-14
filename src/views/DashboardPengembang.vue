@@ -100,7 +100,7 @@
                       <b-button
                         variant="danger"
                         size="sm"
-                        @click="hapus(item.item.id)"
+                        @click="hapus(item.item.perumahanId)"
                         v-b-tooltip.hover.top="'Hapus'"
                         class="m-r-15"
                         ><b-icon-trash></b-icon-trash
