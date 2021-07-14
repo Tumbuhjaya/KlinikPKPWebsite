@@ -43,7 +43,7 @@
                                 </b-form-group>
 
                                 <b-form-group label="Upload Logo Perusahaan">
-                                    <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+                                    <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
                                 </b-form-group>
                           </b-col>
                       </b-row>
@@ -103,7 +103,7 @@ export default {
       profilPerusahaan:"",
       profil:"",
       website:"",
-      file:"",
+      foto1:"",
       role:"CSR"      
     };
   },
@@ -114,8 +114,8 @@ export default {
 
   methods: {
     handleFile() {
-        this.file = this.$refs.file.files[0]
-        console.log(this.$refs.file.files[0])
+        this.foto1 = this.$refs.foto1.files[0]
+        console.log(this.$refs.foto1.files[0])
     },
     register() {
       let vm = this;
@@ -129,7 +129,7 @@ export default {
       formData.append("profilPerusahaan", vm.profilPerusahaan);
       formData.append("website", vm.website);
       formData.append("role", vm.role);
-      formData.append("file", vm.file)
+      formData.append("foto1", vm.foto1)
       axios
         .post(ipBackEnd + "users/register", formData
         )

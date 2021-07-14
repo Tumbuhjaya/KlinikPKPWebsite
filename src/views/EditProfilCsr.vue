@@ -59,8 +59,8 @@
 
             <b-form-group label="Upload Logo Perusahaan">
               <b-form-file
-                id="file"
-                ref="file"
+                id="foto1"
+                ref="foto1"
                 @input="handleFile()"
               ></b-form-file>
             </b-form-group>
@@ -109,7 +109,7 @@ export default {
   data() {
     return {
       isLogin: false,
-      file: "",
+      foto1: "",
       datasCsr: [],
       ipBackEnd: ipBackEnd,
     };
@@ -123,10 +123,10 @@ export default {
   },
   methods: {
     handleFile() {
-      this.file = this.$refs.file.files[0];
+      this.foto1 = this.$refs.foto1.files[0];
     },
     editProfilCsr() {
-      if (this.file != "") {
+      if (this.foto1 != "") {
         this.editLogo();
       }
 
@@ -146,7 +146,7 @@ export default {
     },
     editLogo() {
       let formData = new FormData();
-      formData.append("file", this.file);
+      formData.append("foto1", this.foto1);
       formData.append("id", this.datasCsr.id);
       axios
         .post(ipBackEnd + "users/changeLogo", formData, {

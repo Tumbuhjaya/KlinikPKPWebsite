@@ -71,7 +71,7 @@
                     </b-form-group>
 
                     <b-form-group label="Upload Logo Pengembang" style="margin-bottom:0px !important">
-                      <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+                      <b-form-file id="foto1" ref="foto1" @input="handleFile()"></b-form-file>
 
                       
                     </b-form-group>
@@ -120,7 +120,7 @@ export default {
     return {
       isLogin: false,
       userData: [],
-      file:"",
+      foto1:"",
       blank:"_blank",
       ipBackEnd: ipBackEnd,
       };
@@ -134,7 +134,7 @@ export default {
   },
   methods: {
     handleFile(){
-      this.file = this.$refs.file.files[0]
+      this.foto1 = this.$refs.foto1.files[0]
     },
     getData() {
       axios
@@ -153,7 +153,7 @@ export default {
         });
     },
     update(){
-      if (this.file != ""){
+      if (this.foto1 != ""){
         this.changeLogo()
       }
       axios.post(ipBackEnd + 'users/update', this.userData, {
@@ -170,7 +170,7 @@ export default {
     changeLogo(){
       let vm = this
       let formData = new FormData
-      formData.append('file', vm.file)
+      formData.append('foto1', vm.foto1)
       formData.append('id', vm.userData.id)
       axios.post(ipBackEnd + 'users/changeLogo', formData, {
         headers:{
