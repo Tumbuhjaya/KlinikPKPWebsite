@@ -259,10 +259,12 @@
                   </b-col>
 
                   <b-col md="4">
-                    <center>
-                      <img src="https://via.placeholder.com/100" alt="" />
-                      <h6 class="m-t-15"><strong>Cari RTLH</strong></h6>
-                    </center>
+                    <router-link :to="'rtlh'">
+                      <center>
+                        <img src="https://via.placeholder.com/100" alt="" />
+                        <h6 class="m-t-15"><strong>Cari RTLH</strong></h6>
+                      </center>
+                    </router-link>
                   </b-col>
 
                   <b-col md="4">

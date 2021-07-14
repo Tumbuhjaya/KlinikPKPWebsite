@@ -24,6 +24,8 @@ import EditProfilCsr from "../views/EditProfilCsr.vue";
 import EditPasswordCsr from "../views/EditPasswordCsr.vue";
 import InputCsr from "../views/InputCsr.vue";
 import EditCsr from "../views/EditCsr.vue";
+import Rtlh from "../views/Rtlh.vue";
+import DetailRtlh from "../views/DetailRtlh.vue";
 import Magang from "../views/Magang.vue";
 import DetailMagang from "../views/DetailMagang.vue";
 import GabungMagang from "../views/GabungMagang.vue";
@@ -312,6 +314,24 @@ const routes = [
         });
       }
     },
+  },
+
+  {
+    path: "/rtlh",
+    name: "Rtlh",
+    component: Rtlh,
+    meta:{
+      role: "all",
+    }
+  },
+
+  {
+    path: "/detail_rtlh",
+    name: "DetailRtlh",
+    component: DetailRtlh,
+    meta:{
+      role: "all",
+    }
   },
 
   {
