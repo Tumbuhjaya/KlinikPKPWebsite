@@ -127,7 +127,11 @@ export default {
   data() {
     return {
       isLogin: false,
-      items: [],
+      items: [
+        'https://picsum.photos/1024/480/?image=52',
+      ],
+      index: null,
+      itemss: [],
       fields: [
         {
           key: "no",
@@ -173,7 +177,7 @@ export default {
 
   },
   async created() {
-    this.items = await this.getPengembang();
+    this.itemss = await this.getPengembang();
   },
   methods: {
     info(item, index, button) {
@@ -198,5 +202,15 @@ export default {
 <style scoped>
 .section-one {
   padding: 60px 0;
+}
+
+.images{
+    background-color: red !important;
+}
+.images-wrapper{
+    width: 100px;
+    height:100px;
+    background-color: red;
+    /* display: flex; */
 }
 </style>
