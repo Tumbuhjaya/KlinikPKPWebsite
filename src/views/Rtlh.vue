@@ -11,7 +11,7 @@
             </h2>
           </b-col>
         </b-row>
-        
+
         <b-row class="m-t-30">
           <b-col md="12">
             <b-row>
@@ -51,7 +51,9 @@
                     ></b-form-input>
 
                     <b-input-group-append>
-                      <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                      <b-button :disabled="!filter" @click="filter = ''"
+                        >Clear</b-button
+                      >
                     </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
@@ -59,9 +61,9 @@
             </b-row>
           </b-col>
         </b-row>
-        
+
         <b-table
-          :items="items"
+          :items="listRTLH"
           :fields="fields"
           :current-page="currentPage"
           :per-page="perPage"
@@ -74,40 +76,46 @@
           @filtered="onFiltered"
           class="mt-3"
         >
-
-          <template #cell(actions)>
+          <template #cell(No)="item"> {{ item.index + 1 }}. </template>
+          <template #cell(actions)="item">
             <center>
-              <CoolLightBox 
-                :items="items" 
+              <CoolLightBox
+                :items="item.item.display"
                 :index="index"
-                @close="index = null">
-            </CoolLightBox>
+                @click="cekcek(item)"
+                @close="index = null"
+              >
+              </CoolLightBox>
 
-            <div class="images-wrapper">
+              <div class="images-wrapper">
                 <div
-                    class="image"
-                    v-for="(image, imageIndex) in items"
-                    :key="imageIndex"
-                    @click="index = imageIndex"
-                    :style="{ backgroundImage: 'url(' + image + ')',width:'100%',height:'100%', backgroundSize:'cover'}"
+                  class="image"
+                  v-for="(image, imageIndex) in item.item.display"
+                  :key="imageIndex"
+                  @click="index = imageIndex, cek('url(' + image + ')', item.item.display)"
+                  :style="{
+                    backgroundImage: 'url(' + image + ')',
+                    width: '100%',
+                    height: '100%',
+                    backgroundSize: 'cover',
+                  }"
                 ></div>
-            </div>
-              
+              </div>
             </center>
           </template>
         </b-table>
 
         <b-row>
-            <b-col md="5" offset-md="7">
-              <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                align="fill"
-                size="md"
-              ></b-pagination>
-            </b-col>
-          </b-row>
+          <b-col md="5" offset-md="7">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              align="fill"
+              size="md"
+            ></b-pagination>
+          </b-col>
+        </b-row>
       </b-container>
     </section>
 
@@ -118,9 +126,9 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import ipBackEnd from '@/ipBackEnd'
-import axios from 'axios'
-import CoolLightBox from 'vue-cool-lightbox';
+import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import CoolLightBox from "vue-cool-lightbox";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 
@@ -129,11 +137,8 @@ export default {
   data() {
     return {
       isLogin: false,
-      items: [
-        'https://picsum.photos/1024/480/?image=52',
-      ],
       index: null,
-      itemss: [],
+      listRTLH: [],
       fields: [
         {
           key: "no",
@@ -156,6 +161,13 @@ export default {
           class: "text-left",
         },
         {
+          key: "NIK",
+          label: "NIK",
+          sortable: true,
+          sortDirection: "desc",
+          class: "text-left",
+        },
+        {
           key: "alamat",
           label: "Alamat",
           sortable: true,
@@ -169,17 +181,15 @@ export default {
       pageOptions: [50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
-      
     };
   },
   components: {
     myheader,
     myfooter,
     CoolLightBox,
-
   },
   created() {
-    this.getRTLH()
+    this.getRTLH();
   },
   methods: {
     info(item, index, button) {
@@ -196,14 +206,32 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    getRTLH(){
-      axios.get(ipBackEnd  + 'RTLH/listAll').then(res =>{
-        console.log(res)
-      }).catch(err =>{
-        console.log(err)
-      })
+    getRTLH() {
+      axios
+        .get(ipBackEnd + "RTLH/listAll")
+        .then((res) => {
+          let x = res.data.data;
+          this.listRTLH = x.map((item) => {
+            item.display = [];
+            item.display.push(ipBackEnd + item.foto1);
+            item.display.push(ipBackEnd + item.foto2);
+            item.display.push(ipBackEnd + item.foto3);
+            item.display.push(ipBackEnd + item.foto4);
+            item.display.push(ipBackEnd + item.fotoSelfie);
+            return { ...item };
+          });
+          console.log(this.listRTLH)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    cek(x){
+      console.log(x)
+    },
+    cekcek(x){
+      console.log(x)
     }
-    
   },
 };
 </script>
@@ -213,13 +241,13 @@ export default {
   padding: 60px 0;
 }
 
-.images{
-    background-color: red !important;
+.images {
+  background-color: red !important;
 }
-.images-wrapper{
-    width: 100px;
-    height:100px;
-    background-color: red;
-    /* display: flex; */
+.images-wrapper {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  /* display: flex; */
 }
 </style>

@@ -92,10 +92,10 @@ export default {
   methods: {
     checkLogin() {
       let token = localStorage.getItem("token");
-      if (token) {
-        this.isLogin = true;
-      } else {
+      if (!token) {
         this.isLogin = false;
+      } else {
+        this.isLogin = true;
       }
     },
     logOut() {
