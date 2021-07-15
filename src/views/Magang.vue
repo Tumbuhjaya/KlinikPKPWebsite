@@ -107,6 +107,7 @@ export default {
       axios
         .get(ipBackEnd + "magang/listPublished")
         .then((res) => {
+          console.log(res)
           let x = res.data.data;
           this.listMagang = x.map(item =>{
             return {...item, src: ipBackEnd + item.foto}
