@@ -273,10 +273,10 @@ export default {
       urut :function (val){
         if (val == 'Berdasarkan Harga Naik'){
           console.log('naik')
-          this.listCari.sort((a,b) => (a.hargaMinSubsidi > b.hargaMinSubsidi) ? 1 : ((b.hargaMinSubsidi > a.hargaMinSubsidi) ? -1 : 0))
+          this.listCari.sort((a,b) => (parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)) ? 1 : ((parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)) ? -1 : 0))
         } else if( val == 'Berdasarkan Harga Turun' ){
           console.log('turun')
-          this.listCari.sort((a,b) => (a.hargaMaxKomersial < b.hargaMaxKomersial) ? 1 : ((b.hargaMaxKomersial < a.hargaMaxKomersial) ? -1 : 0))
+          this.listCari.sort((a,b) => (parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)) ? 1 : ((parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)) ? -1 : 0))
         }
         
       }

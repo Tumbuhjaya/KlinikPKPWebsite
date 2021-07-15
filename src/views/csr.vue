@@ -121,7 +121,7 @@ export default {
           this.listCsr = x.map((item) => {
             return { ...item, src: ipBackEnd + item.logo };
           });
-          this.listCsr.sort((a,b) => (a.jumlahCSR < b.jumlahCSR) ? 1 : ((b.jumlahCSR < a.jumlahCSR) ? -1 : 0))
+          this.listCsr.sort((a,b) => (parseInt(a.jumlahCSR) < parseInt(b.jumlahCSR)) ? 1 : ((parseInt(b.jumlahCSR) <parseInt( a.jumlahCSR)) ? -1 : 0))
         })
         .catch((err) => {
           console.log(err);

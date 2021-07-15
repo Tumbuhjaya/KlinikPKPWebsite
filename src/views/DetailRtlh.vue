@@ -39,6 +39,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
+import ipBackEnd from '@/ipBackEnd'
 import CoolLightBox from 'vue-cool-lightbox';
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css';
 import myheader from "../components/header";
@@ -59,6 +61,18 @@ export default {
     myheader,
     myfooter,
     CoolLightBox,
+  },
+  created(){
+
+  },
+  methods:{
+    getRTLH(){
+      axios.get(ipBackEnd + 'RTLH/list').then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
   }
   }
   
