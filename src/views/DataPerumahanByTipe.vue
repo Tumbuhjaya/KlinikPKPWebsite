@@ -7,39 +7,44 @@
         <b-row>
           <b-col md="12">
             <b-row>
-              <b-col
-                md="3"
-                class="m-t-15 m-b-15"
-                v-for="item in listRumah"
-                :key="item.id"
-              >
-                <!-- <router-link :to="'detail_perumahan'" style="text-decoration:none"> -->
-                <div class="box" @click="goDetail(item.id)">
-                  <div class="up"><img :src="item.src" alt="" /></div>
-                  <div class="down m-t-15">
-                    <h6 class="m-t-15">{{ dataPerum.namaPerusahaan }}</h6>
-
-                    <h5>
+              <b-col md="12">
+                
+                  <h4 class="m-t-0 text-center">{{ dataPerum.namaPerusahaan }}</h4>
+                    <h2 class="text-center">
                       <strong>{{ dataPerum.namaPerumahan }}</strong>
-                    </h5>
+                    </h2>
+                    <h6 class="m-t-0 text-center">{{ dataPerum.alamatPerumahan }}</h6>
+                    
+              </b-col>
+            </b-row>
+            <b-row class="mt-5">
+              
+
+              <b-card-group columns>
+                <b-card
+                  :img-src="item.src"
+                  img-alt="Image"
+                  img-top
+                  v-for="item in listRumah"
+                  :key="item.id"
+                  @click="goDetail(item.id)"
+                >
+                  <b-card-text>
                     <h5>
                       <strong>Tipe Rumah : {{ item.type }}</strong>
                     </h5>
                     <h5>
                       <strong>Stok : {{ item.stock }} Unit</strong>
                     </h5>
+
                     <b-badge variant="primary" style="text-transform:capitalize"
                       ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
                         <strong>{{ item.jenis }}</strong>
                       </h6></b-badge
                     >
-
-                    <p class="m-t-15">{{ dataPerum.alamatPerumahan }}</p>
-                    <p class="m-t-15">{{ dataPerum.kabKotaPerumahan }}</p>
-                  </div>
-                </div>
-                <!-- </router-link> -->
-              </b-col>
+                  </b-card-text>
+                </b-card>
+              </b-card-group>
             </b-row>
           </b-col>
         </b-row>
@@ -98,7 +103,7 @@ export default {
         .then((res) => {
           let x = res.data.data;
           this.listRumah = x.map((item) => {
-            return { ...item, src: ipBackEnd + item.foto3 };
+            return { ...item, src: ipBackEnd + item.foto1 };
           });
           console.log(this.listRumah, "ini");
         })

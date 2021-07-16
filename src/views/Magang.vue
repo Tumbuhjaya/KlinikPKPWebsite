@@ -138,8 +138,8 @@ export default {
   padding: 60px 0;
 }
 
-.card-title {
+/* .card-title {
   font-size: 16px;
   font-weight: bold;
-}
+} */
 </style>
