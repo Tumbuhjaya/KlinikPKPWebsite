@@ -45,22 +45,27 @@
           </b-col>
         </b-row>
 
-        <b-row>
+        <b-row class="mt-3">
           <h2 v-if="listKegCsr.length == 0"> Perusahaan Belum Pernah Melakukan Kegiatan CSR</h2>
-          <b-col md="4" class="m-t-15" v-for="item in listKegCsr" :key="item.CSRId" @click="goMore(item.CSRId)">
-              <div class="box m-t-15 m-b-15">
-              <img :src="item.src1" alt="" style="width:100%"/>
+          
 
-              <div class="layer">
-                <h6 class="m-t-0 m-b-0">
-                  <strong
-                    >{{item.kegiatan}}</strong
-                  >
-                </h6>
-              </div>
-            </div>
+          <b-card-group columns>
+            <b-card
+              :title="item.kegiatan"
+              :img-src="item.src1"
+              img-alt="Tidak Ada Foto"
+              img-top
+              v-for="item in listKegCsr" :key="item.CSRId" @click="goMore(item.CSRId)"
+              class="mt-3"
+            >
+            </b-card>
+
             
-          </b-col>
+
+            
+          </b-card-group>
+
+          
         </b-row>
       </b-container>
     </section>
@@ -107,9 +112,13 @@ export default {
           console.log(res);
           let x = res.data.data;
           this.listKegCsr = x.map((item) => {
+            let log = require('../assets/tidak-ada-gambar.png');
+            if(item.foto1){
+              log = ipBackEnd+ item.foto1
+            }
             return {
               ...item,
-              src1: ipBackEnd + item.foto1,
+              src1:  log,
               src2: ipBackEnd + item.foto2,
               src3: ipBackEnd + item.foto3,
               srcLogo: ipBackEnd + item.logo,

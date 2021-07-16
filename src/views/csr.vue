@@ -33,7 +33,7 @@
                   <img
                     :src="item.src"
                     alt=""
-                    style="width:120px;height:120px"
+                    style="width:60%;"
                   />
                   
                 </center>
