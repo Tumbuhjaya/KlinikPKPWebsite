@@ -13,19 +13,22 @@
         </b-row>
 
         <b-row>
-          <b-col md="4" v-for="item in listMagang" :key="item.id">
+          <b-card-group columns>
             <b-card
               :title="item.judulMagang"
               :img-src="item.src"
-              img-alt="Image"
+              img-alt="Tidak Ada Foto"
               img-top
-              tag="article"
-              style="max-width: 20rem;"
-              class="m-t-30"
+              v-for="item in listMagang" :key="item.id"
+              class="mt-3"
             >
-                <b-button variant="primary" @click="goDetailM(item.id)">Detail</b-button>
+            <b-button variant="primary" @click="goDetailM(item.id)">Detail</b-button>
             </b-card>
-          </b-col>
+
+            
+
+            
+          </b-card-group>
           <!-- <b-col md="4">
             <b-card
               title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, maxime?"
