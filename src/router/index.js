@@ -30,6 +30,8 @@ import Magang from "../views/Magang.vue";
 import DetailMagang from "../views/DetailMagang.vue";
 import GabungMagang from "../views/GabungMagang.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
+import PV from "../views/PV.vue";
+import DetailPV from "../views/PV_Detail"
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
@@ -39,34 +41,34 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/perumahan",
     name: "Perumahan",
     component: Perumahan,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/data_perumahan",
     name: "DataPerumahan",
     component: DataPerumahan,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/data_perumahan_by_tipe/:id",
     name: "DataPerumahanByTipe",
     component: DataPerumahanByTipe,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -77,14 +79,13 @@ const routes = [
         });
       }
     },
-
   },
 
   {
     path: "/detail_perumahan/:id",
     name: "DetailPerumahan",
     component: DetailPerumahan,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -101,25 +102,24 @@ const routes = [
     path: "/pengembang",
     name: "Pengembang",
     component: Pengembang,
-    meta:{
+    meta: {
       role: "all",
-    }
-    
+    },
   },
 
   {
     path: "/daftar_pengembang",
     name: "DaftarPengembang",
     component: DaftarPengembang,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/dashboard_pengembang",
     name: "DashboardPengembang",
-    meta:{
+    meta: {
       role: "pengembang",
     },
     component: DashboardPengembang,
@@ -129,7 +129,7 @@ const routes = [
     path: "/edit_profil_pengembang",
     name: "EditProfilPengembang",
     component: EditProfilPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
   },
@@ -138,7 +138,7 @@ const routes = [
     path: "/edit_password_pengembang",
     name: "EditPasswordPengembang",
     component: EditPasswordPengembang,
-    meta:{
+    meta: {
       role: "all",
     },
   },
@@ -147,7 +147,7 @@ const routes = [
     path: "/perumahan_pengembang",
     name: "PerumahanPengembang",
     component: PerumahanPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
   },
@@ -156,7 +156,7 @@ const routes = [
     path: "/input_perumahan_pengembang",
     name: "InputPerumahanPengembang",
     component: InputPerumahanPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
   },
@@ -164,7 +164,7 @@ const routes = [
     path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",
     component: EditPerumahanPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
     beforeRouteUpdate(to, from, next) {
@@ -181,7 +181,7 @@ const routes = [
     path: "/tipe_perumahan_pengembang/:id",
     name: "TipePerumahanPengembang",
     component: TipePerumahanPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
     beforeRouteUpdate(to, from, next) {
@@ -198,7 +198,7 @@ const routes = [
     path: "/edit_tipe_perumahan_pengembang/:id",
     name: "EditTipePerumahanPengembang",
     component: EditTipePerumahanPengembang,
-    meta:{
+    meta: {
       role: "pengembang",
     },
     beforeRouteUpdate(to, from, next) {
@@ -215,16 +215,16 @@ const routes = [
     path: "/csr",
     name: "Csr",
     component: Csr,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/detail_csr/:id",
     name: "DetailCsr",
     component: DetailCsr,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -241,7 +241,7 @@ const routes = [
     path: "/detail_csr_by_kegiatan/:id",
     name: "DetailCsrByKegiatan",
     component: DetailCsrByKegiatan,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -258,52 +258,51 @@ const routes = [
     path: "/daftar_csr",
     name: "DaftarCsr",
     component: DaftarCsr,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/edit_profil_csr",
     name: "EditProfilCsr",
     component: EditProfilCsr,
-    meta:{
+    meta: {
       role: "CSR",
-    }
+    },
   },
 
   {
     path: "/edit_password_csr",
     name: "EditPasswordCsr",
     component: EditPasswordCsr,
-    meta:{
+    meta: {
       role: "CSR",
-    }
+    },
   },
 
   {
     path: "/dashboard_csr",
     name: "DashboardCsr",
     component: DashboardCsr,
-    meta:{
+    meta: {
       role: "CSR",
-    }
+    },
   },
 
   {
     path: "/input_csr",
     name: "InputCsr",
     component: InputCsr,
-    meta:{
+    meta: {
       role: "CSR",
-    }
+    },
   },
-
   {
     path: "/edit_csr/:id",
     name: "EditCsr",
     component: EditCsr,
-    meta:{
+    meta: {
       role: "CSR",
     },
     beforeRouteUpdate(to, from, next) {
@@ -320,34 +319,34 @@ const routes = [
     path: "/rtlh",
     name: "Rtlh",
     component: Rtlh,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/detail_rtlh",
     name: "DetailRtlh",
     component: DetailRtlh,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/magang",
     name: "Magang",
     component: Magang,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
 
   {
     path: "/detail_magang/:id",
     name: "DetailMagang",
     component: DetailMagang,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -364,7 +363,7 @@ const routes = [
     path: "/gabung_magang/:id",
     name: "GabungMagang",
     component: GabungMagang,
-    meta:{
+    meta: {
       role: "all",
     },
     beforeRouteUpdate(to, from, next) {
@@ -381,18 +380,44 @@ const routes = [
     path: "/dashboard_perbankan",
     name: "DashboardPerbankan",
     component: DashboardPerbankan,
-    meta:{
+    meta: {
       role: "perbankan",
     },
+  },
+  {
+    path: "/pameran_virtual",
+    name: "PameranVirtual",
+    component: PV,
+    meta: {
+      role: "all",
+    },
+    children: [
+      {
+        path: "/detail_pameran_virtual/:id",
+        name: "DetailPameranVirtual",
+        component: DetailPV,
+        meta: {
+          role: "all",
+        },
+        beforeRouteUpdate(to, from, next) {
+          console.log(to);
+          if (to.path == "/detail_pameran_virtual/:id") {
+            next({
+              path: "/detail_pameran_virtual",
+            });
+          }
+        },
+      },
+    ],
   },
 
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta:{
+    meta: {
       role: "all",
-    }
+    },
   },
   {
     path: "/logout",
@@ -406,28 +431,24 @@ const router = new VueRouter({
   routes,
 });
 
-
 router.beforeEach((to, from, next) => {
   const role = localStorage.getItem("role");
-  if (to.path ==  '/logout'){
-    localStorage.clear()
+  if (to.path == "/logout") {
+    localStorage.clear();
     next({
-      path:'/'
-    })
-  }else {
+      path: "/",
+    });
+  } else {
     if (to.meta.role == "all") {
-      next({
-      });
+      next({});
     } else if (to.meta.role !== role) {
       next({
         path: "/",
       });
+    } else {
+      next();
     }
-  else{
-    next()
   }
-  }
-    
 });
 
 export default router;
