@@ -15,7 +15,7 @@
                <iframe :src="dataPV.srcVideo"  style="width:90%;height:400px"></iframe>
             </center>
           </b-col>
-          <p><span v-html="dataPV.deskripsiPameranVirtual"></span></p>
+          <span class="ql-editor" v-html="dataPV.deskripsiPameranVirtual"></span>
         </b-row>
       </b-container>
     </section>
@@ -27,6 +27,10 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
+// import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 export default {
   name: "detailPV",
