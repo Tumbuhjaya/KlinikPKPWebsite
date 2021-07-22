@@ -1,5 +1,5 @@
 <template>
-  <div id="csr">
+  <div id="pameran-virtual">
     <myheader></myheader>
     <section class="section-one">
       <b-container>
@@ -10,15 +10,16 @@
             </h2>
           </b-col>
         </b-row>
+
         <b-row>
-          <b-col md="4" class="sidemenu">
-          <sidePV />
-        </b-col>
-          <b-col md="8" class="content">
+          <b-col md="5">
+            <sidePV />
+          </b-col>
+
+          <b-col md="7">
             <router-view :key="$route.fullPath"></router-view>
           </b-col>
         </b-row>
-        
       </b-container>
     </section>
 
@@ -33,7 +34,7 @@ import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
-import sidePV from "../components/sidePV"
+import sidePV from "../components/sidePV";
 import moment from "moment";
 import "moment/locale/id";
 
@@ -43,13 +44,13 @@ export default {
     return {
       isLogin: false,
       listPV: [],
-      priview:[]
+      priview: [],
     };
   },
   components: {
     myheader,
     myfooter,
-    sidePV
+    sidePV,
   },
   created() {
     this.getPV();
@@ -59,9 +60,9 @@ export default {
       let y = moment(x).format("LL");
       return y;
     },
-    setPriview(x){
-      this.priview= x
-      console.log(this.priview)
+    setPriview(x) {
+      this.priview = x;
+      console.log(this.priview);
     },
     getPV() {
       axios
@@ -93,41 +94,7 @@ export default {
   font-size: 14px !important;
 }
 
-.section-one {
+#pameran-virtual .section-one {
   padding: 60px 0;
-}
-
-.section-one .box {
-  width: 100%;
-  height: 100px;
-  /* background-color: red; */
-  position: relative;
-  border-radius: 20px;
-  border: 4px solid #4c87f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.sidemenu {
-  height: 100vh;
-}
-/* .section-one .box img { */
-/* border-radius: 20px; */
-/* } */
-.section-one .notif-csr {
-  width: 40px;
-  height: 40px;
-  background-color: #4c87f2;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -20px;
-  right: -20px;
-}
-
-.section-one .notif-csr h6 {
-  color: #fff;
 }
 </style>

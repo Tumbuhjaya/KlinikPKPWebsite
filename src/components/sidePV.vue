@@ -1,39 +1,37 @@
 <template>
-  <div id="csr">
+  <div id="sidepv">
     <section class="section-one">
       <b-container>
-        <b-col md="12" class="sidemenu">
-          <b-row md="4" class="m-t-30" v-for="item in listPV" :key="item.id">
-            <b-col>
-              <router-link
-                :to="'/detail_pameran_virtual/'+ item.id"
-                active-class="active"
-                exact
-                tag="button"
-                class="side-btn"
-                style="text-decoration:none"
-              >
-                <div class="box">
-                  <div md="3">
-                    <img
+        <b-row v-for="item in listPV" :key="item.id" class="m-t-30">
+          <b-col md="12">
+            <router-link
+              :to="'/detail_pameran_virtual/' + item.id"
+              style="text-decoration: none"
+            >
+              <b-card no-body class="overflow-hidden">
+                <b-row no-gutters>
+                  <b-col md="4">
+                    <b-card-img
                       :src="item.srcfoto"
-                      alt=""
-                      style="width:100px;height:100px"
-                    />
-                  </div>
-                  <b-col>
-                    <div>
-                      <h5>{{ item.namapameranVirtual }}</h5>
-                    </div>
-                    <div>
-                      <p>{{ getDate(item.createdAt) }}</p>
-                    </div>
+                      alt="Image"
+                      class="rounded-0"
+                    ></b-card-img>
                   </b-col>
-                </div>
-              </router-link>
-            </b-col>
-          </b-row>
-        </b-col>
+                  <b-col md="8">
+                    <b-card-body>
+                      <b-card-text>
+                        <h6>
+                          <strong>{{ item.namapameranVirtual }}</strong>
+                        </h6>
+                        <h6>{{ getDate(item.createdAt) }}</h6>
+                      </b-card-text>
+                    </b-card-body>
+                  </b-col>
+                </b-row>
+              </b-card>
+            </router-link>
+          </b-col>
+        </b-row>
       </b-container>
     </section>
   </div>
@@ -99,42 +97,7 @@ export default {
   font-size: 14px !important;
 }
 
-.section-one {
-  padding: 60px 0;
-}
-
-.section-one .box {
-  width: 100%;
-  height: 100px;
-  /* background-color: red; */
-  position: relative;
-  border-radius: 20px;
-  border: 4px solid #4c87f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.sidemenu {
-  height: 100vh;
-}
-/* .section-one .box img { */
-/* border-radius: 20px; */
-/* } */
-
-.section-one .notif-csr {
-  width: 40px;
-  height: 40px;
-  background-color: #4c87f2;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -20px;
-  right: -20px;
-}
-
-.section-one .notif-csr h6 {
-  color: #fff;
+#sidepv .section-one {
+  padding: 30px 0;
 }
 </style>
