@@ -111,10 +111,12 @@
                 <h6>Realisasi Bantuan PKP</h6>
               </div>
 
+              <router-link :to="'pameran_virtual'" style="text-decoration:none">
               <div class="box">
                 <img src="../assets/004-gallery.png" alt="" />
                 <h6>Pameran Virtual PKP</h6>
               </div>
+              </router-link>
 
               <div class="box">
                 <img src="../assets/001-location.png" alt="" />
