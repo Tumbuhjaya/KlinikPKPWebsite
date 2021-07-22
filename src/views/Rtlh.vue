@@ -78,30 +78,8 @@
         >
           <template #cell(No)="item"> {{ item.index + 1 }}. </template>
           <template #cell(actions)="item">
-            <center>
-              <CoolLightBox
-                :items="item.item.display"
-                :index="index"
-                @click="cekcek(item)"
-                @close="index = null"
-              >
-              </CoolLightBox>
-
-              <div class="images-wrapper">
-                <div
-                  class="image"
-                  v-for="(image, imageIndex) in item.item.display"
-                  :key="imageIndex"
-                  @click="index = imageIndex, cek('url(' + image + ')', item.item.display)"
-                  :style="{
-                    backgroundImage: 'url(' + image + ')',
-                    width: '100%',
-                    height: '100%',
-                    backgroundSize: 'cover',
-                  }"
-                ></div>
-              </div>
-            </center>
+            <b-button variant="primary" v-b-modal.modal-fotortlh size="sm">Lihat Foto {{item.nama}}</b-button>
+            
           </template>
         </b-table>
 
@@ -120,6 +98,17 @@
     </section>
 
     <myfooter></myfooter>
+
+    <b-modal id="modal-fotortlh" centered hide-header hide-footer>
+      <center>
+        <div style="width:100%;height:100px;position:relative;background-color:red;">
+          
+          <div style="width:40px;height:40px;background-color:yellow;position:absolute;left:-30px;top:0;bottom:0;margin:auto"></div>
+          <div style="width:40px;height:40px;background-color:yellow;position:absolute;right:-30px;top:0;bottom:0;margin:auto"></div>
+        </div>
+      </center>
+      
+    </b-modal>
   </div>
 </template>
 
@@ -128,7 +117,6 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import ipBackEnd from "@/ipBackEnd";
 import axios from "axios";
-import CoolLightBox from "vue-cool-lightbox";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 
@@ -186,7 +174,6 @@ export default {
   components: {
     myheader,
     myfooter,
-    CoolLightBox,
   },
   created() {
     this.getRTLH();
@@ -241,13 +228,4 @@ export default {
   padding: 60px 0;
 }
 
-.images {
-  background-color: red !important;
-}
-.images-wrapper {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  /* display: flex; */
-}
 </style>
