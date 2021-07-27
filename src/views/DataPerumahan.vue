@@ -154,14 +154,14 @@
                     <p class="m-t-15">{{ item.kabKotaPerumahan }}</p>
 
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> {{ item.jmlSubsidi }} Unit
-                      {{ item.hargaMinSubsidi / 1000000 }} Juta -
-                      {{ item.hargaMaxSubsidi / 1000000 }} Juta
+                      <strong>Subsidi</strong> {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }} Unit
+                      {{ Math.trunc(item.hargaMinSubsidi / 1000000) }} Juta -
+                      {{ Math.trunc(item.hargaMaxSubsidi / 1000000) }} Juta
                     </h6>
                     <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> {{ item.jmlKomersial }} Unit
-                      {{ item.hargaMinKomersial / 1000000 }} Juta -
-                      {{ item.hargaMaxKomersial / 1000000 }} Juta
+                      <strong>Komersil</strong> {{ getJml(item.jmlKomersial, item.terjualKomersial) }} Unit
+                      {{ Math.trunc(item.hargaMinKomersial / 1000000) }} Juta -
+                      {{ Math.trunc(item.hargaMaxKomersial / 1000000) }} Juta
                     </h6>
                   </div>
                 </div>
@@ -220,6 +220,16 @@ export default {
     this.search();
   },
   methods: {
+    getJml(x, y) {
+      if (x == null || x == undefined) {
+        x = 0;
+      }
+      if (y == null || y == undefined) {
+        y = 0;
+      }
+      let z = x - y
+      return z
+    },
     getkota() {
       axios
         .get(ipBackEnd + "kabKota/list", {
@@ -241,7 +251,7 @@ export default {
     },
     search() {
       let vm = this;
-      let x = 1000000000000;
+      let x = 99999999999999;
       if (this.hargaMax != 0) {
         x = this.hargaMax;
       }

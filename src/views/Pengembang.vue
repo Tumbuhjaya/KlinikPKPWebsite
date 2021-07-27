@@ -113,7 +113,6 @@
                     class="mr-2"
                   />
                 </a>
-"
                 <b-button variant="primary"  @click="goList(item.item.id)" size="sm">Detail</b-button>
               </div>
             </center>
@@ -228,7 +227,7 @@ export default {
       return x;
     },
     goList(x){
-      this.$router.push({path:"/data_perumahan_by_tipe/" + x})
+      this.$router.push({path:"/perumahan_pengembang/" + x})
     }
   },
 };

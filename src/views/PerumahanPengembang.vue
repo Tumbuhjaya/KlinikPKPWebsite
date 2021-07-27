@@ -1,138 +1,154 @@
 <template>
-  <div id="perumahan_pengembang" >
-    <header>
+  <div id="perumahan_pengembang">
+    <myheader></myheader>
+    <section class="section-one">
       <b-container>
         <b-row>
-          <b-col md="6">
-            <div class="left">
-              <router-link :to="'/'" style="text-decoration:none"><h5 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h5></router-link>
-            </div>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>{{ listPerum[0].namaPerusahaan }}</strong>
+            </h2>
+            <h5 class="text-center">{{ listPerum[0].alamat }}</h5>
           </b-col>
+        </b-row>
 
-          <b-col md="6">
-            <div class="right">
-              <!-- <h6 class="m-t-0 m-b-0 m-r-15">pengguna@gmail.com</h6>
-              <span style="background-color:#fff;padding:4px;border-radius:100px">
-                <img src="../assets/avatar_profil.png" alt="">
-              </span> -->
+        <b-row class="m-t-30">
+          <b-col md="4">
+            <div
+              class="box"
+              v-for="item in listPerum"
+              :key="item.PerumahanId"
+              @click="goDetail(item.perumahanId)"
+            >
+              <div class="up">
+                <img :src="item.src" alt="" />
+              </div>
+              <div class="down m-t-15">
+                <h5>
+                  <strong>{{ item.namaPerumahan }}</strong>
+                </h5>
+
+                <b-badge variant="success" style="text-transform: capitalize"
+                  ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
+                    <strong
+                      >Subsidi :
+                      {{
+                        getJml(item.jmlSubsidi, item.terjualSubsidi)
+                      }}
+                      Unit</strong
+                    >
+                  </h6></b-badge
+                >
+
+                <b-badge
+                  variant="primary"
+                  style="text-transform: capitalize; margin-top: 10px"
+                  ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
+                    <strong
+                      >Non Subsidi :
+                      {{
+                        getJml(item.jmlKomersial, item.terjualKomersial)
+                      }}
+                      Unit</strong
+                    >
+                  </h6></b-badge
+                >
+              </div>
             </div>
           </b-col>
         </b-row>
       </b-container>
-    </header>
-
-
-    <section class="section-one">
-        <b-container>
-            <b-row>
-                <b-col md="12">
-                    <h2 class="m-t-0 m-b-0 text-center"><strong>Data Perumahan</strong></h2>
-                    <h5 class="m-t-5 m-b-0 text-center">"Nama Pengembangnya"</h5>
-                </b-col>
-            </b-row>
-
-            <b-row class="m-t-30">
-                <b-col md="12">
-                    <router-link :to="'input_perumahan_pengembang'" style="text-decoration:none"><b-button variant="primary" class="m-r-15">Tambah Data</b-button></router-link>
-                </b-col>
-                <b-col md="12" class="m-t-30">
-                    <b-table-simple bordered>
-                        <b-thead>
-                            <b-tr>
-                                <b-th>No.</b-th>
-                                <b-th>Nama</b-th>
-                                <b-th>Alamat</b-th>
-                                <b-th style="width:300px">Option</b-th>
-                            </b-tr>
-                        </b-thead>
-
-                        <b-tbody>
-                            <b-tr>
-                                <b-td>1.</b-td>
-                                <b-td>Griya Indah Segara</b-td>
-                                <b-td>Jalan Raya Pasar Minggu KM. 18 Jakarta Selatan 12510 Indonesia</b-td>
-                                <b-td>
-                                    <center>
-                                    <router-link :to="'edit_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="warning" size="sm" class="m-r-15">Edit</b-button>
-                                    </router-link>
-                                    
-                                    <router-link :to="'tipe_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="info" size="sm" class="m-r-15">Tipe Rumah</b-button>
-                                    </router-link>
-
-                                    <b-button variant="danger" size="sm">Hapus</b-button>
-                                    </center>
-                                </b-td>
-                            </b-tr>
-
-                            <b-tr>
-                                <b-td>2.</b-td>
-                                <b-td>Griya Adem Ayem</b-td>
-                                <b-td>JL. D.I. Panjaitan Kav. 9-10, Jakarta 13340</b-td>
-                                <b-td>
-                                    <center>
-                                    <router-link :to="'edit_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="warning" size="sm" class="m-r-15">Edit</b-button>
-                                    </router-link>
-                                    
-                                    <router-link :to="'tipe_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="info" size="sm" class="m-r-15">Tipe Rumah</b-button>
-                                    </router-link>
-
-                                    <b-button variant="danger" size="sm">Hapus</b-button>
-                                    </center>
-                                </b-td>
-                            </b-tr>
-
-                            <b-tr>
-                                <b-td>3.</b-td>
-                                <b-td>Griya Nuasa Bali</b-td>
-                                <b-td>ASG Tower, Jl. Pantai Indah Kapuk, Boulevard Kamal Muara Penjaringan, Jakarta Utara 14470</b-td>
-                                <b-td>
-                                    <center>
-                                    <router-link :to="'edit_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="warning" size="sm" class="m-r-15">Edit</b-button>
-                                    </router-link>
-                                    
-                                    <router-link :to="'tipe_perumahan_pengembang'" style="text-decoration:none">
-                                    <b-button variant="info" size="sm" class="m-r-15">Tipe Rumah</b-button>
-                                    </router-link>
-
-                                    <b-button variant="danger" size="sm">Hapus</b-button>
-                                    </center>
-                                </b-td>
-                            </b-tr>
-                        </b-tbody>
-                    </b-table-simple>
-                </b-col>
-            </b-row>
-        </b-container>
     </section>
+    <myfooter></myfooter>
   </div>
 </template>
 
 <script>
+import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+import myheader from "../components/header";
+import myfooter from "../components/footer";
 
 export default {
   name: "PerumahanPengembang",
- data (){
-   return{
-     isLogin: false,
-   };
- }
-
+  data() {
+    return {
+      isLogin: false,
+      listPerum: [],
+      profil: [],
+    };
+  },
+  components: {
+    myheader,
+    myfooter,
+  },
+  created() {
+    let x = this.$route.params.id;
+    this.getPerumahan(x);
+  },
+  methods: {
+    getJml(x, y) {
+      if (x == null || x == undefined) {
+        x = 0;
+      }
+      if (y == null || y == undefined) {
+        y = 0;
+      }
+      let z = x - y
+      return z
+    },
+    getPerumahan(x) {
+      axios
+        .get(ipBackEnd + "perumahan/listByPengembang/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          let x = res.data.data;
+          this.listPerum = x.map((item) => {
+            return { ...item, src: ipBackEnd + item.fotoPerumahan };
+          });
+          console.log(this.listPerum, "ini perum");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getDataPerum(x) {
+      axios
+        .get(ipBackEnd + "perumahan/listById/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res, "ini aha");
+          res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan;
+          res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo;
+          this.dataPerum = res.data.data[0];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goDetail(x) {
+      console.log(x);
+      localStorage.setItem("dataPerum", JSON.stringify(this.dataPerum));
+      this.$router.push({ path: `/data_perumahan_by_tipe/` + x });
+    },
+  },
 };
 </script>
 
 <style scoped>
-header{
-  background-color: #4C87F2;
+header {
+  background-color: #4c87f2;
 }
 
-header .left{
+header .left {
   width: 100%;
   height: 50px;
   /* background-color: aqua; */
@@ -141,11 +157,11 @@ header .left{
   align-items: center;
 }
 
-header .left h5{
+header .left h5 {
   color: #fff;
 }
 
-header .right{
+header .right {
   width: 100%;
   height: 50px;
   /* background-color: aqua; */
@@ -154,13 +170,13 @@ header .right{
   align-items: center;
 }
 
-header .right h6{
+header .right h6 {
   font-size: 14px;
   color: #fff;
 }
 
 .section-one {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 /* .section-one .box{
@@ -170,10 +186,10 @@ header .right h6{
     border-radius: 10px;
 } */
 
-.section-one .menu{
+.section-one .menu {
   width: 100%;
   height: 250px;
-  background-color: #4C87F2;
+  background-color: #4c87f2;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -181,7 +197,38 @@ header .right h6{
   flex-direction: column;
 }
 
-.section-one .menu h4{
-    color:#fff;
+.section-one .menu h4 {
+  color: #fff;
+}
+
+.section-one .box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
+  border-radius: 25px;
+}
+
+.section-one .box .up {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.section-one .box .up img {
+  width: 100%;
+  /* height: 200px; */
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.section-one .box .down {
+  padding: 15px;
+}
+
+.section-one .box .down .harga {
+  font-size: 12px;
 }
 </style>

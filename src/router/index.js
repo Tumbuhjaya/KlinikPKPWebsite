@@ -144,11 +144,19 @@ const routes = [
   },
 
   {
-    path: "/perumahan_pengembang",
+    path: "/perumahan_pengembang/:id",
     name: "PerumahanPengembang",
     component: PerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "all",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/perumahan_pengembang/:id") {
+        next({
+          path: "/perumahan_pengembang",
+        });
+      }
     },
   },
 

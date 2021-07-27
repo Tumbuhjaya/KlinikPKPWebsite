@@ -201,7 +201,7 @@
                       variant="success"
                       style="text-transform:capitalize;"
                       ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
-                        <strong>Subsidi : {{ getJml(item.jmlSubsidi) }} Unit</strong>
+                        <strong>Subsidi : {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }} Unit</strong>
                       </h6></b-badge
                     >
 
@@ -210,7 +210,7 @@
                       style="text-transform:capitalize;"
                       ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
                         <strong
-                          >Non Subsidi : {{ getJml(item.jmlKomersial) }} Unit</strong
+                          >Non Subsidi : {{ getJml(item.jmlKomersial, item.terjualKomersial) }} Unit</strong
                         >
                       </h6></b-badge
                     >
@@ -469,13 +469,16 @@ export default {
           console.log(err);
         });
     },
-    getJml(x){
-      if( x== null || x == undefined){
-        return 0
-      }else{
-        return x
+    getJml(x, y) {
+      if (x == null || x == undefined) {
+        x = 0;
       }
-    }
+      if (y == null || y == undefined) {
+        y = 0;
+      }
+      let z = x - y
+      return z
+    },
   },
 };
 </script>
