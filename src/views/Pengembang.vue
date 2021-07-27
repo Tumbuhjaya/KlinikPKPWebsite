@@ -28,7 +28,7 @@
             </b-alert>
           </b-col>
         </b-row>
-        
+
         <b-row>
           <b-col md="12">
             <b-row>
@@ -68,7 +68,9 @@
                     ></b-form-input>
 
                     <b-input-group-append>
-                      <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                      <b-button :disabled="!filter" @click="filter = ''"
+                        >Clear</b-button
+                      >
                     </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
@@ -76,7 +78,7 @@
             </b-row>
           </b-col>
         </b-row>
-        
+
         <b-table
           :items="items"
           :fields="fields"
@@ -91,31 +93,44 @@
           @filtered="onFiltered"
           class="mt-3"
         >
-          <template #cell(No)="item">
-            {{ item.index + 1 }}.
-          </template>
+          <template #cell(No)="item"> {{ item.index + 1 }}. </template>
 
           <template #cell(actions)="item">
             <center>
-              <a :href="'https://api.whatsapp.com/send/?phone=%2B62'+item.item.noHp+'&text&app_absent=0'" target="_blank">
-                <img src="../assets/whatsapp.png" alt="" style="width:30px">
-              </a>
-              
+              <div style="width: 100%; display: flex">
+                <a
+                  :href="
+                    'https://api.whatsapp.com/send/?phone=%2B62' +
+                    item.item.noHp +
+                    '&text&app_absent=0'
+                  "
+                  target="_blank"
+                >
+                  <img
+                    src="../assets/whatsapp.png"
+                    alt=""
+                    style="width: 30px"
+                    class="mr-2"
+                  />
+                </a>
+
+                <b-button variant="primary" size="sm">Detail</b-button>
+              </div>
             </center>
           </template>
         </b-table>
 
         <b-row>
-            <b-col md="5" offset-md="7">
-              <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                align="fill"
-                size="md"
-              ></b-pagination>
-            </b-col>
-          </b-row>
+          <b-col md="5" offset-md="7">
+            <b-pagination
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              align="fill"
+              size="md"
+            ></b-pagination>
+          </b-col>
+        </b-row>
       </b-container>
     </section>
 
@@ -172,7 +187,6 @@ export default {
       pageOptions: [50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
-      
     };
   },
   components: {
@@ -208,7 +222,7 @@ export default {
           console.log(err);
         });
       let x = PTs.data.data;
-      this.totalRows= x.length
+      this.totalRows = x.length;
       console.log(PTs.data);
       console.log(x, "ini pengembang");
       return x;
