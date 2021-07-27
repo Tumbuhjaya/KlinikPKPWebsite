@@ -96,7 +96,7 @@
 
                   <h6 class="m-t-30">Harga</h6>
                   <h4>
-                    <strong>{{ dataRumah.harga }}</strong>
+                    <strong> Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
                   </h4>
                 </div>
               </b-col>
@@ -112,7 +112,7 @@
 
                   <h6 class="m-t-30">Harga</h6>
                   <h4>
-                    <strong>{{ dataRumah.harga }}</strong>
+                    <strong>Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
                   </h4>
                 </div>
               </b-col>
@@ -127,12 +127,9 @@
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="dataRumah.linkVideo" target='_blank'>
-                  <b-button variant="primary"
-                  >Lihat Video</b-button
-                >
+                <a :href="dataRumah.linkVideo" target="_blank">
+                  <b-button variant="primary">Lihat Video</b-button>
                 </a>
-                
               </b-col>
             </b-row>
           </b-col>
@@ -222,8 +219,14 @@ export default {
     this.dataPerum = JSON.parse(y);
     let x = this.$route.params.id;
     this.getTipeRumah(x);
+    console.log(this.dataPerum, 'dataPer')
   },
   methods: {
+    formHarga(x) {
+      console.log(x);
+      let y = x.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.");
+      return y;
+    },
     getTipeRumah(x) {
       axios
         .get(ipBackEnd + "rumah/listRumah/" + x, {
@@ -238,7 +241,7 @@ export default {
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
-          this.dataRumah.link = 'https://' + x.linkVideo
+          this.dataRumah.link = "https://" + x.linkVideo;
           this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
           console.log(this.dataRumah);
         })

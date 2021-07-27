@@ -78,6 +78,7 @@ export default {
       isLogin: false,
       listPerum: [],
       profil: [],
+      dataPerum:[]
     };
   },
   components: {
@@ -87,6 +88,7 @@ export default {
   created() {
     let x = this.$route.params.id;
     this.getPerumahan(x);
+    this.getDataPerum(x);
   },
   methods: {
     getJml(x, y) {
