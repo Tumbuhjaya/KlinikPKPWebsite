@@ -112,7 +112,7 @@
 
                   <h6 class="m-t-30">Harga</h6>
                   <h4>
-                    <strong>Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
+                    <strong>Rp {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
                   </h4>
                 </div>
               </b-col>
