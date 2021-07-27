@@ -114,7 +114,11 @@
                   />
                 </a>
 
-                <b-button variant="primary" size="sm">Detail</b-button>
+                <router-link :to="'/perumahan_pengembang'"
+                  ><b-button variant="primary" size="sm"
+                    >Detail</b-button
+                  ></router-link
+                >
               </div>
             </center>
           </template>

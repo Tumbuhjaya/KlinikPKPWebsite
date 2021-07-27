@@ -148,7 +148,7 @@ const routes = [
     name: "PerumahanPengembang",
     component: PerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "all",
     },
   },
 
