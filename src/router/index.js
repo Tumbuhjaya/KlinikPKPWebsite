@@ -31,7 +31,7 @@ import DetailMagang from "../views/DetailMagang.vue";
 import GabungMagang from "../views/GabungMagang.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
 import PV from "../views/PV.vue";
-import DetailPV from "../views/PV_Detail"
+import DetailPV from "../views/PV_Detail";
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
