@@ -3,7 +3,7 @@
     <header>
       <b-container>
         <b-row>
-          <b-col md="6">
+          <b-col md="4">
             <div class="indentity">
               <img src="../assets/logopkpv2white.png" alt="" />
 
@@ -28,26 +28,32 @@
             </div> -->
           </b-col>
 
-          <!-- <b-col md="7">
+          <b-col md="6">
             <div class="menu">
               <router-link :to="'/'" style="text-decoration: none">
                 <h6 class="m-t-0 m-b-0">Beranda</h6>
               </router-link>
-              <router-link :to="'/csr'" style="text-decoration: none">
-                <h6 class="m-t-0 m-b-0">CSR</h6>
+              <router-link
+                :to="'/data_pengembang'"
+                style="text-decoration: none"
+              >
+                <h6 class="m-t-0 m-b-0">Data Pengembang</h6>
               </router-link>
-              <router-link :to="'/pengembang'" style="text-decoration: none">
-                <h6 class="m-t-0 m-b-0">Pengembang</h6>
+              <router-link
+                :to="'/peta_perumahan'"
+                style="text-decoration: none"
+              >
+                <h6 class="m-t-0 m-b-0">Peta Sebaran Perumahan</h6>
               </router-link>
-              <router-link :to="'/magang'" style="text-decoration: none">
+              <!-- <router-link :to="'/magang'" style="text-decoration: none">
                 <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
               </router-link>
               <h6 class="m-t-0 m-b-0">Kerjasama</h6>
-              <h6 class="m-t-0 m-b-0">Forum PKP</h6>
+              <h6 class="m-t-0 m-b-0">Forum PKP</h6> -->
             </div>
-          </b-col> -->
+          </b-col>
 
-          <b-col md="2" offset-md="4">
+          <b-col md="2">
             <div class="loginregister">
               <b-button
                 size="md"

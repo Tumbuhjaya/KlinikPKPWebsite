@@ -7,12 +7,12 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>DATA PENGEMBANG</strong>
+              <strong>Data Pengembang Provinsi Jawa Tengah</strong>
             </h2>
 
-            <h2 class="m-t-0 m-b-0 text-center">
-              <strong>PROVINSI JAWA TENGAH</strong>
-            </h2>
+            <!-- <h2 class="m-t-0 m-b-0 text-center">
+              <strong></strong>
+            </h2> -->
           </b-col>
         </b-row>
 
