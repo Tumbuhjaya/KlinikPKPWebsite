@@ -7,7 +7,11 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>Pengembang Perumahan</strong>
+              <strong>Database Pengembang Perumahan</strong>
+            </h2>
+
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Provinsi Jawa Tengah</strong>
             </h2>
           </b-col>
         </b-row>
@@ -15,11 +19,12 @@
         <b-row class="m-t-30">
           <b-col md="12">
             <b-alert show variant="primary">
-              <h4 class="alert-heading">Segera daftarkan perusahaan anda !</h4>
+              <h4 class="alert-heading">Perusahaan anda belum terdaftar ?</h4>
               <p>
-                Daftarkan perusahaan anda melalui menu pengembang. Anda akan
-                mendapatkan akses khusus pengembang pada Klinik PKP, lalu isikan
-                profil perusahaan dan rumah-rumah yang anda jual
+                Segera daftarkan perusahaan anda agar masuk dalam database
+                pengembang perumahan Provinsi Jawa Tengah. Anda akan mendapatkan
+                akses khusus pengembang, kemudian silahkan isi profil perusahaan
+                anda dan data perumahan yang pernah yang akan anda promosikan.
               </p>
               <hr />
               <router-link :to="'daftar_pengembang'">
@@ -113,7 +118,12 @@
                     class="mr-2"
                   />
                 </a>
-                <b-button variant="primary"  @click="goList(item.item.id)" size="sm">Detail</b-button>
+                <b-button
+                  variant="primary"
+                  @click="goList(item.item.id)"
+                  size="sm"
+                  >Detail</b-button
+                >
               </div>
             </center>
           </template>
@@ -226,9 +236,9 @@ export default {
       console.log(x, "ini pengembang");
       return x;
     },
-    goList(x){
-      this.$router.push({path:"/perumahan_pengembang/" + x})
-    }
+    goList(x) {
+      this.$router.push({ path: "/perumahan_pengembang/" + x });
+    },
   },
 };
 </script>

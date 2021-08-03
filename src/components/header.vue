@@ -3,36 +3,51 @@
     <header>
       <b-container>
         <b-row>
-          <b-col md="3">
+          <b-col md="6">
             <div class="indentity">
-              <img src="../assets/pkp-new.png" alt="" />
+              <img src="../assets/logopkpv2white.png" alt="" />
 
               <div class="name">
-                <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
+                <h5 class="m-t-0 m-b-0" style="color: #fff">
+                  <strong>Klinik PKP</strong>
+                </h5>
+                <h5 class="m-t-0 m-b-0" style="color: #fff">
+                  <strong>Provinsi Jawa Tengah</strong>
+                </h5>
               </div>
             </div>
+
+            <!-- <div class="name">
+              <h6 class="m-t-0 m-b-0">
+                <strong>DATABASE PENGEMBANG</strong>
+              </h6>
+
+              <h6 class="m-t-0 m-b-0">
+                <strong>PROVINSI JAWA TENGAH</strong>
+              </h6>
+            </div> -->
           </b-col>
 
-          <b-col md="7">
+          <!-- <b-col md="7">
             <div class="menu">
-              <router-link :to="'/'" style="text-decoration:none;">
+              <router-link :to="'/'" style="text-decoration: none">
                 <h6 class="m-t-0 m-b-0">Beranda</h6>
               </router-link>
-              <router-link :to="'/csr'" style="text-decoration:none;">
-              <h6 class="m-t-0 m-b-0">CSR</h6>
+              <router-link :to="'/csr'" style="text-decoration: none">
+                <h6 class="m-t-0 m-b-0">CSR</h6>
               </router-link>
-              <router-link :to="'/pengembang'" style="text-decoration:none;">
+              <router-link :to="'/pengembang'" style="text-decoration: none">
                 <h6 class="m-t-0 m-b-0">Pengembang</h6>
               </router-link>
-              <router-link :to="'/magang'" style="text-decoration:none;">
-              <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
+              <router-link :to="'/magang'" style="text-decoration: none">
+                <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
               </router-link>
               <h6 class="m-t-0 m-b-0">Kerjasama</h6>
               <h6 class="m-t-0 m-b-0">Forum PKP</h6>
             </div>
-          </b-col>
+          </b-col> -->
 
-          <b-col md="2">
+          <b-col md="2" offset-md="4">
             <div class="loginregister">
               <b-button
                 size="md"
@@ -103,7 +118,7 @@ export default {
     },
     goBeranda() {
       let r = localStorage.getItem("role");
-      console.log(r)
+      console.log(r);
       if (r == "pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
       } else if (r == "CSR") {

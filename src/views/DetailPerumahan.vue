@@ -4,7 +4,7 @@
 
     <section class="section-one">
       <b-container>
-        <b-row>
+        <!-- <b-row>
           <b-col md="4">
             <b-button variant="light" @click="back()"
               >Kembali ke Pencarian</b-button
@@ -15,15 +15,32 @@
               <b-button variant="primary">Buat Permohonan</b-button>
             </div>
           </b-col>
-        </b-row>
-
+        </b-row> -->
         <b-row class="m-t-30">
           <b-col md="12">
-            <h3 class="m-t-0 m-b-0">
+            <h3 class="m-t-0 m-b-0 text-center">
               <strong>{{ dataPerum.namaPerumahan }}</strong>
             </h3>
             <!-- nama perusahaan disni -->
-            <h6 class="m-t-0 m-b-0">{{ dataPerum.namaPerusahaan }}</h6>
+            <h6 class="m-t-0 m-b-0 text-center">
+              {{ dataPerum.namaPerusahaan }}
+            </h6>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col md="6" offset-md="3">
+            <hr class="m-t-10 m-b-10" />
+            <div class="box-submenu">
+              <router-link :to="'/'" style="text-decoration: none"
+                ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
+              >
+              <h6 class="m-t-0 m-b-0">|</h6>
+              <h6 class="m-t-0 m-b-0">
+                <strong>Perumahan Pengembang</strong>
+              </h6>
+            </div>
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
 
@@ -34,19 +51,19 @@
           <b-col md="5">
             <b-row>
               <b-col md="6"
-                ><img :src="dataRumah.src2" alt="" style="height:140px"
+                ><img :src="dataRumah.src2" alt="" style="height: 140px"
               /></b-col>
               <b-col md="6"
-                ><img :src="dataRumah.src3" alt="" style="height:140px"
+                ><img :src="dataRumah.src3" alt="" style="height: 140px"
               /></b-col>
             </b-row>
 
             <b-row class="m-t-15">
               <b-col md="6"
-                ><img :src="dataRumah.srcDenah" alt="" style="height:140px"
+                ><img :src="dataRumah.srcDenah" alt="" style="height: 140px"
               /></b-col>
               <b-col md="6"
-                ><img :src="dataPerum.srcFP" alt="" style="height:140px"
+                ><img :src="dataPerum.srcFP" alt="" style="height: 140px"
               /></b-col>
             </b-row>
           </b-col>
@@ -64,7 +81,7 @@
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.208294923349!2d110.38170531414542!3d-6.984726670339616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTknMDUuMCJTIDExMMKwMjMnMDIuMCJF!5e0!3m2!1sid!2sid!4v1624201365485!5m2!1sid!2sid"
                   width="100%"
                   height="300"
-                  style="border:0;"
+                  style="border: 0"
                   allowfullscreen=""
                   loading="lazy"
                 ></iframe>
@@ -96,7 +113,9 @@
 
                   <h6 class="m-t-30">Harga</h6>
                   <h4>
-                    <strong> Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
+                    <strong>
+                      Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong
+                    >
                   </h4>
                 </div>
               </b-col>
@@ -112,7 +131,9 @@
 
                   <h6 class="m-t-30">Harga</h6>
                   <h4>
-                    <strong>Rp {{ formHarga(parseInt(dataRumah.harga)) }}</strong>
+                    <strong
+                      >Rp {{ formHarga(parseInt(dataRumah.harga)) }}</strong
+                    >
                   </h4>
                 </div>
               </b-col>
@@ -154,7 +175,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/phone.png" alt="" style="height:50px" />
+              <img src="../assets/phone.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
@@ -165,7 +186,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/email.png" alt="" style="height:50px" />
+              <img src="../assets/email.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
@@ -176,7 +197,7 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="../assets/www.png" alt="" style="height:50px" />
+              <img src="../assets/www.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Website</strong></h6>
@@ -219,7 +240,7 @@ export default {
     this.dataPerum = JSON.parse(y);
     let x = this.$route.params.id;
     this.getTipeRumah(x);
-    console.log(this.dataPerum, 'dataPer')
+    console.log(this.dataPerum, "dataPer");
   },
   methods: {
     formHarga(x) {
@@ -273,6 +294,12 @@ export default {
 </script>
 
 <style scoped>
+.box-submenu {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red; */
+}
+
 .layout {
   width: 100%;
   height: 100px;

@@ -12,6 +12,20 @@
           </b-col>
         </b-row>
 
+        <b-row>
+          <b-col md="6" offset-md="3">
+            <hr class="m-t-10 m-b-10" />
+            <div class="box-submenu">
+              <router-link :to="'/'" style="text-decoration: none"
+                ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
+              >
+              <h6 class="m-t-0 m-b-0">|</h6>
+              <h6 class="m-t-0 m-b-0"><strong>Perumahan Pengembang</strong></h6>
+            </div>
+            <hr class="m-t-10 m-b-10" />
+          </b-col>
+        </b-row>
+
         <b-row class="m-t-30">
           <b-col md="4">
             <div
@@ -32,9 +46,7 @@
                   ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
                     <strong
                       >Subsidi :
-                      {{
-                        getJml(item.jmlSubsidi, item.terjualSubsidi)
-                      }}
+                      {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }}
                       Unit</strong
                     >
                   </h6></b-badge
@@ -46,9 +58,7 @@
                   ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
                     <strong
                       >Non Subsidi :
-                      {{
-                        getJml(item.jmlKomersial, item.terjualKomersial)
-                      }}
+                      {{ getJml(item.jmlKomersial, item.terjualKomersial) }}
                       Unit</strong
                     >
                   </h6></b-badge
@@ -78,7 +88,7 @@ export default {
       isLogin: false,
       listPerum: [],
       profil: [],
-      dataPerum:[]
+      dataPerum: [],
     };
   },
   components: {
@@ -98,8 +108,8 @@ export default {
       if (y == null || y == undefined) {
         y = 0;
       }
-      let z = x - y
-      return z
+      let z = x - y;
+      return z;
     },
     getPerumahan(x) {
       axios
@@ -146,35 +156,10 @@ export default {
 </script>
 
 <style scoped>
-header {
-  background-color: #4c87f2;
-}
-
-header .left {
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
+.box-submenu {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-header .left h5 {
-  color: #fff;
-}
-
-header .right {
-  width: 100%;
-  height: 50px;
-  /* background-color: aqua; */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-header .right h6 {
-  font-size: 14px;
-  color: #fff;
+  justify-content: space-around;
+  /* background-color: red; */
 }
 
 .section-one {

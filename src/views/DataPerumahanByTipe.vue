@@ -8,18 +8,35 @@
           <b-col md="12">
             <b-row>
               <b-col md="12">
-                
-                  <h4 class="m-t-0 text-center">{{ dataPerum.namaPerusahaan }}</h4>
-                    <h2 class="text-center">
-                      <strong>{{ dataPerum.namaPerumahan }}</strong>
-                    </h2>
-                    <h6 class="m-t-0 text-center">{{ dataPerum.alamatPerumahan }}</h6>
-                    
+                <h4 class="m-t-0 text-center">
+                  {{ dataPerum.namaPerusahaan }}
+                </h4>
+                <h2 class="text-center">
+                  <strong>{{ dataPerum.namaPerumahan }}</strong>
+                </h2>
+                <h6 class="m-t-0 text-center">
+                  {{ dataPerum.alamatPerumahan }}
+                </h6>
               </b-col>
             </b-row>
-            <b-row class="mt-5">
-              
 
+            <b-row>
+              <b-col md="6" offset-md="3">
+                <hr class="m-t-10 m-b-10" />
+                <div class="box-submenu">
+                  <router-link :to="'/'" style="text-decoration: none"
+                    ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
+                  >
+                  <h6 class="m-t-0 m-b-0">|</h6>
+                  <h6 class="m-t-0 m-b-0">
+                    <strong>Perumahan Pengembang</strong>
+                  </h6>
+                </div>
+                <hr class="m-t-10 m-b-10" />
+              </b-col>
+            </b-row>
+
+            <b-row class="mt-5">
               <b-card-group columns>
                 <b-card
                   :img-src="item.src"
@@ -37,7 +54,9 @@
                       <strong>Stok : {{ item.stock }} Unit</strong>
                     </h5>
 
-                    <b-badge variant="primary" style="text-transform:capitalize"
+                    <b-badge
+                      variant="primary"
+                      style="text-transform: capitalize"
                       ><h6 class="m-t-0 m-b-0 p-l-10 p-r-10">
                         <strong>{{ item.jenis }}</strong>
                       </h6></b-badge
@@ -138,6 +157,12 @@ export default {
 </script>
 
 <style scoped>
+.box-submenu {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red; */
+}
+
 .layout {
   width: 100%;
   height: 100px;

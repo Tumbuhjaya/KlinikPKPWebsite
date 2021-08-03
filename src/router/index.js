@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 import Perumahan from "../views/Perumahan.vue";
 import DataPerumahan from "../views/DataPerumahan.vue";
 import DataPerumahanByTipe from "../views/DataPerumahanByTipe.vue";
@@ -37,10 +37,19 @@ import Login from "../views/Login.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: Home,
+  //   meta: {
+  //     role: "all",
+  //   },
+  // },
+
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Pengembang",
+    component: Pengembang,
     meta: {
       role: "all",
     },
