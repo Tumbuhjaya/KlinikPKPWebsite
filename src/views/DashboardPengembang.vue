@@ -190,6 +190,16 @@
                   small
                   show-empty
                 >
+                <template #cell(no)="item">
+                    <center>
+                      {{item.index + 1}}
+                    </center>
+                  </template>
+                  <template #cell(harga)="item">
+                    <center>
+                     {{'Rp'+ " " + formHarga(parseInt(item.item.harga)) }}
+                    </center>
+                  </template>
                   <template #cell(actions)="item">
                     <center>
                       <b-button
@@ -198,11 +208,13 @@
                         class="m-r-15"
                         v-b-modal.modal-permohonan
                         v-b-tooltip.hover.top="'Edit'"
+                        @click="setValue(item.item)"
                         ><b-icon-pencil-square></b-icon-pencil-square
-                        >{{ item.actions }}</b-button
+                        ></b-button
                       >
                     </center>
                   </template>
+
                 </b-table>
 
                 <b-row>
@@ -244,31 +256,31 @@
                       <b-tr>
                         <b-td style="width: 200px">NIK</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.NIK}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Nama</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.nama}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Alamat</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.alamat}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>No. Hp</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.noHp}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Email</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.email}}</b-td>
                       </b-tr>
                     </b-tbody>
                   </b-table-simple>
@@ -283,43 +295,43 @@
                       <b-tr>
                         <b-td style="width: 200px">Nama Pengembang</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{items[0].namaPerusahaan}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Nama Perumahan</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.namaPerumahan}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Alamat Perumahan</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.alamatPerumahan}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Kabupaten/Kota</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.kabKotaPerumahan}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Jenis </b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.jenis}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Tipe </b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.type}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Harga </b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>Rp {{ formHarga(parseInt(value.harga)) }}</b-td>
                       </b-tr>
                     </b-tbody>
                   </b-table-simple>
@@ -334,13 +346,13 @@
                       <b-tr>
                         <b-td style="width: 200px">Nama Lembaga</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.namaLembaga}}</b-td>
                       </b-tr>
 
                       <b-tr>
                         <b-td>Deskripsi Program Pembiayaan</b-td>
                         <b-td>:</b-td>
-                        <b-td>-</b-td>
+                        <b-td>{{value.deskripsiProgram}}</b-td>
                       </b-tr>
                     </b-tbody>
                   </b-table-simple>
@@ -356,7 +368,7 @@
                         <b-td style="width: 200px">Status Permohonan</b-td>
                         <b-td style="width: 5px">:</b-td>
                         <b-td
-                          ><b-form-select :options="status"></b-form-select
+                          ><b-form-select :options="status" v-model="value.statusPengajuan"></b-form-select
                         ></b-td>
                       </b-tr>
                     </b-tbody>
@@ -364,7 +376,8 @@
                 </b-col>
 
                 <b-col md="12">
-                  <b-button variant="primary">Simpan</b-button>
+                  <b-button variant="primary" @click="confirm(value)"
+                  >Simpan</b-button>
                 </b-col>
               </b-row>
             </b-tab>
@@ -387,20 +400,9 @@ export default {
   name: "DashboardPengembang",
   data() {
     return {
+      value:[],
       isLogin: false,
       items: [],
-      items2: [
-        {
-          no: "-",
-          namaPemohon: "-",
-          noTelpPemohon: "-",
-          emailPemohon: "-",
-          namaPerumahan: "-",
-          jenisPerumahan: "-",
-          tipePerumahan: "-",
-          hargaPerumahan: "-",
-        },
-      ],
       listPengajuan:[],
       fields: [
         {
@@ -444,19 +446,19 @@ export default {
           class: "text-center",
         },
         {
-          key: "namaPemohon",
+          key: "nama",
           label: "Nama Pemohon",
           sortable: true,
           sortDirection: "desc",
         },
         {
-          key: "noTelpPemohon",
+          key: "noHp",
           label: "No. Telepon Pemohon",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "emailPemohon",
+          key: "email",
           label: "Email Pemohon",
           sortable: true,
           class: "text-center",
@@ -470,20 +472,20 @@ export default {
         },
 
         {
-          key: "jenisPerumahan",
+          key: "jenis",
           label: "Jenis Perumahan",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "tipePerumahan",
+          key: "type",
           label: "Tipe Perumahan",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "hargaPerumahan",
+          key: "harga",
           label: "Harga Perumahan",
           sortable: true,
           class: "text-center",
@@ -522,12 +524,21 @@ export default {
   async created() {
     localStorage.removeItem("dataPerum");
     this.getPerum();
+    this.getCalon()
   },
   mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
   },
   methods: {
+    formHarga(x) {
+      let y = x.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.");
+      return y;
+    },
+    setValue(x){
+      this.value = x
+      console.log(this.value)
+    },
     goEdit(x) {
       this.$router.push({ path: `edit_perumahan_pengembang/${x}` });
     },
@@ -578,18 +589,57 @@ export default {
           console.log(err);
         });
     },
-    getCalon(x){
-      axios.get(ipBackEnd + 'pengajuan/list' + x,{
+    getCalon(){
+      axios.get(ipBackEnd + 'pengajuan/listByPengembangYangLogin',{
         headers:{
           token:localStorage.getItem('token')
         }
       }).then(res=>{
         let x= res.data.data
         this.listPengajuan = x.map(item=>{
-          return{...item}
+          return{...item} })
+          console.log(this.listPengajuan)
         }).catch(err =>{
           console.log(err)
         })
+    },
+    confirm(x){
+      console.log(x,' ini value')
+      if(x.statusPengajuan == 1){
+        this.terima(x)
+        this.getCalon()
+      } else if (x.statusPengajuan == 2){
+        this.tolak(x)
+        this.getCalon()
+      } else{
+        console.log('test')
+      }
+      this.$bvModal.hide('modal-permohonan')
+    },
+    terima(x){
+      axios.post(ipBackEnd + 'pengajuan/penerimaanPengajuan',{
+        id:x.pengajuanId,
+      },{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
+      })
+    },
+    tolak(x){
+      axios.post(ipBackEnd + 'pengajuan/penolakanPengajuan',{
+        id:x.pengajuanId,
+      },{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
       })
     }
   },
