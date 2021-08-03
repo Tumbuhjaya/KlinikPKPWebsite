@@ -7,7 +7,7 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>{{dataMagang.kegiatan}}</strong>
+              <strong>{{dataCSR.kegiatan}}</strong>
             </h2>
           </b-col>
         </b-row>
@@ -15,7 +15,7 @@
         <b-row class="m-t-30">
           <b-col md="4">
             <img
-                  :src="dataMagang.src1"
+                  :src="dataCSR.src1"
                   alt=""
                   style="width:100%"
                 />
@@ -23,7 +23,7 @@
 
           <b-col md="4">
             <img
-                  :src="dataMagang.src2"
+                  :src="dataCSR.src2"
                   alt=""
                   style="width:100%"
                 />
@@ -31,7 +31,7 @@
 
           <b-col md="4">
             <img
-                  :src="dataMagang.src3"
+                  :src="dataCSR.src3"
                   alt=""
                   style="width:100%"
                 />
@@ -43,7 +43,7 @@
         <b-row class="m-t-30">
           <b-col md="12">
             <p>
-              {{dataMagang.deskripsi}}
+              {{dataCSR.deskripsi}}
             </p>
           </b-col>
         </b-row>
@@ -68,7 +68,7 @@ export default {
     return {
       isLogin: false,
       MId: 0,
-      dataMagang:[]
+      dataCSR:[]
     };
   },
   components: {
@@ -77,16 +77,17 @@ export default {
   },
   created(){
     this.MId = this.$route.params.id
+    console.log(this.MId)
     this.getListMagang(this.MId)
   },
   methods: {
     getListMagang(x){
-      axios.get(ipBackEnd + 'csr/listById/' + x ).then(res =>{
+      axios.get(ipBackEnd + 'CSR/listById/' + x ).then(res =>{
         console.log(res)
-        this.dataMagang = res.data.data[0]
-        this.dataMagang.src1 = ipBackEnd + this.dataMagang.foto1
-        this.dataMagang.src2 = ipBackEnd + this.dataMagang.foto2
-        this.dataMagang.src3 = ipBackEnd + this.dataMagang.foto3
+        this.dataCSR = res.data.data[0]
+        this.dataCSR.src1 = ipBackEnd + this.dataCSR.foto1
+        this.dataCSR.src2 = ipBackEnd + this.dataCSR.foto2
+        this.dataCSR.src3 = ipBackEnd + this.dataCSR.foto3
       }).catch(err =>{
         console.log(err)
       })
