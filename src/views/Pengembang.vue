@@ -399,8 +399,17 @@ export default {
   async created() {
     this.items = await this.getPengembang();
     await this.getPerumahan();
+    this.checkLogin()
   },
   methods: {
+    checkLogin() {
+      let token = localStorage.getItem("token");
+      if (token) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
+    },
     info(item, index, button) {
       this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = JSON.stringify(item, null, 2);
