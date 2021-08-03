@@ -6,6 +6,8 @@ import DataPerumahan from "../views/DataPerumahan.vue";
 import DataPerumahanByTipe from "../views/DataPerumahanByTipe.vue";
 import DetailPerumahan from "../views/DetailPerumahan.vue";
 import Pengembang from "../views/Pengembang.vue";
+import DataPengembang from "../views/DataPengembang.vue";
+import PetaPerumahan from "../views/PetaPerumahan.vue";
 import DaftarPengembang from "../views/DaftarPengembang.vue";
 import DashboardPengembang from "../views/DashboardPengembang.vue";
 import EditProfilPengembang from "../views/EditProfilPengembang.vue";
@@ -50,6 +52,24 @@ const routes = [
     path: "/",
     name: "Pengembang",
     component: Pengembang,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/data_pengembang",
+    name: "DataPengembang",
+    component: DataPengembang,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/peta_perumahan",
+    name: "PetaPerumahan",
+    component: PetaPerumahan,
     meta: {
       role: "all",
     },
