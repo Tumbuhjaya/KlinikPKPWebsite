@@ -290,4 +290,8 @@ body {
   outline: none;
   border: none;
 }
+
+.tabel-harga {
+  width: 160px !important;
+}
 </style>
