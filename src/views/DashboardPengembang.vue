@@ -178,7 +178,7 @@
                 </b-row>
 
                 <b-table
-                  :items="items2"
+                  :items="listPengajuan"
                   :fields="fields2"
                   :current-page="currentPage"
                   :per-page="perPage"
@@ -401,6 +401,7 @@ export default {
           hargaPerumahan: "-",
         },
       ],
+      listPengajuan:[],
       fields: [
         {
           key: "No",
@@ -577,6 +578,20 @@ export default {
           console.log(err);
         });
     },
+    getCalon(x){
+      axios.get(ipBackEnd + 'pengajuan/list' + x,{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res=>{
+        let x= res.data.data
+        this.listPengajuan = x.map(item=>{
+          return{...item}
+        }).catch(err =>{
+          console.log(err)
+        })
+      })
+    }
   },
 };
 </script>
