@@ -1,144 +1,199 @@
 <template>
   <div id="pengembang">
     <!-- <myheader></myheader> -->
-    <!-- <section class="menu-pengembang">
+    <section class="menu-pengembang">
       <b-container>
         <b-row>
           <b-col md="5">
             <div class="left">
-              <img src="https://via.placeholder.com/65" alt="" />
+              <img
+                src="../assets/logopkpv2white.png"
+                alt=""
+                style="height: 65px"
+              />
               <div class="name">
-                <h5 class="mt-0 mb-0"><strong>Klinik PKP</strong></h5>
-                <h5 class="mt-0 mb-0"><strong>Provinsi Jawa Tengah</strong></h5>
+                <h5 class="mt-0 mb-0" style="color: #fff">
+                  <strong>Klinik PKP</strong>
+                </h5>
+                <h5 class="mt-0 mb-0" style="color: #fff">
+                  <strong>Provinsi Jawa Tengah</strong>
+                </h5>
+              </div>
+            </div>
+          </b-col>
+
+          <b-col md="7">
+            <div class="right">
+              <b-button
+                size="md"
+                v-b-modal.modal-lg
+                variant="warning"
+                v-if="isLogin != true"
+                >Login</b-button
+              >
+              <div>
+                <b-dropdown
+                  size="md"
+                  right
+                  variant="warning"
+                  toggle-class="text-decoration-none"
+                  no-caret
+                  class="ml-2"
+                  v-if="isLogin == true"
+                >
+                  <b-dropdown-item @click="goBeranda()"
+                    >Beranda</b-dropdown-item
+                  >
+                  <template #button-content>
+                    <b-icon-person-circle></b-icon-person-circle>
+                  </template>
+                  <b-dropdown-item @click="goEdit()"
+                    >Edit Profil
+                  </b-dropdown-item>
+
+                  <b-dropdown-item
+                    ><router-link :to="'/edit_password_pengembang'"
+                      >Edit Password</router-link
+                    ></b-dropdown-item
+                  >
+
+                  <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
+                </b-dropdown>
               </div>
             </div>
           </b-col>
         </b-row>
       </b-container>
-    </section> -->
+    </section>
 
     <section style="position: relative">
       <b-container fluid>
         <b-row>
           <b-col md="12" class="pl-0 pr-0">
-            <img
-              src="https://via.placeholder.com/1366x555"
-              alt=""
-              style="width: 100%; height: 555px"
-            />
+            <div class="banner"></div>
           </b-col>
         </b-row>
       </b-container>
 
-      <!-- <b-container>
+      <b-container
+        style="position: absolute; left: 0; top: 0; bottom: 0; right: 0"
+      >
         <b-row>
           <b-col md="12">
-            <div
-              style="width: 100%; height: 100vh; background-color: red"
-            ></div>
-          </b-col>
-        </b-row>
-      </b-container> -->
-    </section>
+            <b-row>
+              <b-col md="5">
+                <div
+                  style="
+                    width: 100%;
+                    height: 73vh;
+                    background-color: transparent;
+                  "
+                ></div>
+              </b-col>
 
-    <section style="padding: 60px 0">
-      <b-container>
-        <b-row>
+              <b-col md="7">
+                <div
+                  style="
+                    width: 100%;
+                    height: 70vh;
+                    background-color: ;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    flex-direction: column;
+                    padding-top: 55px;
+                  "
+                >
+                  <h1 style="color: #fff; font-size: 48px">
+                    <strong>Database Pengembang</strong>
+                  </h1>
+                  <h1 style="color: #fff">
+                    <strong>Provinsi Jawa Tengah</strong>
+                  </h1>
+
+                  <div
+                    style="
+                      width: 80%;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      background-color: ;
+                      margin-top: 15px;
+                    "
+                  >
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/data_pengembang'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/engineer.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>Data Pengembang</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/peta_perumahan'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/map.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>Peta Spasial Perumahan</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/daftar_pengembang'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/clipboard.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>Daftar Pengembang</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </b-col>
+            </b-row>
+          </b-col>
+
           <b-col md="12">
-            <h3 class="text-center">
-              <strong>DATABASE PENGEMBANG<br />PROVINSI JAWA TENGAH</strong>
-            </h3>
-          </b-col>
-        </b-row>
-        <b-row class="mt-5">
-          <b-col md="4">
-            <router-link :to="'/data_pengembang'" style="text-decoration: none">
-              <div class="box-fitur">
-                <img src="https://via.placeholder.com/150" alt="" />
-                <h5 class="mt-3 mb-0 text-center">
-                  <strong>DATA</strong>
-                </h5>
-                <h5 class="mt-0 mb-0 text-center">
-                  <strong>PENGEMBANG</strong>
-                </h5>
-
-                <p class="mt-2 mb-0 text-center" style="font-size: 12px">
-                  Anda dapat mencari informasi pengembang yang telah terdaftar
-                  pada database pengembang Provinsi Jawa Tengah
-                </p>
-              </div>
-            </router-link>
-          </b-col>
-          <b-col md="4">
-            <router-link :to="'/peta_perumahan'" style="text-decoration: none">
-              <div class="box-fitur">
-                <img src="https://via.placeholder.com/150" alt="" />
-                <h5 class="mt-3 mb-0 text-center">
-                  <strong>PETA PERSEBARAN</strong>
-                </h5>
-                <h5 class="mt-0 mb-0 text-center">
-                  <strong>PERUMAHAN</strong>
-                </h5>
-
-                <p class="mt-2 mb-0 text-center" style="font-size: 12px">
-                  Sebaran perumahan ditampilkan dalam bentuk peta spasial yang
-                  dapat anda gunakan untuk mencari informasi perumahan di
-                  Provinsi Jawa Tengah
-                </p>
-              </div>
-            </router-link>
-          </b-col>
-          <b-col md="4">
-            <router-link
-              :to="'/daftar_pengembang'"
-              style="text-decoration: none"
-            >
-              <div class="box-fitur">
-                <img src="https://via.placeholder.com/150" alt="" />
-                <h5 class="mt-3 mb-0 text-center">
-                  <strong>DAFTAR</strong>
-                </h5>
-                <h5 class="mt-0 mb-0 text-center">
-                  <strong>PENGEMBANG</strong>
-                </h5>
-
-                <p class="mt-2 mb-0 text-center" style="font-size: 12px">
-                  Perusahaan anda belum terdaftar ?<br />Segera daftarkan
-                  perusahaan anda agar masuk dalam database pengembang Provinsi
-                  Jawa Tengah
-                </p>
-              </div>
-            </router-link>
-          </b-col>
-        </b-row>
-      </b-container>
-    </section>
-
-    <section style="padding: 60px 0">
-      <b-container>
-        <b-row>
-          <b-col md="12">
-            <h3 class="text-center">
-              <strong>REKOMENDASI PERUMAHAN<br />PROVINSI JAWA TENGAH</strong>
-            </h3>
-          </b-col>
-        </b-row>
-        <b-row class="mt-5">
-          <b-col md="12">
-            <VueSlickCarousel
-              :dots="true"
-              v-bind="rekomperumahan"
-              v-if="listPerumahan.length > 0"
-            >
-              <div
-                v-for="item in listPerumahan"
-                :key="item.id"
-                @click="goListRumah(item)"
+            <div style="width: 100%; height: 25vh; background-color: ">
+              <VueSlickCarousel
+                v-bind="rekomperumahan"
+                v-if="listPerumahan.length > 0"
               >
-                <div class="box">
-                  <!-- <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none"> -->
-                  <div class="up"><img :src="item.src" alt="" /></div>
-                  <div class="down m-t-15">
+                <div
+                  v-for="item in listPerumahan"
+                  :key="item.id"
+                  @click="goListRumah(item)"
+                >
+                  <div class="box">
+                    <!-- <router-link :to="'/data_perumahan_by_tipe'" style="text-decoration:none"> -->
+                    <div class="up"><img :src="item.src" alt="" /></div>
+                    <!-- <div class="down m-t-15">
                     <h5>
                       <strong>{{ item.namaPerumahan }}</strong>
                     </h5>
@@ -174,17 +229,101 @@
                         >
                       </h6></b-badge
                     >
+                  </div> -->
+                    <!-- </router-link> -->
                   </div>
-                  <!-- </router-link> -->
                 </div>
-              </div>
-            </VueSlickCarousel>
+              </VueSlickCarousel>
+            </div>
           </b-col>
+
+          <!--  -->
         </b-row>
       </b-container>
     </section>
+    <b-modal
+      id="modal-lg"
+      size="lg"
+      centered
+      hide-footer
+      hide-header
+      class="modal-loginku"
+    >
+      <div class="bg-login">
+        <b-row>
+          <b-col md="7 p-r-0" style="padding-right: 0 !important">
+            <div
+              style="
+                width: 100%;
+                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img src="../assets/icon-login2.png" alt="" style="width: 60%" />
+            </div>
+            <!-- <img
+                    src="../assets/login.png"
+                    alt=""
+                    style="width:100%"
+                /> -->
+          </b-col>
+          <b-col md="5" style="padding-left: 0 !important">
+            <div
+              style="
+                width: 100%;
+                background-color: #fff;
+                padding: 30px;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+              "
+            >
+              <h2 class="m-t-0 m-b-0" style="color: #4c87f2">
+                <strong>LOGIN</strong>
+              </h2>
+              <h5 class="m-t-0 m-b-0" style="color: #4c87f2">KLINIK PKP</h5>
+              <h5 class="m-t-0 m-b-0" style="color: #4c87f2">
+                PROVINSI JAWA TENGAH
+              </h5>
+              <hr />
 
-    <myfooter></myfooter>
+              <b-form-group label="Username" style="color: #4c87f2">
+                <b-form-input v-model="username"></b-form-input>
+              </b-form-group>
+
+              <b-form-group label="Password" style="color: #4c87f2">
+                <b-form-input
+                  v-model="password"
+                  type="password"
+                  @keyup.enter="login()"
+                ></b-form-input>
+              </b-form-group>
+
+              <b-form-group>
+                <b-button variant="primary" @click="login()">Login</b-button>
+              </b-form-group>
+            </div>
+            <!-- <h3 class="m-t-0 m-b-0"><strong>LOGIN</strong></h3>
+                <h4 class="m-t-0 m-b-0">KLINIK PKP</h4>
+                <h4 class="m-t-0 m-b-0">PROVINSI JAWA TENGAH</h4>
+                <hr />
+                <b-form-group label="Username">
+                    <b-form-input v-model="username"></b-form-input>
+                </b-form-group>
+
+                <b-form-group label="Password">
+                    <b-form-input v-model="password" type="password"></b-form-input>
+                </b-form-group> -->
+
+            <!-- <router-link :to="'dashboard_pengembang'" > -->
+            <!-- <b-button variant="primary" @click="login()">Login</b-button> -->
+            <!-- </router-link> -->
+          </b-col>
+        </b-row>
+      </div>
+    </b-modal>
+    <!-- <myfooter></myfooter> -->
   </div>
 </template>
 
@@ -194,7 +333,7 @@
 import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
 // import myheader from "../components/header";
-import myfooter from "../components/footer";
+// import myfooter from "../components/footer";
 import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
@@ -204,13 +343,15 @@ export default {
       isLogin: false,
       listPerumahan: [],
       items: [],
+      username: "",
+      password: "",
       rekomperumahan: {
         autoplay: true,
         dots: false,
         focusOnSelect: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
       },
       fields: [
@@ -252,7 +393,7 @@ export default {
   },
   components: {
     // myheader,
-    myfooter,
+    // myfooter,
     VueSlickCarousel,
   },
   async created() {
@@ -273,6 +414,28 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+
+    login() {
+      axios
+        .post(ipBackEnd + "users/login", {
+          username: this.username,
+          password: this.password,
+        })
+        .then((res) => {
+          console.log(res, "ini footer");
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("role", res.data.role);
+          if (res.data.role == "pengembang") {
+            this.$router.push({ path: "/dashboard_pengembang" });
+          } else if (res.data.role == "CSR") {
+            this.$router.push({ path: "/dashboard_csr" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     async getPerumahan() {
       let PTs = await axios
@@ -325,6 +488,26 @@ export default {
     goListRumah(x) {
       this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
     },
+    logOut() {
+      this.$router.push({ path: "/logout" });
+    },
+    goBeranda() {
+      let r = localStorage.getItem("role");
+      console.log(r);
+      if (r == "pengembang") {
+        this.$router.push({ path: "/dashboard_pengembang" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/dashboard_csr" });
+      }
+    },
+    goEdit() {
+      let r = localStorage.getItem("role");
+      if (r == "pengembang") {
+        this.$router.push({ path: "/edit_profil_pengembang" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/edit_profil_csr" });
+      }
+    },
   },
 };
 </script>
@@ -355,9 +538,9 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
-  border-radius: 25px;
+  /* background-color: red; */
+  /* box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4); */
+  /* border-radius: 25px; */
 }
 
 #pengembang .box .up {
@@ -365,13 +548,14 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
+  padding: 0 15px;
 }
 
 #pengembang .box .up img {
-  width: 80%;
-  height: 200px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  width: 100%;
+  height: 140px;
+  /* border-top-left-radius: 25px;
+  border-top-right-radius: 25px; */
 }
 
 #pengembang .box .down {
@@ -385,7 +569,7 @@ export default {
 #pengembang .menu-pengembang {
   width: 100%;
   height: 80px;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(255, 255, 255, 0.5); */
   position: absolute;
   left: 0;
   right: 0;
@@ -402,7 +586,37 @@ export default {
   align-items: center;
 }
 
+#pengembang .menu-pengembang .right {
+  width: 100%;
+  height: 80px;
+  /* background-color: pink; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 #pengembang .menu-pengembang .left .name {
   margin-left: 15px;
+}
+
+#pengembang .banner {
+  background: url("../assets/bgnew.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.bg-login {
+  background-image: url("../assets/bg-login.jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 </style>

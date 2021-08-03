@@ -7,20 +7,24 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>PETA PERSEBARAN PERUMAHAN</strong>
+              <strong>Peta Persebaran Perumahan Provinsi Jawa Tengah</strong>
             </h2>
 
-            <h2 class="m-t-0 m-b-0 text-center">
+            <!-- <h2 class="m-t-0 m-b-0 text-center">
               <strong>PROVINSI JAWA TENGAH</strong>
-            </h2>
+            </h2> -->
           </b-col>
         </b-row>
 
         <b-row class="mt-5">
           <b-col md="12">
-            <div
-              style="width: 100%; height: 600px; background-color: #333"
-            ></div>
+            <div>
+              <iframe
+                src="http://mapgeo.id/peta_perumahan.html"
+                title="description"
+                style="width: 100%; height: 600px; border: none"
+              ></iframe>
+            </div>
           </b-col>
         </b-row>
       </b-container>
