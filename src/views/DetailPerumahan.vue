@@ -16,14 +16,17 @@
             </div>
           </b-col>
         </b-row> -->
-        <b-row class="m-t-30">
+        <b-row>
           <b-col md="12">
-            <h3 class="m-t-0 m-b-0 text-center">
+            <h2 class="m-t-0 text-center">
               <strong>{{ dataPerum.namaPerumahan }}</strong>
-            </h3>
+            </h2>
             <!-- nama perusahaan disni -->
-            <h6 class="m-t-0 m-b-0 text-center">
-              {{ dataPerum.namaPerusahaan }}
+            <h5 class="m-t-0 text-center">
+              ( {{ dataPerum.namaPerusahaan }} )
+            </h5>
+            <h6 class="m-t-0 text-center">
+              {{ dataPerum.alamatPerumahan }}
             </h6>
           </b-col>
         </b-row>
@@ -32,12 +35,12 @@
           <b-col md="6" offset-md="3">
             <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
-              <router-link :to="'/'" style="text-decoration: none"
-                ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
+              <router-link :to="'/data_perumahan'" style="text-decoration: none"
+                ><h6 class="m-t-0 m-b-0">Perumahan</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0">
-                <strong>Perumahan Pengembang</strong>
+                <strong>Detail Perumahan</strong>
               </h6>
             </div>
             <hr class="m-t-10 m-b-10" />

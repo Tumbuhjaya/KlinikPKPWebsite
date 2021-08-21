@@ -17,7 +17,7 @@
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
-                style="text-decoration:none"
+                style="text-decoration: none"
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
@@ -105,8 +105,8 @@
               </b-form-group>
 
               <b-form-group
-                label="Upload Foto Perumahan"
-                style="margin-bottom:0px !important"
+                label="Upload Brosur Perumahan"
+                style="margin-bottom: 0px !important"
               >
                 <b-form-file
                   id="file"
@@ -117,24 +117,59 @@
 
               <b-form-group class="m-t-15">
                 <div
-                  style="width:150px;height:150px;"
+                  style="width: 150px; height: 150px"
                   v-if="dataPerum.src != ipBackEnd + 'null'"
                 >
                   <img
                     :src="dataPerum.src"
                     alt=""
-                    style="width:150px;height:150px"
+                    style="width: 150px; height: 150px"
                   />
                 </div>
 
                 <div
-                  style="width:150px;height:150px;"
+                  style="width: 150px; height: 150px"
                   v-if="dataPerum.src == ipBackEnd + 'null'"
                 >
                   <img
                     src="../assets/tidak-ada-gambar.png"
                     alt=""
-                    style="width:150px;height:150px"
+                    style="width: 150px; height: 150px"
+                  />
+                </div>
+              </b-form-group>
+
+              <b-form-group
+                label="Upload Siteplan Perumahan"
+                style="margin-bottom: 0px !important"
+              >
+                <b-form-file
+                  id="file"
+                  ref="file"
+                  @input="handleFile()"
+                ></b-form-file>
+              </b-form-group>
+
+              <b-form-group class="m-t-15">
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="dataPerum.src2 != ipBackEnd + 'null'"
+                >
+                  <img
+                    :src="dataPerum.src2"
+                    alt=""
+                    style="width: 150px; height: 150px"
+                  />
+                </div>
+
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="dataPerum.src2 == ipBackEnd + 'null'"
+                >
+                  <img
+                    src="../assets/tidak-ada-gambar.png"
+                    alt=""
+                    style="width: 150px; height: 150px"
                   />
                 </div>
               </b-form-group>
@@ -204,7 +239,7 @@ export default {
         .then((res) => {
           this.dataPerum = res.data.data[0];
           this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan;
-          console.log(this.dataPerum)
+          console.log(this.dataPerum);
         })
         .catch((err) => {
           console.log(err);
@@ -244,7 +279,7 @@ export default {
             emailPerumahan: vm.dataPerum.emailPerumahan,
             CPPerumahan: vm.dataPerum.id,
             luasLahanPerumahan: vm.dataPerum.luasLahanPerumahan,
-            deskripsiPerumahan:vm.dataPerum.deskripsiPerumahan,
+            deskripsiPerumahan: vm.dataPerum.deskripsiPerumahan,
             koordinatX: vm.dataPerum.koordinatX,
             koordinatY: vm.dataPerum.koordinatY,
           },
@@ -283,7 +318,7 @@ export default {
           this.kabkot = x.map((item) => {
             return item.namaKabKota;
           });
-          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
+          this.kabkot.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
         })
         .catch((err) => {
           console.log(err);
@@ -291,7 +326,7 @@ export default {
     },
   },
   watch: {
-    dataPerum: function(val) {
+    dataPerum: function (val) {
       console.log(val);
     },
   },

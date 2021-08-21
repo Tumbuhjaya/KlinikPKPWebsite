@@ -7,17 +7,17 @@
           <b-col md="5">
             <div class="left">
               <img
-                src="../assets/logopkpv2white.png"
+                src="../assets/logo_jateng.png"
                 alt=""
                 style="height: 65px"
               />
               <div class="name">
-                <h5 class="mt-0 mb-0" style="color: #fff">
-                  <strong>Klinik PKP</strong>
-                </h5>
-                <h5 class="mt-0 mb-0" style="color: #fff">
-                  <strong>Provinsi Jawa Tengah</strong>
-                </h5>
+                <h6 class="mt-0 mb-0" style="color: #fff">
+                  <strong
+                    >Dinas Perumahan Rakyat Dan Kawasan Permukiman Provinsi Jawa
+                    Tengah</strong
+                  >
+                </h6>
               </div>
             </div>
           </b-col>
@@ -25,9 +25,10 @@
           <b-col md="7">
             <div class="right">
               <b-button
-                size="md"
+                size="sm"
                 v-b-modal.modal-lg
                 variant="warning"
+                class="mb-3"
                 v-if="isLogin != true"
                 >Login</b-button
               >
@@ -81,7 +82,7 @@
         <b-row>
           <b-col md="12">
             <b-row>
-              <b-col md="5">
+              <b-col md="4">
                 <div
                   style="
                     width: 100%;
@@ -91,7 +92,7 @@
                 ></div>
               </b-col>
 
-              <b-col md="7">
+              <b-col md="8">
                 <div
                   style="
                     width: 100%;
@@ -104,11 +105,15 @@
                     padding-top: 55px;
                   "
                 >
-                  <h1 style="color: #fff; font-size: 48px">
-                    <strong>Database Pengembang</strong>
+                  <h1 style="color: #fff; text-align: right">
+                    <strong>DATABASE</strong>
+                  </h1>
+
+                  <h1 style="color: #fff; text-align: right">
+                    <strong>PENGEMBANG PERUMAHAN</strong>
                   </h1>
                   <h1 style="color: #fff">
-                    <strong>Provinsi Jawa Tengah</strong>
+                    <strong>PROVINSI JAWA TENGAH</strong>
                   </h1>
 
                   <div
@@ -118,7 +123,7 @@
                       justify-content: space-between;
                       align-items: center;
                       background-color: ;
-                      margin-top: 15px;
+                      margin-top: 10px;
                     "
                   >
                     <div>
@@ -133,7 +138,25 @@
                             style="height: 100px"
                           />
                           <h6 style="color: #fff" class="mt-3">
-                            <strong>Data Pengembang</strong>
+                            <strong>PENGEMBANG</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/data_perumahan'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/sale-home.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>PERUMAHAN</strong>
                           </h6>
                         </router-link>
                       </center>
@@ -151,7 +174,7 @@
                             style="height: 100px"
                           />
                           <h6 style="color: #fff" class="mt-3">
-                            <strong>Peta Spasial Perumahan</strong>
+                            <strong>PETA</strong>
                           </h6>
                         </router-link>
                       </center>
@@ -168,7 +191,7 @@
                             style="height: 100px"
                           />
                           <h6 style="color: #fff" class="mt-3">
-                            <strong>Daftar Pengembang</strong>
+                            <strong>DAFTAR</strong>
                           </h6>
                         </router-link>
                       </center>
@@ -399,7 +422,7 @@ export default {
   async created() {
     this.items = await this.getPengembang();
     await this.getPerumahan();
-    this.checkLogin()
+    this.checkLogin();
   },
   methods: {
     checkLogin() {

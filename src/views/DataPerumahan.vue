@@ -93,9 +93,9 @@
               </b-row>
 
               <b-row>
-                <b-col md="12">
+                <!-- <b-col md="12">
                   <h6><strong>Sertifikat</strong></h6>
-                </b-col>
+                </b-col> -->
 
                 <!-- <b-col md="12">
                   <b-form-checkbox>Sertifikat Hak Milik (SHM)</b-form-checkbox>
@@ -103,8 +103,8 @@
                   <b-form-checkbox>Lainnya</b-form-checkbox>
                 </b-col> -->
                 <b-col md="10">
-                      <b-button variant="primary" @click="search()">Cari</b-button>
-                  </b-col>
+                  <b-button variant="primary" @click="search()">Cari</b-button>
+                </b-col>
               </b-row>
             </div>
           </b-col>
@@ -121,50 +121,92 @@
 
               <b-col md="4">
                 <multiselect
-                    :options="urutkan"
-                    v-model="urut"
-                    :multiple="false"
-                    :searchable="true"
-                    :close-on-select="true"
-                    :show-labels="false"
-                    placeholder="-- Urutkan --"
-                  ></multiselect>
+                  :options="urutkan"
+                  v-model="urut"
+                  :multiple="false"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="false"
+                  placeholder="-- Urutkan --"
+                  class="m-t-10"
+                ></multiselect>
               </b-col>
             </b-row>
 
             <b-row>
-              <b-col
-                md="4"
-                class="m-t-15 m-b-15"
-                v-for="item in listPerumahan"
-                :key="item.PerumahanId"
-                @click="goListRumah(item)"
-              >
-                <div class="box">
-                  <div class="up">
-                    <img :src="item.src" alt="" />
-                  </div>
-                  <div class="down m-t-15">
-                    <h5>
-                      <strong>{{ item.namaPerumahan }}</strong>
-                    </h5>
-                    <h6>{{ item.namaPerusahaan }}</h6>
+              <b-col md="12">
+                <b-card-group columns>
+                  <b-card
+                    v-for="item in listPerumahan"
+                    :key="item.PerumahanId"
+                    :img-src="item.src"
+                    img-alt="Image"
+                    img-top
+                  >
+                    <b-card-text>
+                      <b-row>
+                        <b-col md="12">
+                          <h5>
+                            <strong>{{ item.namaPerumahan }}</strong>
+                          </h5>
+                          <h6 style="font-size: 14px">
+                            {{ item.namaPerusahaan }}
+                          </h6>
 
-                    <p class="m-t-15">{{ item.alamatPerumahan }}</p>
-                    <p class="m-t-15">{{ item.kabKotaPerumahan }}</p>
+                          <h6 class="mt-2" style="font-size: 14px">
+                            {{ item.alamatPerumahan }}
+                          </h6>
+                          <h6 style="font-size: 14px">
+                            {{ item.kabKotaPerumahan }}
+                          </h6>
 
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Subsidi</strong> {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }} Unit
-                      {{ Math.trunc(item.hargaMinSubsidi / 1000000) }} Juta -
-                      {{ Math.trunc(item.hargaMaxSubsidi / 1000000) }} Juta
-                    </h6>
-                    <h6 class="harga m-t-5 m-b-5">
-                      <strong>Komersil</strong> {{ getJml(item.jmlKomersial, item.terjualKomersial) }} Unit
-                      {{ Math.trunc(item.hargaMinKomersial / 1000000) }} Juta -
-                      {{ Math.trunc(item.hargaMaxKomersial / 1000000) }} Juta
-                    </h6>
-                  </div>
-                </div>
+                          <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
+                            <strong>Subsidi :</strong>
+                            {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }}
+                            Unit, Kisaran harga antara
+                            {{ Math.trunc(item.hargaMinSubsidi / 1000000) }}
+                            Juta s/d
+                            {{ Math.trunc(item.hargaMaxSubsidi / 1000000) }}
+                            Juta
+                          </h6>
+                          <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
+                            <strong>Komersial :</strong>
+                            {{
+                              getJml(item.jmlKomersial, item.terjualKomersial)
+                            }}
+                            Unit, Kisaran harga antara
+                            {{ Math.trunc(item.hargaMinKomersial / 1000000) }}
+                            Juta -
+                            {{ Math.trunc(item.hargaMaxKomersial / 1000000) }}
+                            Juta
+                          </h6>
+                        </b-col>
+                      </b-row>
+                      <hr />
+                      <b-row>
+                        <b-col md="6">
+                          <b-button
+                            variant="primary"
+                            size="sm"
+                            @click="goListRumah(item)"
+                            style="cursor: pointer"
+                            >Detail</b-button
+                          >
+                        </b-col>
+                        <b-col md="6">
+                          <b-button
+                            variant="warning"
+                            size="sm"
+                            class="float-right"
+                            style="cursor: pointer"
+                            v-b-modal.modal-siteplan
+                            >Siteplan</b-button
+                          >
+                        </b-col>
+                      </b-row>
+                    </b-card-text>
+                  </b-card>
+                </b-card-group>
               </b-col>
             </b-row>
           </b-col>
@@ -173,6 +215,31 @@
     </section>
 
     <myfooter></myfooter>
+
+    <!-- modal -->
+    <b-modal id="modal-siteplan" size="lg" title="Siteplan Perumahan">
+      <b-row>
+        <b-col md="12">
+          <img
+            src="https://via.placeholder.com/600x400"
+            alt=""
+            style="width: 100%"
+          />
+        </b-col>
+
+        <b-col md="12">
+          <b-table
+            :items="items"
+            :fields="fields"
+            stacked="md"
+            show-empty
+            bordered
+            small
+          >
+          </b-table>
+        </b-col>
+      </b-row>
+    </b-modal>
   </div>
 </template>
 
@@ -201,9 +268,36 @@ export default {
       kabkot: [],
       //   kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
       jeniss: ["-- Kategori --", "Subsidi", "Komersial"],
-      urutkan: ["-- Urutkan --" ,
-      'Berdasarkan Harga Naik' ,
-      'Berdasarkan Harga Turun' ,
+      urutkan: [
+        "-- Urutkan --",
+        "Berdasarkan Harga Naik",
+        "Berdasarkan Harga Turun",
+      ],
+
+      fields: [
+        { key: "No", label: "No", class: "text-center" },
+        {
+          key: "nomorKapling",
+          label: "No Kavling",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+        {
+          key: "type",
+          label: "Tipe",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+
+        {
+          key: "statusTerjual",
+          label: "Status",
+          sortable: true,
+          sortDirection: "desc",
+          class: "text-center",
+        },
       ],
     };
   },
@@ -218,7 +312,7 @@ export default {
     // this.kabKota = localStorage.getItem("kota");
     // this.nama = localStorage.getItem("nama");
     this.search();
-    this.getPerumahan()
+    this.getPerumahan();
   },
   methods: {
     getJml(x, y) {
@@ -228,8 +322,8 @@ export default {
       if (y == null || y == undefined) {
         y = 0;
       }
-      let z = x - y
-      return z
+      let z = x - y;
+      return z;
     },
     getkota() {
       axios
@@ -244,14 +338,13 @@ export default {
           this.kabkot = x.map((item) => {
             return item.namaKabKota;
           });
-          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
+          this.kabkot.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
         })
         .catch((err) => {
           console.log(err);
         });
     },
     search() {
-      
       let vm = this;
       let x = 99999999999999;
       if (this.hargaMax != 0) {
@@ -296,20 +389,30 @@ export default {
       });
       console.log(this.listPerumahan, "ini perumahan");
     },
-
   },
-   watch:{
-      urut :function (val){
-        if (val == 'Berdasarkan Harga Naik'){
-          console.log('naik')
-          this.listPerumahan.sort((a,b) => (parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)) ? 1 : ((parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)) ? -1 : 0))
-        } else if( val == 'Berdasarkan Harga Turun' ){
-          console.log('turun')
-          this.listPerumahan.sort((a,b) => (parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)) ? 1 : ((parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)) ? -1 : 0))
-        }
-        
+  watch: {
+    urut: function (val) {
+      if (val == "Berdasarkan Harga Naik") {
+        console.log("naik");
+        this.listPerumahan.sort((a, b) =>
+          parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)
+            ? 1
+            : parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)
+            ? -1
+            : 0
+        );
+      } else if (val == "Berdasarkan Harga Turun") {
+        console.log("turun");
+        this.listPerumahan.sort((a, b) =>
+          parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)
+            ? 1
+            : parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)
+            ? -1
+            : 0
+        );
       }
-    }
+    },
+  },
 };
 </script>
 

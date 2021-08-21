@@ -8,12 +8,12 @@
           <b-col md="12">
             <b-row>
               <b-col md="12">
-                <h4 class="m-t-0 text-center">
-                  {{ dataPerum.namaPerusahaan }}
-                </h4>
                 <h2 class="text-center">
                   <strong>{{ dataPerum.namaPerumahan }}</strong>
                 </h2>
+                <h5 class="m-t-0 text-center">
+                  ( {{ dataPerum.namaPerusahaan }} )
+                </h5>
                 <h6 class="m-t-0 text-center">
                   {{ dataPerum.alamatPerumahan }}
                 </h6>
@@ -24,12 +24,14 @@
               <b-col md="6" offset-md="3">
                 <hr class="m-t-10 m-b-10" />
                 <div class="box-submenu">
-                  <router-link :to="'/'" style="text-decoration: none"
-                    ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
+                  <router-link
+                    :to="'/data_perumahan'"
+                    style="text-decoration: none"
+                    ><h6 class="m-t-0 m-b-0">Perumahan</h6></router-link
                   >
                   <h6 class="m-t-0 m-b-0">|</h6>
                   <h6 class="m-t-0 m-b-0">
-                    <strong>Perumahan Pengembang</strong>
+                    <strong>Tipe Perumahan</strong>
                   </h6>
                 </div>
                 <hr class="m-t-10 m-b-10" />
@@ -45,6 +47,7 @@
                   v-for="item in listRumah"
                   :key="item.id"
                   @click="goDetail(item.id)"
+                  style="cursor: pointer"
                 >
                   <b-card-text>
                     <h5>

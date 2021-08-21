@@ -602,7 +602,7 @@ export default {
           this.listPengajuan = x.map((item) => {
             return { ...item };
           });
-          console.log(this.listPengajuan, 'ini pengajuan');
+          console.log(this.listPengajuan, "ini pengajuan");
         })
         .catch((err) => {
           console.log(err);

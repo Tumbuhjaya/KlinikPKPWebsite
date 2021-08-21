@@ -3,47 +3,50 @@
     <header>
       <b-container>
         <b-row>
-          <b-col md="4">
+          <b-col md="5">
             <div class="indentity">
-              <img src="../assets/logopkpv2white.png" alt="" />
+              <img src="../assets/logo_jateng.png" alt="" />
 
               <div class="name">
-                <h5 class="m-t-0 m-b-0" style="color: #fff">
-                  <strong>Klinik PKP</strong>
-                </h5>
-                <h5 class="m-t-0 m-b-0" style="color: #fff">
-                  <strong>Provinsi Jawa Tengah</strong>
-                </h5>
+                <h6 class="mt-0 mb-0" style="color: #fff">
+                  <strong
+                    >Dinas Perumahan Rakyat Dan Kawasan Permukiman Provinsi Jawa
+                    Tengah</strong
+                  >
+                </h6>
               </div>
             </div>
-
-            <!-- <div class="name">
-              <h6 class="m-t-0 m-b-0">
-                <strong>DATABASE PENGEMBANG</strong>
-              </h6>
-
-              <h6 class="m-t-0 m-b-0">
-                <strong>PROVINSI JAWA TENGAH</strong>
-              </h6>
-            </div> -->
           </b-col>
 
           <b-col md="6">
             <div class="menu">
               <router-link :to="'/'" style="text-decoration: none">
-                <h6 class="m-t-0 m-b-0">Beranda</h6>
+                <h6 class="m-t-0 m-b-0"><strong>Beranda</strong></h6>
               </router-link>
               <router-link
                 :to="'/data_pengembang'"
                 style="text-decoration: none"
               >
-                <h6 class="m-t-0 m-b-0">Data Pengembang</h6>
+                <h6 class="m-t-0 m-b-0"><strong>Pengembang</strong></h6>
+              </router-link>
+
+              <router-link
+                :to="'/data_perumahan'"
+                style="text-decoration: none"
+              >
+                <h6 class="m-t-0 m-b-0"><strong>Perumahan</strong></h6>
               </router-link>
               <router-link
                 :to="'/peta_perumahan'"
                 style="text-decoration: none"
               >
-                <h6 class="m-t-0 m-b-0">Peta Sebaran Perumahan</h6>
+                <h6 class="m-t-0 m-b-0"><strong>Peta</strong></h6>
+              </router-link>
+              <router-link
+                :to="'/daftar_pengembang'"
+                style="text-decoration: none"
+              >
+                <h6 class="m-t-0 m-b-0"><strong>Daftar</strong></h6>
               </router-link>
               <!-- <router-link :to="'/magang'" style="text-decoration: none">
                 <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
@@ -53,10 +56,10 @@
             </div>
           </b-col>
 
-          <b-col md="2">
+          <b-col md="1">
             <div class="loginregister">
               <b-button
-                size="md"
+                size="sm"
                 v-b-modal.modal-lg
                 variant="warning"
                 v-if="isLogin != true"

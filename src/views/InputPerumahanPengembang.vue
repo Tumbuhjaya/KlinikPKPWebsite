@@ -17,7 +17,7 @@
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
-                style="text-decoration:none"
+                style="text-decoration: none"
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
@@ -89,6 +89,10 @@
                   ref="file"
                   @input="handleFile()"
                 ></b-form-file>
+              </b-form-group>
+
+              <b-form-group label="Upload Siteplan Perumahan">
+                <b-form-file id="file" ref="file"></b-form-file>
               </b-form-group>
 
               <b-button variant="primary" @click="regisPerumahan()"
@@ -189,7 +193,7 @@ export default {
           this.kabkot = x.map((item) => {
             return item.namaKabKota;
           });
-          this.kabkot.sort((a,b) => (a > b) ? 1 : ((b > a) ? -1 : 0))
+          this.kabkot.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
         })
         .catch((err) => {
           console.log(err);
