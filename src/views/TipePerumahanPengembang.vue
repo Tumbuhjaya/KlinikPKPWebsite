@@ -275,7 +275,7 @@ export default {
           class: "text-center",
         },
         {
-          key: "statusTerjual",
+          key: "terjual",
           label: "Status",
           sortable: true,
           sortDirection: "desc",
@@ -328,7 +328,7 @@ export default {
           ipBackEnd + "rumah/update",
           {
             id: x,
-            statusTerjual: 1,
+            terjual: 1,
           },
           {
             headers: {
