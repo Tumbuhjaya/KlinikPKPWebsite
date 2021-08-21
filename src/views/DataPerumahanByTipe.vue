@@ -138,7 +138,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res, "ini aha");
           res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan;
           res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo;
           this.dataPerum = res.data.data[0];
