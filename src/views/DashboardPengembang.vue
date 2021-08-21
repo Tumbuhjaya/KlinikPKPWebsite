@@ -293,7 +293,7 @@
                       <b-tr>
                         <b-td style="width: 200px">Nama Pengembang</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>{{ value.namaPerusahaan }}</b-td>
+                        <b-td>{{ items[0].namaPerusahaan }}</b-td>
                       </b-tr>
 
                       <b-tr>
