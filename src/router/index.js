@@ -127,14 +127,14 @@ const routes = [
     },
   },
 
-  {
-    path: "/pengembang",
-    name: "Pengembang",
-    component: Pengembang,
-    meta: {
-      role: "all",
-    },
-  },
+  // {
+  //   path: "/pengembang",
+  //   name: "Pengembang",
+  //   component: Pengembang,
+  //   meta: {
+  //     role: "all",
+  //   },
+  // },
 
   {
     path: "/daftar_pengembang",

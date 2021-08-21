@@ -97,11 +97,11 @@
                   <h6><strong>Sertifikat</strong></h6>
                 </b-col>
 
-                <b-col md="12">
+                <!-- <b-col md="12">
                   <b-form-checkbox>Sertifikat Hak Milik (SHM)</b-form-checkbox>
                   <b-form-checkbox>Hak Guna Bangunan (HGB)</b-form-checkbox>
                   <b-form-checkbox>Lainnya</b-form-checkbox>
-                </b-col>
+                </b-col> -->
                 <b-col md="10">
                       <b-button variant="primary" @click="search()">Cari</b-button>
                   </b-col>
@@ -136,8 +136,8 @@
               <b-col
                 md="4"
                 class="m-t-15 m-b-15"
-                v-for="item in listCari"
-                :key="item.id"
+                v-for="item in listPerumahan"
+                :key="item.PerumahanId"
                 @click="goListRumah(item)"
               >
                 <div class="box">
@@ -191,7 +191,7 @@ export default {
     return {
       isLogin: false,
       selected: null,
-      listCari: [],
+      listPerumahan: [],
       nama: "",
       urut: "",
       kabKota: "",
@@ -214,10 +214,11 @@ export default {
   },
   created() {
     this.getkota();
-    this.jenis = localStorage.getItem("jenis");
-    this.kabKota = localStorage.getItem("kota");
-    this.nama = localStorage.getItem("nama");
+    // this.jenis = localStorage.getItem("jenis");
+    // this.kabKota = localStorage.getItem("kota");
+    // this.nama = localStorage.getItem("nama");
     this.search();
+    this.getPerumahan()
   },
   methods: {
     getJml(x, y) {
@@ -250,6 +251,7 @@ export default {
         });
     },
     search() {
+      
       let vm = this;
       let x = 99999999999999;
       if (this.hargaMax != 0) {
@@ -266,10 +268,10 @@ export default {
         .then((res) => {
           //   console.log(res);
           let x = res.data.data;
-          this.listCari = x.map((item) => {
+          this.listPerumahan = x.map((item) => {
             return { ...item, src: ipBackEnd + item.fotoPerumahan };
           });
-          console.log(this.listCari);
+          console.log(this.listPerumahan);
         })
         .catch((err) => {
           console.log(err);
@@ -278,15 +280,32 @@ export default {
     goListRumah(x) {
       this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
     },
+    async getPerumahan() {
+      let PTs = await axios
+        .get(ipBackEnd + "perumahan/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      let x = PTs.data.data;
+      this.listPerumahan = x.map((item) => {
+        return { ...item, src: ipBackEnd + item.fotoPerumahan };
+      });
+      console.log(this.listPerumahan, "ini perumahan");
+    },
+
   },
    watch:{
       urut :function (val){
         if (val == 'Berdasarkan Harga Naik'){
           console.log('naik')
-          this.listCari.sort((a,b) => (parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)) ? 1 : ((parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)) ? -1 : 0))
+          this.listPerumahan.sort((a,b) => (parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)) ? 1 : ((parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)) ? -1 : 0))
         } else if( val == 'Berdasarkan Harga Turun' ){
           console.log('turun')
-          this.listCari.sort((a,b) => (parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)) ? 1 : ((parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)) ? -1 : 0))
+          this.listPerumahan.sort((a,b) => (parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)) ? 1 : ((parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)) ? -1 : 0))
         }
         
       }

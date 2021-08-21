@@ -293,7 +293,7 @@
                       <b-tr>
                         <b-td style="width: 200px">Nama Pengembang</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>{{ items[0].namaPerusahaan }}</b-td>
+                        <b-td>{{ value.namaPerusahaan }}</b-td>
                       </b-tr>
 
                       <b-tr>
@@ -524,7 +524,6 @@ export default {
     },
   },
   async created() {
-    localStorage.removeItem("dataPerum");
     this.getPerum();
     this.getCalon();
   },
@@ -603,7 +602,7 @@ export default {
           this.listPengajuan = x.map((item) => {
             return { ...item };
           });
-          console.log(this.listPengajuan);
+          console.log(this.listPengajuan, 'ini pengajuan');
         })
         .catch((err) => {
           console.log(err);

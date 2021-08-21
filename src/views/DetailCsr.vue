@@ -59,13 +59,7 @@
               class="mt-3"
             >
             </b-card>
-
-            
-
-            
           </b-card-group>
-
-          
         </b-row>
       </b-container>
     </section>

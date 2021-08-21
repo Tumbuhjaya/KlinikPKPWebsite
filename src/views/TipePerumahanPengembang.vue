@@ -47,8 +47,8 @@
                       <b-form-input v-model="type"></b-form-input>
                     </b-form-group>
 
-                    <b-form-group label="Jumlah Rumah">
-                      <b-form-input v-model="stock"></b-form-input>
+                    <b-form-group label="No Kavling">
+                      <b-form-input v-model="noKavling"></b-form-input>
                     </b-form-group>
                   </b-col>
 
@@ -184,13 +184,21 @@
                     class="m-r-15"
                     ><b-icon-trash></b-icon-trash
                   ></b-button>
-
                   <b-button
                     variant="info"
                     size="sm"
                     @click="goEditR(item.item.id)"
                     v-b-tooltip.hover.top="'Edit'"
+                    class="m-r-15"
                     ><b-icon-pencil></b-icon-pencil
+                  ></b-button>
+                  <b-button
+                    variant="warning"
+                    size="sm"
+                    @click="$bvModal.show('jual'), hapusId = item.item.id"
+                    v-b-tooltip.hover.top="'Terjual'"
+                    class="m-r-15"
+                    ><b-icon-basket-fill></b-icon-basket-fill
                   ></b-button>
                 </center>
               </template>
@@ -199,7 +207,15 @@
         </b-row>
       </b-container>
     </section>
-
+    <b-modal id="jual" hide-footer>
+      <div><h5>Apakah Anda Yakin Merubah status menjadi Terjual?</h5></div>
+      <div>
+        <center>
+          <b-button class="text-white bg-success mr-1" @click="jual(hapusId)">Yakin</b-button>
+          <b-button class="text-danger bg-white ml-1">Tidak</b-button>
+        </center>
+      </div>
+    </b-modal>
     <myfooter></myfooter>
   </div>
 </template>
@@ -236,6 +252,14 @@ export default {
           key: "type",
           label: "Tipe",
           sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+        {
+          key: "nomorKapling",
+          label: "No Kavling",
+          sortable: true,
+          class: "text-center",
           sortDirection: "desc",
         },
         {
@@ -250,8 +274,23 @@ export default {
           sortable: true,
           class: "text-center",
         },
+        {
+          key: "statusTerjual",
+          label: "Status",
+          sortable: true,
+          sortDirection: "desc",
+          class: "text-center",
+          formatter: (value) => {
+            if (value == 0) {
+              return "Tersedia";
+            } else {
+              return "Terjual";
+            }
+          },
+        },
         { key: "actions", label: "Actions", class: "text-center" },
       ],
+      hapusId:"",
       jenis: "",
       type: "",
       harga: "",
@@ -262,7 +301,9 @@ export default {
       lantaiPondasiRumah: "",
       jmlKamarMandi: "",
       jmlKamarTidur: "",
-      stock: "",
+      noKavling: "",
+      statusTerjual: 0,
+      stock: 0,
       linkVideo: "",
       perumahanId: "",
       terjual: 0,
@@ -281,6 +322,28 @@ export default {
     await this.getTipe(this.perumahanId);
   },
   methods: {
+    jual(x) {
+      axios
+        .post(
+          ipBackEnd + "rumah/update",
+          {
+            id: x,
+            statusTerjual: 1,
+          },
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.getTipe(this.perumahanId);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     hapus(x) {
       axios
         .post(
@@ -326,10 +389,11 @@ export default {
       await formData.append("jmlKamarMandi", vm.jmlKamarMandi);
       await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);
+      await formData.append("nomorKapling", vm.noKavling);
+      await formData.append("statusTerjual", vm.statusTerjual);
       await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);
       await formData.append("perumahanId", vm.perumahanId);
-      console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "rumah/register", formData, {
           headers: {
