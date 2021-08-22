@@ -18,7 +18,7 @@
 
         <b-row class="mt-5">
           <b-col md="12">
-              <l-map style="height: 350px" :zoom="zoom" :center="center" ref="mapku">
+              <l-map style="height: 500px" :zoom="zoom" :center="center" ref="mapku">
 <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
 <l-geo-json :geojson="geojson" :options="mapOptions"></l-geo-json>
 </l-map>
@@ -47,38 +47,35 @@ import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 import { LMap, LTileLayer, LGeoJson} from 'vue2-leaflet';
-import L from 'leaflet';
+import { Icon } from 'leaflet';
 
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
-
-L.Marker.prototype.options.icon = DefaultIcon;
 import 'leaflet/dist/leaflet.css';
 export default {
   name: "PetaPerumahan",
   data() {
     return {
       isLogin: false,
-       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+           url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
-        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        '&copy; Pemerintah Provinsi Jawa Tengah',
       zoom: 8,
       center: [-6.995016, 110.418427],
       geojson: null,
        mapOptions: {
-        style: function style() {
-          return {
-            weight: 4,
-            opacity: 0.7,
-            color: '#666',
-            fillOpacity: 0.3
-          };
-        },   
+        // style: function style() {
+        //   return {
+        //     weight: 4,
+        //     opacity: 0.7,
+        //     color: '#666',
+        //     fillOpacity: 0.3
+        //   };
+        // },   
         onEachFeature: (feature, layer)=> {
           layer.on('mouseover', function() {
           console.log(feature.properties.namaPerumahan);
