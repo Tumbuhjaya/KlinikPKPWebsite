@@ -5,6 +5,17 @@
     <section class="section-one">
       <b-container>
         <b-row>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Data Perumahan Provinsi Jawa Tengah</strong>
+            </h2>
+
+            <!-- <h2 class="m-t-0 m-b-0 text-center">
+              <strong></strong>
+            </h2> -->
+          </b-col>
+        </b-row>
+        <b-row class="mt-5">
           <b-col md="3">
             <div class="box-search">
               <b-row>
@@ -189,24 +200,14 @@
                           </h6>
 
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
-                            <strong>Subsidi :</strong>
-                            {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }}
-                            Unit, Kisaran harga antara
-                            {{ Math.trunc(item.hargaMinSubsidi / 1000000) }}
-                            Juta s/d
-                            {{ Math.trunc(item.hargaMaxSubsidi / 1000000) }}
-                            Juta
+                            <strong>Tersedia :</strong>
+                            --- Unit
+                          </h6>
+                          <h6 class="harga m-t-0 m-b-0" style="font-size: 12px">
+                            <strong>Subsidi : </strong> --- Unit
                           </h6>
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
-                            <strong>Komersial :</strong>
-                            {{
-                              getJml(item.jmlKomersial, item.terjualKomersial)
-                            }}
-                            Unit, Kisaran harga antara
-                            {{ Math.trunc(item.hargaMinKomersial / 1000000) }}
-                            Juta -
-                            {{ Math.trunc(item.hargaMaxKomersial / 1000000) }}
-                            Juta
+                            <strong>Komersial : </strong>-- Unit
                           </h6>
                         </b-col>
                       </b-row>
@@ -461,7 +462,7 @@ export default {
     },
   },
   watch: {
-    urut: function(val) {
+    urut: function (val) {
       if (val == "Berdasarkan Harga Naik") {
         console.log("naik");
         this.listPerumahan.sort((a, b) =>
