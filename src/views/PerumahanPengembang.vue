@@ -6,7 +6,7 @@
         <b-row>
           <b-col md="12">
             <h2 class="m-t-0 m-b-0 text-center">
-              <strong>{{ listPerum[0].namaPerusahaan }}</strong>
+              <strong>{{ profil.namaPerusahaan }}</strong>
             </h2>
             <h5 class="text-center">{{ listPerum[0].alamat }}</h5>
           </b-col>
@@ -86,8 +86,9 @@ export default {
   data() {
     return {
       isLogin: false,
-      listPerum: [],
-      profil: [],
+      listPerum: "",
+      profil: "",
+      namaPerusahaan:"",
       dataPerum: [],
     };
   },
@@ -123,29 +124,29 @@ export default {
           this.listPerum = x.map((item) => {
             return { ...item, src: ipBackEnd + item.fotoPerumahan };
           });
+          this.profil = this.listPerum[0]
+          console.log(this.profil)
           console.log(this.listPerum, "ini perum");
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    getDataPerum(x) {
-      axios
-        .get(ipBackEnd + "perumahan/listById/" + x, {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        })
-        .then((res) => {
-          console.log(res, "ini aha");
-          res.data.data[0].srcFP = ipBackEnd + res.data.data[0].fotoPerumahan;
-          res.data.data[0].srcL = ipBackEnd + res.data.data[0].logo;
-          this.dataPerum = res.data.data[0];
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    // getDataPerum(x) {
+    //   axios
+    //     .get(ipBackEnd + "perumahan/listById/" + x, {
+    //       headers: {
+    //         token: localStorage.getItem("token"),
+    //       },
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data.data, "ini aha");
+    //       this.dataPerum = res.data.data[0];
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
     goDetail(x) {
       console.log(x);
       localStorage.setItem("dataPerum", JSON.stringify(this.dataPerum));

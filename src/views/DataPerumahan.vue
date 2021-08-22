@@ -190,7 +190,7 @@
 
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Subsidi :</strong>
-                            {{ getJml(item.jmlSubsidi, item.terjualSubsidi) }}
+                            {{ getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) }}
                             Unit, Kisaran harga antara
                             {{ Math.trunc(item.hargaMinSubsidi / 1000000) }}
                             Juta s/d
@@ -200,7 +200,7 @@
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Komersial :</strong>
                             {{
-                              getJml(item.jmlKomersial, item.terjualKomersial)
+                              getJml(item.jmlKomersial, item.jmlKomersialTerjual)
                             }}
                             Unit, Kisaran harga antara
                             {{ Math.trunc(item.hargaMinKomersial / 1000000) }}
@@ -333,13 +333,19 @@ export default {
           sortDirection: "desc",
         },
         {
+          key: "jenis",
+          label: "Jenis",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+        {
           key: "type",
           label: "Tipe",
           sortable: true,
           class: "text-center",
           sortDirection: "desc",
         },
-
         {
           key: "terjual",
           label: "Status",
@@ -364,7 +370,6 @@ export default {
   },
   created() {
     this.getkota();
-    this.search();
     this.getPerumahan();
   },
   methods: {
@@ -386,7 +391,7 @@ export default {
       if (y == null || y == undefined) {
         y = 0;
       }
-      let z = x - y;
+      let z = x- y;
       return z;
     },
     getkota() {
@@ -397,7 +402,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.data);
+          // console.log(res.data.data);
           let x = res.data.data;
           this.kabkot = x.map((item) => {
             return item.namaKabKota;

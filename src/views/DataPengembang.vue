@@ -222,7 +222,7 @@ export default {
     },
     async getPengembang() {
       let PTs = await axios
-        .get(ipBackEnd + "users/listByRole/pengembang", {
+        .get(ipBackEnd + "users/listByRole/Pengembang", {
           headers: {
             token: localStorage.getItem("token"),
           },
@@ -232,7 +232,6 @@ export default {
         });
       let x = PTs.data.data;
       this.totalRows = x.length;
-      console.log(PTs.data);
       console.log(x, "ini pengembang");
       return x;
     },
