@@ -158,8 +158,8 @@ export default {
       let vm = this;
       console.log(this.file, "ini file");
       let formData = new FormData();
-      formData.append("file1", this.file1);
-      formData.append("file2", this.file2);
+      formData.append("foto1", this.file1);
+      formData.append("foto2", this.file2);
       formData.append("namaPerumahan", vm.namaPerum);
       formData.append("alamatPerumahan", vm.alamat);
       formData.append("kabKotaPerumahan", vm.kabKot);
