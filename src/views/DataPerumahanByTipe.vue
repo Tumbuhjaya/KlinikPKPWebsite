@@ -54,7 +54,7 @@
                       <strong>Tipe Rumah : {{ item.type }}</strong>
                     </h5>
                     <h5>
-                      <strong>Stok : {{ item.stock }} Unit</strong>
+                      <strong>Status : {{ getStatus(item.terjual) }}</strong>
                     </h5>
 
                     <b-badge
@@ -115,6 +115,13 @@ export default {
     this.getDataPerum(x);
   },
   methods: {
+    getStatus(x){
+      if ( x == 0 ){
+        return 'Tersedia'
+      }else{
+        return 'Terjual'
+      }
+    },
     getTipeRumah(x) {
       axios
         .get(ipBackEnd + "rumah/listByPerumahanId/" + x, {

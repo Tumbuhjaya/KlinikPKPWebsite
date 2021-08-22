@@ -247,7 +247,6 @@ export default {
   },
   methods: {
     formHarga(x) {
-      console.log(x);
       let y = x.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.");
       return y;
     },
@@ -267,7 +266,7 @@ export default {
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
           this.dataRumah.link = "https://" + x.linkVideo;
           this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
-          console.log(this.dataRumah);
+          // console.log(this.dataRumah);
         })
         .catch((err) => {
           console.log(err);

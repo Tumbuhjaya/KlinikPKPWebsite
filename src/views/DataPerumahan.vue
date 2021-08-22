@@ -5,6 +5,17 @@
     <section class="section-one">
       <b-container>
         <b-row>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Data Perumahan Provinsi Jawa Tengah</strong>
+            </h2>
+
+            <!-- <h2 class="m-t-0 m-b-0 text-center">
+              <strong></strong>
+            </h2> -->
+          </b-col>
+        </b-row>
+        <b-row class="mt-5">
           <b-col md="3">
             <div class="box-search">
               <b-row>
@@ -189,24 +200,19 @@
                           </h6>
 
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
-                            <strong>Subsidi :</strong>
-                            {{ getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) }}
-                            Unit, Kisaran harga antara
-                            {{ Math.trunc(item.hargaMinSubsidi / 1000000) }}
-                            Juta s/d
-                            {{ Math.trunc(item.hargaMaxSubsidi / 1000000) }}
-                            Juta
+                            <strong>Tersedia : </strong>
+                            {{getJml(item.jmlSubsidi,item.jmlSubsidiTerjual) + getJml(item.jmlKomersial,item.jmlKomersialTerjual)}} Unit
+                          </h6>
+                          <h6 class="harga m-t-0 m-b-0" style="font-size: 12px">
+                            <strong>Subsidi : </strong>
+                            {{ getJml(item.jmlSubsidi,item.jmlSubsidiTerjual) }} Unit
                           </h6>
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
-                            <strong>Komersial :</strong>
+                            <strong>Komersial : </strong>
                             {{
-                              getJml(item.jmlKomersial, item.jmlKomersialTerjual)
+                              getJml(item.jmlKomersial,item.jmlKomersialTerjual)
                             }}
-                            Unit, Kisaran harga antara
-                            {{ Math.trunc(item.hargaMinKomersial / 1000000) }}
-                            Juta -
-                            {{ Math.trunc(item.hargaMaxKomersial / 1000000) }}
-                            Juta
+                            Unit
                           </h6>
                         </b-col>
                       </b-row>
@@ -391,7 +397,7 @@ export default {
       if (y == null || y == undefined) {
         y = 0;
       }
-      let z = x- y;
+      let z = x - y;
       return z;
     },
     getkota() {
