@@ -18,12 +18,17 @@
 
         <b-row class="mt-5">
           <b-col md="12">
+              <l-map style="height: 350px" :zoom="zoom" :center="center" ref="mapku">
+<l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+<l-geo-json :geojson="geojson" :options="mapOptions"></l-geo-json>
+</l-map>
             <div>
-              <iframe
+           
+              <!-- <iframe
                 src="http://mapgeo.id/peta_perumahan.html"
                 title="description"
                 style="width: 100%; height: 600px; border: none"
-              ></iframe>
+              ></iframe> -->
             </div>
           </b-col>
         </b-row>
@@ -38,22 +43,74 @@
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 // import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
+import { LMap, LTileLayer, LGeoJson} from 'vue2-leaflet';
+import L from 'leaflet';
 
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+import 'leaflet/dist/leaflet.css';
 export default {
   name: "PetaPerumahan",
   data() {
     return {
       isLogin: false,
-    };
+       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 8,
+      center: [-6.995016, 110.418427],
+      geojson: null,
+       mapOptions: {
+        style: function style() {
+          return {
+            weight: 4,
+            opacity: 0.7,
+            color: '#666',
+            fillOpacity: 0.3
+          };
+        },   
+        onEachFeature: (feature, layer)=> {
+          layer.on('mouseover', function() {
+          console.log(feature.properties.namaPerumahan);
+          //open popup
+          layer.bindPopup('<h3 style="color: grey; margin-bottom: 0;">'+ feature.properties.namaPerumahan +'</h3>');
+        // L.popup()
+        //     .setLatLng(e.latlng) 
+        //     .setContent('<h1 style="color: grey; margin-bottom: 0;">'+ feature.properties.namaPerumahan +'</h1>')
+        //     .openOn(this.$refs.mapku.mapObject); 
+        layer.openPopup();
+          });
+        }
+    }
+    }
   },
   components: {
     myheader,
     myfooter,
+        LMap,
+    LTileLayer,
+    LGeoJson
   },
-  methods: {},
+  async created(){
+       const response = await fetch(ipBackEnd + "perumahan/geojson/");
+    this.geojson = await response.json();
+  },
+  methods: {
+     doSomethingOnReady() {
+        this.map = this.$refs.myMap.mapObject
+    },
+  },
+  
 };
 </script>
 
