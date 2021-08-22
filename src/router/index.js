@@ -149,7 +149,7 @@ const routes = [
     path: "/dashboard_pengembang",
     name: "DashboardPengembang",
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
     component: DashboardPengembang,
   },
@@ -159,7 +159,7 @@ const routes = [
     name: "EditProfilPengembang",
     component: EditProfilPengembang,
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
   },
 
@@ -194,7 +194,7 @@ const routes = [
     name: "InputPerumahanPengembang",
     component: InputPerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
   },
   {
@@ -202,7 +202,7 @@ const routes = [
     name: "EditPerumahanPengembang",
     component: EditPerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
     beforeRouteUpdate(to, from, next) {
       console.log(to);
@@ -219,7 +219,7 @@ const routes = [
     name: "TipePerumahanPengembang",
     component: TipePerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
     beforeRouteUpdate(to, from, next) {
       console.log(to);
@@ -236,7 +236,7 @@ const routes = [
     name: "EditTipePerumahanPengembang",
     component: EditTipePerumahanPengembang,
     meta: {
-      role: "pengembang",
+      role: "Pengembang",
     },
     beforeRouteUpdate(to, from, next) {
       console.log(to);
@@ -418,7 +418,7 @@ const routes = [
     name: "DashboardPerbankan",
     component: DashboardPerbankan,
     meta: {
-      role: "perbankan",
+      role: "Perbankan",
     },
   },
   {
@@ -459,6 +459,9 @@ const routes = [
   {
     path: "/logout",
     name: "Logout",
+    meta: {
+      role: "all",
+    },
   },
 ];
 

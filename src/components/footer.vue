@@ -90,11 +90,12 @@ export default {
           password: this.password,
         })
         .then((res) => {
-          console.log(res,'ini footer');
+          console.log(res,'ini footer AAA');
           localStorage.setItem('token',res.data.token)
           localStorage.setItem('id', res.data.id)
           localStorage.setItem('role',res.data.role)
-          if(res.data.role == 'pengembang'){
+          if(res.data.role == "Pengembang"){
+            console.log('ini')
           this.$router.push({ path: "/dashboard_pengembang" });
           }
           else if(res.data.role == 'CSR'){

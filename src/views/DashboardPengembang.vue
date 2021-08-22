@@ -293,7 +293,7 @@
                       <b-tr>
                         <b-td style="width: 200px">Nama Pengembang</b-td>
                         <b-td style="width: 5px">:</b-td>
-                        <b-td>{{ items[0].namaPerusahaan }}</b-td>
+                        <b-td>{{ namaPerusahaan }}</b-td>
                       </b-tr>
 
                       <b-tr>
@@ -405,6 +405,7 @@ export default {
       value: [],
       isLogin: false,
       items: [],
+      namaPerusahaan:"",
       listPengajuan: [],
       fields: [
         {
@@ -584,6 +585,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.items = res.data.data;
+          this.namaPerusahaan = this.items[0].namaPerusahaan
           this.totalRows = this.items.length;
         })
         .catch((err) => {

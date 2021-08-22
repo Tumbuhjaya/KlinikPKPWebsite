@@ -70,19 +70,47 @@
                 </b-col>
 
                 <b-col md="12">
-                  <b-form-input
-                    placeholder="Harga Minimal"
-                    class="m-t-10"
-                    v-model="hargaMin"
-                  ></b-form-input>
+                  <b-form-group label="Harga Minimal">
+                    <b-form-input
+                      placeholder="Harga Minimal"
+                      class="m-t-10"
+                      v-model="hargaMin"
+                    ></b-form-input>
+                  </b-form-group>
                 </b-col>
 
                 <b-col md="12">
-                  <b-form-input
-                    placeholder="Harga Maksimal"
-                    class="m-t-10"
-                    v-model="hargaMax"
-                  ></b-form-input>
+                  <b-form-group label="Harga Maksimal">
+                    <b-form-input
+                      placeholder="Harga Maksimal"
+                      class="m-t-10"
+                      v-model="hargaMax"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="12">
+                  <h6><strong>Luas</strong></h6>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Luas Minimal">
+                    <b-form-input
+                      placeholder="Luas Minimal"
+                      class="m-t-10"
+                      v-model="luasMin"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Luas Maksimal">
+                    <b-form-input
+                      placeholder="Luas Maksimal"
+                      class="m-t-10"
+                      v-model="luasMax"
+                    ></b-form-input>
+                  </b-form-group>
                 </b-col>
               </b-row>
 
@@ -200,6 +228,10 @@
                             class="float-right"
                             style="cursor: pointer"
                             v-b-modal.modal-siteplan
+                            @click="
+                              showPlan(item.perumahanId),
+                                (sitePlan = item.siteplanPerumahan)
+                            "
                             >Siteplan</b-button
                           >
                         </b-col>
@@ -221,7 +253,14 @@
       <b-row>
         <b-col md="12">
           <img
+            v-if="sitePlan == null || sitePlan == ''"
             src="https://via.placeholder.com/600x400"
+            alt=""
+            style="width: 100%"
+          />
+          <img
+            v-if="sitePlan != null && sitePlan != ''"
+            :src="ipBackEnd + sitePlan"
             alt=""
             style="width: 100%"
           />
@@ -236,6 +275,11 @@
             bordered
             small
           >
+            <template #cell(no)="item">
+              <center>
+                {{ item.index + 1 }}
+              </center>
+            </template>
           </b-table>
         </b-col>
       </b-row>
@@ -259,12 +303,17 @@ export default {
       isLogin: false,
       selected: null,
       listPerumahan: [],
+      items: [],
+      ipBackEnd,
+      sitePlan: "",
       nama: "",
       urut: "",
       kabKota: "",
       jenis: "",
       hargaMin: 0,
       hargaMax: 0,
+      luasMin: 0,
+      luasMax: 0,
       kabkot: [],
       //   kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
       jeniss: ["-- Kategori --", "Subsidi", "Komersial"],
@@ -292,11 +341,18 @@ export default {
         },
 
         {
-          key: "statusTerjual",
+          key: "terjual",
           label: "Status",
           sortable: true,
           sortDirection: "desc",
           class: "text-center",
+          formatter: (value) => {
+            if (value == 0) {
+              return "tersedia";
+            } else {
+              return "terjual";
+            }
+          },
         },
       ],
     };
@@ -308,13 +364,21 @@ export default {
   },
   created() {
     this.getkota();
-    // this.jenis = localStorage.getItem("jenis");
-    // this.kabKota = localStorage.getItem("kota");
-    // this.nama = localStorage.getItem("nama");
     this.search();
     this.getPerumahan();
   },
   methods: {
+    showPlan(x) {
+      axios
+        .get(ipBackEnd + "rumah/listByPerumahanId/" + x)
+        .then((res) => {
+          console.log(res);
+          this.items = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getJml(x, y) {
       if (x == null || x == undefined) {
         x = 0;
@@ -347,8 +411,12 @@ export default {
     search() {
       let vm = this;
       let x = 99999999999999;
+      let y = 99999999;
       if (this.hargaMax != 0) {
         x = this.hargaMax;
+      }
+      if (this.luasMax != 0) {
+        y = this.luasMax;
       }
       axios
         .post(ipBackEnd + "perumahan/search", {
@@ -356,6 +424,8 @@ export default {
           kabKotaPerumahan: vm.kabKota,
           hargaMin: vm.hargaMin,
           hargaMax: x,
+          luasMin: vm.luasMin,
+          luasMax: y,
           jenis: vm.jenis.toLowerCase(),
         })
         .then((res) => {
@@ -391,7 +461,7 @@ export default {
     },
   },
   watch: {
-    urut: function (val) {
+    urut: function(val) {
       if (val == "Berdasarkan Harga Naik") {
         console.log("naik");
         this.listPerumahan.sort((a, b) =>

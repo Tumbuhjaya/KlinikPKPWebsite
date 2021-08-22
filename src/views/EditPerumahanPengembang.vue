@@ -109,19 +109,19 @@
                 style="margin-bottom: 0px !important"
               >
                 <b-form-file
-                  id="file"
-                  ref="file"
-                  @input="handleFile()"
+                  id="file1"
+                  ref="file1"
+                  @input="handleFile('file1')"
                 ></b-form-file>
               </b-form-group>
 
               <b-form-group class="m-t-15">
                 <div
                   style="width: 150px; height: 150px"
-                  v-if="dataPerum.src != ipBackEnd + 'null'"
+                  v-if="src1 != ipBackEnd + 'null'"
                 >
                   <img
-                    :src="dataPerum.src"
+                    :src="src1"
                     alt=""
                     style="width: 150px; height: 150px"
                   />
@@ -129,7 +129,7 @@
 
                 <div
                   style="width: 150px; height: 150px"
-                  v-if="dataPerum.src == ipBackEnd + 'null'"
+                  v-if="src1 == ipBackEnd + 'null'"
                 >
                   <img
                     src="../assets/tidak-ada-gambar.png"
@@ -144,19 +144,19 @@
                 style="margin-bottom: 0px !important"
               >
                 <b-form-file
-                  id="file"
-                  ref="file"
-                  @input="handleFile()"
+                  id="file2"
+                  ref="file2"
+                  @input="handleFile('file2')"
                 ></b-form-file>
               </b-form-group>
 
               <b-form-group class="m-t-15">
                 <div
                   style="width: 150px; height: 150px"
-                  v-if="dataPerum.src2 != ipBackEnd + 'null'"
+                  v-if="src2 != ipBackEnd + 'null'"
                 >
                   <img
-                    :src="dataPerum.src2"
+                    :src="src2"
                     alt=""
                     style="width: 150px; height: 150px"
                   />
@@ -164,7 +164,7 @@
 
                 <div
                   style="width: 150px; height: 150px"
-                  v-if="dataPerum.src2 == ipBackEnd + 'null'"
+                  v-if="src2 == ipBackEnd + 'null'"
                 >
                   <img
                     src="../assets/tidak-ada-gambar.png"
@@ -201,12 +201,15 @@ export default {
   data() {
     return {
       isLogin: false,
+      ipBackEnd,
       dataPerum: [],
-      file: "",
+      file1: "",
+      file2: "",
+      src1:"",
+      src2:"",
       perumId: "",
       kabkot: [],
       blank: "_blank",
-      ipBackEnd: ipBackEnd,
       kec: [
         "KecamatanPerumahan A",
         "KecamatanPerumahan B",
@@ -225,70 +228,55 @@ export default {
     this.getkota();
   },
   methods: {
-    handleFile() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.file);
+    handleFile(x) {
+      if (x == "file1") {
+        this.file1 = this.$refs.file1.files[0];
+        this.src1 = URL.createObjectURL(this.file1);
+        console.log(this.dataPerum.src1)
+      } else if (x == "file2") {
+        this.file2 = this.$refs.file2.files[0];
+        this.src2 = URL.createObjectURL(this.file2);
+      }
     },
     async getDataPerum(id) {
       axios
         .get(ipBackEnd + "perumahan/listById/" + id, {
           headers: {
             token: localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
           this.dataPerum = res.data.data[0];
-          this.dataPerum.src = ipBackEnd + this.dataPerum.fotoPerumahan;
+          this.src1 = ipBackEnd + this.dataPerum.fotoPerumahan
+          this.src2 = ipBackEnd + this.dataPerum.siteplanPerumahan
           console.log(this.dataPerum);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    updateFoto() {
+    updatePerum() {
       let formData = new FormData();
-      formData.append("file", this.file);
-      formData.append("id", this.perumId);
+      formData.append("foto1", this.file1);
+      formData.append("foto2", this.file2);
+      formData.append("deskripsiPerumahan", this.dataPerum.deskripsiPerumahan)
+      formData.append("alamatPerumahan", this.dataPerum.alamatPerumahan)
+      formData.append("emailPerumahan", this.dataPerum.emailPerumahan)
+      formData.append("namaPerumahan", this.dataPerum.namaPerumahan)
+      formData.append("koordinatX", this.dataPerum.koordinatX)
+      formData.append("koordinatY", this.dataPerum.koordinatY)
+      formData.append("kabKotaPerumahan", this.dataPerum.kabKotaPerumahan)
+      formData.append("CPPerumahan", this.dataPerum.CPPerumahan)
+      formData.append("luasLahanPerumahan", this.dataPerum.luasLahanPerumahan)
+      formData.append("id", this.dataPerum.perumahanId)
       axios
-        .post(ipBackEnd + "perumahan/changeFoto", formData, {
+        .post(ipBackEnd + "perumahan/update", formData, {
           headers: {
             token: localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
           },
         })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    updatePerum() {
-      if (this.file != "") {
-        this.updateFoto();
-      }
-      let vm = this;
-      axios
-        .post(
-          ipBackEnd + "perumahan/update",
-          {
-            id: vm.perumId,
-            namaPerumahan: vm.dataPerum.namaPerumahan,
-            alamatPerumahan: vm.dataPerum.alamatPerumahan,
-            kabKotaPerumahan: vm.dataPerum.kabKotaPerumahan,
-            kecamatanPerumahan: vm.dataPerum.kecamatanPerumahan,
-            emailPerumahan: vm.dataPerum.emailPerumahan,
-            CPPerumahan: vm.dataPerum.id,
-            luasLahanPerumahan: vm.dataPerum.luasLahanPerumahan,
-            deskripsiPerumahan: vm.dataPerum.deskripsiPerumahan,
-            koordinatX: vm.dataPerum.koordinatX,
-            koordinatY: vm.dataPerum.koordinatY,
-          },
-          {
-            headers: {
-              token: localStorage.getItem("token"),
-            },
-          }
-        )
         .then((res) => {
           console.log(res);
           this.$router.push({ path: "/dashboard_pengembang" });
@@ -326,7 +314,7 @@ export default {
     },
   },
   watch: {
-    dataPerum: function (val) {
+    dataPerum: function(val) {
       console.log(val);
     },
   },

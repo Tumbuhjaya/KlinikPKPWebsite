@@ -124,11 +124,11 @@ export default {
     },
     logOut() {
       this.$router.push({ path: "/logout" });
+      this.checkLogin()
     },
     goBeranda() {
       let r = localStorage.getItem("role");
-      console.log(r);
-      if (r == "pengembang") {
+      if (r == "Pengembang") {
         this.$router.push({ path: "/dashboard_pengembang" });
       } else if (r == "CSR") {
         this.$router.push({ path: "/dashboard_csr" });
@@ -136,7 +136,7 @@ export default {
     },
     goEdit() {
       let r = localStorage.getItem("role");
-      if (r == "pengembang") {
+      if (r == "Pengembang") {
         this.$router.push({ path: "/edit_profil_pengembang" });
       } else if (r == "CSR") {
         this.$router.push({ path: "/edit_profil_csr" });

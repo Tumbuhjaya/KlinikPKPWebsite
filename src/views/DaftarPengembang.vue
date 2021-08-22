@@ -137,7 +137,7 @@ export default {
       formData.append("alamat", vm.alamat);
       formData.append("asosiasi", vm.asosiasi);
       formData.append("NIB", vm.NIB);
-      formData.append("role", 'pengembang');
+      formData.append("role", 'Pengembang');
       formData.append("website", vm.website)
       formData.append("foto1", vm.foto1)
 

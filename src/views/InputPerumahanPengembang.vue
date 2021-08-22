@@ -85,14 +85,14 @@
 
               <b-form-group label="Upload Brosur Perumahan">
                 <b-form-file
-                  id="file"
-                  ref="file"
-                  @input="handleFile()"
+                  id="file1"
+                  ref="file1"
+                  @input="handleFile('file1')"
                 ></b-form-file>
               </b-form-group>
 
               <b-form-group label="Upload Siteplan Perumahan">
-                <b-form-file id="file" ref="file"></b-form-file>
+                <b-form-file id="file2" ref="file2" @input="handleFile('file2')"></b-form-file>
               </b-form-group>
 
               <b-button variant="primary" @click="regisPerumahan()"
@@ -145,15 +145,21 @@ export default {
     this.getkota();
   },
   methods: {
-    handleFile() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.$refs.file.files[0]);
+    handleFile(x) {
+      if (x == 'file1'){
+        this.file1 = this.$refs.file1.files[0];
+      } else if (x == 'file2'){
+        this.file2 = this.$refs.file2.files[0]
+      }
+      
+
     },
     async regisPerumahan() {
       let vm = this;
       console.log(this.file, "ini file");
       let formData = new FormData();
-      formData.append("file", this.file);
+      formData.append("file1", this.file1);
+      formData.append("file2", this.file2);
       formData.append("namaPerumahan", vm.namaPerum);
       formData.append("alamatPerumahan", vm.alamat);
       formData.append("kabKotaPerumahan", vm.kabKot);
