@@ -106,11 +106,7 @@
                   "
                 >
                   <h1 style="color: #fff; text-align: right">
-                    <strong>DATABASE</strong>
-                  </h1>
-
-                  <h1 style="color: #fff; text-align: right">
-                    <strong>PENGEMBANG PERUMAHAN</strong>
+                    <strong>DATABASE PENGEMBANG</strong>
                   </h1>
                   <h1 style="color: #fff">
                     <strong>PROVINSI JAWA TENGAH</strong>
