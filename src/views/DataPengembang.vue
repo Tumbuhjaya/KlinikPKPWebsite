@@ -106,8 +106,8 @@
                 <a
                   :href="
                     'https://api.whatsapp.com/send/?phone=%2B62' +
-                    item.item.noHp +
-                    '&text&app_absent=0'
+                      item.item.noHp +
+                      '&text&app_absent=0'
                   "
                   target="_blank"
                 >
@@ -119,6 +119,7 @@
                   />
                 </a>
                 <b-button
+                  v-if="item.item.jumlahPerumahan != 0"
                   variant="primary"
                   @click="goList(item.item.id)"
                   size="sm"
@@ -222,7 +223,7 @@ export default {
     },
     async getPengembang() {
       let PTs = await axios
-        .get(ipBackEnd + "users/listByRole/Pengembang", {
+        .get(ipBackEnd + "users/listPengembang", {
           headers: {
             token: localStorage.getItem("token"),
           },

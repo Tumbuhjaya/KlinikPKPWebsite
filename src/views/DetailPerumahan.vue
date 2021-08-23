@@ -165,9 +165,7 @@
           </b-col>
 
           <b-col md="12">
-            <p>
-              {{ dataPerum.deskripsiPerumahan }}
-            </p>
+            <div class="ql-editor" v-html="dataPerum.deskripsiPerumahan"></div>
           </b-col>
         </b-row>
 

@@ -50,7 +50,7 @@
               </b-form-group>
 
               <b-form-group label="Deskripsi">
-                <b-form-textarea rows="7" v-model="deskripsi"></b-form-textarea>
+                <quill-editor v-model="deskripsi" />
               </b-form-group>
               <b-row>
                 <b-col md="6">
@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import axios from "axios";
@@ -116,6 +117,11 @@ import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 import Multiselect from "vue-multiselect";
+import VueQuillEditor from "vue-quill-editor";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+Vue.use(VueQuillEditor);
 
 export default {
   name: "InputPerumahanPengembang",
