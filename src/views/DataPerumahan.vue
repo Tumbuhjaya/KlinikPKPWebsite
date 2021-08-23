@@ -513,13 +513,8 @@ export default {
     },
   },
   watch: {
-<<<<<<< HEAD
     urut: function (val) {
       if (val == "Berdasarkan Harga Naik") {
-=======
-    urut: function(val) {
-      if (val == "Berdasarkan Nama A - Z") {
->>>>>>> cbf6c2f4d0c751523a00a35b0247178d26f4fadf
         console.log("naik");
         this.listPerumahan.sort((a, b) =>
           a.namaPerumahan > b.namaPerumahan

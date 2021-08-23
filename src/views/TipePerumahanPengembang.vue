@@ -303,7 +303,7 @@ export default {
       jmlKamarTidur: "",
       noKavling: "",
       statusTerjual: 0,
-      stock: 0,
+      stock: 1,
       linkVideo: "",
       perumahanId: "",
       terjual: 0,

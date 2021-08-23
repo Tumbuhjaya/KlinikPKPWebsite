@@ -17,7 +17,7 @@
         </b-row>
         <b-row class="mt-3">
           <b-col md="12">
-            <a href="../assets/pengembang.pptx" target="_blank">
+            <a href="" target="_blank" @click="download()">
               <b-button variant="primary">Download Manual book</b-button>
             </a>
           </b-col>
@@ -161,6 +161,7 @@ import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
+// import ManualBook from "../assets/pengembang.pptx"
 
 export default {
   name: "DataPengembang",
@@ -244,6 +245,10 @@ export default {
     },
     goList(x) {
       this.$router.push({ path: "/perumahan_pengembang/" + x });
+    },
+    download() {
+      const url = ipBackEnd + "filePendukung/downloadManualBook"
+      window.location.href = url;
     },
   },
 };
