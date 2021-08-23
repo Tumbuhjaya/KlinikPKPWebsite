@@ -73,20 +73,26 @@
         </b-row>
 
         <b-row class="m-t-30">
-          <b-col md="4">
+          <!-- <b-col md="4">
             <b-row>
               <b-col md="12">
-                <!-- <h6>Lokasi</h6> -->
                 <h3><strong>Lokasi</strong></h3>
               </b-col>
               <b-col md="12">
                 <iframe
                   :src="
                     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d' +
+<<<<<<< HEAD
                       dataPerum.koordinatY +
                       '!2d110.38170531414542!3d' +
                       dataPerum.koordinatX +
                       '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTknMDUuMCJTIDExMMKwMjMnMDIuMCJF!5e0!3m2!1sid!2sid!4v1624201365485!5m2!1sid!2sid'
+=======
+                    dataPerum.koordinatY +
+                    '!2d110.38170531414542!3d' +
+                    dataPerum.koordinatX +
+                    '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTknMDUuMCJTIDExMMKwMjMnMDIuMCJF!5e0!3m2!1sid!2sid!4v1624201365485!5m2!1sid!2sid'
+>>>>>>> c03e386e5fa16908f3e50b53fca8f1b751db1823
                   "
                   width="100%"
                   height="300"
@@ -102,7 +108,7 @@
                 </h5>
               </b-col>
             </b-row>
-          </b-col>
+          </b-col> -->
           <b-col md="4">
             <b-row>
               <b-col md="12"
@@ -149,7 +155,7 @@
             </b-row>
           </b-col>
 
-          <b-col md="4">
+          <b-col md="8">
             <b-row>
               <b-col md="12"
                 ><h3><strong>Video Perumahan</strong></h3></b-col
@@ -157,9 +163,29 @@
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="dataRumah.linkVideo" target="_blank">
+                <!-- <a :href="dataRumah.linkVideo" target="_blank">
                   <b-button variant="primary">Lihat Video</b-button>
-                </a>
+                </a> -->
+                <!-- {{ dataRumah.linkVideo }} -->
+                <!-- <iframe
+                  width="100%"
+                  height="300"
+                  :src="'' + dataRumah.linkVideo + ''"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe> -->
+
+                <iframe
+                  width="100%"
+                  height="315"
+                  :src="'' + dataRumah.linkVideo + ''"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </b-col>
             </b-row>
           </b-col>
@@ -268,9 +294,9 @@ export default {
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
-          this.dataRumah.link = "https://" + x.linkVideo;
+          // this.dataRumah.link = x.linkVideo;
           this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
-          // console.log(this.dataRumah);
+          console.log(this.dataRumah);
         })
         .catch((err) => {
           console.log(err);
