@@ -151,9 +151,19 @@
             </b-row>
             <b-row>
               <b-col md="12">
-                <a :href="dataRumah.linkVideo" target="_blank">
+                <!-- <a :href="dataRumah.linkVideo" target="_blank">
                   <b-button variant="primary">Lihat Video</b-button>
-                </a>
+                </a> -->
+
+                <iframe
+                  width="100%"
+                  height="315"
+                  :src="dataRumah.linkVideo"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </b-col>
             </b-row>
           </b-col>

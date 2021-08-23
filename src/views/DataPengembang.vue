@@ -15,7 +15,13 @@
             </h2> -->
           </b-col>
         </b-row>
-
+        <b-row class="mt-3">
+          <b-col md="12">
+            <a href="../assets/pengembang.pptx" target="_blank">
+              <b-button variant="primary">Download Manual book</b-button>
+            </a>
+          </b-col>
+        </b-row>
         <!-- <b-row class="m-t-30">
           <b-col md="12">
             <b-alert show variant="primary">
@@ -193,8 +199,8 @@ export default {
       ],
       totalRows: 1,
       currentPage: 1,
-      perPage: 50,
-      pageOptions: [50, 100, { value: 100, text: "Tampilkan Banyak" }],
+      perPage: 25,
+      pageOptions: [25, 50, 75, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
     };

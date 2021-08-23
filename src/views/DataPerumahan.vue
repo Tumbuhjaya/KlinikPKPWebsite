@@ -201,16 +201,29 @@
 
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Tersedia : </strong>
-                            {{getJml(item.jmlSubsidi,item.jmlSubsidiTerjual) + getJml(item.jmlKomersial,item.jmlKomersialTerjual)}} Unit
+                            {{
+                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) +
+                              getJml(
+                                item.jmlKomersial,
+                                item.jmlKomersialTerjual
+                              )
+                            }}
+                            Unit
                           </h6>
                           <h6 class="harga m-t-0 m-b-0" style="font-size: 12px">
                             <strong>Subsidi : </strong>
-                            {{ getJml(item.jmlSubsidi,item.jmlSubsidiTerjual) }} Unit
+                            {{
+                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual)
+                            }}
+                            Unit
                           </h6>
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Komersial : </strong>
                             {{
-                              getJml(item.jmlKomersial,item.jmlKomersialTerjual)
+                              getJml(
+                                item.jmlKomersial,
+                                item.jmlKomersialTerjual
+                              )
                             }}
                             Unit
                           </h6>
@@ -255,12 +268,17 @@
     <myfooter></myfooter>
 
     <!-- modal -->
-    <b-modal id="modal-siteplan" size="lg" title="Siteplan Perumahan">
+    <b-modal
+      id="modal-siteplan"
+      size="lg"
+      title="Siteplan Perumahan"
+      hide-footer
+    >
       <b-row>
         <b-col md="12">
           <img
             v-if="sitePlan == null || sitePlan == ''"
-            src="https://via.placeholder.com/600x400"
+            src="https://via.placeholder.com/600x400?text=Tidak Ada Gambar Siteplan"
             alt=""
             style="width: 100%"
           />
@@ -284,6 +302,13 @@
             <template #cell(no)="item">
               <center>
                 {{ item.index + 1 }}
+              </center>
+            </template>
+
+            <template #cell(ltlb)="item">
+              <center>
+                {{ item.item.luasLahanRumah }} /
+                {{ item.item.luasBangunanRumah }}
               </center>
             </template>
           </b-table>
@@ -352,6 +377,22 @@ export default {
           class: "text-center",
           sortDirection: "desc",
         },
+
+        {
+          key: "ltlb",
+          label: "LT/LB",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+
+        {
+          key: "harga",
+          label: "Harga",
+          sortable: true,
+          class: "text-right",
+          sortDirection: "desc",
+        },
         {
           key: "terjual",
           label: "Status",
@@ -360,9 +401,9 @@ export default {
           class: "text-center",
           formatter: (value) => {
             if (value == 0) {
-              return "tersedia";
+              return "Tersedia";
             } else {
-              return "terjual";
+              return "Terjual";
             }
           },
         },
@@ -472,8 +513,13 @@ export default {
     },
   },
   watch: {
+<<<<<<< HEAD
+    urut: function (val) {
+      if (val == "Berdasarkan Harga Naik") {
+=======
     urut: function(val) {
       if (val == "Berdasarkan Nama A - Z") {
+>>>>>>> cbf6c2f4d0c751523a00a35b0247178d26f4fadf
         console.log("naik");
         this.listPerumahan.sort((a, b) =>
           a.namaPerumahan > b.namaPerumahan
