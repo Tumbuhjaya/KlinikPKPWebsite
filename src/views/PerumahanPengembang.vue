@@ -99,7 +99,7 @@ export default {
   created() {
     let x = this.$route.params.id;
     this.getPerumahan(x);
-    this.getDataPerum(x);
+    // this.getDataPerum(x);
   },
   methods: {
     getJml(x, y) {
@@ -132,21 +132,21 @@ export default {
           console.log(err);
         });
     },
-    // getDataPerum(x) {
-    //   axios
-    //     .get(ipBackEnd + "perumahan/listById/" + x, {
-    //       headers: {
-    //         token: localStorage.getItem("token"),
-    //       },
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data.data, "ini aha");
-    //       this.dataPerum = res.data.data[0];
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+    getDataPerum(x) {
+      axios
+        .get(ipBackEnd + "perumahan/listById/" + x, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data, "ini aha");
+          this.dataPerum = res.data.data[0];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     goDetail(x) {
       console.log(x);
       localStorage.setItem("dataPerum", JSON.stringify(this.dataPerum));

@@ -135,6 +135,7 @@ export default {
   methods: {
     handleFile(){
       this.foto1 = this.$refs.foto1.files[0]
+      this.userData.srcLogo = URL.createObjectURL(this.foto1)
     },
     getData() {
       axios

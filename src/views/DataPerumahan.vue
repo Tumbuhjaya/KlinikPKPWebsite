@@ -350,8 +350,8 @@ export default {
       jeniss: ["-- Kategori --", "Subsidi", "Komersial"],
       urutkan: [
         "-- Urutkan --",
-        "Berdasarkan Harga Naik",
-        "Berdasarkan Harga Turun",
+        "Berdasarkan Nama A - Z",
+        "Berdasarkan Nama Z - A",
       ],
 
       fields: [
@@ -513,22 +513,27 @@ export default {
     },
   },
   watch: {
+<<<<<<< HEAD
     urut: function (val) {
       if (val == "Berdasarkan Harga Naik") {
+=======
+    urut: function(val) {
+      if (val == "Berdasarkan Nama A - Z") {
+>>>>>>> cbf6c2f4d0c751523a00a35b0247178d26f4fadf
         console.log("naik");
         this.listPerumahan.sort((a, b) =>
-          parseInt(a.hargaMinSubsidi) > parseInt(b.hargaMinSubsidi)
+          a.namaPerumahan > b.namaPerumahan
             ? 1
-            : parseInt(b.hargaMinSubsidi) > parseInt(a.hargaMinSubsidi)
+            : b.namaPerumahan > a.namaPerumahan
             ? -1
             : 0
         );
-      } else if (val == "Berdasarkan Harga Turun") {
+      } else if (val == "Berdasarkan Nama Z - A") {
         console.log("turun");
         this.listPerumahan.sort((a, b) =>
-          parseInt(a.hargaMaxKomersial) < parseInt(b.hargaMaxKomersial)
+          a.namaPerumahan < b.namaPerumahan
             ? 1
-            : parseInt(b.hargaMaxKomersial) < parseInt(a.hargaMaxKomersial)
+            : b.namaPerumahan < a.namaPerumahan
             ? -1
             : 0
         );

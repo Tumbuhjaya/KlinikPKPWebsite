@@ -111,7 +111,7 @@
                       <b-form-file
                         id="foto1"
                         ref="foto1"
-                        @input="handleFile()"
+                        @input="handleFile('foto1')"
                       ></b-form-file>
                     </b-form-group>
 
@@ -129,7 +129,7 @@
                       <b-form-file
                         id="foto2"
                         ref="foto2"
-                        @input="handleFile()"
+                        @input="handleFile('foto2')"
                       ></b-form-file>
                     </b-form-group>
 
@@ -148,7 +148,7 @@
                       <b-form-file
                         id="foto3"
                         ref="foto3"
-                        @input="handleFile()"
+                        @input="handleFile('foto3')"
                       ></b-form-file>
                     </b-form-group>
 
@@ -168,7 +168,7 @@
                       <b-form-file
                         id=fotoDenah
                         ref="fotoDenah"
-                        @input="handleFile()"
+                        @input="handleFile('fotoDenah')"
                       ></b-form-file>
                     </b-form-group>
 
@@ -277,11 +277,22 @@ export default {
     hapus(x) {
       console.log(x);
     },
-    handleFile() {
-      this.foto1 = this.$refs.foto1.files[0];
-      this.foto2 = this.$refs.foto2.files[0];
-      this.foto3 = this.$refs.foto3.files[0];
-      this.fotoDenah = this.$refs.fotoDenah.files[0];
+    handleFile(x) {
+      if (x == 'foto1'){
+        this.foto1 = this.$refs.foto1.files[0];
+        this.dataTipe.src1 = URL.createObjectURL(this.foto1)
+      }
+      else if ( x == 'foto2'){
+        this.foto2 = this.$refs.foto2.files[0];
+        this.dataTipe.src2 = URL.createObjectURL(this.foto2)
+      }
+      else if ( x == 'foto3'){
+        this.foto3 = this.$refs.foto3.files[0];
+        this.dataTipe.src3 = URL.createObjectURL(this.foto3)
+      } else if ( x == 'fotoDenah'){
+        this.fotoDenah = this.$refs.fotoDenah.files[0];
+        this.dataTipe.srcDenah = URL.createObjectURL(this.fotoDenah)
+      }
     },
     updateRumah(){
       this.changeFoto()
