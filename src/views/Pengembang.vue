@@ -106,7 +106,7 @@
                   "
                 >
                   <h1 style="color: #fff; text-align: right">
-                    <strong>DATABASE PENGEMBANG</strong>
+                    <strong>DATABASE PERUMAHAN</strong>
                   </h1>
                   <h1 style="color: #fff">
                     <strong>PROVINSI JAWA TENGAH</strong>
@@ -404,8 +404,8 @@ export default {
       ],
       totalRows: 1,
       currentPage: 1,
-      perPage: 50,
-      pageOptions: [50, 100, { value: 100, text: "Tampilkan Banyak" }],
+      perPage: 25,
+      pageOptions: [25, 50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
     };
@@ -518,7 +518,7 @@ export default {
     },
     logOut() {
       this.$router.push({ path: "/logout" });
-      this.checkLogin()
+      this.checkLogin();
     },
     goBeranda() {
       let r = localStorage.getItem("role");
