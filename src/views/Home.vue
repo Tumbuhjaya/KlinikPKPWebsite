@@ -4,7 +4,27 @@
       <b-container fluid>
         <b-row>
           <b-col md="12" class="pl-0 pr-0 banner">
-            <img src="../assets/ilus1.png" alt="" />
+            <b-carousel
+              id="carousel-fade"
+              :interval="4000"
+              style="text-shadow: 0px 0px 2px #000"
+              fade
+              indicators
+              
+            >
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=10"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=12"
+              ></b-carousel-slide>
+              <b-carousel-slide
+                
+                img-src="https://picsum.photos/1024/480/?image=22"
+              ></b-carousel-slide>
+            </b-carousel>
           </b-col>
         </b-row>
       </b-container>
@@ -14,7 +34,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo_Klinik_Big.png" alt="">
+                <img src="../assets/logo-removebg.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -39,7 +59,22 @@
             </b-col>
 
             <b-col md="2">
-              <div class="loginregister"><b-button size="md" v-b-modal.modal-lg variant="primary">Login</b-button></div>
+              <div class="loginregister">
+                <b-button size="md" v-b-modal.modal-lg variant="primary" v-if="isLogin != true">Login</b-button>
+                <div>
+                  <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2" v-if="isLogin == true">
+                    
+                    <template #button-content>
+                      <b-icon-person-circle></b-icon-person-circle>
+                    </template>
+                    
+                    <b-dropdown-item @click="goBeranda()">Beranda</b-dropdown-item>
+                    <b-dropdown-item @click="goEdit()">Edit Profil</b-dropdown-item>
+                    <b-dropdown-item><router-link :to="'/edit_password_pengembang'">Edit Password</router-link></b-dropdown-item>
+                    <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
+                  </b-dropdown>
+                </div>
+              </div>
             </b-col>
           </b-row>
         </b-container>
@@ -282,17 +317,23 @@
                 <h6><strong>Penelitian Terbaru</strong></h6>
               </b-col>
             </b-row>
+
             <b-row>
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
-              </b-col>
-
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
-              </b-col>
-
-              <b-col md="4">
-                <img src="https://via.placeholder.com/220" alt="" />
+              <b-col md="12">
+                  <VueSlickCarousel v-bind="settings">
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://via.placeholder.com/220" alt="" />
+                    </div>
+                  </VueSlickCarousel>
               </b-col>
             </b-row>
           </b-col>
@@ -361,51 +402,78 @@
 </template>
 
 <script>
-import axios from "axios";
-import ipBackEnd from "@/ipBackEnd";
-import myfooter from "../components/footer"
-
+// import axios from "axios";
+// import ipBackEnd from "@/ipBackEnd";
+import myfooter from "../components/footer";
+import VueSlickCarousel from 'vue-slick-carousel'
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
+
+// <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 export default {
   name: "Home",
   data() {
+     
     return {
       isLogin: false,
       username: "",
       password: "",
+      settings:{
+        "autoplay": true,
+        "dots": false,
+        "focusOnSelect": true,
+        "infinite": true,
+        "speed": 500,
+        "slidesToShow": 3,
+        "slidesToScroll": 1
+      }
+      
     };
   },
   components:{
     // myheader,
-    myfooter
+    myfooter,
+    VueSlickCarousel,
+  },
+  created(){
+    this.checkLogin()
   },
   methods: {
-    login() {
-      axios
-        .post(ipBackEnd + "users/login", {
-          username: this.username,
-          password: this.password,
-        })
-        .then((res) => {
-          console.log(res);
-          localStorage.setItem('token',res.data[0].token)
-          localStorage.setItem('id', res.data[1].id)
-          localStorage.setItem('role',res.data[2].role)
-          if(res.data[2].role == 'pengembang'){
+    checkLogin(){
+    let token = localStorage.getItem('token')
+    if(token){
+      this.isLogin = true
+    }else {
+      this.isLogin = false
+    }
+  },
+  logOut(){
+    console.log('keluar')
+    localStorage.clear()
+    this.$router.push({ path: "/" });
+    },
+    goBeranda(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
           this.$router.push({ path: "/dashboard_pengembang" });
           }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
+    goEdit(){
+      let r = localStorage.getItem('role')
+      if ( r == 'pengembang'){
+          this.$router.push({ path: '/edit_profil_pengembang' });
+          }
+    }
   },
+ 
 };
 </script>
 
 <style scoped>
+.slick-slider img{
+  width: 100%;
+}
 .layout {
   width: 100%;
   height: 100px;
@@ -445,7 +513,8 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
 }
 
 .section-one .section-menu .identity {
@@ -458,7 +527,7 @@ export default {
 }
 
 .section-one .section-menu .identity img {
-  height: 50px;
+  height: 60px;
 }
 
 .section-one .section-menu .identity .name{
@@ -564,9 +633,9 @@ export default {
   color: #fff;
 }
 
-.section-five .left img {
+/* .section-five .left img {
   width: 100%;
-}
+} */
 
 .section-six {
   padding: 60px 0;

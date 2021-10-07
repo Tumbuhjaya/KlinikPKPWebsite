@@ -1,61 +1,77 @@
 <template>
-  <div id="daftar_pengembang" >
+  <div id="daftar_pengembang">
     <myheader></myheader>
-    
+
     <section class="section-one">
-        <b-container>
-            
+      <b-container>
+        <b-row class="m-t-30">
+          <b-col md="6" offset-md="3">
+            <b-row>
+              <b-col md="12">
+                <h2 class="m-t-0 m-b-0 text-center">
+                  <strong>Edit Profil Pengembang</strong>
+                </h2>
+              </b-col>
+            </b-row>
 
             <b-row class="m-t-30">
-                <b-col md="6" offset-md="3">
-                    <div class="box">
-                        <b-row>
-                            <b-col md="12">
-                                <h2 class="m-t-0 m-b-0 text-center"><strong>Edit Profil Pengembang</strong></h2>
-                            </b-col>
-                        </b-row>
+              <b-col md="12">
+                <b-row>
+                  <b-col md="12">
+                    <b-form-group label="Nama Pengembang">
+                      <b-form-input
+                        v-model="userData.namaPerusahaan"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-row>
-                            <b-col md="12">
-                                <hr>
-                            </b-col>
-                        </b-row>
+                    <b-form-group label="Alamat">
+                      <b-form-input
+                        v-model="userData.alamat"
+                      ></b-form-input>
+                    </b-form-group>
 
-                        <b-row>
-                            <b-col md="12">
-                                <b-form>
-                                    <b-form-group label="Nama">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="Asosiasi">
+                      <b-form-input
+                        v-model="userData.asosiasi"
+                      ></b-form-input>
+                    </b-form-group>
 
-                                    <b-form-group label="Alamat">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="NIB">
+                      <b-form-input v-model="userData.NIB"></b-form-input>
+                    </b-form-group>
 
-                                    <b-form-group label="Email">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="Email">
+                      <b-form-input v-model="userData.email"></b-form-input>
+                    </b-form-group>
 
-                                    <b-form-group label="Nomor Telepon">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="No. Telepon">
+                      <b-form-input v-model="userData.noHp"></b-form-input>
+                    </b-form-group>
 
-                                    <b-form-group label="Username">
-                                        <b-form-input></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="Website">
+                      <b-form-input
+                        v-model="userData.website"
+                      ></b-form-input>
+                    </b-form-group>
 
-                                    <b-form-group label="Password">
-                                        <b-form-input type="password"></b-form-input>
-                                    </b-form-group>
+                    <b-form-group label="Upload Logo Pengembang">
+                      <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
 
-                                    <b-button type="submit" variant="primary">Daftar</b-button>
-                                </b-form>
-                            </b-col>
-                        </b-row>
-                    </div>
-                </b-col>
+                <b-row>
+                  <b-col md="12">
+                    <b-button variant="primary" @click="update()"
+                      >Update</b-button
+                    >
+                  </b-col>
+                </b-row>
+              </b-col>
             </b-row>
-        </b-container>
+          </b-col>
+        </b-row>
+      </b-container>
     </section>
 
     <myfooter></myfooter>
@@ -63,29 +79,85 @@
 </template>
 
 <script>
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import myheader from "../components/header"
-import myfooter from "../components/footer"
+import myheader from "../components/header";
+import myfooter from "../components/footer";
 
 export default {
-  name: "DaftarPengembang",
- data (){
-   return{
-     isLogin: false,
-   };
- },
- components:{
-        myheader,
-        myfooter
-      },
-
+  name: "EditPengembang",
+  data() {
+    return {
+      isLogin: false,
+      userData: [],
+      file:""
+    };
+  },
+  components: {
+    myheader,
+    myfooter,
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    handleFile(){
+      this.file = this.$refs.file.files[0]
+    },
+    getData() {
+      axios
+        .get(ipBackEnd + "users/Profile", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.userData = res.data.data[0];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    update(){
+      if (this.file != ""){
+        this.changeLogo()
+      }
+      axios.post(ipBackEnd + 'users/update', this.userData, {
+        headers:{
+          token : localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+        this.getData()
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+    changeLogo(){
+      let vm = this
+      let formData = new FormData
+      formData.append('file', vm.file)
+      formData.append('id', vm.userData.id)
+      axios.post(ipBackEnd + 'users/changeLogo', formData, {
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      }).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
+  },
 };
 </script>
 
 <style scoped>
 .section-one {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 /* .section-one .box{

@@ -3,15 +3,18 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Perumahan from "../views/Perumahan.vue";
 import DataPerumahan from "../views/DataPerumahan.vue";
+import DataPerumahanByTipe from "../views/DataPerumahanByTipe.vue";
 import DetailPerumahan from "../views/DetailPerumahan.vue";
 import Pengembang from "../views/Pengembang.vue";
 import DaftarPengembang from "../views/DaftarPengembang.vue";
 import DashboardPengembang from "../views/DashboardPengembang.vue";
 import EditProfilPengembang from "../views/EditProfilPengembang.vue";
+import EditPasswordPengembang from "../views/EditPasswordPengembang.vue";
 import PerumahanPengembang from "../views/PerumahanPengembang.vue";
 import InputPerumahanPengembang from "../views/InputPerumahanPengembang.vue";
 import EditPerumahanPengembang from "../views/EditPerumahanPengembang.vue";
 import TipePerumahanPengembang from "../views/TipePerumahanPengembang.vue";
+import EditTipePerumahanPengembang from "../views/EditTipePerumahanPengembang.vue";
 import Csr from "../views/csr.vue";
 import DetailCsr from "../views/DetailCsr.vue";
 import DashboardPerbankan from "../views/DashboardPerbankan.vue";
@@ -48,19 +51,48 @@ const routes = [
   },
 
   {
-    path: "/detail_perumahan",
+    path: "/data_perumahan_by_tipe/:id",
+    name: "DataPerumahanByTipe",
+    component: DataPerumahanByTipe,
+    meta:{
+      role: "all",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/data_perumahan_by_tipe/:id") {
+        next({
+          path: "/data_perumahan_by_tipe",
+        });
+      }
+    },
+
+  },
+
+  {
+    path: "/detail_perumahan/:id",
     name: "DetailPerumahan",
     component: DetailPerumahan,
     meta:{
       role: "all",
-    }
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/detail_perumahan/:id") {
+        next({
+          path: "/detail_perumahan",
+        });
+      }
+    },
   },
 
   {
     path: "/pengembang",
     name: "Pengembang",
     component: Pengembang,
-    role: "pengembang",
+    meta:{
+      role: "all",
+    }
+    
   },
 
   {
@@ -91,6 +123,15 @@ const routes = [
   },
 
   {
+    path: "/edit_password_pengembang",
+    name: "EditPasswordPengembang",
+    component: EditPasswordPengembang,
+    meta:{
+      role: "pengembang",
+    },
+  },
+
+  {
     path: "/perumahan_pengembang",
     name: "PerumahanPengembang",
     component: PerumahanPengembang,
@@ -107,7 +148,6 @@ const routes = [
       role: "pengembang",
     },
   },
-
   {
     path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",
@@ -139,6 +179,15 @@ const routes = [
           path: "/tipe_perumahan_pengembang",
         });
       }
+    },
+  },
+
+  {
+    path: "/edit_tipe_perumahan_pengembang",
+    name: "EditTipePerumahanPengembang",
+    component: EditTipePerumahanPengembang,
+    meta:{
+      role: "pengembang",
     },
   },
 
@@ -185,10 +234,13 @@ const router = new VueRouter({
   routes,
 });
 
+
 router.beforeEach((to, from, next) => {
-  let role = localStorage.getItem("role");
+  const role = localStorage.getItem("role");
     if (to.meta.role == "all") {
-      next();
+      next({
+
+      });
     } else if (to.meta.role !== role) {
       next({
         path: "/",

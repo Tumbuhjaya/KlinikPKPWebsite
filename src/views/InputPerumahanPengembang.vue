@@ -38,18 +38,25 @@
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <b-form-select
-                  v-model="kabKot"
-                  :options="kabkot"
-                ></b-form-select>
+                <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
               </b-form-group>
 
               <b-form-group label="Kecamatan">
-                <b-form-select
-                  v-model="keca"
-                  :options="kec"
-                ></b-form-select>
+                <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
               </b-form-group>
+              
+              <b-row>
+                <b-col md="6">
+                  <b-form-group label="Koordinat Lokasi X">
+                    <b-form-input placeholder="110.1234"></b-form-input>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Koordinat Lokasi Y">
+                    <b-form-input placeholder="-6.1234"></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
 
               <b-form-group label="Email">
                 <b-form-input v-model="email"></b-form-input>
@@ -63,7 +70,7 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
                 </b-col>
@@ -79,9 +86,9 @@
                     <b-form-input v-model="jmlTerbangun"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
-              <b-row>
+              <!-- <b-row>
                 <b-col md="12">
                   <h5><strong>Stok Unit</strong></h5>
                 </b-col>
@@ -95,7 +102,7 @@
                     <b-form-input v-model="stockUnitK"></b-form-input>
                   </b-form-group>
                 </b-col>
-              </b-row>
+              </b-row> -->
 
               <b-row>
                 <b-col md="12">
@@ -134,6 +141,10 @@
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import axios from "axios"
 import ipBackEnd from "@/ipBackEnd"
+import myheader from "../components/header"
+import myfooter from "../components/footer"
+import Multiselect from 'vue-multiselect'
+
 
 export default {
   name: "InputPerumahanPengembang",
@@ -147,20 +158,30 @@ export default {
       email:"",
       CP:"",
       luasLahan:"",
-      rencanaPemb:"",
-      jmlTerbangun:"",
-      stockUnitS:0,
-      stockUnitK:0,
       terjualUnitS:0,
       terjualUnitK:0,
       file:"",
-      kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" },
-      { value : "Semarang", text : "Semarang"}],
-      kec: [{ value: null, text: "-- Pilih Kecamatan --" },{
-        value: "Banyumanik", text: "Banyumanik"
-      }],
+      kabkot: [
+        'KabKot A', 'KabKot B', 'KabKot C'
+      ],
+
+      kec: [
+        'Kecamatan A', 'Kecamatan B', 'Kecamatan C'
+      ]
+      // kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" },
+      // { value : "Semarang", text : "Semarang"}],
+      // kec: [{ value: null, text: "-- Pilih Kecamatan --" },{
+      //   value: "Banyumanik", text: "Banyumanik"
+      // }],
     };
   },
+  components:{
+    myheader,
+    myfooter,
+  Multiselect
+
+  },
+
   methods:{
     handleFile() {
       this.file = this.$refs.file.files[0];
@@ -169,21 +190,17 @@ export default {
     async regisPerumahan(){
       let vm = this
       console.log(this.file, "ini file");
-      let formData = await new FormData();
-      await formData.append("file", this.file);
-      await formData.append("namaPerumahan",vm.namaPerum );
-      await formData.append("alamat",vm.alamat);
-      await formData.append("kabKota", vm.kabKot);
-      await formData.append("kecamatan", vm.keca);
-      await formData.append("email", vm.email);
-      await formData.append("CP", vm.CP);
-      await formData.append("luasLahan", vm.luasLahan);
-      await formData.append("rencanaPembangunan", vm.rencanaPemb);
-      await formData.append("totalTerbangun", vm.jmlTerbangun);
-      await formData.append("jmlStockUnitSubsidi", vm.stockUnitS);
-      await formData.append("jmlStockUnitKomersial", vm.stockUnitK);
-      await formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
-      await formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
+      let formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("namaPerumahan",vm.namaPerum );
+      formData.append("alamat",vm.alamat);
+      formData.append("kabKota", vm.kabKot);
+      formData.append("kecamatan", vm.keca);
+      formData.append("email", vm.email);
+      formData.append("CP", vm.CP);
+      formData.append("luasLahan", vm.luasLahan);
+      formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
+      formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {
@@ -195,6 +212,7 @@ export default {
         .then(res => {
           console.log(res);
           this.$emit("tembak");
+          this.$router.push({path:'/dashboard_pengembang'})
         })
         .catch(err => {
           console.log(err);

@@ -14,6 +14,7 @@ html,body{
   /* background-size: cover; */
   /* background-color:#ECF0F1 !important; */
   background: #F8FAFE !important;
+  /* overflow: hidden; */
   
 }
 #app {
@@ -232,7 +233,7 @@ html,body{
 }
 
 #myheader header .indentity img{
-  height: 50px;
+  height: 60px;
 }
 
 #myheader header .indentity .name{

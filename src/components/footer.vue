@@ -33,7 +33,7 @@
                 </b-form-group>
 
                 <b-form-group label="Password">
-                    <b-form-input v-model="password"></b-form-input>
+                    <b-form-input v-model="password" type="password"></b-form-input>
                 </b-form-group>
 
                 <!-- <router-link :to="'dashboard_pengembang'" > -->
@@ -53,7 +53,6 @@ export default {
     name: "myfooter",
     data() {
     return {
-      isLogin: false,
       username: "",
       password: "",
     };
@@ -67,10 +66,10 @@ export default {
         })
         .then((res) => {
           console.log(res,'ini footer');
-          localStorage.setItem('token',res.data[0].token)
-          localStorage.setItem('id', res.data[1].id)
-          localStorage.setItem('role',res.data[2].role)
-          if(res.data[2].role == 'pengembang'){
+          localStorage.setItem('token',res.data.token)
+          localStorage.setItem('id', res.data.id)
+          localStorage.setItem('role',res.data.role)
+          if(res.data.role == 'pengembang'){
           this.$router.push({ path: "/dashboard_pengembang" });
           }
         })

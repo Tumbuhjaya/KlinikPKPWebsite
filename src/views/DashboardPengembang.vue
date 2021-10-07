@@ -20,150 +20,54 @@
                   :to="'input_perumahan_pengembang'"
                   style="text-decoration:none"
                   ><b-button variant="primary" class="m-r-15"
-                    >Tambah Data</b-button
+                    ><b-icon-plus></b-icon-plus> Tambah Data</b-button
                   ></router-link
                 >
               </b-col>
-              <!-- <b-col md="12" class="m-t-30">
-                <b-table-simple bordered>
-                  <b-thead>
-                    <b-tr>
-                      <b-th>No.</b-th>
-                      <b-th>Nama</b-th>
-                      <b-th>Alamat</b-th>
-                      <b-th style="width:300px">Option</b-th>
-                    </b-tr>
-                  </b-thead>
-
-                  <b-tbody>
-                    <b-tr>
-                      <b-td>1.</b-td>
-                      <b-td>Griya Indah Segara</b-td>
-                      <b-td
-                        >Jalan Raya Pasar Minggu KM. 18 Jakarta Selatan 12510
-                        Indonesia</b-td
-                      >
-                      <b-td>
-                        <center>
-                          <router-link
-                            :to="'edit_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="warning" size="sm" class="m-r-15"
-                              >Edit</b-button
-                            >
-                          </router-link>
-
-                          <router-link
-                            :to="'tipe_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="info" size="sm" class="m-r-15"
-                              >Tipe Rumah</b-button
-                            >
-                          </router-link>
-
-                          <b-button variant="danger" size="sm">Hapus</b-button>
-                        </center>
-                      </b-td>
-                    </b-tr>
-
-                    <b-tr>
-                      <b-td>2.</b-td>
-                      <b-td>Griya Adem Ayem</b-td>
-                      <b-td>JL. D.I. Panjaitan Kav. 9-10, Jakarta 13340</b-td>
-                      <b-td>
-                        <center>
-                          <router-link
-                            :to="'edit_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="warning" size="sm" class="m-r-15"
-                              >Edit</b-button
-                            >
-                          </router-link>
-
-                          <router-link
-                            :to="'tipe_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="info" size="sm" class="m-r-15"
-                              >Tipe Rumah</b-button
-                            >
-                          </router-link>
-
-                          <b-button variant="danger" size="sm">Hapus</b-button>
-                        </center>
-                      </b-td>
-                    </b-tr>
-
-                    <b-tr>
-                      <b-td>3.</b-td>
-                      <b-td>Griya Nuasa Bali</b-td>
-                      <b-td
-                        >ASG Tower, Jl. Pantai Indah Kapuk, Boulevard Kamal
-                        Muara Penjaringan, Jakarta Utara 14470</b-td
-                      >
-                      <b-td>
-                        <center>
-                          <router-link
-                            :to="'edit_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="warning" size="sm" class="m-r-15"
-                              >Edit</b-button
-                            >
-                          </router-link>
-
-                          <router-link
-                            :to="'tipe_perumahan_pengembang'"
-                            style="text-decoration:none"
-                          >
-                            <b-button variant="info" size="sm" class="m-r-15"
-                              >Tipe Rumah</b-button
-                            >
-                          </router-link>
-
-                          <b-button variant="danger" size="sm">Hapus</b-button>
-                        </center>
-                      </b-td>
-                    </b-tr>
-                  </b-tbody>
-                </b-table-simple>
-              </b-col> -->
-              <b-container fluid>
-                <!-- User Interface controls -->
+              
+              <b-col md="12" class="m-t-30">
                 <b-row>
-                  <b-col sm="5" md="6" class="my-1">
+                  <b-col md="2">
                     <b-form-group
                       label="Per page"
                       label-for="per-page-select"
-                      label-cols-sm="6"
-                      label-cols-md="4"
-                      label-cols-lg="3"
-                      label-align-sm="right"
-                      label-size="sm"
+                      label-cols-md="6"
+                      label-align-md="left"
+                      label-size="md"
                       class="mb-0"
                     >
                       <b-form-select
                         id="per-page-select"
                         v-model="perPage"
                         :options="pageOptions"
-                        size="sm"
+                        size="md"
                       ></b-form-select>
                     </b-form-group>
                   </b-col>
+                  <b-col md="5" offset-md="5">
+                    <b-form-group
+                      label="Filter"
+                      label-for="filter-input"
+                      label-cols-md="3"
+                      label-align-md="right"
+                      label-size="md"
+                      class="mb-0"
+                    >
+                      <b-input-group size="md">
+                        <b-form-input
+                          id="filter-input"
+                          v-model="filter"
+                          type="search"
+                          placeholder="Type to Search"
+                        ></b-form-input>
 
-                  <b-col sm="7" md="6" class="my-1">
-                    <b-pagination
-                      v-model="currentPage"
-                      :total-rows="totalRows"
-                      :per-page="perPage"
-                      align="fill"
-                      size="sm"
-                      class="my-0"
-                    ></b-pagination>
+                        <b-input-group-append>
+                          <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                        </b-input-group-append>
+                      </b-input-group>
+                    </b-form-group>
                   </b-col>
+                  
                 </b-row>
 
                 <!-- Main table element -->
@@ -174,24 +78,45 @@
                   :per-page="perPage"
                   :filter="filter"
                   :filter-included-fields="filterOn"
-                  stacked="md"
-                  show-empty
-                  small
                   @filtered="onFiltered"
+                  class="m-t-15"
+                  bordered
+                  small
+                  show-empty
                 >
+                <template #cell(No)="item">
+            {{ item.index + 1 }}.
+          </template>
                   <template #cell(actions)="item">
                     <center>
-                        <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)"
-                          >Edit</b-button
+                      <b-button variant="warning" size="sm" class="m-r-15" @click="goEdit(item.item.id)" v-b-tooltip.hover.top="'Edit'"
+                          ><b-icon-pencil-square></b-icon-pencil-square></b-button
                         >
-                        <b-button variant="info" size="sm" class="m-r-15" @click="goTipeRumah(item.item.id)"
-                          >Tipe Rumah</b-button
+                      
+                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)" v-b-tooltip.hover.top="'Hapus'" class="m-r-15" ><b-icon-trash></b-icon-trash></b-button>
+                      <b-button variant="info" size="sm" @click="goTipeRumah(item.item)" 
+                          ><b-icon-plus></b-icon-plus> Tipe Rumah</b-button
                         >
-                      <b-button variant="danger" size="sm" @click="hapus(item.item.id)">Hapus</b-button>
                     </center>
                   </template>
                 </b-table>
-              </b-container>
+
+                <b-row>
+                  <b-col md="5" offset-md="7">
+                    <b-pagination
+                      v-model="currentPage"
+                      :total-rows="totalRows"
+                      :per-page="perPage"
+                      align="fill"
+                      size="md"
+
+                    ></b-pagination>
+                  </b-col>
+                </b-row>
+              </b-col>
+
+
+              
             </b-row>
           </b-col>
         </b-row>
@@ -217,6 +142,12 @@ export default {
       isLogin: false,
       items: [],
       fields: [
+        {
+          key: "No",
+          label: "No",
+          sortable: true,
+          class: "text-center",
+        },
         {
           key: "namaPerumahan",
           label: "Nama Perumahan",
@@ -245,8 +176,8 @@ export default {
       ],
       totalRows: 1,
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 10, 15, { value: 100, text: "Tampilkan Banyak" }],
+      perPage: 10,
+      pageOptions: [10, 50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filterOn: [],
     };
@@ -266,8 +197,9 @@ export default {
     },
   },
   async created() {
+    localStorage.removeItem('dataPerum')
     this.items = await this.getPerum();
-    console.log();
+
   },
   mounted() {
     // Set the initial number of items
@@ -278,8 +210,9 @@ export default {
       this.$router.push({path:`edit_perumahan_pengembang/${x}`})
     },
     goTipeRumah(x){
-      console.log(x)
-      this.$router.push({path:`tipe_perumahan_pengembang/${x}`})
+      console.log(x, 'ini x')
+      localStorage.setItem('dataPerum',JSON.stringify(x))
+      this.$router.push({path:`tipe_perumahan_pengembang/${x.id}`})
     },
     hapus(x){
       console.log(x)
