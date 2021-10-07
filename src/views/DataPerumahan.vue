@@ -1,340 +1,603 @@
 <template>
-  <div id="data_perumahan" >
+  <div id="data_perumahan">
     <myheader></myheader>
 
     <section class="section-one">
-        <b-container>
+      <b-container>
+        <b-row>
+          <b-col md="12">
+            <h2 class="m-t-0 m-b-0 text-center">
+              <strong>Data Perumahan Provinsi Jawa Tengah</strong>
+            </h2>
+
+            <!-- <h2 class="m-t-0 m-b-0 text-center">
+              <strong></strong>
+            </h2> -->
+          </b-col>
+        </b-row>
+        <b-row class="mt-5">
+          <b-col md="3">
+            <div class="box-search">
+              <b-row>
+                <b-col md="12">
+                  <h5><strong>Saring Hasil</strong></h5>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <hr />
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <h6><strong>Lokasi</strong></h6>
+                  <b-form-group>
+                    <multiselect
+                      :options="kabkot"
+                      v-model="kabKota"
+                      :multiple="false"
+                      :searchable="true"
+                      :close-on-select="true"
+                      :show-labels="false"
+                      placeholder="--Kabupaten/Kota --"
+                    ></multiselect>
+                  </b-form-group>
+                  <!-- <b-form-select v-model="selected" :options="kec" class="m-t-15"></b-form-select> -->
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <hr />
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <h6><strong>Kategori</strong></h6>
+                  <multiselect
+                    :options="jeniss"
+                    v-model="jenis"
+                    :multiple="false"
+                    :searchable="true"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder="--Kategori --"
+                  ></multiselect>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <hr />
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <h6><strong>Harga</strong></h6>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Harga Minimal">
+                    <b-form-input
+                      placeholder="Harga Minimal"
+                      class="m-t-10"
+                      v-model="hargaMin"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Harga Maksimal">
+                    <b-form-input
+                      placeholder="Harga Maksimal"
+                      class="m-t-10"
+                      v-model="hargaMax"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="12">
+                  <h6><strong>Luas</strong></h6>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Luas Minimal">
+                    <b-form-input
+                      placeholder="Luas Minimal"
+                      class="m-t-10"
+                      v-model="luasMin"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+
+                <b-col md="12">
+                  <b-form-group label="Luas Maksimal">
+                    <b-form-input
+                      placeholder="Luas Maksimal"
+                      class="m-t-10"
+                      v-model="luasMax"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="12">
+                  <hr />
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <!-- <b-col md="12">
+                  <h6><strong>Sertifikat</strong></h6>
+                </b-col> -->
+
+                <!-- <b-col md="12">
+                  <b-form-checkbox>Sertifikat Hak Milik (SHM)</b-form-checkbox>
+                  <b-form-checkbox>Hak Guna Bangunan (HGB)</b-form-checkbox>
+                  <b-form-checkbox>Lainnya</b-form-checkbox>
+                </b-col> -->
+                <b-col md="10">
+                  <b-button variant="primary" @click="search()">Cari</b-button>
+                </b-col>
+              </b-row>
+            </div>
+          </b-col>
+
+          <b-col md="9">
+            <b-row class="m-b-15">
+              <b-col md="8">
+                <b-form-input
+                  placeholder="Cari Perumahan, Pengembang, dkk"
+                  v-model="searchQ"
+                  class="m-t-10"
+                ></b-form-input>
+              </b-col>
+
+              <b-col md="4">
+                <multiselect
+                  :options="urutkan"
+                  v-model="urut"
+                  :multiple="false"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="false"
+                  placeholder="-- Urutkan --"
+                  class="m-t-10"
+                ></multiselect>
+              </b-col>
+            </b-row>
+
             <b-row>
-                <b-col md="3">
-                    <div class="box-search">
-                        <b-row>
-                            <b-col md="12">
-                                <h5><strong>Saring Hasil</strong></h5>
-                            </b-col>
-                        </b-row>
+              <b-col md="12">
+                <b-card-group columns>
+                  <b-card
+                    v-for="item in hasilQuery"
+                    :key="item.PerumahanId"
+                    :img-src="item.src"
+                    img-alt="Image"
+                    img-top
+                  >
+                    <b-card-text>
+                      <b-row>
+                        <b-col md="12">
+                          <h5>
+                            <strong>{{ item.namaPerumahan }}</strong>
+                          </h5>
+                          <h6 style="font-size: 14px">
+                            {{ item.namaPerusahaan }}
+                          </h6>
 
-                        <b-row>
-                            <b-col md="12">
-                                <hr>
-                            </b-col>
-                        </b-row>
+                          <h6 class="mt-2" style="font-size: 14px">
+                            {{ item.alamatPerumahan }}
+                          </h6>
+                          <h6 style="font-size: 14px">
+                            {{ item.kabKotaPerumahan }}
+                          </h6>
 
-                        <b-row>
-                            <b-col md="12">
-                                <h6><strong>Lokasi</strong></h6>
-                                <b-form-select v-model="selected" :options="kabkot"></b-form-select>
-                                <b-form-select v-model="selected" :options="kec" class="m-t-15"></b-form-select>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-                                <hr>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-                                <h6><strong>Kategori</strong></h6>
-                                <b-form-select v-model="selected" :options="jenis"></b-form-select>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-                                <hr>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-                                <h6><strong>Harga</strong></h6>
-                            </b-col>
-
-                            <b-col md="12">
-                                <b-form-input placeholder="Harga Minimal" class="m-t-10"></b-form-input>
-                            </b-col>
-
-                            <b-col md="12">
-                                <b-form-input placeholder="Harga Maksimal" class="m-t-10"></b-form-input>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-
-                                <hr>
-                            </b-col>
-                        </b-row>
-
-                        <b-row>
-                            <b-col md="12">
-                                <h6><strong>Sertifikat</strong></h6>
-                            </b-col>
-
-                            <b-col md="12">
-                                <b-form-checkbox>Sertifikat Hak Milik (SHM)</b-form-checkbox>
-                                <b-form-checkbox>Hak Guna Bangunan (HGB)</b-form-checkbox>
-                                <b-form-checkbox>Lainnya</b-form-checkbox>
-                            </b-col>
-                        </b-row>
-                    </div>
-                </b-col>
-
-                <b-col md="9">
-                    <b-row class="m-b-15">
-                        <b-col md="8">
-                            <b-form-input placeholder="Cari Perumahan, Pengembang, dkk" class="m-t-10"></b-form-input>
+                          <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
+                            <strong>Tersedia : </strong>
+                            {{
+                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) +
+                                getJml(
+                                  item.jmlKomersial,
+                                  item.jmlKomersialTerjual
+                                )
+                            }}
+                            Unit
+                          </h6>
+                          <h6 class="harga m-t-0 m-b-0" style="font-size: 12px">
+                            <strong>Subsidi : </strong>
+                            {{
+                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual)
+                            }}
+                            Unit
+                          </h6>
+                          <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
+                            <strong>Komersial : </strong>
+                            {{
+                              getJml(
+                                item.jmlKomersial,
+                                item.jmlKomersialTerjual
+                              )
+                            }}
+                            Unit
+                          </h6>
                         </b-col>
-
-                        <b-col md="4">
-                          <b-form-select v-model="selected" :options="urutkan" class="m-t-10"></b-form-select>
+                      </b-row>
+                      <hr />
+                      <b-row>
+                        <b-col md="6">
+                          <b-button
+                            variant="primary"
+                            size="sm"
+                            @click="goListRumah(item)"
+                            style="cursor: pointer"
+                            >Detail</b-button
+                          >
                         </b-col>
-                    </b-row>
-
-                    <b-row>
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <router-link  :to="'/data_perumahan_by_tipe'" style="text-decoration:none;">
-                                <div class="box">
-                                    <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                                    <div class="down m-t-15">
-                                        <h5><strong>Perumahan Indah</strong></h5>
-                                        <h6>PT. Pengembang Internasional</h6>
-
-                                        <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                        <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                        <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                                    </div>
-                                </div>
-                            </router-link>
+                        <b-col md="6">
+                          <b-button
+                            variant="warning"
+                            size="sm"
+                            class="float-right"
+                            style="cursor: pointer"
+                            v-b-modal.modal-siteplan
+                            @click="
+                              showPlan(item.perumahanId),
+                                (sitePlan = item.siteplanPerumahan)
+                            "
+                            >Siteplan</b-button
+                          >
                         </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-
-                        <b-col md="4" class="m-t-15 m-b-15">
-                            <div class="box">
-                            <div class="up"><img src="https://via.placeholder.com/300x200" alt=""></div>
-                            <div class="down m-t-15">
-                                <h5><strong>Perumahan Indah</strong></h5>
-                                <h6>PT. Pengembang Internasional</h6>
-
-                                <p class="m-t-15">Pedalangan, Banyumanik, Semarang</p>
-
-                                <h6 class="harga m-t-5 m-b-5"><strong>Subsidi</strong> 4 Unit Rp 200 - 400 Juta</h6>
-                                <h6 class="harga m-t-5 m-b-5"><strong>Komersil</strong> 14 Unit Rp 800 - 1 M</h6>
-                            </div>
-                            
-                            </div>
-                        </b-col>
-                    </b-row>
-                </b-col>
-            </b-row>    
-        </b-container>    
-    </section>    
+                      </b-row>
+                    </b-card-text>
+                  </b-card>
+                </b-card-group>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
 
     <myfooter></myfooter>
 
+    <!-- modal -->
+    <b-modal
+      id="modal-siteplan"
+      size="lg"
+      title="Siteplan Perumahan"
+      hide-footer
+    >
+      <b-row>
+        <b-col md="12">
+          <img
+            v-if="sitePlan == null || sitePlan == ''"
+            src="https://via.placeholder.com/600x400?text=Tidak Ada Gambar Siteplan"
+            alt=""
+            style="width: 100%"
+          />
+          <img
+            v-if="sitePlan != null && sitePlan != ''"
+            :src="ipBackEnd + sitePlan"
+            alt=""
+            style="width: 100%"
+          />
+        </b-col>
+
+        <b-col md="12">
+          <b-table
+            :items="items"
+            :fields="fields"
+            stacked="md"
+            show-empty
+            bordered
+            small
+          >
+            <template #cell(no)="item">
+              <center>
+                {{ item.index + 1 }}
+              </center>
+            </template>
+
+            <template #cell(ltlb)="item">
+              <center>
+                {{ item.item.luasLahanRumah }} /
+                {{ item.item.luasBangunanRumah }}
+              </center>
+            </template>
+          </b-table>
+        </b-col>
+      </b-row>
+    </b-modal>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import myheader from "../components/header"
-import myfooter from "../components/footer"
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
+import myheader from "../components/header";
+import myfooter from "../components/footer";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "DataPerumahan",
- data (){
-   return{
-     isLogin: false,
-     selected: null,
-      kabkot: [
-          { value: null, text: '-- Pilih Kabupaten / Kota --' }
-      ],
-
-      kec: [
-          { value: null, text: '-- Pilih Kecamatan --' }
-      ],
-
-      jenis: [
-          { value: null, text: '-- Pilih Jenis --' },
-          { value: 'Subsidi', text: 'Subsidi' },
-          { value: 'Komersial', text: 'Komersial' }
-      ],
-
+  data() {
+    return {
+      isLogin: false,
+      selected: null,
+      listPerumahan: [],
+      listHasil:[],
+      items: [],
+      ipBackEnd,
+      sitePlan: "",
+      searchQ: "",
+      urut: "",
+      kabKota: "",
+      jenis: "",
+      hargaMin: 0,
+      hargaMax: 0,
+      luasMin: 0,
+      luasMax: 0,
+      kabkot: [],
+      //   kec: [{ value: null, text: "-- Pilih Kecamatan --" }],
+      jeniss: ["-- Kategori --", "Subsidi", "Komersial"],
       urutkan: [
-          { value: null, text: '-- Urutkan --' }
+        "-- Urutkan --",
+        "Berdasarkan Nama A - Z",
+        "Berdasarkan Nama Z - A",
       ],
-   };
- },
- components:{
-  myheader,
-  myfooter
-},
 
+      fields: [
+        { key: "No", label: "No", class: "text-center" },
+        {
+          key: "nomorKapling",
+          label: "No Kavling",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+        {
+          key: "jenis",
+          label: "Jenis",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+        {
+          key: "type",
+          label: "Tipe",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+
+        {
+          key: "ltlb",
+          label: "LT/LB",
+          sortable: true,
+          class: "text-center",
+          sortDirection: "desc",
+        },
+
+        {
+          key: "harga",
+          label: "Harga",
+          sortable: true,
+          class: "text-right",
+          sortDirection: "desc",
+        },
+        {
+          key: "terjual",
+          label: "Status",
+          sortable: true,
+          sortDirection: "desc",
+          class: "text-center",
+          formatter: (value) => {
+            if (value == 0) {
+              return "Tersedia";
+            } else {
+              return "Terjual";
+            }
+          },
+        },
+      ],
+    };
+  },
+  components: {
+    myheader,
+    myfooter,
+    Multiselect,
+  },
+  computed:{
+    hasilQuery() {
+      if (this.searchQ) {
+        return this.listPerumahan.filter(item => {
+          let x = JSON.stringify(item)
+          return this.searchQ
+            .toLowerCase()
+            .split(" ")
+            .every(v => x.toLowerCase().includes(v));
+        });
+      } else {
+        return this.listPerumahan;
+      }
+    }
+  },
+  created() {
+    this.getkota();
+    this.getPerumahan();
+  },
+  methods: {
+    showPlan(x) {
+      axios
+        .get(ipBackEnd + "rumah/listByPerumahanId/" + x)
+        .then((res) => {
+          console.log(res);
+          this.items = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getJml(x, y) {
+      if (x == null || x == undefined) {
+        x = 0;
+      }
+      if (y == null || y == undefined) {
+        y = 0;
+      }
+      let z = x - y;
+      return z;
+    },
+    getkota() {
+      axios
+        .get(ipBackEnd + "kabKota/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          // console.log(res.data.data);
+          let x = res.data.data;
+          this.kabkot = x.map((item) => {
+            return item.namaKabKota;
+          });
+          this.kabkot.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    search() {
+      let vm = this;
+      let x = 99999999999999;
+      let y = 99999999;
+      if (this.hargaMax != 0) {
+        x = this.hargaMax;
+      }
+      if (this.luasMax != 0) {
+        y = this.luasMax;
+      }
+      axios
+        .post(ipBackEnd + "perumahan/search", {
+          nama: vm.nama,
+          kabKotaPerumahan: vm.kabKota,
+          hargaMin: vm.hargaMin,
+          hargaMax: x,
+          luasMin: vm.luasMin,
+          luasMax: y,
+          jenis: vm.jenis.toLowerCase(),
+        })
+        .then((res) => {
+          //   console.log(res);
+          let x = res.data.data;
+          this.listPerumahan = x.map((item) => {
+            return { ...item, src: ipBackEnd + item.fotoPerumahan };
+          });
+          console.log(this.listPerumahan);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goListRumah(x) {
+      this.$router.push({ path: `/data_perumahan_by_tipe/${x.perumahanId}` });
+    },
+    async getPerumahan() {
+      let PTs = await axios
+        .get(ipBackEnd + "perumahan/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      let x = PTs.data.data;
+      this.listPerumahan = x.map((item) => {
+        return { ...item, src: ipBackEnd + item.fotoPerumahan };
+      });
+      console.log(this.listPerumahan, "ini perumahan");
+    },
+  },
+  watch: {
+    urut: function(val) {
+      if (val == "Berdasarkan Nama A - Z") {
+        console.log("naik");
+        this.listPerumahan.sort((a, b) =>
+          a.namaPerumahan > b.namaPerumahan
+            ? 1
+            : b.namaPerumahan > a.namaPerumahan
+            ? -1
+            : 0
+        );
+      } else if (val == "Berdasarkan Nama Z - A") {
+        console.log("turun");
+        this.listPerumahan.sort((a, b) =>
+          a.namaPerumahan < b.namaPerumahan
+            ? 1
+            : b.namaPerumahan < a.namaPerumahan
+            ? -1
+            : 0
+        );
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-
-.layout{
+.layout {
   width: 100%;
   height: 100px;
   background-color: aqua;
 }
 
-.layout2{
- width: 100%;
+.layout2 {
+  width: 100%;
   height: 100px;
   background-color: aqua;
 }
 
-.section-one{
+.section-one {
   padding: 60px 0;
 }
 
-.section-one .box-search{
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 35px 25px;
-    box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
+.section-one .box-search {
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 35px 25px;
+  box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
 }
 
-
-.section-one .box{
+.section-one .box {
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: #fff;
   border-radius: 25px;
   box-shadow: 0px 20px 30px -5px rgba(233, 241, 255, 0.4);
-
 }
 
-.section-one .box img{
+.section-one .box img {
   width: 100%;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
 
-.section-one .box .down{
+.section-one .box .down {
   padding: 15px;
 }
 
-.section-one .box .down .harga{
+.section-one .box .down .harga {
   font-size: 12px;
 }
-
 </style>

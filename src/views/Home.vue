@@ -10,21 +10,12 @@
               style="text-shadow: 0px 0px 2px #000"
               fade
               indicators
-              
             >
-              <b-carousel-slide
-                
-                img-src="https://picsum.photos/1024/480/?image=10"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                
-                img-src="https://picsum.photos/1024/480/?image=12"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                
-                img-src="https://picsum.photos/1024/480/?image=22"
+              <b-carousel-slide v-for="item in listBanner" :key="item.id"
+                :img-src="item.src"
               ></b-carousel-slide>
             </b-carousel>
+            <!-- <img src="../assets/banner2.png" alt="" style="width:100%"> -->
           </b-col>
         </b-row>
       </b-container>
@@ -34,7 +25,7 @@
           <b-row>
             <b-col md="3">
               <div class="identity">
-                <img src="../assets/logo-removebg.png" alt="">
+                <img src="../assets/pkp-new.png" alt="">
 
                 <div class="name">
                   <h4 class="m-t-0 m-b-0"><strong>Klinik PKP</strong></h4>
@@ -43,16 +34,17 @@
             </b-col>
             <b-col md="7">
               <div class="menu">
-                <router-link :to="'/'" style="text-decoration:none;"
-                  >
-                <h6 class="m-t-0 m-b-0">Beranda</h6>
+                <router-link :to="'/'" style="text-decoration:none;">
+                  <h6 class="m-t-0 m-b-0">Beranda</h6>
                 </router-link>
-
+                <router-link :to="'/csr'" style="text-decoration:none;">
                 <h6 class="m-t-0 m-b-0">CSR</h6>
-                <router-link :to="'pengembang'" style="text-decoration:none;"
+                </router-link>
+                <router-link :to="'/pengembang'" style="text-decoration:none;"
                   ><h6 class="m-t-0 m-b-0">Pengembang</h6></router-link
                 >
-                <h6 class="m-t-0 m-b-0">Karir/Magang</h6>
+                <router-link :to="'/magang'" style="text-decoration:none;"
+                  ><h6 class="m-t-0 m-b-0">Karir/Magang</h6></router-link>
                 <h6 class="m-t-0 m-b-0">Kerjasama</h6>
                 <h6 class="m-t-0 m-b-0">Forum PKP</h6>
               </div>
@@ -60,17 +52,38 @@
 
             <b-col md="2">
               <div class="loginregister">
-                <b-button size="md" v-b-modal.modal-lg variant="primary" v-if="isLogin != true">Login</b-button>
+                <b-button
+                  size="md"
+                  v-b-modal.modal-lg
+                  variant="primary"
+                  v-if="isLogin != true"
+                  >Login</b-button
+                >
                 <div>
-                  <b-dropdown size="md" right variant="warning" toggle-class="text-decoration-none" no-caret class="ml-2" v-if="isLogin == true">
-                    
+                  <b-dropdown
+                    size="md"
+                    right
+                    variant="warning"
+                    toggle-class="text-decoration-none"
+                    no-caret
+                    class="ml-2"
+                    v-if="isLogin == true"
+                  >
                     <template #button-content>
                       <b-icon-person-circle></b-icon-person-circle>
                     </template>
-                    
-                    <b-dropdown-item @click="goBeranda()">Beranda</b-dropdown-item>
-                    <b-dropdown-item @click="goEdit()">Edit Profil</b-dropdown-item>
-                    <b-dropdown-item><router-link :to="'/edit_password_pengembang'">Edit Password</router-link></b-dropdown-item>
+
+                    <b-dropdown-item @click="goBeranda()"
+                      >Beranda</b-dropdown-item
+                    >
+                    <b-dropdown-item @click="goEdit()"
+                      >Edit Profil</b-dropdown-item
+                    >
+                    <b-dropdown-item
+                      ><router-link :to="'/edit_password_pengembang'"
+                        >Edit Password</router-link
+                      ></b-dropdown-item
+                    >
                     <b-dropdown-item @click="logOut()">Logout</b-dropdown-item>
                   </b-dropdown>
                 </div>
@@ -98,10 +111,12 @@
                 <h6>Realisasi Bantuan PKP</h6>
               </div>
 
+              <router-link :to="'pameran_virtual'" style="text-decoration:none">
               <div class="box">
                 <img src="../assets/004-gallery.png" alt="" />
                 <h6>Pameran Virtual PKP</h6>
               </div>
+              </router-link>
 
               <div class="box">
                 <img src="../assets/001-location.png" alt="" />
@@ -245,17 +260,21 @@
                   </b-col>
 
                   <b-col md="4">
-                    <center>
-                      <img src="https://via.placeholder.com/100" alt="" />
-                      <h6 class="m-t-15"><strong>Cari RTLH</strong></h6>
-                    </center>
+                    <router-link :to="'rtlh'">
+                      <center>
+                        <img src="https://via.placeholder.com/100" alt="" />
+                        <h6 class="m-t-15"><strong>Cari RTLH</strong></h6>
+                      </center>
+                    </router-link>
                   </b-col>
 
                   <b-col md="4">
-                    <center>
-                      <img src="https://via.placeholder.com/100" alt="" />
-                      <h6 class="m-t-15"><strong>Login</strong></h6>
-                    </center>
+                    <router-link :to="'/dashboard_csr'">
+                      <center>
+                        <img src="https://via.placeholder.com/100" alt="" />
+                        <h6 class="m-t-15"><strong>Login</strong></h6>
+                      </center>
+                    </router-link>
                   </b-col>
                 </b-row>
               </b-col>
@@ -320,20 +339,20 @@
 
             <b-row>
               <b-col md="12">
-                  <VueSlickCarousel v-bind="settings">
-                    <div>
-                      <img src="https://via.placeholder.com/220" alt="" />
-                    </div>
-                    <div>
-                      <img src="https://via.placeholder.com/220" alt="" />
-                    </div>
-                    <div>
-                      <img src="https://via.placeholder.com/220" alt="" />
-                    </div>
-                    <div>
-                      <img src="https://via.placeholder.com/220" alt="" />
-                    </div>
-                  </VueSlickCarousel>
+                <VueSlickCarousel v-bind="settings">
+                  <div>
+                    <img src="https://via.placeholder.com/220" alt="" />
+                  </div>
+                  <div>
+                    <img src="https://via.placeholder.com/220" alt="" />
+                  </div>
+                  <div>
+                    <img src="https://via.placeholder.com/220" alt="" />
+                  </div>
+                  <div>
+                    <img src="https://via.placeholder.com/220" alt="" />
+                  </div>
+                </VueSlickCarousel>
               </b-col>
             </b-row>
           </b-col>
@@ -395,17 +414,14 @@
     </section>
 
     <myfooter></myfooter>
-
-
-    
   </div>
 </template>
 
 <script>
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myfooter from "../components/footer";
-import VueSlickCarousel from 'vue-slick-carousel'
+import VueSlickCarousel from "vue-slick-carousel";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 
@@ -414,64 +430,77 @@ import VueSlickCarousel from 'vue-slick-carousel'
 export default {
   name: "Home",
   data() {
-     
     return {
       isLogin: false,
       username: "",
       password: "",
-      settings:{
-        "autoplay": true,
-        "dots": false,
-        "focusOnSelect": true,
-        "infinite": true,
-        "speed": 500,
-        "slidesToShow": 3,
-        "slidesToScroll": 1
-      }
-      
+      listBanner:"",
+      settings: {
+        autoplay: true,
+        dots: false,
+        focusOnSelect: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
     };
   },
-  components:{
+  components: {
     // myheader,
     myfooter,
     VueSlickCarousel,
   },
-  created(){
-    this.checkLogin()
+  created() {
+    this.checkLogin();
+    this.getBanner()
   },
   methods: {
-    checkLogin(){
-    let token = localStorage.getItem('token')
-    if(token){
-      this.isLogin = true
-    }else {
-      this.isLogin = false
+    checkLogin() {
+      let token = localStorage.getItem("token");
+      if (token) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
+    },
+    logOut() {
+      this.$router.push({ path: "/logout" });
+      this.checkLogin()
+    },
+    goBeranda() {
+      let r = localStorage.getItem("role");
+      if (r == "pengembang") {
+        this.$router.push({ path: "/dashboard_pengembang" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/dashboard_csr" });
+      }
+    },
+    goEdit() {
+      let r = localStorage.getItem("role");
+      if (r == "pengembang") {
+        this.$router.push({ path: "/edit_profil_pengembang" });
+      } else if (r == "CSR") {
+        this.$router.push({ path: "/edit_profil_csr" });
+      }
+    },
+    getBanner(){
+      axios.get(ipBackEnd + 'banner/listAll').then(res =>{
+        console.log(res)
+        let x = res.data.data
+        this.listBanner = x.map(item=>{
+          return{...item, src: ipBackEnd + item.namaBanner}
+        })
+      }).catch(err=>{
+        console.log(err)
+      })
     }
   },
-  logOut(){
-    console.log('keluar')
-    localStorage.clear()
-    this.$router.push({ path: "/" });
-    },
-    goBeranda(){
-      let r = localStorage.getItem('role')
-      if ( r == 'pengembang'){
-          this.$router.push({ path: "/dashboard_pengembang" });
-          }
-    },
-    goEdit(){
-      let r = localStorage.getItem('role')
-      if ( r == 'pengembang'){
-          this.$router.push({ path: '/edit_profil_pengembang' });
-          }
-    }
-  },
- 
 };
 </script>
 
 <style scoped>
-.slick-slider img{
+.slick-slider img {
   width: 100%;
 }
 .layout {
@@ -496,7 +525,7 @@ export default {
 
 .section-one .banner {
   width: 100%;
-  height: 600px;
+  min-height: 400px;
   position: relative;
   background-color: whitesmoke;
 }
@@ -530,7 +559,7 @@ export default {
   height: 60px;
 }
 
-.section-one .section-menu .identity .name{
+.section-one .section-menu .identity .name {
   display: flex;
   height: 50px;
   /* justify-content: center; */
@@ -538,7 +567,7 @@ export default {
   margin-left: 15px;
 }
 
-.section-one .section-menu .menu{
+.section-one .section-menu .menu {
   width: 100%;
   height: 70px;
   /* background-color: yellowgreen; */
@@ -547,7 +576,7 @@ export default {
   align-items: center;
 }
 
-.section-one .section-menu .loginregister{
+.section-one .section-menu .loginregister {
   width: 100%;
   height: 70px;
   /* background-color: yellowgreen; */
@@ -556,8 +585,7 @@ export default {
   align-items: center;
 }
 
-
-.section-two{
+.section-two {
   padding: 60px 0;
 }
 

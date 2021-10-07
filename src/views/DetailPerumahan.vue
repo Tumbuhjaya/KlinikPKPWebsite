@@ -4,21 +4,46 @@
 
     <section class="section-one">
       <b-container>
-        <b-row>
+        <!-- <b-row>
           <b-col md="4">
-            <b-button variant="light">Kembali ke Pencarian</b-button>
+            <b-button variant="light" @click="back()"
+              >Kembali ke Pencarian</b-button
+            >
           </b-col>
           <b-col md="8">
             <div class="box-permohonan">
               <b-button variant="primary">Buat Permohonan</b-button>
             </div>
           </b-col>
+        </b-row> -->
+        <b-row>
+          <b-col md="12">
+            <h2 class="m-t-0 text-center">
+              <strong>{{ dataPerum.namaPerumahan }}</strong>
+            </h2>
+            <!-- nama perusahaan disni -->
+            <h5 class="m-t-0 text-center">
+              ( {{ dataPerum.namaPerusahaan }} )
+            </h5>
+            <h6 class="m-t-0 text-center">
+              {{ dataPerum.alamatPerumahan }}
+            </h6>
+          </b-col>
         </b-row>
 
-        <b-row class="m-t-30">
-          <b-col md="12">
-            <h3 class="m-t-0 m-b-0"><strong>Griya Nuasa Bali</strong></h3>
-            <h6 class="m-t-0 m-b-0">PT. Pengembang Indonesia</h6>
+        <b-row>
+          <b-col md="6" offset-md="3">
+            <hr class="m-t-10 m-b-10" />
+            <div class="box-submenu">
+              <router-link :to="'/data_perumahan'" style="text-decoration: none"
+                ><h6 class="m-t-0 m-b-0">Perumahan</h6></router-link
+              >
+              <h6 class="m-t-0 m-b-0">|</h6>
+              <h6 class="m-t-0 m-b-0">
+                <strong>Detail Perumahan</strong>
+              </h6>
+            </div>
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
 
@@ -29,80 +54,131 @@
           <b-col md="5">
             <b-row>
               <b-col md="6"
-                ><img :src="dataRumah.src2" alt=""
+                ><img :src="dataRumah.src2" alt="" style="height: 140px"
               /></b-col>
               <b-col md="6"
-                ><img :src="dataRumah.src3" alt=""
-              /></b-col>
-            </b-row>
-
-            <b-row class="m-t-15">
-              <b-col md="6"
-                ><img :src="dataRumah.srcDenah" alt=""
-              /></b-col>
-              <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataRumah.src3" alt="" style="height: 140px"
               /></b-col>
             </b-row>
 
             <b-row class="m-t-15">
               <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataRumah.srcDenah" alt="" style="height: 140px"
               /></b-col>
               <b-col md="6"
-                ><img src="https://via.placeholder.com/600x500" alt=""
+                ><img :src="dataPerum.srcFP" alt="" style="height: 140px"
               /></b-col>
             </b-row>
           </b-col>
         </b-row>
 
         <b-row class="m-t-30">
-          <b-col md="5">
+          <!-- <b-col md="4">
             <b-row>
               <b-col md="12">
-                <h6>Lokasi</h6>
-                <h5><strong>Pedalangan, Banyumanik, Semarang</strong></h5>
+                <h3><strong>Lokasi</strong></h3>
               </b-col>
               <b-col md="12">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.208294923349!2d110.38170531414542!3d-6.984726670339616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTknMDUuMCJTIDExMMKwMjMnMDIuMCJF!5e0!3m2!1sid!2sid!4v1624201365485!5m2!1sid!2sid"
+                  :src="
+                    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d' +
+                    dataPerum.koordinatY +
+                    '!2d110.38170531414542!3d' +
+                    dataPerum.koordinatX +
+                    '!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTknMDUuMCJTIDExMMKwMjMnMDIuMCJF!5e0!3m2!1sid!2sid!4v1624201365485!5m2!1sid!2sid'
+                  "
                   width="100%"
                   height="300"
-                  style="border:0;"
+                  style="border: 0"
                   allowfullscreen=""
                   loading="lazy"
                 ></iframe>
               </b-col>
+
+              <b-col md="12">
+                <h5>
+                  <strong>{{ dataRumah.alamatPerumahan }}</strong>
+                </h5>
+              </b-col>
             </b-row>
-          </b-col>
-          <b-col md="7">
+          </b-col> -->
+          <b-col md="4">
             <b-row>
-              <b-col><h6>Unit Rumah Tersedia</h6></b-col>
+              <b-col md="12"
+                ><h3><strong>Unit Rumah Tersedia</strong></h3></b-col
+              >
             </b-row>
-            <b-row class="m-t-30">
-              <b-col md="6">
-                <div class="box-ketersediaan" v-if="dataRumah.jenis == 'subsidi'">
+            <b-row>
+              <b-col md="12" v-if="dataRumah.jenis == 'subsidi'">
+                <div class="box-ketersediaan">
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Subsidi</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{dataRumah.sisa}} Unit</strong></h6>
+                  <h4>
+                    <strong>{{ avail }} Unit</strong>
+                  </h4>
 
-                  <h6 class="m-t-30">Rentang Harga</h6>
-                  <h6><strong>{{dataRumah.harga}}</strong></h6>
+                  <h6 class="m-t-30">Harga</h6>
+                  <h4>
+                    <strong>
+                      Rp. {{ formHarga(parseInt(dataRumah.harga)) }}</strong
+                    >
+                  </h4>
                 </div>
               </b-col>
-              <b-col md="6">
-                <div class="box-ketersediaan" v-if="dataRumah.jenis == 'komersial'">
+              <b-col md="12" v-if="dataRumah.jenis == 'komersial'">
+                <div class="box-ketersediaan">
                   <h4 class="m-t-0 m-b-0"><strong>Unit Rumah</strong></h4>
                   <h4 class="m-t-0 m-b-0"><strong>Komersial</strong></h4>
 
                   <h6 class="m-t-30">Tersedia</h6>
-                  <h6><strong>{{dataRumah.sisa}} Unit</strong></h6>
+                  <h4>
+                    <strong>{{ avail }} Unit</strong>
+                  </h4>
 
-                  <h6 class="m-t-30">Rentang Harga</h6>
-                  <h6><strong>{{dataRumah.harga}}</strong></h6>
+                  <h6 class="m-t-30">Harga</h6>
+                  <h4>
+                    <strong
+                      >Rp {{ formHarga(parseInt(dataRumah.harga)) }}</strong
+                    >
+                  </h4>
                 </div>
+              </b-col>
+            </b-row>
+          </b-col>
+
+          <b-col md="8">
+            <b-row>
+              <b-col md="12"
+                ><h3><strong>Video Perumahan</strong></h3></b-col
+              >
+            </b-row>
+            <b-row>
+              <b-col md="12">
+                <!-- <a :href="dataRumah.linkVideo" target="_blank">
+                  <b-button variant="primary">Lihat Video</b-button>
+                </a> -->
+                <!-- {{ dataRumah.linkVideo }} -->
+                <!-- <iframe
+                  width="100%"
+                  height="300"
+                  :src="'' + dataRumah.linkVideo + ''"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe> -->
+
+                <iframe
+                  width="100%"
+                  height="315"
+                  :src="'' + dataRumah.linkVideo + ''"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </b-col>
             </b-row>
           </b-col>
@@ -110,49 +186,11 @@
 
         <b-row class="m-t-30">
           <b-col md="12">
-            <h6>Lokasi</h6>
+            <h3><strong>Deskripsi Perumahan</strong></h3>
           </b-col>
 
           <b-col md="12">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatibus quidem aut eligendi omnis dolores incidunt quod
-              laborum recusandae perspiciatis aperiam, eaque aspernatur natus
-              molestias reiciendis dicta nobis aliquam molestiae ea voluptatem
-              in animi accusamus illo. Magnam harum laudantium nam unde
-              dignissimos tempore consectetur, sint incidunt magni ad architecto
-              dolorum nesciunt sit rerum obcaecati neque eveniet, temporibus
-              ipsam accusantium officiis soluta voluptatibus corporis. Odit eius
-              numquam officia deserunt, saepe nesciunt hic debitis minus ad?
-              Atque quod expedita voluptatibus hic eius saepe omnis
-              necessitatibus sunt tempore dolore. Veniam soluta necessitatibus
-              sit quia numquam deleniti cupiditate rem sequi recusandae nobis,
-              ipsam quaerat eaque labore voluptates eum maxime, ipsa repudiandae
-              quis aliquid molestias, hic nostrum nisi ut. Voluptates, nobis
-              similique, placeat omnis impedit neque explicabo ducimus ullam ea
-              quis natus ipsa vitae numquam! Perferendis dolor quasi est
-              explicabo reprehenderit saepe, dolores adipisci veniam voluptate
-              illo aliquid ab nostrum eligendi neque ut inventore beatae
-              nesciunt numquam repudiandae error tenetur sapiente! Ipsum aliquid
-              natus rerum quo eaque suscipit consequuntur, recusandae dolorem
-              itaque quaerat autem maxime culpa ab quae vitae quisquam, ea sed.
-              Voluptate architecto repellat dolorem, pariatur aperiam expedita,
-              ad obcaecati culpa animi esse eveniet dolor! Perspiciatis fugit
-              quo tempora dolores, eaque dolore! Laborum debitis doloremque
-              ullam, earum aut reiciendis aperiam libero praesentium. Impedit ad
-              dolorum tempora. Officiis, reprehenderit vero similique magni
-              provident repudiandae quas incidunt quidem quia, laborum suscipit
-              voluptas maxime voluptatem, molestias perspiciatis enim
-              voluptates! Consectetur voluptate culpa reprehenderit, omnis
-              aspernatur nulla aliquid repellendus illo sed hic et dolorum
-              itaque soluta libero! Laborum nihil quod libero culpa consequatur
-              nobis sapiente praesentium, suscipit atque, iure alias optio quis
-              veniam necessitatibus repellat, omnis sequi nemo? Eaque, deserunt?
-              Autem tempore amet optio cum delectus sunt, excepturi maiores
-              dicta, consequuntur hic necessitatibus at dolores corporis
-              perspiciatis! Tenetur quibusdam adipisci earum iste numquam totam
-              accusantium maxime voluptatem magnam ad.
-            </p>
+            <div class="ql-editor" v-html="dataPerum.deskripsiPerumahan"></div>
           </b-col>
         </b-row>
 
@@ -163,33 +201,33 @@
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/phone.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
-                <h6 class="m-t-0 m-b-0">01239401921</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.noHp }}</h6>
               </div>
             </div>
           </b-col>
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/email.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
-                <h6 class="m-t-0 m-b-0">Pengembang@gmail.com</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.email }}</h6>
               </div>
             </div>
           </b-col>
 
           <b-col md="4">
             <div class="box-kontak">
-              <img src="https://via.placeholder.com/50" alt="" />
+              <img src="../assets/www.png" alt="" style="height: 50px" />
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Website</strong></h6>
-                <h6 class="m-t-0 m-b-0">www.pengembang.co.id</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.website }}</h6>
               </div>
             </div>
           </b-col>
@@ -216,6 +254,7 @@ export default {
       isLogin: false,
       dataRumah: [],
       dataPerum: [],
+      avail: 0,
     };
   },
   components: {
@@ -223,11 +262,17 @@ export default {
     myfooter,
   },
   created() {
-    this.dataPerum = localStorage.getItem('dataPerum')
+    let y = localStorage.getItem("dataPerum");
+    this.dataPerum = JSON.parse(y);
     let x = this.$route.params.id;
     this.getTipeRumah(x);
+    console.log(this.dataPerum, "dataPer");
   },
   methods: {
+    formHarga(x) {
+      let y = x.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.");
+      return y;
+    },
     getTipeRumah(x) {
       axios
         .get(ipBackEnd + "rumah/listRumah/" + x, {
@@ -241,17 +286,45 @@ export default {
           this.dataRumah.src1 = ipBackEnd + x.foto1;
           this.dataRumah.src2 = ipBackEnd + x.foto2;
           this.dataRumah.src3 = ipBackEnd + x.foto3;
-          this.dataRumah.srcdenah = ipBackEnd + x.fotoDenah;
+          this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
+          // this.dataRumah.link = x.linkVideo;
+          this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
+          console.log(this.dataRumah);
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    back() {
+      this.$router.push({ path: "/perumahan" });
+    },
+    sisa(x, y) {
+      console.log(x, y);
+      if (x == null && y == null) {
+        return 0;
+      } else if (y == null) {
+        return x;
+      } else {
+        return x - y;
+      }
+    },
+    goVid(x) {
+      let routeData = this.$router.resolve({
+        name: x,
+      });
+      window.open(routeData.href, "_blank");
     },
   },
 };
 </script>
 
 <style scoped>
+.box-submenu {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red; */
+}
+
 .layout {
   width: 100%;
   height: 100px;

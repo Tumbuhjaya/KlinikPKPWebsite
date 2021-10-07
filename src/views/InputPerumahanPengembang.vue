@@ -1,5 +1,5 @@
 <template>
-  <div id="input_perumahan_pengembang" >
+  <div id="input_perumahan_pengembang">
     <myheader></myheader>
 
     <section class="section-one">
@@ -13,17 +13,17 @@
         </b-row>
         <b-row>
           <b-col md="4" offset-md="4">
-            <hr />
+            <hr class="m-t-10 m-b-10" />
             <div class="box-submenu">
               <router-link
                 :to="'/dashboard_pengembang'"
-                style="text-decoration:none"
+                style="text-decoration: none"
                 ><h6 class="m-t-0 m-b-0">Dashboard</h6></router-link
               >
               <h6 class="m-t-0 m-b-0">|</h6>
               <h6 class="m-t-0 m-b-0"><strong>Input Perumahan</strong></h6>
             </div>
-            <hr />
+            <hr class="m-t-10 m-b-10" />
           </b-col>
         </b-row>
         <b-row>
@@ -38,22 +38,35 @@
               </b-form-group>
 
               <b-form-group label="Kabupaten/Kota">
-                <multiselect v-model="kabKot" :options="kabkot" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kabupaten/Kota --"></multiselect>
+                <multiselect
+                  v-model="kabKot"
+                  :options="kabkot"
+                  :multiple="false"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :show-labels="false"
+                  placeholder="-- Pilih Kabupaten/Kota --"
+                ></multiselect>
               </b-form-group>
 
-              <b-form-group label="Kecamatan">
-                <multiselect v-model="keca" :options="kec" :multiple="false" :searchable="true" :close-on-select="true" :show-labels="false" placeholder="-- Pilih Kecamatan --"></multiselect>
+              <b-form-group label="Deskripsi">
+                <quill-editor v-model="deskripsi" />
               </b-form-group>
-              
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi X">
-                    <b-form-input placeholder="110.1234"></b-form-input>
+                  <b-form-group label="Koordinat Longitude">
+                    <b-form-input
+                      placeholder="110.1234"
+                      v-model="koordinatX"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi Y">
-                    <b-form-input placeholder="-6.1234"></b-form-input>
+                  <b-form-group label="Koordinat Latitude">
+                    <b-form-input
+                      placeholder="-6.1234"
+                      v-model="koordinatY"
+                    ></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
@@ -70,61 +83,21 @@
                 <b-form-input v-model="luasLahan"></b-form-input>
               </b-form-group>
 
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Rencana & Realisasi Pembangunan Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group
-                    label="Rencana Total Pembangunan Unit Rumah (Unit)"
-                  >
-                    <b-form-input v-model="rencanaPemb"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Unit Terbangun (Unit)">
-                    <b-form-input v-model="jmlTerbangun"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
-              <!-- <b-row>
-                <b-col md="12">
-                  <h5><strong>Stok Unit</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Subsidi (Unit)">
-                    <b-form-input v-model="stockUnitS"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Stock Unit Komersial (Unit)">
-                    <b-form-input v-model="stockUnitK"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row> -->
-
-              <b-row>
-                <b-col md="12">
-                  <h5><strong>Unit Terjual</strong></h5>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Subsidi (Unit)">
-                    <b-form-input v-model="terjualUnitS"></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Jumlah Terjual Unit Komersial (Unit)">
-                    <b-form-input v-model="terjualUnitK"></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-
-              <b-form-group label="Upload Foto Perumahan">
-                <b-form-file id="file" ref="file" @input="handleFile()"></b-form-file>
+              <b-form-group label="Upload Brosur Perumahan">
+                <b-form-file
+                  id="file1"
+                  ref="file1"
+                  @input="handleFile('file1')"
+                ></b-form-file>
               </b-form-group>
 
-              <b-button variant="primary" @click="regisPerumahan()">Simpan</b-button>
+              <b-form-group label="Upload Siteplan Perumahan">
+                <b-form-file id="file2" ref="file2" @input="handleFile('file2')"></b-form-file>
+              </b-form-group>
+
+              <b-button variant="primary" @click="regisPerumahan()"
+                >Simpan</b-button
+              >
             </b-form>
           </b-col>
         </b-row>
@@ -132,98 +105,117 @@
     </section>
 
     <myfooter></myfooter>
-
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-import axios from "axios"
-import ipBackEnd from "@/ipBackEnd"
-import myheader from "../components/header"
-import myfooter from "../components/footer"
-import Multiselect from 'vue-multiselect'
-
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
+import myheader from "../components/header";
+import myfooter from "../components/footer";
+import Multiselect from "vue-multiselect";
+import VueQuillEditor from "vue-quill-editor";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+Vue.use(VueQuillEditor);
 
 export default {
   name: "InputPerumahanPengembang",
   data() {
     return {
       isLogin: false,
-      namaPerum:"",
-      alamat:"",
-      kabKot:"",
-      keca:"",
-      email:"",
-      CP:"",
-      luasLahan:"",
-      terjualUnitS:0,
-      terjualUnitK:0,
-      file:"",
-      kabkot: [
-        'KabKot A', 'KabKot B', 'KabKot C'
-      ],
-
-      kec: [
-        'Kecamatan A', 'Kecamatan B', 'Kecamatan C'
-      ]
-      // kabkot: [{ value: null, text: "-- Pilih Kabupaten / Kota --" },
-      // { value : "Semarang", text : "Semarang"}],
-      // kec: [{ value: null, text: "-- Pilih Kecamatan --" },{
-      //   value: "Banyumanik", text: "Banyumanik"
-      // }],
+      namaPerum: "",
+      alamat: "",
+      kabKot: "",
+      keca: "",
+      email: "",
+      CP: "",
+      koordinatX: "",
+      koordinatY: "",
+      deskripsi: "",
+      luasLahan: "",
+      file: "",
+      kabkot: [],
     };
   },
-  components:{
+  components: {
     myheader,
     myfooter,
-  Multiselect
-
+    Multiselect,
   },
+  created() {
+    this.getkota();
+  },
+  methods: {
+    handleFile(x) {
+      if (x == 'file1'){
+        this.file1 = this.$refs.file1.files[0];
+      } else if (x == 'file2'){
+        this.file2 = this.$refs.file2.files[0]
+      }
+      
 
-  methods:{
-    handleFile() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.$refs.file.files[0]);
     },
-    async regisPerumahan(){
-      let vm = this
+    async regisPerumahan() {
+      let vm = this;
       console.log(this.file, "ini file");
       let formData = new FormData();
-      formData.append("file", this.file);
-      formData.append("namaPerumahan",vm.namaPerum );
-      formData.append("alamat",vm.alamat);
-      formData.append("kabKota", vm.kabKot);
-      formData.append("kecamatan", vm.keca);
-      formData.append("email", vm.email);
-      formData.append("CP", vm.CP);
-      formData.append("luasLahan", vm.luasLahan);
-      formData.append("jmlTerjualUnitSubsidi", vm.terjualUnitS);
-      formData.append("jmlTerjualUnitKomersial", vm.terjualUnitK);
+      formData.append("foto1", this.file1);
+      formData.append("foto2", this.file2);
+      formData.append("namaPerumahan", vm.namaPerum);
+      formData.append("alamatPerumahan", vm.alamat);
+      formData.append("kabKotaPerumahan", vm.kabKot);
+      formData.append("kecamatanPerumahan", vm.keca);
+      formData.append("emailPerumahan", vm.email);
+      formData.append("koordinatX", vm.koordinatX);
+      formData.append("koordinatY", vm.koordinatY);
+      formData.append("deskripsiPerumahan", vm.deskripsi);
+      formData.append("luasLahanPerumahan", vm.luasLahan);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {
           headers: {
             token: localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.$emit("tembak");
-          this.$router.push({path:'/dashboard_pengembang'})
+          this.$router.push({ path: "/dashboard_pengembang" });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
+    },
+    getkota() {
+      axios
+        .get(ipBackEnd + "kabKota/list", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          let x = res.data.data;
+          this.kabkot = x.map((item) => {
+            return item.namaKabKota;
+          });
+          this.kabkot.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .box-submenu {
   display: flex;
   justify-content: space-around;
@@ -234,7 +226,7 @@ export default {
   padding: 60px 0;
 }
 
-.section-one .menu{
+.section-one .menu {
   width: 100%;
   height: 250px;
   background-color: #4c87f2;
