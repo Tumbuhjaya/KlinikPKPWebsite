@@ -17,6 +17,8 @@ import InputPerumahanPengembang from "../views/InputPerumahanPengembang.vue";
 import EditPerumahanPengembang from "../views/EditPerumahanPengembang.vue";
 import TipePerumahanPengembang from "../views/TipePerumahanPengembang.vue";
 import EditTipePerumahanPengembang from "../views/EditTipePerumahanPengembang.vue";
+import InputBacklogPengembang from "../views/InputBacklogPengembang.vue";
+import EditBacklogPengembang from "../views/EditBacklogPengembang.vue";
 import Csr from "../views/csr.vue";
 import DetailCsr from "../views/DetailCsr.vue";
 import DetailCsrByKegiatan from "../views/DetailCsrByKegiatan.vue";
@@ -197,6 +199,25 @@ const routes = [
       role: "Pengembang",
     },
   },
+
+  {
+    path: "/input_backlog_pengembang",
+    name: "InputBacklogPengembang",
+    component: InputBacklogPengembang,
+    meta: {
+      role: "Pengembang",
+    },
+  },
+
+  {
+    path: "/edit_backlog_pengembang",
+    name: "EditBacklogPengembang",
+    component: EditBacklogPengembang,
+    meta: {
+      role: "Pengembang",
+    },
+  },
+
   {
     path: "/edit_perumahan_pengembang/:id",
     name: "EditPerumahanPengembang",

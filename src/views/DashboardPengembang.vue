@@ -227,6 +227,111 @@
                   </b-col>
                 </b-row>
               </b-tab>
+              <b-tab title="Data Backlog">
+                <b-row>
+                  <b-col md="12">
+                    <router-link
+                      :to="'input_backlog_pengembang'"
+                      style="text-decoration: none"
+                      ><b-button variant="primary" class="m-r-15"
+                        ><b-icon-plus></b-icon-plus> Tambah Data</b-button
+                      ></router-link
+                    >
+                  </b-col>
+                </b-row>
+                <b-row class="mt-5">
+                  <b-col md="2">
+                    <b-form-group
+                      label="Per page"
+                      label-for="per-page-select"
+                      label-cols-md="6"
+                      label-align-md="left"
+                      label-size="md"
+                      class="mb-0"
+                    >
+                      <b-form-select
+                        id="per-page-select"
+                        v-model="perPage"
+                        :options="pageOptions"
+                        size="md"
+                      ></b-form-select>
+                    </b-form-group>
+                  </b-col>
+                  <b-col md="5" offset-md="5">
+                    <b-form-group
+                      label="Filter"
+                      label-for="filter-input"
+                      label-cols-md="3"
+                      label-align-md="right"
+                      label-size="md"
+                      class="mb-0"
+                    >
+                      <b-input-group size="md">
+                        <b-form-input
+                          id="filter-input"
+                          v-model="filter3"
+                          type="search"
+                          placeholder="Type to Search"
+                        ></b-form-input>
+
+                        <b-input-group-append>
+                          <b-button :disabled="!filter3" @click="filter3 = ''"
+                            >Clear</b-button
+                          >
+                        </b-input-group-append>
+                      </b-input-group>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+
+                <b-table
+                  :items="listBacklog"
+                  :fields="fields3"
+                  :current-page="currentPage"
+                  :per-page="perPage"
+                  :filter="filter3"
+                  :filter-included-fields="filterOn"
+                  @filtered="onFiltered"
+                  class="m-t-15"
+                  bordered
+                  small
+                  show-empty
+                >
+                  <template #cell(actions)="item">
+                    <center>
+                      <b-button
+                        variant="warning"
+                        size="sm"
+                        class="m-r-15"
+                        v-b-tooltip.hover.top="'Edit'"
+                        ><b-icon-pencil-square></b-icon-pencil-square
+                        >{{ item.action }}</b-button
+                      >
+
+                      <b-button
+                        variant="danger"
+                        size="sm"
+                        v-b-tooltip.hover.top="'Hapus'"
+                        class="m-r-15"
+                        ><b-icon-trash></b-icon-trash
+                        >{{ item.action }}</b-button
+                      >
+                    </center>
+                  </template>
+                </b-table>
+
+                <b-row>
+                  <b-col md="5" offset-md="7">
+                    <b-pagination
+                      v-model="currentPage"
+                      :total-rows="totalRows"
+                      :per-page="perPage"
+                      align="fill"
+                      size="md"
+                    ></b-pagination>
+                  </b-col>
+                </b-row>
+              </b-tab>
             </b-tabs>
           </b-col>
         </b-row>
@@ -405,7 +510,7 @@ export default {
       value: [],
       isLogin: false,
       items: [],
-      namaPerusahaan:"",
+      namaPerusahaan: "",
       listPengajuan: [],
       fields: [
         {
@@ -495,12 +600,48 @@ export default {
         },
         { key: "actions", label: "Actions", class: "text-center" },
       ],
+
+      fields3: [
+        {
+          key: "no",
+          label: "No",
+          sortable: true,
+          class: "text-center",
+        },
+        {
+          key: "kabkot",
+          label: "Kabupaten/Kota",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "pembangunan",
+          label: "Pembangunan",
+          sortable: true,
+          class: "text-center",
+        },
+        {
+          key: "terjual",
+          label: "Terjual",
+          sortable: true,
+          class: "text-center",
+        },
+
+        {
+          key: "ditempati",
+          label: "Ditempati",
+          sortable: true,
+          class: "text-center",
+        },
+        { key: "actions", label: "Actions", class: "text-center" },
+      ],
       totalRows: 1,
       currentPage: 1,
       perPage: 10,
       pageOptions: [10, 50, 100, { value: 100, text: "Tampilkan Banyak" }],
       filter: null,
       filter2: null,
+      filter3: null,
       filterOn: [],
 
       status: [
@@ -585,7 +726,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.items = res.data.data;
-          this.namaPerusahaan = this.items[0].namaPerusahaan
+          this.namaPerusahaan = this.items[0].namaPerusahaan;
           this.totalRows = this.items.length;
         })
         .catch((err) => {
