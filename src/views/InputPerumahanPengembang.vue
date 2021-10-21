@@ -54,17 +54,17 @@
               </b-form-group>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Longitude">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input
-                      placeholder="110.1234"
+                      placeholder="-6.1234"
                       v-model="koordinatX"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Latitude">
+                  <b-form-group label="Koordinat Longtitude">
                     <b-form-input
-                      placeholder="-6.1234"
+                      placeholder="110.1234"
                       v-model="koordinatY"
                     ></b-form-input>
                   </b-form-group>
@@ -92,7 +92,11 @@
               </b-form-group>
 
               <b-form-group label="Upload Siteplan Perumahan">
-                <b-form-file id="file2" ref="file2" @input="handleFile('file2')"></b-form-file>
+                <b-form-file
+                  id="file2"
+                  ref="file2"
+                  @input="handleFile('file2')"
+                ></b-form-file>
               </b-form-group>
 
               <b-button variant="primary" @click="regisPerumahan()"
@@ -109,7 +113,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
 import axios from "axios";
@@ -152,13 +156,11 @@ export default {
   },
   methods: {
     handleFile(x) {
-      if (x == 'file1'){
+      if (x == "file1") {
         this.file1 = this.$refs.file1.files[0];
-      } else if (x == 'file2'){
-        this.file2 = this.$refs.file2.files[0]
+      } else if (x == "file2") {
+        this.file2 = this.$refs.file2.files[0];
       }
-      
-
     },
     async regisPerumahan() {
       let vm = this;

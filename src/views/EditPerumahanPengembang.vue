@@ -58,11 +58,11 @@
               </b-form-group>
 
               <b-form-group label="Deskripsi">
-              <quill-editor v-model="dataPerum.deskripsiPerumahan" />
+                <quill-editor v-model="dataPerum.deskripsiPerumahan" />
               </b-form-group>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi X">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input
                       v-model="dataPerum.koordinatX"
                       :placeholder="dataPerum.koordinatX"
@@ -70,7 +70,7 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Lokasi Y">
+                  <b-form-group label="Koordinat Longtitude">
                     <b-form-input
                       v-model="dataPerum.koordinatY"
                       :placeholder="dataPerum.koordinatY"
@@ -116,11 +116,7 @@
                   style="width: 150px; height: 150px"
                   v-if="src1 != ipBackEnd + 'null'"
                 >
-                  <img
-                    :src="src1"
-                    alt=""
-                    style="width: 150px; height: 150px"
-                  />
+                  <img :src="src1" alt="" style="width: 150px; height: 150px" />
                 </div>
 
                 <div
@@ -151,11 +147,7 @@
                   style="width: 150px; height: 150px"
                   v-if="src2 != ipBackEnd + 'null'"
                 >
-                  <img
-                    :src="src2"
-                    alt=""
-                    style="width: 150px; height: 150px"
-                  />
+                  <img :src="src2" alt="" style="width: 150px; height: 150px" />
                 </div>
 
                 <div
@@ -184,7 +176,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import axios from "axios";
 import ipBackEnd from "@/ipBackEnd";
 // @ is an alias to /src
@@ -207,8 +199,8 @@ export default {
       dataPerum: [],
       file1: "",
       file2: "",
-      src1:"",
-      src2:"",
+      src1: "",
+      src2: "",
       perumId: "",
       kabkot: [],
       blank: "_blank",
@@ -234,7 +226,7 @@ export default {
       if (x == "file1") {
         this.file1 = this.$refs.file1.files[0];
         this.src1 = URL.createObjectURL(this.file1);
-        console.log(this.dataPerum.src1)
+        console.log(this.dataPerum.src1);
       } else if (x == "file2") {
         this.file2 = this.$refs.file2.files[0];
         this.src2 = URL.createObjectURL(this.file2);
@@ -250,8 +242,8 @@ export default {
         })
         .then((res) => {
           this.dataPerum = res.data.data[0];
-          this.src1 = ipBackEnd + this.dataPerum.fotoPerumahan
-          this.src2 = ipBackEnd + this.dataPerum.siteplanPerumahan
+          this.src1 = ipBackEnd + this.dataPerum.fotoPerumahan;
+          this.src2 = ipBackEnd + this.dataPerum.siteplanPerumahan;
           console.log(this.dataPerum);
         })
         .catch((err) => {
@@ -262,16 +254,16 @@ export default {
       let formData = new FormData();
       formData.append("foto1", this.file1);
       formData.append("foto2", this.file2);
-      formData.append("deskripsiPerumahan", this.dataPerum.deskripsiPerumahan)
-      formData.append("alamatPerumahan", this.dataPerum.alamatPerumahan)
-      formData.append("emailPerumahan", this.dataPerum.emailPerumahan)
-      formData.append("namaPerumahan", this.dataPerum.namaPerumahan)
-      formData.append("koordinatX", this.dataPerum.koordinatX)
-      formData.append("koordinatY", this.dataPerum.koordinatY)
-      formData.append("kabKotaPerumahan", this.dataPerum.kabKotaPerumahan)
-      formData.append("CPPerumahan", this.dataPerum.CPPerumahan)
-      formData.append("luasLahanPerumahan", this.dataPerum.luasLahanPerumahan)
-      formData.append("id", this.dataPerum.perumahanId)
+      formData.append("deskripsiPerumahan", this.dataPerum.deskripsiPerumahan);
+      formData.append("alamatPerumahan", this.dataPerum.alamatPerumahan);
+      formData.append("emailPerumahan", this.dataPerum.emailPerumahan);
+      formData.append("namaPerumahan", this.dataPerum.namaPerumahan);
+      formData.append("koordinatX", this.dataPerum.koordinatX);
+      formData.append("koordinatY", this.dataPerum.koordinatY);
+      formData.append("kabKotaPerumahan", this.dataPerum.kabKotaPerumahan);
+      formData.append("CPPerumahan", this.dataPerum.CPPerumahan);
+      formData.append("luasLahanPerumahan", this.dataPerum.luasLahanPerumahan);
+      formData.append("id", this.dataPerum.perumahanId);
       axios
         .post(ipBackEnd + "perumahan/update", formData, {
           headers: {
@@ -316,7 +308,7 @@ export default {
     },
   },
   watch: {
-    dataPerum: function(val) {
+    dataPerum: function (val) {
       console.log(val);
     },
   },
