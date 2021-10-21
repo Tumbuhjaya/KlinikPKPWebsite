@@ -1,3 +1,3 @@
-const backEnd = "http://103.107.245.18:8810/";
+const backEnd = "http://localhost:8810/";
 
 module.exports = backEnd;

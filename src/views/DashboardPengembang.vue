@@ -317,6 +317,7 @@
                         size="sm"
                         v-b-tooltip.hover.top="'Hapus'"
                         class="m-r-15"
+                        @click="hapusJP(item.item.id)"
                         ><b-icon-trash></b-icon-trash
                         ></b-button
                       >
@@ -695,6 +696,20 @@ export default {
       console.log(x, "ini x");
       localStorage.setItem("dataPerum", JSON.stringify(x));
       this.$router.push({ path: `tipe_perumahan_pengembang/${x.perumahanId}` });
+    },
+    hapusJP(x){
+      axios.post(ipBackEnd + 'jumlahPerumahanKabKota/delete',{
+        id : x
+      },{
+        headers:{
+          token:localStorage.getItem('token')
+        }
+      }).then(res=>{
+        console.log(res)
+        if(res.data.message == 'sukses'){
+          this.getBacklog()
+        }
+      })
     },
     hapus(x) {
       axios
