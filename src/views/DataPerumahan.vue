@@ -153,7 +153,7 @@
               <b-col md="8">
                 <b-form-input
                   placeholder="Cari Perumahan, Pengembang, dkk"
-                  v-model="nama"
+                  v-model="searchQ"
                   class="m-t-10"
                 ></b-form-input>
               </b-col>
@@ -176,7 +176,7 @@
               <b-col md="12">
                 <b-card-group columns>
                   <b-card
-                    v-for="item in listPerumahan"
+                    v-for="item in hasilQuery"
                     :key="item.PerumahanId"
                     :img-src="item.src"
                     img-alt="Image"
@@ -203,10 +203,10 @@
                             <strong>Tersedia : </strong>
                             {{
                               getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) +
-                              getJml(
-                                item.jmlKomersial,
-                                item.jmlKomersialTerjual
-                              )
+                                getJml(
+                                  item.jmlKomersial,
+                                  item.jmlKomersialTerjual
+                                )
                             }}
                             Unit
                           </h6>
@@ -334,10 +334,11 @@ export default {
       isLogin: false,
       selected: null,
       listPerumahan: [],
+      listHasil:[],
       items: [],
       ipBackEnd,
       sitePlan: "",
-      nama: "",
+      searchQ: "",
       urut: "",
       kabKota: "",
       jenis: "",
@@ -414,6 +415,21 @@ export default {
     myheader,
     myfooter,
     Multiselect,
+  },
+  computed:{
+    hasilQuery() {
+      if (this.searchQ) {
+        return this.listPerumahan.filter(item => {
+          let x = JSON.stringify(item)
+          return this.searchQ
+            .toLowerCase()
+            .split(" ")
+            .every(v => x.toLowerCase().includes(v));
+        });
+      } else {
+        return this.listPerumahan;
+      }
+    }
   },
   created() {
     this.getkota();
@@ -513,8 +529,8 @@ export default {
     },
   },
   watch: {
-    urut: function (val) {
-      if (val == "Berdasarkan Harga Naik") {
+    urut: function(val) {
+      if (val == "Berdasarkan Nama A - Z") {
         console.log("naik");
         this.listPerumahan.sort((a, b) =>
           a.namaPerumahan > b.namaPerumahan

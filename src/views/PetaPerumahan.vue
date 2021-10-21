@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       isLogin: false,
-           url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; Pemerintah Provinsi Jawa Tengah',
       zoom: 8,
