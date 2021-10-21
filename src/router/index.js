@@ -210,11 +210,19 @@ const routes = [
   },
 
   {
-    path: "/edit_backlog_pengembang",
+    path: "/edit_backlog_pengembang/:id",
     name: "EditBacklogPengembang",
     component: EditBacklogPengembang,
     meta: {
       role: "Pengembang",
+    },
+    beforeRouteUpdate(to, from, next) {
+      console.log(to);
+      if (to.path == "/edit_backlog_pengembang/:id") {
+        next({
+          path: "/edit_backlog_pengembang/",
+        });
+      }
     },
   },
 

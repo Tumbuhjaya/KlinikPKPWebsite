@@ -39,22 +39,23 @@
                 :close-on-select="true"
                 :show-labels="false"
                 placeholder="-- Pilih Kabupaten/Kota --"
+                v-model="dataBacklog.kabKotaJP"
               ></multiselect>
             </b-form-group>
 
             <b-form-group label="Pembangunan">
-              <b-form-input></b-form-input>
+              <b-form-input type="number" v-model="dataBacklog.terbangunJP"></b-form-input>
             </b-form-group>
 
             <b-form-group label="Terjual">
-              <b-form-input></b-form-input>
+              <b-form-input type="number" v-model="dataBacklog.terjualJP"></b-form-input>
             </b-form-group>
 
             <b-form-group label="Ditempati">
-              <b-form-input></b-form-input>
+              <b-form-input type="number" v-model="dataBacklog.dihuniJP"></b-form-input>
             </b-form-group>
 
-            <b-button variant="primary">Simpan</b-button>
+            <b-button variant="primary" @click="regisBackLog()">Simpan</b-button>
           </b-col>
         </b-row>
       </b-container>
@@ -85,6 +86,12 @@ export default {
       foto3: "",
       kabKota: "",
       kabkot: [],
+      dataBacklog:{
+        kabKotaJP:"",
+        terbangunJP:"",
+        terjualJP:"",
+        dihuniJP:""
+      }
     };
   },
   components: {
@@ -96,29 +103,19 @@ export default {
     this.getkota();
   },
   methods: {
-    handleFile() {
-      this.foto1 = this.$refs.foto1.files[0];
-      this.foto2 = this.$refs.foto2.files[0];
-      this.foto3 = this.$refs.foto3.files[0];
-    },
-    regisCsr() {
+    regisBackLog() {
       let vm = this;
-      let formData = new FormData();
-      formData.append("foto1", vm.foto1);
-      formData.append("foto2", vm.foto2);
-      formData.append("foto3", vm.foto3);
-      formData.append("deskripsi", vm.deskripsi);
-      formData.append("kegiatan", vm.kegiatan);
-      formData.append("kabKota", vm.kabKota);
       axios
-        .post(ipBackEnd + "CSR/register", formData, {
+        .post(ipBackEnd + "jumlahPerumahanKabKota/register", vm.dataBacklog, {
           headers: {
             token: localStorage.getItem("token"),
           },
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({ path: "/dashboard_csr" });
+          if(res.data.message == 'sukses'){
+            this.$router.push({path: '/dashboard_pengembang'})
+          }
         })
         .catch((err) => {
           console.log(err);

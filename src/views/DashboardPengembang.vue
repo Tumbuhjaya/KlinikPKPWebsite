@@ -297,15 +297,19 @@
                   small
                   show-empty
                 >
+                <template #cell(no)="item">
+                  {{item.index + 1}}
+                </template>
                   <template #cell(actions)="item">
                     <center>
                       <b-button
                         variant="warning"
                         size="sm"
                         class="m-r-15"
+                        @click="$router.push({path:'/edit_backlog_pengembang/' + item.item.id})"
                         v-b-tooltip.hover.top="'Edit'"
                         ><b-icon-pencil-square></b-icon-pencil-square
-                        >{{ item.action }}</b-button
+                        ></b-button
                       >
 
                       <b-button
@@ -314,7 +318,7 @@
                         v-b-tooltip.hover.top="'Hapus'"
                         class="m-r-15"
                         ><b-icon-trash></b-icon-trash
-                        >{{ item.action }}</b-button
+                        ></b-button
                       >
                     </center>
                   </template>
@@ -512,6 +516,7 @@ export default {
       items: [],
       namaPerusahaan: "",
       listPengajuan: [],
+      listBacklog:[],
       fields: [
         {
           key: "No",
@@ -609,26 +614,26 @@ export default {
           class: "text-center",
         },
         {
-          key: "kabkot",
+          key: "kabKotaJP",
           label: "Kabupaten/Kota",
           sortable: true,
           sortDirection: "desc",
         },
         {
-          key: "pembangunan",
+          key: "terbangunJP",
           label: "Pembangunan",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "terjual",
+          key: "terjualJP",
           label: "Terjual",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "ditempati",
+          key: "dihuniJP",
           label: "Ditempati",
           sortable: true,
           class: "text-center",
@@ -668,6 +673,7 @@ export default {
   async created() {
     this.getPerum();
     this.getCalon();
+    this.getBacklog()
   },
   mounted() {
     // Set the initial number of items
@@ -715,6 +721,16 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    async getBacklog(){
+      let id = localStorage.getItem('id')
+      let back = await axios.get(ipBackEnd + 'jumlahPerumahanKabKota/listByPengembang/' + id,{
+        headers:{
+          token: localStorage.getItem('token')
+        }
+      })
+      this.listBacklog = back.data.data
+      console.log(this.listBacklog)
     },
     getPerum() {
       axios

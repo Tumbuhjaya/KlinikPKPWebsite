@@ -199,7 +199,6 @@
                 </b-row>
               </b-tab>
             </b-tabs>
-            
           </b-col>
         </b-row>
       </b-container>

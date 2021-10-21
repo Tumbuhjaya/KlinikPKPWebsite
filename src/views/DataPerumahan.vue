@@ -334,7 +334,7 @@ export default {
       isLogin: false,
       selected: null,
       listPerumahan: [],
-      listHasil:[],
+      listHasil: [],
       items: [],
       ipBackEnd,
       sitePlan: "",
@@ -416,20 +416,20 @@ export default {
     myfooter,
     Multiselect,
   },
-  computed:{
+  computed: {
     hasilQuery() {
       if (this.searchQ) {
-        return this.listPerumahan.filter(item => {
-          let x = JSON.stringify(item)
+        return this.listPerumahan.filter((item) => {
+          let x = JSON.stringify(item);
           return this.searchQ
             .toLowerCase()
             .split(" ")
-            .every(v => x.toLowerCase().includes(v));
+            .every((v) => x.toLowerCase().includes(v));
         });
       } else {
         return this.listPerumahan;
       }
-    }
+    },
   },
   created() {
     this.getkota();
