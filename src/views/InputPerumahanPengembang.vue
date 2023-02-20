@@ -58,6 +58,7 @@
                     <b-form-input
                       placeholder="-6.1234"
                       v-model="koordinatX"
+                      type="number"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
@@ -66,13 +67,14 @@
                     <b-form-input
                       placeholder="110.1234"
                       v-model="koordinatY"
+                      type="number"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
               </b-row>
 
               <b-form-group label="Email">
-                <b-form-input v-model="email"></b-form-input>
+                <b-form-input v-model="email" type="email"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Kontak Person">
@@ -80,7 +82,7 @@
               </b-form-group>
 
               <b-form-group label="Luas Lahan Perumahan (m2)">
-                <b-form-input v-model="luasLahan"></b-form-input>
+                <b-form-input v-model="luasLahan" type="number"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Upload Brosur Perumahan">
