@@ -455,6 +455,7 @@ export default {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("id", res.data.id);
           localStorage.setItem("role", res.data.role);
+          alert(res.data.message)
           if (res.data.role == "Pengembang") {
             this.$router.push({ path: "/dashboard_pengembang" });
           } else if (res.data.role == "CSR") {
@@ -462,6 +463,7 @@ export default {
           }
         })
         .catch((err) => {
+          alert(err.data.message)
           console.log(err);
         });
     },
