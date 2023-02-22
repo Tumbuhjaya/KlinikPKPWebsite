@@ -205,7 +205,7 @@
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Telepon</strong></h6>
-                <h6 class="m-t-0 m-b-0">{{ dataPerum.noHp }}</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.CPPerumahan }}</h6>
               </div>
             </div>
           </b-col>
@@ -216,7 +216,7 @@
 
               <div class="identitas-kontak">
                 <h6 class="m-t-0 m-b-0"><strong>Email</strong></h6>
-                <h6 class="m-t-0 m-b-0">{{ dataPerum.email }}</h6>
+                <h6 class="m-t-0 m-b-0">{{ dataPerum.emailPerumahan }}</h6>
               </div>
             </div>
           </b-col>

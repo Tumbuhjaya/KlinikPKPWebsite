@@ -54,17 +54,17 @@
               </b-form-group>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Latitude">
+                  <b-form-group label="Koordinat Longtitude">
                     <b-form-input
-                      placeholder="-6.1234"
+                      placeholder="110.1234"
                       v-model="koordinatX"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Longtitude">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input
-                      placeholder="110.1234"
+                      placeholder="-6.1234"
                       v-model="koordinatY"
                     ></b-form-input>
                   </b-form-group>
@@ -76,7 +76,7 @@
               </b-form-group>
 
               <b-form-group label="Kontak Person">
-                <b-form-input v-model="CP"></b-form-input>
+                <b-form-input v-model="CPPerumahan"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Luas Lahan Perumahan (m2)">
@@ -177,6 +177,7 @@ export default {
       formData.append("koordinatY", vm.koordinatY);
       formData.append("deskripsiPerumahan", vm.deskripsi);
       formData.append("luasLahanPerumahan", vm.luasLahan);
+      formData.append("CPPerumahan", vm.CPPerumahan);
       console.log(formData, "ini formData");
       axios
         .post(ipBackEnd + "perumahan/register", formData, {

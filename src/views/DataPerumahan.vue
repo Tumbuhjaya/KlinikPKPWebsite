@@ -232,13 +232,19 @@
                       <hr />
                       <b-row>
                         <b-col md="6">
+                          <a
+                  :href="
+                    'https://www.google.com/maps/dir/Current+Location/'+item.koordinatY +','+item.koordinatX +''
+                  "
+                  target="_blank"
+                >
                           <b-button
-                            variant="primary"
+                            variant="success"
                             size="sm"
-                            @click="goListRumah(item)"
                             style="cursor: pointer"
-                            >Detail</b-button
+                            >Lokasi</b-button
                           >
+                          </a>
                         </b-col>
                         <b-col md="6">
                           <b-button
@@ -252,6 +258,17 @@
                                 (sitePlan = item.siteplanPerumahan)
                             "
                             >Siteplan</b-button
+                          >
+                        </b-col>
+
+                        <b-col md="12">
+                          <b-button
+                            variant="primary"
+                            size="sm"
+                            block
+                            @click="goListRumah(item)"
+                            style="cursor: pointer;margin-top:10px"
+                            >Detail</b-button
                           >
                         </b-col>
                       </b-row>

@@ -62,7 +62,7 @@
               </b-form-group>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Latitude">
+                  <b-form-group label="Koordinat Longtitude">
                     <b-form-input
                       v-model="dataPerum.koordinatX"
                       :placeholder="dataPerum.koordinatX"
@@ -70,7 +70,7 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Koordinat Longtitude">
+                  <b-form-group label="Koordinat Latitude">
                     <b-form-input
                       v-model="dataPerum.koordinatY"
                       :placeholder="dataPerum.koordinatY"
