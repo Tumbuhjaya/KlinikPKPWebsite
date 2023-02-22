@@ -92,6 +92,8 @@ export default {
         .then((res) => {
           console.log(res,'ini footer AAA');
           alert(res.data.message)
+          if(res.data.token !=undefined){
+
           localStorage.setItem('token',res.data.token)
           localStorage.setItem('id', res.data.id)
           localStorage.setItem('role',res.data.role)
@@ -101,6 +103,10 @@ export default {
           else if(res.data.role == 'CSR'){
           this.$router.push({ path: "/dashboard_csr" });
           }
+          
+        }else{
+          this.$router.push({ path: "/" });
+        }
         }).catch((err) => {
           console.log(err);
           alert(err.data.message)

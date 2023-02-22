@@ -451,16 +451,21 @@ export default {
           password: this.password,
         })
         .then((res) => {
+          alert(res.data.message)
+          if(res.data.token !=undefined){
           console.log(res, "ini footer");
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("id", res.data.id);
           localStorage.setItem("role", res.data.role);
-          alert(res.data.message)
           if (res.data.role == "Pengembang") {
             this.$router.push({ path: "/dashboard_pengembang" });
           } else if (res.data.role == "CSR") {
             this.$router.push({ path: "/dashboard_csr" });
           }
+        }else{
+          this.$router.push({ path: "/" });
+
+        }
         })
         .catch((err) => {
           alert(err.data.message)
