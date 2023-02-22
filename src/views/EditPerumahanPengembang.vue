@@ -66,6 +66,7 @@
                     <b-form-input
                       v-model="dataPerum.koordinatX"
                       :placeholder="dataPerum.koordinatX"
+                      type="number"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
@@ -74,6 +75,7 @@
                     <b-form-input
                       v-model="dataPerum.koordinatY"
                       :placeholder="dataPerum.koordinatY"
+                      type="number"
                     ></b-form-input>
                   </b-form-group>
                 </b-col>
@@ -83,6 +85,7 @@
                 <b-form-input
                   v-model="dataPerum.emailPerumahan"
                   :placeholder="dataPerum.emailPerumahan"
+                  type="email"
                 ></b-form-input>
               </b-form-group>
 
@@ -96,6 +99,7 @@
               <b-form-group label="Luas Lahan Perumahan (m2)">
                 <b-form-input
                   v-model="dataPerum.luasLahanPerumahan"
+                  type="number"
                   :placeholder="setPlace(dataPerum.luasLahanPerumahan)"
                 ></b-form-input>
               </b-form-group>
