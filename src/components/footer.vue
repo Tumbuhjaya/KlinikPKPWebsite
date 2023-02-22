@@ -91,11 +91,11 @@ export default {
         })
         .then((res) => {
           console.log(res,'ini footer AAA');
+          alert(res.data.message)
           localStorage.setItem('token',res.data.token)
           localStorage.setItem('id', res.data.id)
           localStorage.setItem('role',res.data.role)
           if(res.data.role == "Pengembang"){
-            console.log('ini')
           this.$router.push({ path: "/dashboard_pengembang" });
           }
           else if(res.data.role == 'CSR'){
@@ -103,6 +103,8 @@ export default {
           }
         }).catch((err) => {
           console.log(err);
+          alert(err.data.message)
+
         });
     },
   },
