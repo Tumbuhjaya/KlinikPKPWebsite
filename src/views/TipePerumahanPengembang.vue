@@ -52,7 +52,7 @@
                     </b-form-group> -->
 
                     <b-form-group label="Stok">
-                      <b-form-input v-model="stok_properti"></b-form-input>
+                      <b-form-input type="number" v-model="stok_properti"></b-form-input>
                     </b-form-group>
                   </b-col>
 
@@ -196,14 +196,14 @@
                     class="m-r-15"
                     ><b-icon-pencil></b-icon-pencil
                   ></b-button>
-                  <b-button
+                  <!-- <b-button
                     variant="warning"
                     size="sm"
                     @click="$bvModal.show('jual'), hapusId = item.item.id"
                     v-b-tooltip.hover.top="'Terjual'"
                     class="m-r-15"
                     ><b-icon-basket-fill></b-icon-basket-fill
-                  ></b-button>
+                  ></b-button> -->
                 </center>
               </template>
             </b-table>
@@ -267,7 +267,7 @@ export default {
         //   sortDirection: "desc",
         // },
         {
-          key: "stokProperti",
+          key: "stok_properti",
           label: "Stok",
           sortable: true,
           class: "text-center",
@@ -304,16 +304,16 @@ export default {
       hapusId:"",
       jenis: "",
       type: "",
-      harga: "",
+      harga: 0,
       luasBangunanRumah: 0,
       luasLahanRumah: 0,
       atapRumah: "",
       dindingRumah: "",
       lantaiPondasiRumah: "",
-      jmlKamarMandi: "",
-      jmlKamarTidur: "",
+      jmlKamarMandi: 0,
+      jmlKamarTidur: 0,
       noKavling: "",
-      stok_properti: "",
+      stok_properti: 0,
       statusTerjual: 0,
       stock: 1,
       linkVideo: "",
@@ -402,7 +402,7 @@ export default {
       await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);
       await formData.append("nomorKapling", vm.noKavling);
-      await formData.append("stokProperti", vm.stok_properti);
+      await formData.append("stok_properti",Number(vm.stok_properti));
       await formData.append("statusTerjual", vm.statusTerjual);
       await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);

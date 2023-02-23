@@ -288,7 +288,8 @@ export default {
           this.dataRumah.src3 = ipBackEnd + x.foto3;
           this.dataRumah.srcDenah = ipBackEnd + x.fotoDenah;
           // this.dataRumah.link = x.linkVideo;
-          this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
+          // this.avail = this.sisa(this.dataRumah.stock, this.dataRumah.terjual);
+          this.avail = this.dataRumah.stok_properti ||0
           console.log(this.dataRumah);
         })
         .catch((err) => {

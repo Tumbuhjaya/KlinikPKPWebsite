@@ -55,6 +55,7 @@
 
                     <b-form-group label="Stok">
                       <b-form-input
+                      type="number"
                       v-model="dataTipe.stok_properti"></b-form-input>
                     </b-form-group>
                   </b-col>
