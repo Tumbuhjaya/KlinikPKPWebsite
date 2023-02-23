@@ -48,9 +48,14 @@
                       v-model="dataTipe.type"></b-form-input>
                     </b-form-group>
 
-                    <b-form-group label="Nomor Kavling">
+                    <!-- <b-form-group label="Nomor Kavling">
                       <b-form-input
                       v-model="dataTipe.nomorKapling"></b-form-input>
+                    </b-form-group> -->
+
+                    <b-form-group label="Stok">
+                      <b-form-input
+                      v-model="dataTipe.stok_properti"></b-form-input>
                     </b-form-group>
                   </b-col>
 

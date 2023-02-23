@@ -47,8 +47,12 @@
                       <b-form-input v-model="type"></b-form-input>
                     </b-form-group>
 
-                    <b-form-group label="No Kavling">
+                    <!-- <b-form-group label="No Kavling">
                       <b-form-input v-model="noKavling"></b-form-input>
+                    </b-form-group> -->
+
+                    <b-form-group label="Stok">
+                      <b-form-input v-model="stok_properti"></b-form-input>
                     </b-form-group>
                   </b-col>
 
@@ -255,9 +259,16 @@ export default {
           class: "text-center",
           sortDirection: "desc",
         },
+        // {
+        //   key: "nomorKapling",
+        //   label: "No Kavling",
+        //   sortable: true,
+        //   class: "text-center",
+        //   sortDirection: "desc",
+        // },
         {
-          key: "nomorKapling",
-          label: "No Kavling",
+          key: "stokProperti",
+          label: "Stok",
           sortable: true,
           class: "text-center",
           sortDirection: "desc",
@@ -302,6 +313,7 @@ export default {
       jmlKamarMandi: "",
       jmlKamarTidur: "",
       noKavling: "",
+      stok_properti: "",
       statusTerjual: 0,
       stock: 1,
       linkVideo: "",
@@ -390,6 +402,7 @@ export default {
       await formData.append("jmlKamarTidur", vm.jmlKamarTidur);
       await formData.append("stock", vm.stock);
       await formData.append("nomorKapling", vm.noKavling);
+      await formData.append("stokProperti", vm.stok_properti);
       await formData.append("statusTerjual", vm.statusTerjual);
       await formData.append("terjual", vm.terjual);
       await formData.append("linkVideo", vm.linkVideo);
