@@ -202,28 +202,25 @@
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Tersedia : </strong>
                             {{
-                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual) +
-                                getJml(
-                                  item.jmlKomersial,
-                                  item.jmlKomersialTerjual
-                                )
+                              getJml(item.jmlStokSubsidi)+ getJml(item.jmlStokKomersial)
+                                
+                                
                             }}
                             Unit
                           </h6>
                           <h6 class="harga m-t-0 m-b-0" style="font-size: 12px">
                             <strong>Subsidi : </strong>
                             {{
-                              getJml(item.jmlSubsidi, item.jmlSubsidiTerjual)
+                              
+                              getJml(item.jmlStokSubsidi)
                             }}
                             Unit
                           </h6>
                           <h6 class="harga m-t-5 m-b-5" style="font-size: 12px">
                             <strong>Komersial : </strong>
                             {{
-                              getJml(
-                                item.jmlKomersial,
-                                item.jmlKomersialTerjual
-                              )
+                             
+                             getJml( item.jmlStokKomersial)
                             }}
                             Unit
                           </h6>
