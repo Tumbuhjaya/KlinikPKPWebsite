@@ -101,17 +101,19 @@
                   show-empty
                 >
                 <template #cell(no)="item">
-                  {{item.index + 1}}
+                  {{item.index + 1+((currentPage-1)*10)}}
                 </template>
                   <template #cell(fotoLokasi1)="">
                     <center>
-                      <img src="https://placehold.co/100" alt="">
+                      <img v-if="!item.foto_1!=''" src="https://placehold.co/100" alt="">
+                      <img v-else :src="item.foto_1" alt="">
                     </center>
                   </template>
 
                   <template #cell(fotoLokasi2)="">
                     <center>
-                      <img src="https://placehold.co/100" alt="">
+                      <img v-if="item.foto_2!=''" src="https://placehold.co/100" alt="">
+                      <img v-else :src="item.foto_2" alt="">
                     </center>
                   </template>
                   <template #cell(actions)="item">
@@ -172,8 +174,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 // import Multiselect from "vue-multiselect";
@@ -194,48 +196,48 @@ export default {
           class: "text-center",
         },
         {
-          key: "nama",
+          key: "nama_pengusul",
           label: "Nama",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "alamat",
+          key: "alamat_pengusul",
           label: "Alamat",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "statusKepemilikan",
+          key: "status_kepemilikan_tanah",
           label: "Status Kepemilikan",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "luasTanah",
+          key: "luas_tanah",
           label: "Luas Tanah (m2)",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "fotoLokasi1",
+          key: "foto_1",
           label: "Foto Lokasi 1",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "fotoLokasi2",
+          key: "foto_2",
           label: "Foto Lokasi 2",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "statusUsulan",
+          key: "status_usulan",
           label: "Status Usulan",
           sortable: true,
           class: "text-center",
@@ -258,9 +260,49 @@ export default {
     myfooter,
     // Multiselect,
   },
-  created() {
-  },
+
   methods: {
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    async  loadData(){
+      let vm = this
+      let tokenUser =localStorage.getItem('token')
+      let user_id = localStorage.getItem('id')
+      let data = {
+      halaman:1,
+      jumlah:9999999999999,
+      user_id
+    }
+      let listData = await axios({
+        method: "post",
+        url: ipBackEnd + `usulan_pembangunan_rumah/listByPublish`,
+        headers: {token: tokenUser},
+        data:data
+      }) 
+      for (let i = 0; i < listData.data.data.length; i++) {
+        if (listData.data.data[i].foto_tanah1) {
+          listData.data.data[i].foto_1= ipBackEnd+listData.data.data[i].foto_tanah1
+        }
+        if (listData.data.data[i].foto_tanah2) {
+          listData.data.data[i].foto_2= ipBackEnd+listData.data.data[i].foto_tanah2
+        }
+        listData.data.data[i].status_usulan=listData.data.data[i].publish==0?'Menunggu Verifikasi':listData.data.data[i].publish==1?'Disetujui':listData.data.data[i].publish==2?'Ditolak':''
+
+      }
+      vm.totalRows = listData.data.data.length;
+      vm.itemss = listData.data.data
+      console.log(vm.itemss);
+    },
+  },
+  created() {
+    this.loadData()
+  },
+  mounted() {
+    // Set the initial number of items
+    this.totalRows = this.itemss.length;
   },
   watch: {
   },

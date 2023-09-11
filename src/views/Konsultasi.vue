@@ -71,7 +71,7 @@
                 </b-row>
 
                 <b-table
-                  :items="itemss"
+                  :items="items"
                   :fields="fields3"
                   :current-page="currentPage"
                   :per-page="perPage"
@@ -84,7 +84,7 @@
                   show-empty
                 >
                 <template #cell(no)="item">
-                  {{item.index + 1}}
+                  {{item.index + 1+((currentPage-1)*10)}}
                 </template>
                   <template #cell(actions)="item">
                     <center>
@@ -134,19 +134,20 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 // import Multiselect from "vue-multiselect";
-
+import moment from "moment";
+moment.locale("id");
 export default {
   name: "Konsultasi",
   data() {
     return {
       isLogin: false,
-      itemss: [
-        { no: 1, materi:'Materi A', tglKonsultasi: '0000-00-00', waktu: '09.00',  status : 'Status A' },
+      items: [
+        { no: 1, materi_konsultasi:'Materi A', waktu_konsultasi: '0000-00-00', waktu: '09.00',  status : 'Status A' },
       ],
       fields3: [
         {
@@ -156,13 +157,13 @@ export default {
           class: "text-center",
         },
         {
-          key: "materi",
+          key: "materi_konsultasi",
           label: "Materi",
           sortable: true,
           class: "text-center",
         },
         {
-          key: "tglKonsultasi",
+          key: "jadwal",
           label: "Tanggal Konsultasi",
           sortable: true,
           class: "text-center",
@@ -177,7 +178,7 @@ export default {
         
 
         {
-          key: "statusUsulan",
+          key: "status_usulan",
           label: "Status Usulan",
           sortable: true,
           class: "text-center",
@@ -193,14 +194,54 @@ export default {
       filterOn: [],
     };
   },
+  methods: {
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    async get_konsultasi(){
+      let vm = this
+      let tokenUser =localStorage.getItem('token')
+      let user_id = localStorage.getItem('id')
+      let data = {
+      halaman:1,
+      jumlah:9999999,
+      user_id
+    } 
+      let listData = await axios({
+        method: "post",
+        url: ipBackEnd + `konsultasi/listByPublish`,
+        headers: {token: tokenUser},
+        data:data
+      })
+      for (let i = 0; i < listData.data.data.length; i++) {
+        if (listData.data.data[i].jadwal_konsultasi) {
+          listData.data.data[i].jadwal=moment(listData.data.data[i].jadwal_konsultasi).format('L')
+          listData.data.data[i].waktu=moment(listData.data.data[i].jadwal_konsultasi).format('LT')
+        }else{
+          listData.data.data[i].jadwal='00/00/0000'
+          listData.data.data[i].waktu='00-00'
+        }
+ 
+        listData.data.data[i].status_usulan=listData.data.data[i].publish==0?'Menunggu Verifikasi':listData.data.data[i].publish==1?'Disetujui':listData.data.data[i].publish==2?'Ditolak':''
+        
+      }
+      this.totalRows = listData.data.data.length;
+      vm.items = listData.data.data
+    }
+  },
   components: {
     myheader,
     myfooter,
     // Multiselect,
   },
   created() {
+    this.get_konsultasi()
   },
-  methods: {
+  mounted() {
+    // Set the initial number of items
+    this.totalRows = this.items.length;
   },
   watch: {
   },

@@ -144,7 +144,7 @@ const routes = [
     name: "Konsultasi",
     component: Konsultasi,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -153,7 +153,7 @@ const routes = [
     name: "InputKonsultasi",
     component: InputKonsultasi,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -162,7 +162,7 @@ const routes = [
     name: "DetailKonsultasi",
     component: DetailKonsultasi,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -171,7 +171,7 @@ const routes = [
     name: "Usulan",
     component: Usulan,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -180,7 +180,7 @@ const routes = [
     name: "UsulanPembangunan",
     component: UsulanPembangunan,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -189,7 +189,7 @@ const routes = [
     name: "InputUsulanPembangunan",
     component: InputUsulanPembangunan,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -198,7 +198,7 @@ const routes = [
     name: "EditUsulanPembangunan",
     component: EditUsulanPembangunan,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -207,7 +207,7 @@ const routes = [
     name: "UsulanRTLH",
     component: UsulanRTLH,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -216,7 +216,7 @@ const routes = [
     name: "InputUsulanRTLH",
     component: InputUsulanRTLH,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 
@@ -225,7 +225,7 @@ const routes = [
     name: "EditUsulanRTLH",
     component: EditUsulanRTLH,
     meta: {
-      role: "all",
+      role: "Umum",
     },
   },
 

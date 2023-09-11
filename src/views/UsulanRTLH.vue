@@ -101,17 +101,17 @@
                   show-empty
                 >
                 <template #cell(no)="item">
-                  {{item.index + 1}}
+                  {{item.index + 1+((currentPage-1)*10)}}
                 </template>
                   <template #cell(fotoLokasi1)="">
                     <center>
-                      <img src="https://placehold.co/100" alt="">
+                      <img :src="item.foto1" alt="">
                     </center>
                   </template>
 
                   <template #cell(fotoLokasi2)="">
                     <center>
-                      <img src="https://placehold.co/100" alt="">
+                      <img :src="item.foto2" alt="">
                     </center>
                   </template>
                   <template #cell(actions)="">
@@ -171,8 +171,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 // import Multiselect from "vue-multiselect";
@@ -193,7 +193,7 @@ export default {
           class: "text-center",
         },
         {
-          key: "nama",
+          key: "namaPelapor",
           label: "Nama",
           sortable: true,
           class: "text-center",
@@ -206,35 +206,35 @@ export default {
         },
 
         {
-          key: "statusKepemilikanRumah",
+          key: "SCLRumah",
           label: "Status Kepemilikan Rumah",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "luasTanah",
+          key: "luasRumah",
           label: "Luas Rumah (m2)",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "fotoLokasi1",
+          key: "foto1",
           label: "Foto Rumah (Tampak Depan)",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "fotoLokasi2",
+          key: "foto2",
           label: "Foto Rumah (Tampak Samping)",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "statusUsulan",
+          key: "status_usulan",
           label: "Status Usulan",
           sortable: true,
           class: "text-center",
@@ -258,10 +258,53 @@ export default {
     // Multiselect,
   },
   created() {
+    this.loadData()
+
   },
   methods: {
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    async  loadData(){
+    let vm = this
+    let tokenUser =localStorage.getItem('token')
+      let user_id = localStorage.getItem('id')
+    let data = {
+    halaman:1,
+    jumlah:999999999,
+    user_id
+  }
+    let listData = await axios({
+      method: "post",
+      url: ipBackEnd + `RTLH/listByPublish`,
+      headers: {token: tokenUser},
+      data:data
+    }) 
+    for (let i = 0; i < listData.data.data.length; i++) {
+        if (listData.data.data[i].foto_tanah1) {
+          listData.data.data[i].foto1= ipBackEnd+listData.data.data[i].foto1
+        }
+        if (listData.data.data[i].foto_tanah2) {
+          listData.data.data[i].foto2= ipBackEnd+listData.data.data[i].foto2
+        }
+        listData.data.data[i].status_usulan=listData.data.data[i].publish==0?'Menunggu Verifikasi':listData.data.data[i].publish==1?'Disetujui':listData.data.data[i].publish==2?'Ditolak':''
+
+      }
+  
+    vm.totalRows = listData.data.data.length;
+      vm.itemss = listData.data.data
+      console.log(vm.itemss);
+      
+  }
   },
   watch: {
+    
+  },
+  mounted() {
+    // Set the initial number of items
+    this.totalRows = this.itemss.length;
   },
 };
 </script>
