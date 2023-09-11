@@ -82,7 +82,7 @@
         <b-row>
           <b-col md="12">
             <b-row>
-              <b-col md="4">
+              <b-col md="3">
                 <div
                   style="
                     width: 100%;
@@ -92,7 +92,7 @@
                 ></div>
               </b-col>
 
-              <b-col md="8">
+              <b-col md="9">
                 <div
                   style="
                     width: 100%;
@@ -114,7 +114,7 @@
 
                   <div
                     style="
-                      width: 80%;
+                      width: 100%;
                       display: flex;
                       justify-content: space-between;
                       align-items: center;
@@ -171,6 +171,58 @@
                           />
                           <h6 style="color: #fff" class="mt-3">
                             <strong>PETA</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/daftar_pengembang'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/clipboard.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>CEK RTLH</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/konsultasi'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/clipboard.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>KONSULTASI</strong>
+                          </h6>
+                        </router-link>
+                      </center>
+                    </div>
+
+                    <div>
+                      <center>
+                        <router-link
+                          :to="'/usulan'"
+                          style="text-decoration: none"
+                        >
+                          <img
+                            src="../assets/clipboard.png"
+                            alt=""
+                            style="height: 100px"
+                          />
+                          <h6 style="color: #fff" class="mt-3">
+                            <strong>USULAN</strong>
                           </h6>
                         </router-link>
                       </center>

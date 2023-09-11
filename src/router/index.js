@@ -37,6 +37,16 @@ import DashboardPerbankan from "../views/DashboardPerbankan.vue";
 import PV from "../views/PV.vue";
 import DetailPV from "../views/PV_Detail";
 import Login from "../views/Login.vue";
+import Konsultasi from "../views/Konsultasi.vue";
+import InputKonsultasi from "../views/InputKonsultasi.vue";
+import DetailKonsultasi from "../views/DetailKonsultasi.vue";
+import Usulan from "../views/Usulan.vue";
+import UsulanPembangunan from "../views/UsulanPembangunan.vue";
+import InputUsulanPembangunan from "../views/InputUsulanPembangunan.vue";
+import EditUsulanPembangunan from "../views/EditUsulanPembangunan.vue";
+import UsulanRTLH from "../views/UsulanRTLH.vue";
+import InputUsulanRTLH from "../views/InputUsulanRTLH.vue";
+import EditUsulanRTLH from "../views/EditUsulanRTLH.vue";
 
 Vue.use(VueRouter);
 
@@ -126,6 +136,96 @@ const routes = [
           path: "/detail_perumahan",
         });
       }
+    },
+  },
+
+  {
+    path: "/konsultasi",
+    name: "Konsultasi",
+    component: Konsultasi,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/input_konsultasi",
+    name: "InputKonsultasi",
+    component: InputKonsultasi,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/detail_konsultasi/:id",
+    name: "DetailKonsultasi",
+    component: DetailKonsultasi,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/usulan",
+    name: "Usulan",
+    component: Usulan,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/usulan_pembangunan",
+    name: "UsulanPembangunan",
+    component: UsulanPembangunan,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/input_usulan_pembangunan",
+    name: "InputUsulanPembangunan",
+    component: InputUsulanPembangunan,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/edit_usulan_pembangunan/:id",
+    name: "EditUsulanPembangunan",
+    component: EditUsulanPembangunan,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/usulan_rtlh",
+    name: "UsulanRTLH",
+    component: UsulanRTLH,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/input_usulan_rtlh",
+    name: "InputUsulanRTLH",
+    component: InputUsulanRTLH,
+    meta: {
+      role: "all",
+    },
+  },
+
+  {
+    path: "/edit_usulan_rtlh/:id",
+    name: "EditUsulanRTLH",
+    component: EditUsulanRTLH,
+    meta: {
+      role: "all",
     },
   },
 
