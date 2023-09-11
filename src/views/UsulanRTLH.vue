@@ -283,10 +283,10 @@ export default {
       data:data
     }) 
     for (let i = 0; i < listData.data.data.length; i++) {
-        if (listData.data.data[i].foto_tanah1) {
+        if (listData.data.data[i].foto1) {
           listData.data.data[i].foto1= ipBackEnd+listData.data.data[i].foto1
         }
-        if (listData.data.data[i].foto_tanah2) {
+        if (listData.data.data[i].foto2) {
           listData.data.data[i].foto2= ipBackEnd+listData.data.data[i].foto2
         }
         listData.data.data[i].status_usulan=listData.data.data[i].publish==0?'Menunggu Verifikasi':listData.data.data[i].publish==1?'Disetujui':listData.data.data[i].publish==2?'Ditolak':''
