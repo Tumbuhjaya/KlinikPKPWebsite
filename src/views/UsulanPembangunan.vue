@@ -104,17 +104,13 @@
                   {{item.index + 1+((currentPage-1)*10)}}
                 </template>
                   <template #cell(fotoLokasi1)="">
-                    <center>
-                      <img v-if="!item.foto_1!=''" src="https://placehold.co/100" alt="">
-                      <img v-else :src="item.foto_1" alt="">
-                    </center>
+                      <img v-if="!item.item.foto_1!=''" src="https://placehold.co/100" alt="">
+                      <img v-else :src=item.item.foto_1 alt="">                      
                   </template>
 
                   <template #cell(fotoLokasi2)="">
-                    <center>
-                      <img v-if="item.foto_2!=''" src="https://placehold.co/100" alt="">
-                      <img v-else :src="item.foto_2" alt="">
-                    </center>
+                      <img v-if="item.item.foto_2!=''" src="https://placehold.co/100" alt="">
+                      <img v-else :src=item.item.foto_2 alt="">
                   </template>
                   <template #cell(actions)="item">
                     <center>
@@ -122,7 +118,7 @@
                         variant="warning"
                         size="sm"
                         v-b-tooltip.hover.top="'Edit'"
-                        @click="$router.push({path:'/edit_usulan_pembangunan/1'})"
+                        @click="$router.push({path:'/edit_usulan_pembangunan/'+item.item.usulan_id })"
                         class="m-r-15"
                         ><b-icon-pencil-square></b-icon-pencil-square
                         ></b-button
@@ -141,7 +137,7 @@
                         size="sm"
                         v-b-tooltip.hover.top="'Hapus'"
                         class="m-r-15"
-                        @click="hapusJP(item.item.id)"
+                        @click="hapusJP(item.item.usulan_id)"
                         ><b-icon-trash></b-icon-trash
                         ></b-button
                       >
