@@ -103,14 +103,24 @@
                 <template #cell(no)="item">
                   {{item.index + 1+((currentPage-1)*10)}}
                 </template>
-                  <template #cell(fotoLokasi1)="">
-                      <img v-if="!item.item.foto_1!=''" src="https://placehold.co/100" alt="">
-                      <img v-else :src=item.item.foto_1 alt="">                      
+                  <template #cell(fotoLokasi1)="item">
+                      
+                      <div
+                        style="width: 150px; height: 150px"
+                        
+                      >
+                        <img :src="item.item.foto_1" alt="" style="width: 150px; height: 150px" />
+                      </div>
                   </template>
 
-                  <template #cell(fotoLokasi2)="">
-                      <img v-if="item.item.foto_2!=''" src="https://placehold.co/100" alt="">
-                      <img v-else :src=item.item.foto_2 alt="">
+                  <template #cell(fotoLokasi2)="item">
+                      
+                      <div
+                        style="width: 150px; height: 150px"
+                        
+                      >
+                        <img :src="item.item.foto_2" alt="" style="width: 150px; height: 150px" />
+                      </div>
                   </template>
                   <template #cell(actions)="item">
                     <center>
@@ -180,6 +190,7 @@ export default {
   name: "Konsultasi",
   data() {
     return {
+      ipBackEnd,
       isLogin: false,
       itemss: [
         { no: 1, nama:'nama A', alamat: 'alamat A', statusKepemilikan: 'kepemilikan A',  luasTanah : '00 A', statusUsulan : 'Status Usulan A' },
@@ -219,14 +230,14 @@ export default {
         },
 
         {
-          key: "foto_1",
+          key: "fotoLokasi1",
           label: "Foto Lokasi 1",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "foto_2",
+          key: "fotoLokasi2",
           label: "Foto Lokasi 2",
           sortable: true,
           class: "text-center",

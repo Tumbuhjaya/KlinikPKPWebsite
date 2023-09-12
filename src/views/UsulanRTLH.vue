@@ -88,7 +88,7 @@
                 </b-row>
 
                 <b-table
-                  :items="itemss"
+                  :items="item"
                   :fields="fields3"
                   :current-page="currentPage"
                   :per-page="perPage"
@@ -103,24 +103,34 @@
                 <template #cell(no)="item">
                   {{item.index + 1+((currentPage-1)*10)}}
                 </template>
-                  <template #cell(fotoLokasi1)="">
+                  <template #cell(fotoLokasi1)="item">
                     <center>
-                      <img :src="item.foto1" alt="">
+                      <div
+                        style="width: 150px; height: 150px"
+                        
+                      >
+                        <img :src="item.item.foto_1" alt="" style="width: 150px; height: 150px" />
+                      </div>
                     </center>
                   </template>
 
-                  <template #cell(fotoLokasi2)="">
+                  <template #cell(fotoLokasi2)="item">
                     <center>
-                      <img :src="item.foto2" alt="">
+                      <div
+                        style="width: 150px; height: 150px"
+                        
+                      >
+                        <img :src="item.item.foto_2" alt="" style="width: 150px; height: 150px" />
+                      </div>
                     </center>
                   </template>
-                  <template #cell(actions)="">
+                  <template #cell(actions)="item">
                     <center>
                       <b-button
                         variant="warning"
                         size="sm"
                         v-b-tooltip.hover.top="'Edit'"
-                        @click="$router.push({path:'/edit_usulan_rtlh/1'})"
+                        @click="$router.push({path:'/edit_usulan_rtlh/'+item.item.id})"
                         class="m-r-15"
                         ><b-icon-pencil-square></b-icon-pencil-square
                         ></b-button
@@ -182,7 +192,7 @@ export default {
   data() {
     return {
       isLogin: false,
-      itemss: [
+      item: [
         { no: 1, nama:'nama A', alamat: 'alamat A', statusKepemilikanRumah: 'kepemilikan A',  luasTanah : '00 A', statusUsulan : 'Status Usulan A' },
       ],
       fields3: [
@@ -220,14 +230,14 @@ export default {
         },
 
         {
-          key: "foto1",
+          key: "fotoLokasi1",
           label: "Foto Rumah (Tampak Depan)",
           sortable: true,
           class: "text-center",
         },
 
         {
-          key: "foto2",
+          key: "fotoLokasi2",
           label: "Foto Rumah (Tampak Samping)",
           sortable: true,
           class: "text-center",
@@ -294,8 +304,8 @@ export default {
       }
   
     vm.totalRows = listData.data.data.length;
-      vm.itemss = listData.data.data
-      console.log(vm.itemss);
+      vm.item = listData.data.data
+      console.log(vm.item);
       
   }
   },
@@ -304,7 +314,7 @@ export default {
   },
   mounted() {
     // Set the initial number of items
-    this.totalRows = this.itemss.length;
+    this.totalRows = this.item.length;
   },
 };
 </script>

@@ -86,6 +86,12 @@
                   ref="file1"
                   @input="handleFile('file1')"
                 ></b-form-file>
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="src1 != ipBackEnd + 'null'"
+                >
+                  <img :src="src1" alt="" style="width: 150px; height: 150px" />
+                </div>
             </b-form-group>
 
             <b-form-group label="Upload Foto Lokasi Tanah">
@@ -94,9 +100,14 @@
                   ref="file2"
                   @input="handleFile('file2')"
                 ></b-form-file>
-                <img v-if="afoto1" :src=afoto1 alt="">
-            </b-form-group>
-            <b-button variant="primary">Simpan</b-button>
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="src2 != ipBackEnd + 'null'"
+                >
+                  <img :src="src2" alt="" style="width: 150px; height: 150px" />
+                </div>
+              </b-form-group>
+            <b-button variant="primary" @click="submit">Simpan</b-button>
           </b-col>
         </b-row>
       </b-container>
@@ -122,11 +133,12 @@ export default {
       isLogin: false,
       tokenUser:localStorage.getItem('token'),
       user_id:localStorage.getItem('id'),
+      ipBackEnd,
       id:0,
-      foto1: "",
-      afoto1: "",
-      afoto2: "",
-      foto2: "",
+      file1: "",
+      src1: "",
+      src2: "",
+      file2: "",
       nama:"",
       nik:0,
       alamat:"",
@@ -163,6 +175,15 @@ export default {
     //   this.formatted = ctx.selectedFormatted
     //   this.selected = ctx.selectedYMD
       // }
+    handleFile(x) {
+      if (x == "file1") {
+        this.file1 = this.$refs.file1.files[0];
+        this.src1 = URL.createObjectURL(this.file1);
+      } else if (x == "file2") {
+        this.file2 = this.$refs.file2.files[0];
+        this.src2 = URL.createObjectURL(this.file2);
+      }
+    },
     get_data(){
       axios
         .post(ipBackEnd + "usulan_pembangunan_rumah/listById", {id:this.$route.params.id}, {
@@ -171,9 +192,8 @@ export default {
             // "Content-Type": "multipart/form-data"
           }
         }).then(res => {
-          console.log(res.data.data[0]);
-          this.afoto1=ipBackEnd+res.data.data[0].foto_tanah1
-          this.afoto2=ipBackEnd+res.data.data[0].foto_tanah2
+          this.src1=ipBackEnd+res.data.data[0].foto_tanah1
+          this.src2=ipBackEnd+res.data.data[0].foto_tanah2
           this.nama=res.data.data[0].nama_pengusul
           this.nik=res.data.data[0].NIK_pengusul
           this.alamat=res.data.data[0].alamat_pengusul
@@ -189,29 +209,40 @@ export default {
           console.log(err);
         })
     },
-    submit(){
-      let vm = this.item;
-      let data = {
-        id:vm.$route.params.id,
-        publish:vm.publish,
-        tanggapan:vm.tanggapan,
-      };
-      console.log(data);
-      axios
-        .post(ipBackEnd + "usulan_pembangunan_rumah/update", data, {
+    async submit() {
+      let vm = this;
+
+      const formData = new FormData();
+      formData.append("foto1", vm.file1);
+      formData.append("foto2", vm.file2);
+      formData.append("nama_pengusul", vm.nama);
+      formData.append("NIK_pengusul", vm.nik);
+      formData.append("alamat_pengusul", vm.alamat);
+      formData.append("pekerjaan_pengusul", vm.pekerjaan);
+      formData.append("penghasilan_pengusul", vm.penghasilan);
+      formData.append("status_kepemilikan_tanah", vm.status);
+      formData.append("luas_tanah", vm.luas);
+      formData.append("koordinat_lokasi_X", vm.xe);
+      formData.append("koordinat_lokasi_Y", vm.ye);
+      formData.append("id", vm.id);
+      try {
+        await axios({
+          method: "post",
           headers: {
-            token: this.tokenUser
-            // "Content-Type": "multipart/form-data"
-          }
-        }).then(res => {
+            "Content-Type": "multipart/form-data",
+            token: this.tokenUser,
+          },
+          url: ipBackEnd+'usulan_pembangunan_rumah/update',
+          data: formData,
+        }).then(function (res) {
           console.log(res);
-          this.$emit("tembak");
-          this.myModal = false
+          alert(res.data.message)
         })
-        .catch(err => {
-          console.log(err);
-        })
-    }
+      } catch (error) {
+        console.log(error);
+        alert('gagal')
+      }
+      }
   },
   watch: {
     
