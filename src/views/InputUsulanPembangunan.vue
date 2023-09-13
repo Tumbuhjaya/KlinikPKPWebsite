@@ -84,6 +84,12 @@
                   ref="file1"
                   @input="handleFile('file1')"
                 ></b-form-file>
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="src1 != ipBackEnd + 'null'"
+                >
+                  <img :src="src1" alt="" style="width: 150px; height: 150px" />
+                </div>
             </b-form-group>
 
             <b-form-group label="Upload Foto Lokasi Tanah">
@@ -92,10 +98,16 @@
                   ref="file2"
                   @input="handleFile('file2')"
                 ></b-form-file>
+                <div
+                  style="width: 150px; height: 150px"
+                  v-if="src2 != ipBackEnd + 'null'"
+                >
+                  <img :src="src2" alt="" style="width: 150px; height: 150px" />
+                </div>
             </b-form-group>
             
 
-            <b-button variant="primary">Simpan</b-button>
+            <b-button variant="primary" @click="submit">Simpan</b-button>
           </b-col>
         </b-row>
       </b-container>
@@ -108,8 +120,8 @@
 <script>
 // @ is an alias to /src
 // import { mapState, mapGetters, mapActions } from 'vuex'
-// import axios from "axios";
-// import ipBackEnd from "@/ipBackEnd";
+import axios from "axios";
+import ipBackEnd from "@/ipBackEnd";
 import myheader from "../components/header";
 import myfooter from "../components/footer";
 // import Multiselect from "vue-multiselect";
@@ -119,6 +131,22 @@ export default {
   data() {
     return {
       isLogin: false,
+      tokenUser:localStorage.getItem('token'),
+      user_id:localStorage.getItem('id'),
+      ipBackEnd,
+      file1:"",
+      file2:"",
+      src1: ipBackEnd+"null",
+      src2: ipBackEnd+"null",
+      nama:"",
+      nik:0,
+      alamat:"",
+      pekerjaan:"",
+      penghasilan:0,
+      status:"",
+      luas:0,
+      xe:0,
+      ye:0,
       // value: '',
       // formatted: '',
       // selected: '',
@@ -143,6 +171,64 @@ export default {
     //   this.formatted = ctx.selectedFormatted
     //   this.selected = ctx.selectedYMD
     // }
+    handleFile(x) {
+      if (x == "file1") {
+        this.file1 = this.$refs.file1.files[0];
+        this.src1 = URL.createObjectURL(this.file1);
+      } else if (x == "file2") {
+        this.file2 = this.$refs.file2.files[0];
+        this.src2 = URL.createObjectURL(this.file2);
+      }
+    },
+    async submit() {
+      let vm = this;
+
+      const formData = new FormData();
+      formData.append("foto1", vm.file1);
+      formData.append("foto2", vm.file2);
+      formData.append("nama_pengusul", vm.nama);
+      formData.append("NIK_pengusul", vm.nik);
+      formData.append("alamat_pengusul", vm.alamat);
+      formData.append("pekerjaan_pengusul", vm.pekerjaan);
+      formData.append("penghasilan_pengusul", vm.penghasilan);
+      formData.append("status_kepemilikan_tanah", vm.status);
+      formData.append("luas_tanah", vm.luas);
+      formData.append("koordinat_lokasi_X", vm.xe);
+      formData.append("koordinat_lokasi_Y", vm.ye);
+    
+        await axios({
+          method: "post",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            token: this.tokenUser,
+          },
+          url: ipBackEnd+'usulan_pembangunan_rumah/register',
+          data: formData,
+        }).then(async (res)=>{
+          if (res.data.message == "sukses") {
+            vm.loading = false;
+            this.file1= "";
+            this.file2= "";
+            this.src1= "";
+            this.src2= "";
+            this.nama="";
+            this.nik=0;
+            this.alamat="";
+            this.pekerjaan="";
+            this.penghasilan=0;
+            this.status="";
+            this.luas=0;
+            this.xe=0;
+            this.ye=0;
+            vm.$router.push("/usulan_pembangunan");
+          }else{
+            vm.loading = false;
+          }
+        }).catch(err=>{
+            console.log(err);
+            vm.loading = false;
+        })
+    },
   },
   watch: {
     

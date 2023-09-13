@@ -294,19 +294,17 @@ export default {
     }) 
     for (let i = 0; i < listData.data.data.length; i++) {
         if (listData.data.data[i].foto1) {
-          listData.data.data[i].foto1= ipBackEnd+listData.data.data[i].foto1
+          listData.data.data[i].foto_1= ipBackEnd+listData.data.data[i].foto1
         }
         if (listData.data.data[i].foto2) {
-          listData.data.data[i].foto2= ipBackEnd+listData.data.data[i].foto2
+          listData.data.data[i].foto_2= ipBackEnd+listData.data.data[i].foto2
         }
         listData.data.data[i].status_usulan=listData.data.data[i].publish==0?'Menunggu Verifikasi':listData.data.data[i].publish==1?'Disetujui':listData.data.data[i].publish==2?'Ditolak':''
 
       }
   
     vm.totalRows = listData.data.data.length;
-      vm.item = listData.data.data
-      console.log(vm.item);
-      
+      vm.item = listData.data.data      
   }
   },
   watch: {

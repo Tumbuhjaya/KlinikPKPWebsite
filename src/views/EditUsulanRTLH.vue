@@ -123,7 +123,7 @@
             </b-form-group>
 
             <b-form-group label="Jumlah Keluarga">
-              <b-form-input type="text"></b-form-input>
+              <b-form-input type="text" v-model="jumlah_keluarga"></b-form-input>
             </b-form-group>
 
             <b-form-group label="Pernah Menerima Bantuan Renovasi">
@@ -205,8 +205,8 @@ export default {
       tokenUser:localStorage.getItem('token'),
       user_id:localStorage.getItem('id'),
       NIK:0,
-      src1: "",
-      src2: "",
+      src1: ipBackEnd+"null",
+      src2: ipBackEnd+"null",
       file1: "",
       file2: "",
       nama:"",
@@ -214,7 +214,7 @@ export default {
       kk:0,
       kab_kota:"",
       alamat:"",
-      tanggal:moment().add(+7,'hours').format('YYYY-MM-DD'),
+      tanggal:moment().format('YYYY-MM-DD'),
       sekolah:"",
       pekerjaan:"",
       npwp:0,
@@ -336,7 +336,6 @@ export default {
     let vm = this;
     vm.loading = true;
     let pernah_menerima_bantuan =  `Pernah Menerima Bantuan Tahun:${vm.tahun}  Dari: ${vm.sumber_dana}`
-console.log(moment(vm.tanggal ).add(-7,'hours').format('YYYY-MM-DD'));
  const formData = new FormData();
     formData.append("foto1", vm.file1);
     formData.append("foto2", vm.file2);
@@ -346,7 +345,7 @@ console.log(moment(vm.tanggal ).add(-7,'hours').format('YYYY-MM-DD'));
     formData.append("noKK", vm.kk);
     formData.append("kabKota", vm.kab_kota);
     formData.append("alamat", vm.alamat);
-    formData.append("tanggalLahir",moment(vm.tanggal ).add(-7,'hours').format('YYYY-MM-DD'));
+    formData.append("tanggalLahir",moment(vm.tanggal ).format('YYYY-MM-DD'));
     formData.append("pendidikan", vm.sekolah);
     formData.append("pekerjaan", vm.pekerjaan);
     formData.append("noNPWP", vm.npwp);

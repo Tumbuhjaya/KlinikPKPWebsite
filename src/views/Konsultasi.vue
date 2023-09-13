@@ -92,7 +92,7 @@
                         variant="warning"
                         size="sm"
                         class="m-r-15"
-                        @click="$router.push({path:'/detail_konsultasi/1'})"
+                        @click="$router.push({path:'/detail_konsultasi/'+item.item.konsultasi_id})"
                         v-b-tooltip.hover.top="'Detail'"
                         ><b-icon-info-square></b-icon-info-square
                         ></b-button
@@ -103,7 +103,7 @@
                         size="sm"
                         v-b-tooltip.hover.top="'Hapus'"
                         class="m-r-15"
-                        @click="hapusJP(item.item.id)"
+                        @click="hapusJP(item.item.konsultasi_id)"
                         ><b-icon-trash></b-icon-trash
                         ></b-button
                       >

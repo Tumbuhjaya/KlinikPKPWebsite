@@ -104,8 +104,8 @@ export default {
       nama:"",
       nik:0,
       alamat:"",
-      tanggal:moment().add(+7,'hours').format('YYYY-MM-DD'),
-      hari : moment().add(-7,'hours').format('dddd'),
+      tanggal:moment().format('YYYY-MM-DD'),
+      hari : moment().format('dddd'),
       jam:"",
       hp:0,
       pekerjaan:"",
@@ -143,8 +143,8 @@ export default {
       vm.loading = true;
       let tokenUser =localStorage.getItem('token')
       // let user_id = localStorage.getItem('id')
-      let date =moment(vm.tanggal ).add(+7,'hours').format('YYYY-MM-DD')
-      let time = moment(vm.jam).add(-7,'hours').format(`HH:mm`)
+      let date =moment(vm.tanggal ).format('YYYY-MM-DD')
+      let time = moment(vm.jam).format(`HH:mm`)
 
       console.log(vm.jam,time);
       const data = {
@@ -170,8 +170,8 @@ export default {
             this.nik=0;
             this.alamat="";
             this.hari="";
-            this.tanggal=moment().add(+7,'hours').format('YYYY-MM-DD');
-            this.hari = moment(this.tanggal).add(-7,'hours').format('dddd')
+            this.tanggal=moment().format('YYYY-MM-DD');
+            this.hari = moment(this.tanggal).format('dddd')
             this.jam="";
             this.hp=0;
             this.pekerjaan="";
@@ -182,7 +182,7 @@ export default {
             this.materi_lainnya="";
             this.list=[];
             this.hal=1;
-            this.$router.push("/beranda");
+            this.$router.push("/konsultasi");
           
         } else {
           vm.pesan = res.data.message;
@@ -199,7 +199,7 @@ export default {
     async tanggal(newVal, oldVal) {
       if (newVal != oldVal) {
         let vm = this;
-        vm.hari = moment(vm.tanggal).add(-7,'hours').format('dddd')
+        vm.hari = moment(vm.tanggal).format('dddd')
       }
     },
   },
